@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = "/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471"
+CMAKE_BINARY_DIR = "/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/CMakeFiles" "/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/build/CMakeFiles" "/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/build/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -110,6 +110,19 @@ depend:
 	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named echo_s
+
+# Build rule for target.
+echo_s: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 echo_s
+.PHONY : echo_s
+
+# fast build rule for target.
+echo_s/fast:
+	$(MAKE) -f CMakeFiles/echo_s.dir/build.make CMakeFiles/echo_s.dir/build
+.PHONY : echo_s/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -117,6 +130,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... echo_s"
 	@echo "... rebuild_cache"
 .PHONY : help
 

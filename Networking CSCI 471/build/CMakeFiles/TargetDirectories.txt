@@ -1,0 +1,3 @@
+/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/build/CMakeFiles/edit_cache.dir
+/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/build/CMakeFiles/echo_s.dir
+/u/au/sa/mbartlet/Git/senior-year/Networking CSCI 471/build/CMakeFiles/rebuild_cache.dir
