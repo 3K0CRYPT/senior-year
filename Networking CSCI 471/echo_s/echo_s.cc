@@ -25,7 +25,6 @@ int processConnection(int sockFd) {
     
     // Check for one of the commands
     if (_read != oldRead) {
-      if(_read.substr(_read.length() - 2 ) == "Ug") _read = _read.substr(0, _read.length() - 2);
       if (_read == "QUIT") return 1;
       if (_read == "CLOSE") return 0;
       DEBUG << "Received: " << _read << std::endl;
