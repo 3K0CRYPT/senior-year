@@ -21,7 +21,6 @@ int processConnection(int sockFd) {
     char buffer[1024];
     read(sockFd, buffer, 10);
     std::string _read(buffer);
-    _read = _read.substr(0, _read.length()-1);
     
     // Check for one of the commands
     if (_read != oldRead) {
@@ -30,7 +29,7 @@ int processConnection(int sockFd) {
         DEBUG << "Quitting" << std::endl;
         return 1; 
       }
-      if (_read == "CLOSE") { 
+      if (_read == "CLOSE\n") { 
         keepGoing = 0; 
         DEBUG << "Closing" << std::endl;
         return 0; 
