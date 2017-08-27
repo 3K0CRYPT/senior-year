@@ -22,7 +22,7 @@ int processConnection(int sockFd) {
     
     
     // Check for one of the commands
-    if (buffer != _buffer) std::cout << "Dicks3: " << c_str(buffer) << std::endl;
+    if (buffer != _buffer) std::cout << "Dicks3: " << string::c_str(buffer) << std::endl;
     else strcpy(_buffer,buffer);
     
 
