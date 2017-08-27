@@ -25,8 +25,8 @@ int processConnection(int sockFd) {
     
     // Check for one of the commands
     if (_read != oldRead) {
-      if (_read == "QUIT") return 1;
-      if (_read == "CLOSE") return 0;
+      if (_read == "QUIT") { keepGoing = 0; return 1; }
+      if (_read == "CLOSE") { keepGoing = 0; return 0; }
       DEBUG << "Received: " << _read << std::endl;
       oldRead = _read;
     }
