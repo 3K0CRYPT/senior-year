@@ -96,11 +96,7 @@ int main (int argc, char *argv[]) {
   while (!bindSuccesful) {
     // You may have to call bind multiple times if another process is already using the port
     // your program selects.
-    
-    if (bind(listenFd, (sockaddr *) &servaddr, sizeof(servaddr)) >= 0) {
-      DEBUG << "dicks" << ENDL;
-    }
-
+    bindSuccesful = bind(listenFd, (sockaddr *) &servaddr, sizeof(servaddr))
   }
   std::cout << "Using port " << port << std::endl;
 
