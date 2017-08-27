@@ -25,7 +25,7 @@ int processConnection(int sockFd) {
     
     // Check for one of the commands
     if (_read != oldRead) {
-      std::cout << "Dicks3: " << std::string::c_str(buffer) << std::endl;
+      std::cout << "Dicks3: " << _read << std::endl;
       oldRead = _read;
     }
     
