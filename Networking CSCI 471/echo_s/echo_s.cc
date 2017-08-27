@@ -131,7 +131,6 @@ int main (int argc, char *argv[]) {
     // write to. If there is no connection waiting accept() will block and
     // not return until there is a connection.
     
-    int connFd = 0;
     if ((connFd = accept(listenFd, (sockaddr *) NULL, NULL)) > 0) {
       DEBUG << "dicks2" << ENDL;
     }
