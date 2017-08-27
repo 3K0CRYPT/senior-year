@@ -74,7 +74,7 @@ int main (int argc, char *argv[]) {
   int     listenFd = -1;
        // Call socket() to create the socket you will use for lisening.
   DEBUG << "Calling Socket() assigned file descriptor " << listenFd << ENDL;
-  listenFd = socket(AF_INET, SOCK_STREAM, 0)
+  listenFd = socket(AF_INET, SOCK_STREAM, 0);
 
   
   // ********************************************************************
@@ -114,7 +114,7 @@ int main (int argc, char *argv[]) {
   // ********************************************************************
   int listenQueueLength = 1;
   DEBUG << "Calling listen(" << listenFd << "," << listenQueueLength << ")" << ENDL;
-  listen(listenFd, listenQueueLength)
+  listen(listenFd, listenQueueLength);
  
 
   // ********************************************************************
@@ -134,7 +134,7 @@ int main (int argc, char *argv[]) {
     // write to. If there is no connection waiting accept() will block and
     // not return until there is a connection.
     
-    connFd = accept(listenFd, (sockaddr *) NULL, NULL)
+    connFd = accept(listenFd, (sockaddr *) NULL, NULL);
     
     DEBUG << "We have recieved a connection on " << connFd << ENDL;
 
