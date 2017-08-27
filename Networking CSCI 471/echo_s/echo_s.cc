@@ -20,18 +20,20 @@ int processConnection(int sockFd) {
     // Call read() call to get a buffer/line from the client.
     char buffer[1024];
     read(sockFd, buffer, 10);
-    std::string _read(buffer);
+    std::string _read(buffer); //Convert to string
     
+    //Clean up the string for printing and comparison
     _read.erase(std::remove_if(_read.begin(), _read.end(), [](const unsigned &c){ return !isspace(c) && !isalpha(c);}), _read.end());
+    _read.erase(std::remove(_read.begin(), _read.end(), '\n'), _read.end());
     
     // Check for one of the commands
     if (_read != oldRead) {
-      if (_read == "QUIT\n") { 
+      if (_read == "QUIT") { 
         keepGoing = 0; //Just to be safe I guess
         DEBUG << "Quitting" << std::endl;
         return 1; 
       }
-      if (_read == "CLOSE\n") { 
+      if (_read == "CLOSE") { 
         keepGoing = 0; 
         DEBUG << "Closing" << std::endl;
         return 0; 
@@ -39,7 +41,6 @@ int processConnection(int sockFd) {
       DEBUG << "Received: \"" << _read << "\"" << std::endl;
       oldRead = _read;
     }
-    
 
     // Call write() to send line back to the client.
     write(sockFd, buffer, 10);
