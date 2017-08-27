@@ -14,18 +14,21 @@ int processConnection(int sockFd) {
 
   int keepGoing = 1;
   char _buffer[1024];
+  std::string oldRead = ""; 
   while (keepGoing) {
 
     // Call read() call to get a buffer/line from the client.
     char buffer[1024];
     read(sockFd, buffer, 10);
+    std::string _read(buffer);
     
     
     // Check for one of the commands
-    if (buffer != _buffer) std::cout << "Dicks3: " << std::string::c_str(buffer) << std::endl;
-    else strcpy(_buffer,buffer);
+    if (_read != oldRead) {
+      std::cout << "Dicks3: " << std::string::c_str(buffer) << std::endl;
+      oldRead = _read;
+    }
     
-
 
     // Call write() to send line back to the client.
     write(sockFd, buffer, 10);
