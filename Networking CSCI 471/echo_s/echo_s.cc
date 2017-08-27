@@ -13,6 +13,7 @@
 int processConnection(int sockFd) {
 
   int keepGoing = 1;
+  char _buffer[1024];
   while (keepGoing) {
 
     // Call read() call to get a buffer/line from the client.
@@ -21,7 +22,8 @@ int processConnection(int sockFd) {
     
     
     // Check for one of the commands
-    std::cout << "Dicks3: " << buffer << std::endl;
+    if (buffer != _buffer) std::cout << "Dicks3: " << buffer << std::endl;
+    else strcpy(_buffer,buffer);
     
 
 
@@ -96,7 +98,7 @@ int main (int argc, char *argv[]) {
   while (!bindSuccesful) {
     // You may have to call bind multiple times if another process is already using the port
     // your program selects.
-    bindSuccesful = bind(listenFd, (sockaddr *) &servaddr, sizeof(servaddr))
+    bindSuccesful = bind(listenFd, (sockaddr *) &servaddr, sizeof(servaddr));
   }
   std::cout << "Using port " << port << std::endl;
 
