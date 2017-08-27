@@ -97,7 +97,7 @@ int main (int argc, char *argv[]) {
     // You may have to call bind multiple times if another process is already using the port
     // your program selects.
     
-    if (bind(lfd, (sockaddr *) &servaddr, sizeof(servaddr)) >= 0) {
+    if (bind(listenFd, (sockaddr *) &servaddr, sizeof(servaddr)) >= 0) {
       DEBUG << "dicks" << ENDL;
     }
 
@@ -131,7 +131,8 @@ int main (int argc, char *argv[]) {
     // write to. If there is no connection waiting accept() will block and
     // not return until there is a connection.
     
-    if ((connfd = accept(listenfd, (sockaddr *) NULL, NULL)) > 0) {
+    int connFd = 0;
+    if ((connFd = accept(listenFd, (sockaddr *) NULL, NULL)) > 0) {
       DEBUG << "dicks2" << ENDL;
     }
     
