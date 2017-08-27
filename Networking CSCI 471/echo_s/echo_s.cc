@@ -28,19 +28,20 @@ int processConnection(int sockFd) {
     
     // Check for one of the commands
     if (_read != oldRead) {
-      if (_read == "QUIT") { 
+      if (_read.find("QUIT") != std::string::npos) {
         keepGoing = 0; //Just to be safe I guess
         DEBUG << "Quitting" << std::endl;
         return 1; 
       }
-      if (_read == "CLOSE") { 
+      if (_read.find("CLOSE") != std::string::npos) {
         keepGoing = 0; 
         DEBUG << "Closing" << std::endl;
         return 0; 
       }
-      DEBUG << 'Received: "' << _read << '"' << std::endl;
+      DEBUG << "Received: \"" << _read << "\"" << std::endl;
       oldRead = _read;
     }
+    
 
     // Call write() to send line back to the client.
     write(sockFd, buffer, 10);
