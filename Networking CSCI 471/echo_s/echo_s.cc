@@ -30,7 +30,7 @@ int processConnection(int sockFd) {
         DEBUG << "Quitting" << std::endl;
         return 1; 
       }
-      if (_read == "CLOSE\n") { 
+      if (_read == "CLOSE") { 
         keepGoing = 0; 
         DEBUG << "Closing" << std::endl;
         return 0; 
