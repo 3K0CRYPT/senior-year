@@ -25,7 +25,7 @@ int processConnection(int sockFd) {
     
     // Check for one of the commands
     if (_read != oldRead) {
-      std::cout << "Dicks3: " << _read << std::endl;
+      std::cout << "Received: " << _read << std::endl;
       oldRead = _read;
     }
     
@@ -74,6 +74,7 @@ int main (int argc, char *argv[]) {
   int     listenFd = -1;
        // Call socket() to create the socket you will use for lisening.
   DEBUG << "Calling Socket() assigned file descriptor " << listenFd << ENDL;
+  listenFd = socket(AF_INET, SOCK_STREAM, 0)
 
   
   // ********************************************************************
@@ -113,6 +114,7 @@ int main (int argc, char *argv[]) {
   // ********************************************************************
   int listenQueueLength = 1;
   DEBUG << "Calling listen(" << listenFd << "," << listenQueueLength << ")" << ENDL;
+  listen(listenFd, listenQueueLength)
  
 
   // ********************************************************************
@@ -132,9 +134,7 @@ int main (int argc, char *argv[]) {
     // write to. If there is no connection waiting accept() will block and
     // not return until there is a connection.
     
-    if ((connFd = accept(listenFd, (sockaddr *) NULL, NULL)) > 0) {
-      DEBUG << "dicks2" << ENDL;
-    }
+    connFd = accept(listenFd, (sockaddr *) NULL, NULL)
     
     DEBUG << "We have recieved a connection on " << connFd << ENDL;
 
