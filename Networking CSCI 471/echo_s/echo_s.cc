@@ -15,20 +15,18 @@ int processConnection(int sockFd) {
   int keepGoing = 1;
   while (keepGoing) {
 
-    //
     // Call read() call to get a buffer/line from the client.
-    // Hint - don't forget to zero out the buffer each time you use it.
-    //
-
-    //
+    char buffer[1024];
+    read(sockFd, buffer, 10);
+    
+    
     // Check for one of the commands
-    //
+    std::cout << "Dicks3: " << buffer << std::endl;
+    
 
 
-    //
     // Call write() to send line back to the client.
-    //
-
+    write(sockFd, buffer, 10);
   }
 }
     
@@ -98,6 +96,11 @@ int main (int argc, char *argv[]) {
   while (!bindSuccesful) {
     // You may have to call bind multiple times if another process is already using the port
     // your program selects.
+    
+    if (bind(lfd, (sockaddr *) &servaddr, sizeof(servaddr)) >= 0) {
+      DEBUG << "dicks" << ENDL;
+    }
+
   }
   std::cout << "Using port " << port << std::endl;
 
@@ -128,6 +131,10 @@ int main (int argc, char *argv[]) {
     // write to. If there is no connection waiting accept() will block and
     // not return until there is a connection.
     
+    if ((connfd = accept(listenfd, (sockaddr *) NULL, NULL)) > 0) {
+      DEBUG << "dicks2" << ENDL;
+    }
+    
     DEBUG << "We have recieved a connection on " << connFd << ENDL;
 
     
@@ -137,6 +144,5 @@ int main (int argc, char *argv[]) {
   }
 
   close(listenFd);
-  cout << "Hello World" << endl;
   return(0);
 }
