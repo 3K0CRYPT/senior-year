@@ -38,7 +38,7 @@ int processConnection(int sockFd) {
         DEBUG << "Closing" << std::endl;
         return 0; 
       }
-      DEBUG << "Received: \"" << _read << "\"" << std::endl;
+      DEBUG << 'Received: "' << _read << '"' << std::endl;
       oldRead = _read;
     }
 
