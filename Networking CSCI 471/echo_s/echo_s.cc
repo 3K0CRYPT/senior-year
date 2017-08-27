@@ -22,7 +22,7 @@ int processConnection(int sockFd) {
     read(sockFd, buffer, 10);
     std::string _read(buffer);
     
-    _read.erase(std::remove_if(_read.begin(), _read.end(), [](const unsigned &c){ return !isspace(c) && isalpha(c);}), _read.end());
+    _read.erase(std::remove_if(_read.begin(), _read.end(), [](const unsigned &c){ return !isspace(c) && !isalpha(c);}), _read.end());
     
     // Check for one of the commands
     if (_read != oldRead) {
