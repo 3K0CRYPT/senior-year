@@ -41,6 +41,7 @@ int processConnection(int sockFd) {
       DEBUG << "Received: \"" << _read << "\"" << std::endl;
       oldRead = _read;
     }
+    oldRead = _read;
     
 
     // Call write() to send line back to the client.
