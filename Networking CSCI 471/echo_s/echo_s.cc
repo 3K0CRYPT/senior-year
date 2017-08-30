@@ -143,7 +143,7 @@ int main (int argc, char *argv[]) {
   while (!quitProgram) {
     int connFd = 0;
 
-    DEBUG << "Calling accept(" << listenFd << "NULL,NULL)." << ENDL;
+    DEBUG << "Calling accept(" << listenFd << "NULL,NULL)." << ENDL << "Program will now block until accepted.\n";
 
     // The accept() call checks the listening queue for connection requests.
     // If a client has already tried to connect accept() will complete the
