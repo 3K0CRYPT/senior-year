@@ -23,7 +23,7 @@ int processConnection(int sockFd) {
     std::string _read(buffer); //Convert to string
     
     //Clean up the string for printing and comparison
-    _read.erase(std::remove_if(_read.begin(), _read.end(), [](const unsigned &c){ return !isspace(c) && !isalpha(c) && (c != '\r') && (c != '\n';);}), _read.end());
+    _read.erase(std::remove_if(_read.begin(), _read.end(), [](const unsigned &c){ return !isspace(c) && !isalpha(c) && (c != '\r') && (c != '\n');}), _read.end());
     _read.erase(std::remove(_read.begin(), _read.end(), '\n'), _read.end());
     
     // Check for one of the commands
