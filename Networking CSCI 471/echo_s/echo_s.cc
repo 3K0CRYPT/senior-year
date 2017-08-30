@@ -13,12 +13,12 @@
 int processConnection(int sockFd) {
 
   int keepGoing = 1;
-  char _buffer[1024];
   std::string oldRead = ""; 
   while (keepGoing) {
 
     // Call read() call to get a buffer/line from the client.
     char buffer[1024];
+    bzero(buffer);
     read(sockFd, buffer, 10);
     std::string _read(buffer); //Convert to string
     
@@ -46,6 +46,7 @@ int processConnection(int sockFd) {
 
     // Call write() to send line back to the client.
     write(sockFd, buffer, 10);
+    bzero(buffer);
   }
 }
     
