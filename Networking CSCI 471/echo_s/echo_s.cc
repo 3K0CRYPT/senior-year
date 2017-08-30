@@ -166,5 +166,6 @@ int main (int argc, char *argv[]) {
   }
 
   close(listenFd);
+  DEBUG << "Connection closed." << ENDL;
   return(0);
 }
