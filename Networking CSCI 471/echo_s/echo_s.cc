@@ -18,7 +18,7 @@ int processConnection(int sockFd) {
 
     // Call read() call to get a buffer/line from the client.
     char buffer[1024];
-    bzero(buffer);
+    bzero(*buffer, buffer.size());
     read(sockFd, buffer, 10);
     std::string _read(buffer); //Convert to string
     
@@ -46,7 +46,7 @@ int processConnection(int sockFd) {
 
     // Call write() to send line back to the client.
     write(sockFd, buffer, 10);
-    bzero(buffer);
+    // bzero(buffer);
   }
 }
     
