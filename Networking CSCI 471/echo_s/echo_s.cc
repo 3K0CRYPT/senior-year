@@ -18,7 +18,7 @@ int processConnection(int sockFd) {
 
     // Call read() call to get a buffer/line from the client.
     char buffer[1024];
-    bzero(*buffer, buffer.size());
+    bzero(*buffer, sizeof(buffer)/sizeof(*buffer));
     read(sockFd, buffer, 10);
     std::string _read(buffer); //Convert to string
     
