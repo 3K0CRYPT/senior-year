@@ -1,3 +1,6 @@
+//Please note that most of the included code was pasted with slight modification from the lecture slides
+
+
 // **************************************************************************************
 // * Echo Strings (echo_s.cc)
 // * -- Accepts TCP connections and then echos back each string sent.
@@ -23,24 +26,25 @@ int processConnection(int sockFd) {
     std::string _read(buffer); //Convert to string
     
     //Clean up the string for printing and comparison
+    //Parsing function syntax given from: https://stackoverflow.com/questions/2528995/remove-r-from-a-string-in-c
     _read.erase(std::remove_if(_read.begin(), _read.end(), [](const unsigned &c){ return !isspace(c) && !isalpha(c);}), _read.end());
     _read.erase(std::remove(_read.begin(), _read.end(), '\n'), _read.end());
-    _read.erase(std::remove(_read.begin(), _read.end(), '\r'), _read.end() );
+    _read.erase(std::remove(_read.begin(), _read.end(), '\r'), _read.end());
 
     
     // Check for one of the commands
-    if (_read != oldRead) {
-      if (_read.find("QUIT") != std::string::npos) {
+    if (_read != oldRead) { //Only print packet on arrival.
+      if (_read.find("QUIT") != std::string::npos) {  //This guarantees "QUIT" is found, as opposed to straight equality comparison
         keepGoing = 0; //Just to be safe I guess
         DEBUG << "Quitting" << std::endl;
         return 1; 
       }
-      if (_read.find("CLOSE") != std::string::npos) {
+      if (_read.find("CLOSE") != std::string::npos) { //Same idea here
         keepGoing = 0; 
         DEBUG << "Closing" << std::endl;
         return 0; 
       }
-      DEBUG << "Received: \"" << _read << "\"" << std::endl;
+      DEBUG << "Received: \"" << _read << "\"" << std::endl;  //Print out the packet if debug mode is enabled
       oldRead = _read;
     }
     oldRead = _read;
@@ -143,7 +147,7 @@ int main (int argc, char *argv[]) {
   while (!quitProgram) {
     int connFd = 0;
 
-    DEBUG << "Calling accept(" << listenFd << "NULL,NULL)." << ENDL << "Program will now block until accepted.\n";
+    DEBUG << "Calling accept(" << listenFd << " NULL,NULL)." << ENDL << "\nProgram will now block until accepted.\n";
 
     // The accept() call checks the listening queue for connection requests.
     // If a client has already tried to connect accept() will complete the
