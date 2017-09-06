@@ -136,11 +136,11 @@ a {
 }
 
 a:link {
-    color: #FF5500;
+    color: #AD2300;
 }
 
 a:hover {
-    border-color: #FF0000;
+    border-color: #AD2300;
     border-width: 5px;
     border-style: ridge;
     border-left: none;
@@ -149,7 +149,7 @@ a:hover {
 }
 
 a:visited {
-    color: #FF3300;
+    color: #AD2300;
 }
 
 a:active {
