@@ -13,11 +13,15 @@
 // * - Handles reading the line from the network and sending it back to the client.
 // * - Returns 1 if the client sends "QUIT" command, 0 if the client sends "CLOSE".
 // **************************************************************************************
+
+std::string httpresponse(std::string inp) {
+  return "HTTP/1.0 200 OK\nAccept-Ranges: bytes\nContent-Type: text/" + inp + "\nLast-Modified: Fri, 09 Aug 2013 23:54:35 GMT\r\n\r\n";
+}
+
 int processConnection(int sockFd) {
 
   int keepGoing = 1;
   std::string message = "";
-  std::string http200 = "HTTP/1.0 200 OK\nAccept-Ranges: bytes\nContent-Type: text/html\nLast-Modified: Fri, 09 Aug 2013 23:54:35 GMT\nConnection: close\r\n\r\n";
   
   while (keepGoing) {
 
@@ -35,26 +39,24 @@ int processConnection(int sockFd) {
       std::stringstream ss;
       ss.str(message);
       std::string item;
-      while (std::getline(ss, item, '\n')) {
-          lines.push_back(item);
-      }
-      
+      while (std::getline(ss, item, '\n')) lines.push_back(item);
+
       std::string resource = lines[0].substr(lines[0].find("GET")+4, lines[0].find("HTTP")-5);
       if (resource == "/") resource = "index.html";
-      write(sockFd, http200.data(), http200.length());
-      
+      std::string extension = resource.substr(resource.find('.')+1, resource.length());
+      std::string response = httpresponse(extension);
+  
+            
+      write(sockFd, response.data(), response.length());
+      DEBUG << "Sending response:\n" << response << std::endl;
       DEBUG << "Attempting to load " << resource << std::endl;
       std::ifstream file(resource);
       std::string html_out = "";
-      while (std::getline(file, item)) {
-        html_out += item;
-      }
+      while (std::getline(file, item)) html_out += item;
       write(sockFd, html_out.data(), html_out.length());
       DEBUG << "HTML content sent:\n" << html_out << std::endl;
+      break;
     }
-    
-    // Call write() to send line back to the client.
-    // write(sockFd, buffer, 10);
     // bzero(buffer);
   }
   
@@ -148,7 +150,7 @@ int main (int argc, char *argv[]) {
   // * socket with a new fd that will be used for the communication.
   // ********************************************************************
   int quitProgram = 0;
-  while (!quitProgram) {
+  while (true) {
     int connFd = 0;
 
     DEBUG << "Calling accept(" << listenFd << " NULL,NULL)." << ENDL << "\nProgram will now block until accepted.\n";
