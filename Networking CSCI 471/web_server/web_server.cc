@@ -33,53 +33,86 @@ int processConnection(int sockFd) {
     
     message += _read;
     
+    //If the message is complete, it should have 2 carriage returns.
+    //      If we have a complete message, it's time to process it
     if (message.substr(message.length()-5, message.length()).find("\r\n\r\n") != std::string::npos) {
       DEBUG << message << std::endl;
       
+      //Split the message across its newlines so we can properly process its content
       std::vector<std::string> lines;
       std::stringstream ss;
       ss.str(message);
       std::string item;
       while (std::getline(ss, item, '\n')) lines.push_back(item);
-
+      
+      //Extract the exact file the request wants
       std::string resource = lines[0].substr(lines[0].find("GET")+5, lines[0].find("HTTP")-6);
       if (resource == "") resource = "index.html";
             
+      //See if we have the file on the server
       DEBUG << "Attempting to load " << resource << std::endl;
       std::ifstream file(resource);
       std::string response;
       
-      if (file.fail()) {
+      if (file.fail()) {  //If we don't have the file
         DEBUG << "Can't find " + resource + "; sending 404" << std::endl;
+        
+        //Let browser know it was an invalid request.
         response = httpresponse("404 Not Found", "text/html", "1024");
         DEBUG << response << std::endl;
+        
+        //Send the response
         write(sockFd, response.data(), response.length());
       } 
       
-      else {
+      else {      //If we found the file, there's more to be done.    
         DEBUG << "Found " + resource + "; sending 200 and content" << std::endl;
         
+        //Get extension so we know how to send the file.       
         std::string extension = resource.substr(resource.find('.')+1, resource.length());
-        std::string html_out = "";
-        while (std::getline(file, item)) html_out += item;
         
-        if (extension == "jpg" || extension == "png") {
+        //Supported image formats
+        if (extension == "jpg" || extension == "png" || extension == "ico") {
           extension = "image/" + extension;
-          memcpy(&file, &html_out, sizeof(&file));
+          
+          //Send a buffer of binary image data of the exact size of the image
+          //Code influenced by http://www.cplusplus.com/reference/fstream/ifstream/rdbuf/
+          std::filebuf* pbuf = file.rdbuf();
+          std::size_t size = pbuf->pubseekoff (0,file.end,file.in);
+          pbuf->pubseekpos (0,file.in);
+          char* _buffer=new char[size];
+          pbuf->sgetn (_buffer,size);
+
+          //Let the browser know the request was valid
+          response = httpresponse("200 OK", extension, std::to_string(size));
+          DEBUG << response << std::endl;
+          
+          //Send response+content
+          write(sockFd, response.data(), response.length());
+          write(sockFd, _buffer, size);
         }
-        else extension = "text/" + extension;
-               
-        response = httpresponse("200 OK", extension, std::to_string(html_out.length()));
-        DEBUG << response << std::endl;
-        write(sockFd, response.data(), response.length());
-        write(sockFd, html_out.data(), html_out.length());
-        DEBUG << "HTML content sent:\n" << html_out << std::endl;
+        
+        //Treat everything else as rawtext
+        else  {
+          extension = "text/" + extension;
+          
+          //Read in entire text buffer, send it all at once.
+          std::string html_out = "";
+          while (std::getline(file, item)) html_out += item;
+          
+          //Let the browser know the request was valid
+          response = httpresponse("200 OK", extension, std::to_string(html_out.length()));
+          DEBUG << response << std::endl;
+
+          //Send response+content
+          write(sockFd, response.data(), response.length());
+          write(sockFd, html_out.data(), html_out.length());
+          DEBUG << "Preview of HTML content sent:\n" << html_out.substr(0,200) << std::endl;
+        }
         break;
+      }
     }
-    }
-    // bzero(buffer);
   }
-  
 }
     
 
