@@ -2,16 +2,8 @@ body {
     background: #d0d0e0;
 }
 
-footer {
-    text-align: center;
-    padding: 5px;
-    outline: 1px dotted black;
-    background: #e3e3e3;
-    margin-top: 5px; 
-}
-
 #Newton_section {
-    background-image: url("../images/bg.png");
+    background-image: url("./images/bg.png");
     background-repeat: repeat;
     /* opacity: 0.5;     */
     /* top: 0; */
@@ -36,7 +28,7 @@ pre {
 
 pre code {
     white-space: pre-wrap;
-    font-family: "Courier New", Courier, monospace;
+    font-family: Courier New, Courier, monospace;
 }
 
 pre+p {
@@ -73,7 +65,7 @@ table.newton {
 table.comporg {
     font-size: 12px;
     border: 1px solid #CCC;
-    font-family: "Courier New", Courier, monospace;
+    font-family: Courier New, Courier, monospace;
     background: #ee6600;
     color: #00005C;
     font-weight: bold;
@@ -140,7 +132,7 @@ caption {
     font-style: italic;
 }
 
- a {
+a {
     transition: 0.25s;
 }
 
@@ -154,6 +146,7 @@ a:hover {
     border-style: ridge;
     border-left: none;
     border-right: none;
+    font-size: 120%;
 }
 
 a:visited {
@@ -161,7 +154,7 @@ a:visited {
 }
 
 a:active {
-    font-size: 300%; 
+    font-size: 300%;
 }
 
 

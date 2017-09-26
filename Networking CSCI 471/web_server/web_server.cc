@@ -14,8 +14,8 @@
 // * - Returns 1 if the client sends "QUIT" command, 0 if the client sends "CLOSE".
 // **************************************************************************************
 
-std::string httpresponse(std::string inp) {
-  return "HTTP/1.0 200 OK\nAccept-Ranges: bytes\nContent-Type: text/" + inp + "\nLast-Modified: Fri, 09 Aug 2013 23:54:35 GMT\r\n\r\n";
+std::string httpresponse(std::string code, std::string content, std::string length) {
+  return "HTTP/1.0 " + code + "\nAccept-Ranges: bytes\nContent-Type: " + content + "\nContent-Length: " + length + "\r\n\r\n";
 }
 
 int processConnection(int sockFd) {
@@ -32,6 +32,7 @@ int processConnection(int sockFd) {
     std::string _read(buffer); //Convert to string
     
     message += _read;
+    
     if (message.substr(message.length()-5, message.length()).find("\r\n\r\n") != std::string::npos) {
       DEBUG << message << std::endl;
       
@@ -41,21 +42,40 @@ int processConnection(int sockFd) {
       std::string item;
       while (std::getline(ss, item, '\n')) lines.push_back(item);
 
-      std::string resource = lines[0].substr(lines[0].find("GET")+4, lines[0].find("HTTP")-5);
-      if (resource == "/") resource = "index.html";
-      std::string extension = resource.substr(resource.find('.')+1, resource.length());
-      std::string response = httpresponse(extension);
-  
+      std::string resource = lines[0].substr(lines[0].find("GET")+5, lines[0].find("HTTP")-6);
+      if (resource == "") resource = "index.html";
             
-      write(sockFd, response.data(), response.length());
-      DEBUG << "Sending response:\n" << response << std::endl;
       DEBUG << "Attempting to load " << resource << std::endl;
       std::ifstream file(resource);
-      std::string html_out = "";
-      while (std::getline(file, item)) html_out += item;
-      write(sockFd, html_out.data(), html_out.length());
-      DEBUG << "HTML content sent:\n" << html_out << std::endl;
-      break;
+      std::string response;
+      
+      if (file.fail()) {
+        DEBUG << "Can't find " + resource + "; sending 404" << std::endl;
+        response = httpresponse("404 Not Found", "text/html", "1024");
+        DEBUG << response << std::endl;
+        write(sockFd, response.data(), response.length());
+      } 
+      
+      else {
+        DEBUG << "Found " + resource + "; sending 200 and content" << std::endl;
+        
+        std::string extension = resource.substr(resource.find('.')+1, resource.length());
+        std::string html_out = "";
+        while (std::getline(file, item)) html_out += item;
+        
+        if (extension == "jpg" || extension == "png") {
+          extension = "image/" + extension;
+          memcpy(&file, &html_out, sizeof(&file));
+        }
+        else extension = "text/" + extension;
+               
+        response = httpresponse("200 OK", extension, std::to_string(html_out.length()));
+        DEBUG << response << std::endl;
+        write(sockFd, response.data(), response.length());
+        write(sockFd, html_out.data(), html_out.length());
+        DEBUG << "HTML content sent:\n" << html_out << std::endl;
+        break;
+    }
     }
     // bzero(buffer);
   }
