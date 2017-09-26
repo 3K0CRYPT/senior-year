@@ -1,0 +1,198 @@
+body {
+    background: #d0d0e0;
+}
+
+footer {
+    text-align: center;
+    padding: 5px;
+    outline: 1px dotted black;
+    background: #e3e3e3;
+    margin-top: 5px; 
+}
+
+#Newton_section {
+    background-image: url("../images/bg.png");
+    background-repeat: repeat;
+    /* opacity: 0.5;     */
+    /* top: 0; */
+    /* left: 0; */
+    /* bottom: 0; */
+    /* right: 0; */
+    /* position: absolute; */
+    /* z-index: -1; */
+    /* height: 100wh; */
+}
+
+#Newton_section div {
+    background: rgba(227, 225, 225, 0.35);
+    color: #fff;
+}
+
+pre {
+    border: solid 1px white;
+    width: 85%;
+    margin: auto;
+}
+
+pre code {
+    white-space: pre-wrap;
+    font-family: "Courier New", Courier, monospace;
+}
+
+pre+p {
+    text-align: center;
+}
+
+table.newton {
+    font-size: 12px;
+    border-collapse: collapse;
+    border: 2px solid #CCC;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: auto;
+    margin-top: 1em;
+}
+
+.newton td {
+    padding: 4px;
+    margin: 3px;
+    border: 2px solid #CCC;
+}
+
+.newton th {
+    background-color: #56c0d8;
+    color: #611300;
+}
+
+.newton tfoot {
+    background-color: #e3bbe3;
+    color: #333333;
+    font-weight: bold;
+}
+
+table.comporg {
+    font-size: 12px;
+    border: 1px solid #CCC;
+    font-family: "Courier New", Courier, monospace;
+    background: #ee6600;
+    color: #00005C;
+    font-weight: bold;
+    margin: auto;
+    margin-top: 1em;
+}
+
+
+/* Here's a psuedo-element */
+
+.comporg th::first-letter {
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.comporg td {
+    padding: 4px;
+    margin: 3px;
+    border: 1px solid #CCC;
+    border-bottom: 2px dashed #FFFF00;
+}
+
+.comporg th {
+    background-color: #B40202;
+    color: #FFF;
+    font-weight: bold;
+}
+
+
+/* Use a dashed bottom border for the td elements. Do not include a border on the last element */
+
+.comporg tbody:last-child {
+    border: 0px none #FFF;
+}
+
+.comporg tbody:last-child::after {
+    content: "(I am the last element AND I HAVE NO BORDER!)";
+    font-weight: bolder;
+    background: #FFFFFF;
+    font-size: 120%;
+}
+
+
+/* These are all with a class selector! */
+
+caption {
+    font-style: italic;
+    font-size: 110%;
+    text-decoration: underline;
+    text-decoration-style: double;
+    margin: 5px;
+}
+
+#font1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+#font2 {
+    font-family: fantasy;
+    border: 2px dotted #e3aaaa;
+}
+
+#font2 span {
+    font-style: italic;
+}
+
+ a {
+    transition: 0.25s;
+}
+
+a:link {
+    color: #AD2300;
+}
+
+a:hover {
+    border-color: #AD2300;
+    border-width: 5px;
+    border-style: ridge;
+    border-left: none;
+    border-right: none;
+}
+
+a:visited {
+    color: #AD2300;
+}
+
+a:active {
+    font-size: 300%; 
+}
+
+
+/* At least two elements with specified fonts */
+
+
+/* Style one or more aspects of a div */
+
+
+/* Style one or more aspects of an element with an id selector */
+
+table.groceries {
+    font-size: 12px;
+    font-family: Verdana, Geneva, sans-serif;
+    margin: auto;
+     border-collapse: collapse;
+    border: 1px solid #444;
+}
+
+.groceries td {
+    border-right: 1px solid #444;
+    padding: 4px;
+    margin: 3px;
+}
+
+.groceries tr:nth-of-type(even) {
+    background: #aaa;
+}
+
+.groceries th {
+    background-color: #74B487;
+    color: #171717;
+    font-weight: bold;
+}
