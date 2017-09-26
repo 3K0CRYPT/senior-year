@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     const button = document.getElementsByTagName("button")[0]
     canvas.resize = function() {
-        canvas.height = window.innerHeight;
+        // canvas.height = window.innerHeight;
         canvas.width = window.innerWidth;
-        // ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
     canvas.resize();
     window.addEventListener('resize', canvas.resize, false);
@@ -60,4 +59,5 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
      button.onclick = drawSmiley;
+     canvas.onclick = drawSmiley;
 })
