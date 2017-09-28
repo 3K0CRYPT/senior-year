@@ -58,7 +58,7 @@ int processConnection(int sockFd) {
         DEBUG << "Can't find " + resource + "; sending 404" << std::endl;
         
         //Let browser know it was an invalid request.
-        response = httpresponse("404 Not Found", "text/html", "1024");
+        response = httpresponse("404 Not Found", "text/html", "0");
         DEBUG << response << std::endl;
         
         //Send the response
@@ -67,8 +67,8 @@ int processConnection(int sockFd) {
       
       else {      //If we found the file, there's more to be done.    
         if ((resource.find("file") == std::string::npos && resource.find("image") == std::string::npos) || (lines[0].find("GET") == std::string::npos)) {
-          DEBUG << resource << "invalid file format request, sending 400" << std::endl;
-          response = httpresponse("400 Bad Request", "html", "1024");
+          DEBUG << resource << " invalid file format request, sending 400" << std::endl;
+          response = httpresponse("400 Bad Request", "html", "0");
           write(sockFd, response.data(), response.length());
           DEBUG << response << std::endl;
         }
@@ -120,7 +120,7 @@ int processConnection(int sockFd) {
          //Asking for a valid file but one that's not allowed.
          else {
             DEBUG << resource << "requesting unauthorized file, sending 403" << std::endl;
-            response = httpresponse("403 Forbidden", "html", "1024");
+            response = httpresponse("403 Forbidden", "html", "0");
             write(sockFd, response.data(), response.length());
             DEBUG << response << std::endl;
           }
