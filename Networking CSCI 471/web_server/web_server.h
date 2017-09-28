@@ -12,7 +12,6 @@
 #include <sys/stat.h>
 #include <arpa/inet.h>
 #include <fcntl.h>
-#include <signal.h>
 
 // ********************************************************
 // * The boost log facility makes setting log levels easy.

@@ -18,20 +18,12 @@ std::string httpresponse(std::string code, std::string content, std::string leng
   return "HTTP/1.0 " + code + "\nAccept-Ranges: bytes\nContent-Type: " + content + "\nContent-Length: " + length + "\r\n\r\n";
 }
 
- void my_handler(sig_t s, int x){
-           close(x)
-           printf("Caught signal %d\n",s);
-           exit(1); 
-}
-
-
 int processConnection(int sockFd) {
 
   int keepGoing = 1;
   std::string message = "";
   
   while (keepGoing) {
-   signal (SIGINT,my_handler(sockFd));
 
     // Call read() call to get a buffer/line from the client.
     char buffer[1024];
