@@ -18,12 +18,35 @@ std::string httpresponse(std::string code, std::string content, std::string leng
   return "HTTP/1.0 " + code + "\nAccept-Ranges: bytes\nContent-Type: " + content + "\nContent-Length: " + length + "\r\n\r\n";
 }
 
+static int s_interrupted = 0;
+static void s_signal_handler (int signal_value) {
+    s_interrupted = 1;
+    
+}
+
+static void s_catch_signals (void) {
+    struct sigaction action;
+    action.sa_handler = s_signal_handler;
+    action.sa_flags = 0;
+    sigemptyset (&action.sa_mask);
+    sigaction (SIGINT, &action, NULL);
+    sigaction (SIGTERM, &action, NULL);
+}
+
 int processConnection(int sockFd) {
 
   int keepGoing = 1;
   std::string message = "";
   
+  s_catch_signals ();
+
   while (keepGoing) {
+    
+    if (s_interrupted) {
+      std::cout << "Interupt caught, closing socket" << std::endl;
+      close(sockFd);
+      break;
+    }
 
     // Call read() call to get a buffer/line from the client.
     char buffer[1024];
@@ -130,7 +153,6 @@ int processConnection(int sockFd) {
     }
   }
 }
-    
 
 
 // **************************************************************************************
