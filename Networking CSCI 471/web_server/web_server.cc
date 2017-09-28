@@ -45,7 +45,7 @@ int processConnection(int sockFd) {
     if (s_interrupted) {
       std::cout << "Interupt caught, closing socket" << std::endl;
       close(sockFd);
-      break;
+      exit(0);
     }
 
     // Call read() call to get a buffer/line from the client.
@@ -70,7 +70,7 @@ int processConnection(int sockFd) {
       
       //Extract the exact file the request wants
       std::string resource = lines[0].substr(lines[0].find("GET")+5, lines[0].find("HTTP")-6);
-      if (resource == "") resource = "index.html";
+      if (resource == "") resource = "file1.html";
             
       //See if we have the file on the server
       DEBUG << "Attempting to load " << resource << std::endl;
