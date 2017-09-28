@@ -114,12 +114,12 @@ int processConnection(int sockFd) {
             //Send response+content
             write(sockFd, response.data(), response.length());
             write(sockFd, html_out.data(), html_out.length());
-            DEBUG << "Preview of HTML content sent:\n" << html_out.substr(0,200) << std::endl;
+            DEBUG << "Preview of content sent:\n" << html_out.substr(0,200) << std::endl;
           }
           
          //Asking for a valid file but one that's not allowed.
          else {
-            DEBUG << resource << "requesting unauthorized file, sending 403" << std::endl;
+            DEBUG << resource << " requesting unauthorized file, sending 403" << std::endl;
             response = httpresponse("403 Forbidden", "html", "0");
             write(sockFd, response.data(), response.length());
             DEBUG << response << std::endl;
@@ -133,12 +133,19 @@ int processConnection(int sockFd) {
     
 
 
+
+void interHandler(sig_t s){
+  close(listenFd);
+  printf("Caught signal %d\n",s);
+  exit(1); 
+}
+
 // **************************************************************************************
 // * main()
 // * - Sets up the sockets and accepts new connection until processConnection() returns 1
 // **************************************************************************************
-
 int main (int argc, char *argv[]) {
+   signal (SIGINT,interHandler);
 
   // ********************************************************************
   // * Process the command line arguments
