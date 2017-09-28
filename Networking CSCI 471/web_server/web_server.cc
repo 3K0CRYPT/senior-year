@@ -66,51 +66,67 @@ int processConnection(int sockFd) {
       } 
       
       else {      //If we found the file, there's more to be done.    
-        DEBUG << "Found " + resource + "; sending 200 and content" << std::endl;
-        
-        //Get extension so we know how to send the file.       
-        std::string extension = resource.substr(resource.find('.')+1, resource.length());
-        
-        //Supported image formats
-        if (extension == "jpg" || extension == "png" || extension == "ico") {
-          extension = "image/" + extension;
-          
-          //Send a buffer of binary image data of the exact size of the image
-          //Code influenced by http://www.cplusplus.com/reference/fstream/ifstream/rdbuf/
-          std::filebuf* pbuf = file.rdbuf();
-          std::size_t size = pbuf->pubseekoff (0,file.end,file.in);
-          pbuf->pubseekpos (0,file.in);
-          char* _buffer=new char[size];
-          pbuf->sgetn (_buffer,size);
-
-          //Let the browser know the request was valid
-          response = httpresponse("200 OK", extension, std::to_string(size));
-          DEBUG << response << std::endl;
-          
-          //Send response+content
+        if ((resource.find("file") == std::string::npos && resource.find("image") == std::string::npos) || (lines[0].find("GET") == std::string::npos)) {
+          DEBUG << resource << "invalid file format request, sending 400" << std::endl;
+          response = httpresponse("400 Bad Request", "html", "1024");
           write(sockFd, response.data(), response.length());
-          write(sockFd, _buffer, size);
-        }
-        
-        //Treat everything else as rawtext
-        else  {
-          extension = "text/" + extension;
-          
-          //Read in entire text buffer, send it all at once.
-          std::string html_out = "";
-          while (std::getline(file, item)) html_out += item;
-          
-          //Let the browser know the request was valid
-          response = httpresponse("200 OK", extension, std::to_string(html_out.length()));
           DEBUG << response << std::endl;
-
-          //Send response+content
-          write(sockFd, response.data(), response.length());
-          write(sockFd, html_out.data(), html_out.length());
-          DEBUG << "Preview of HTML content sent:\n" << html_out.substr(0,200) << std::endl;
         }
-        break;
+        else {
+          DEBUG << "Found " + resource + "; sending 200 and content" << std::endl;
+          
+          //Get extension so we know how to send the file.       
+          std::string extension = resource.substr(resource.find('.')+1, resource.length());
+          
+          //Supported image formats
+          if (extension == "jpg" || extension == "png" || extension == "ico") {
+            extension = "image/" + extension;
+            
+            //Send a buffer of binary image data of the exact size of the image
+            //Code influenced by http://www.cplusplus.com/reference/fstream/ifstream/rdbuf/
+            std::filebuf* pbuf = file.rdbuf();
+            std::size_t size = pbuf->pubseekoff (0,file.end,file.in);
+            pbuf->pubseekpos (0,file.in);
+            char* _buffer=new char[size];
+            pbuf->sgetn (_buffer,size);
+
+            //Let the browser know the request was valid
+            response = httpresponse("200 OK", extension, std::to_string(size));
+            DEBUG << response << std::endl;
+            
+            //Send response+content
+            write(sockFd, response.data(), response.length());
+            write(sockFd, _buffer, size);
+          }
+          
+          //Treat everything else as rawtext
+          else if (extension == "html" || extension == "css")  {
+            extension = "text/" + extension;
+            
+            //Read in entire text buffer, send it all at once.
+            std::string html_out = "";
+            while (std::getline(file, item)) html_out += item;
+            
+            //Let the browser know the request was valid
+            response = httpresponse("200 OK", extension, std::to_string(html_out.length()));
+            DEBUG << response << std::endl;
+
+            //Send response+content
+            write(sockFd, response.data(), response.length());
+            write(sockFd, html_out.data(), html_out.length());
+            DEBUG << "Preview of HTML content sent:\n" << html_out.substr(0,200) << std::endl;
+          }
+          
+         //Asking for a valid file but one that's not allowed.
+         else {
+            DEBUG << resource << "requesting unauthorized file, sending 403" << std::endl;
+            response = httpresponse("403 Forbidden", "html", "1024");
+            write(sockFd, response.data(), response.length());
+            DEBUG << response << std::endl;
+          }
+        }
       }
+      break;
     }
   }
 }
