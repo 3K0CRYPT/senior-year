@@ -14,10 +14,13 @@
 // * - Returns 1 if the client sends "QUIT" command, 0 if the client sends "CLOSE".
 // **************************************************************************************
 
+// This is used to reduce duplicate code and to make the HTTP responses below easier to see.
 std::string httpresponse(std::string code, std::string content, std::string length) {
   return "HTTP/1.0 " + code + "\nAccept-Ranges: bytes\nContent-Type: " + content + "\nContent-Length: " + length + "\r\n\r\n";
 }
 
+//INTERUPT HANDLING GOOD PRACTICE:
+//    http://zguide.zeromq.org/cpp:interrupt
 static int s_interrupted = 0;
 static void s_signal_handler (int signal_value) {
     s_interrupted = 1;
@@ -33,16 +36,17 @@ static void s_catch_signals (void) {
     sigaction (SIGTERM, &action, NULL);
 }
 
+
 int processConnection(int sockFd) {
 
   int keepGoing = 1;
-  std::string message = "";
+  std::string message = "";   // Used to amalgamate incoming packets
   
   s_catch_signals ();
 
   while (keepGoing) {
     
-    if (s_interrupted) {
+      if (s_interrupted) { // If an interupt was caught, close the socket
       std::cout << "Interupt caught, closing socket" << std::endl;
       close(sockFd);
       exit(0);
@@ -54,7 +58,7 @@ int processConnection(int sockFd) {
     read(sockFd, buffer, 10);
     std::string _read(buffer); //Convert to string
     
-    message += _read;
+    message += _read;   //Append packet to overall message.
     
     //If the message is complete, it should have 2 carriage returns.
     //      If we have a complete message, it's time to process it
@@ -89,12 +93,16 @@ int processConnection(int sockFd) {
       } 
       
       else {      //If we found the file, there's more to be done.    
+        
+        //If the file isn't of the specified format or the request is bad:
         if ((resource.find("file") == std::string::npos && resource.find("image") == std::string::npos) || (lines[0].find("GET") == std::string::npos)) {
           DEBUG << resource << " invalid file format request, sending 400" << std::endl;
           response = httpresponse("400 Bad Request", "html", "0");
           write(sockFd, response.data(), response.length());
           DEBUG << response << std::endl;
         }
+        
+        //Send the file if it fits the criteria:
         else {
           DEBUG << "Found " + resource + "; sending 200 and content" << std::endl;
           
