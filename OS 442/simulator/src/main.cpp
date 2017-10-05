@@ -15,7 +15,7 @@ priority_queue <Event, vector<Event>, Prioritized> PQ;
 int main(int argc, char* argv[]) {
   argHandler(argc, argv);
 
-  // create input file stream
+  // argHandler populates filename, create ifstream
   ifstream file(fileName);
 
   if(file.fail()) cerr << "Error opening " << fileName << endl;
@@ -29,13 +29,11 @@ int main(int argc, char* argv[]) {
 	// All the processes
   for(int i = 0; i < processQuantity; i++) {
   	Process process;
-  	priorityState pType;
+  	priorityState state;
   	getline(file, line);
   	if(line.empty()) {
   		while(line.empty() | file.eof()) {
-  			// ignore empty lines
-  			//cout << "1st Empty line!" << endl;
-			getline(file, line);
+				getline(file, line);
   		}
   	}
   	stringstream ss(line);
@@ -54,7 +52,7 @@ int main(int argc, char* argv[]) {
   		}
   		Thread thread;
   		stringstream sss(line);
-  		// cout << "line" << line << endl;
+  		cout << "line" << line << endl;
   		sss >> thread.arriveTime >> thread.burstQuantity;
   		// We gotta go deeper
   		// last CPU burst doesn't have IO, so go up to second to last in input file
@@ -93,27 +91,27 @@ int main(int argc, char* argv[]) {
   cout << "------------ALL EVENTS-------------" << endl;
   while(!PQ.empty()) {
   	string eTypeString;
-  	string pTypeString;
+  	string stateString;
   	Event event = PQ.top();
   	// MAKE NOT HARD CODED LATER
   	eTypeString = "THREAD_ARRIVED";
   	switch(event.process.state) {
   		case priorityState::SYSTEM:
-  			pTypeString = "SYSTEM";
+  			stateString = "SYSTEM";
   			break;
   		case priorityState::INTERACTIVE:
-  			pTypeString = "INTERACTIVE";
+  			stateString = "INTERACTIVE";
   			break;
   		case priorityState::NORMAL:
-  			pTypeString = "NORMAL";
+  			stateString = "NORMAL";
   			break;
   		case priorityState::BATCH:
-  			pTypeString = "BATCH";
+  			stateString = "BATCH";
   			break;
   	}
-  	cout << "TIME: " << event.time << endl;
-  	cout << "TYPE: " << eTypeString << endl;
-  	cout << "PROCESS TYPE: " << pTypeString << endl;
+  	cout << "TIME:\t" << event.time << endl;
+  	cout << "TYPE:\t" << eTypeString << endl;
+  	cout << "PROCESS TYPE:\t" << stateString << endl;
   	cout << "Thread " << event.thread_num << " in process " << event.process_num << endl;
   	cout << endl << endl;
   	PQ.pop();
@@ -134,11 +132,9 @@ void argHandler(int argc, char* argv[]) {
                               {"help", argNone, 0, 'h'},
                               {0,0,0,0}};
   fileName = argv[argc-1];
-  //int val = 0; // will get val from arguments;
   int opt = 0;
   while((opt = getopt_long(argc, argv, short_flag, long_flag, NULL)) != -1) {
-  	cout << "Getting arguments" << endl;
-  	cout << "opt is " << opt << endl;
+  	cout << "opt value: " << opt << endl;
 
     if(opt == -1) {
     	cout << "No arguments" << endl;
@@ -148,29 +144,27 @@ void argHandler(int argc, char* argv[]) {
     switch(opt) {
       case 't':
         cout << "Flag t" << endl;
-      	printf(fileName.c_str());
+      	printf(fileName);
         cout << endl;
         break;
       case 'v':
         cout << "Flag v" << endl;
-      	printf(fileName.c_str());
+      	printf(fileName);
         cout << endl;
         break;
       case 'a':
         cout << "Flag a" << endl;
-      	printf(fileName.c_str());
+      	printf(fileName);
         cout << endl;
         break;
       case 'h':
         cout << "Flag h" << endl;
-      	printf(fileName.c_str());
+      	printf(fileName);
         cout << endl;
         break;
       default:
-      	//strcpy(fileName, optarg);
-      	// JUST PRINT THE HELP THING
-      	cout << "Default case" << endl;
-      	printf(fileName.c_str());
+      	cout << "Unrecognized argument " << opt << endl;
+				exit(0;)
       	break;
     }
   }
