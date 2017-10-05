@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 	// All the processes
   for(int i = 0; i < processQuantity; i++) {
   	Process process;
-  	processType pType;
+  	priorityState pType;
   	getline(file, line);
   	if(line.empty()) {
   		while(line.empty() | file.eof()) {
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
   	int process_type;
   	ss >> process.pid >> process.inttype >> process.threadQuantity;
   	// This is the only obvious way to cast to enum
-  	process.type = static_cast<processType>(process.inttype); // well and contained inside this process
+  	process.type = static_cast<priorityState>(process.inttype); // well and contained inside this process
   	for(int j = 0; j < process.threadQuantity; j++) {
   		getline(file, line);
   		if(line.empty()) {
@@ -98,16 +98,16 @@ int main(int argc, char* argv[]) {
   	// MAKE NOT HARD CODED LATER
   	eTypeString = "THREAD_ARRIVED";
   	switch(event.process.type) {
-  		case processType::SYSTEM:
+  		case priorityState::SYSTEM:
   			pTypeString = "SYSTEM";
   			break;
-  		case processType::INTERACTIVE:
+  		case priorityState::INTERACTIVE:
   			pTypeString = "INTERACTIVE";
   			break;
-  		case processType::NORMAL:
+  		case priorityState::NORMAL:
   			pTypeString = "NORMAL";
   			break;
-  		case processType::BATCH:
+  		case priorityState::BATCH:
   			pTypeString = "BATCH";
   			break;
   	}
