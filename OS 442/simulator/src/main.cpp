@@ -6,14 +6,14 @@
 
 using namespace std;
 
-void argHandler(int argc, char* argv);
+void argHandler(int argc, char** argv);
 
 string fileName;
 int processQuantity, switchOverhead_thread, switchOverhead_process;
 priority_queue <Event, vector<Event>, Prioritized> PQ; 
 
 int main(int argc, char* argv[]) {
-  argHandler(argc, argv*);
+  argHandler(argc, argv);
 
   // argHandler populates filename, create ifstream
   ifstream file(fileName);
@@ -120,7 +120,7 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 
-void argHandler(int argc, char* argv) {
+void argHandler(int argc, char* argv[]) {
   // const char* const short_flag = "tva:h";
   // const option long_flag[] = {{"per_thread", argNone, 0, 't'},
   //                             {"verbose", argNone, 0, 'v'},
