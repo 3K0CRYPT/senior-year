@@ -22,7 +22,7 @@ void argHandler(int argc, char *argv[]) {
 	for (int i = 1; i < argc; i++) {
 		if (strcmp(argv[i], "-opt") == 0) {
 			opt = 1; /* This is used as a boolean value. */
-			cout << i << ": " << argc;
+			cout << i << ": " << argc << endl;
 			if (i + 1 <= argc - 1) {
 				i++;
 				optarg1 = atoi(argv[i]); /* Convert string to int. */
