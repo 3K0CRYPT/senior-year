@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void argHandler(int argc, char** argv);
+void argHandler(int argc, char* argv);
 
 string fileName;
 int processQuantity, switchOverhead_thread, switchOverhead_process;
@@ -120,47 +120,39 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 
-void argHandler(int argc, char* argv[]) {
-  // Will use getopt to ensure proper number of flags are used, if at all
-  // Sends errors / help screen if otherwise
-  const char* const short_flag = "tva:h";
-  // option constructor (name, has_arg, flag, val), if flag ==0, then val is a unique int describing the option.
-  // In this case, an int in the form of a char
-  const option long_flag[] = {{"per_thread", argNone, 0, 't'},
-                              {"verbose", argNone, 0, 'v'},
-                              {"algorithm", argNone, 0, 'a'},
-                              {"help", argNone, 0, 'h'},
-                              {0,0,0,0}};
+void argHandler(int argc, char* argv) {
+  // const char* const short_flag = "tva:h";
+  // const option long_flag[] = {{"per_thread", argNone, 0, 't'},
+  //                             {"verbose", argNone, 0, 'v'},
+  //                             {"algorithm", argNone, 0, 'a'},
+  //                             {"help", argNone, 0, 'h'},
+  //                             {0,0,0,0}};
   fileName = argv[argc-1];
-  int opt = 0;
-  while((opt = getopt_long(argc, argv, short_flag, long_flag, NULL)) != -1) {
-  	cout << "opt value: " << opt << endl;
+  // int opt = 0;
+  // while((opt = getopt_long(argc, argv, short_flag, long_flag, NULL)) != -1) {
+		for (char c: argv) {
+  	cout << "opt value: " << c << endl;
 
-    if(opt == -1) {
+    if(argv.size() < 1) {
     	cout << "No arguments" << endl;
-      // no arguments
       break;
     }
     switch(opt) {
       case 't':
         cout << "Flag t" << endl;
-      	printf(fileName.c_str());
-        cout << endl;
+      	cout << fileName << endl;
         break;
       case 'v':
-        cout << "Flag v" << endl;
-      	printf(fileName.c_str());
-        cout << endl;
-        break;
+        cout << "-v" << endl;
+        cout << fileName << endl;
+      	break;
       case 'a':
-        cout << "Flag a" << endl;
-      	printf(fileName.c_str());
-        cout << endl;
+        cout << "-a" << endl;
+      	cout << fileName << endl;
         break;
       case 'h':
-        cout << "Flag h" << endl;
-      	printf(fileName.c_str());
-        cout << endl;
+        cout << "-h" << endl;
+      	cout << fileName << endl;
         break;
       default:
       	cout << "Unrecognized argument " << char(opt) << endl;
