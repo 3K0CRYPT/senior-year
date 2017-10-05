@@ -133,7 +133,7 @@ void argHandler(int argc, char* argv) {
 		for (char c: argv) {
   	cout << "opt value: " << c << endl;
 
-    if(strlen(argv) < 1) {
+    if(sizeof(argv)/sizeof(*argv) < 1) {
     	cout << "No arguments" << endl;
       break;
     }
