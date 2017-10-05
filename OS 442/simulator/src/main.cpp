@@ -13,7 +13,7 @@ int processQuantity, switchOverhead_thread, switchOverhead_process;
 priority_queue <Event, vector<Event>, Prioritized> PQ; 
 
 int main(int argc, char* argv[]) {
-  argHandler(argc, argv);
+  argHandler(argc, argv*);
 
   // argHandler populates filename, create ifstream
   ifstream file(fileName);
