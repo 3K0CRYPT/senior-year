@@ -6,7 +6,46 @@
 
 using namespace std;
 
-void argHandler(int argc, char** argv);
+void argHandler(int argc, char* argv[]) {
+	cout << "arg length " << argc << endl; 
+	const char* const short_flag = "tva:h";
+  const option long_flag[] = {{"per_thread", argNone, 0, 't'},
+                              {"verbose", argNone, 0, 'v'},
+                              {"algorithm", argNone, 0, 'a'},
+                              {"help", argNone, 0, 'h'},
+                              {0,0,0,0}};
+  fileName = argv[argc-1];
+  int opt = 0;
+  while((opt = getopt_long(argc, argv, short_flag, long_flag, NULL)) != -1) {
+    if(opt < 1) {
+    	cout << "No arguments" << endl;
+      break;
+    }
+    switch(opt) {
+      case 't':
+        cout << "Flag t" << endl;
+      	cout << fileName << endl;
+        break;
+      case 'v':
+        cout << "-v" << endl;
+        cout << fileName << endl;
+      	break;
+      case 'a':
+        cout << "-a" << endl;
+      	cout << fileName << endl;
+        break;
+      case 'h':
+        cout << "-h" << endl;
+      	cout << fileName << endl;
+        break;
+      default:
+      	cout << "Unrecognized argument " << char(opt) << endl;
+				exit(0);
+      	break;
+    }
+  }
+}
+
 
 string fileName;
 int processQuantity, switchOverhead_thread, switchOverhead_process;
@@ -120,45 +159,3 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 
-void argHandler(int argc, char* argv[]) {
-	size_t length = sizeof(argv)/sizeof(*argv);
-	cout << "arg length " << length << endl; 
-	const char* const short_flag = "tva:h";
-  const option long_flag[] = {{"per_thread", argNone, 0, 't'},
-                              {"verbose", argNone, 0, 'v'},
-                              {"algorithm", argNone, 0, 'a'},
-                              {"help", argNone, 0, 'h'},
-                              {0,0,0,0}};
-  fileName = argv[argc-1];
-  int opt = 0;
-  while((opt = getopt_long(argc, argv, short_flag, long_flag, NULL)) != -1) {
-		
-
-    if(opt < 1) {
-    	cout << "No arguments" << endl;
-      break;
-    }
-    switch(opt) {
-      case 't':
-        cout << "Flag t" << endl;
-      	cout << fileName << endl;
-        break;
-      case 'v':
-        cout << "-v" << endl;
-        cout << fileName << endl;
-      	break;
-      case 'a':
-        cout << "-a" << endl;
-      	cout << fileName << endl;
-        break;
-      case 'h':
-        cout << "-h" << endl;
-      	cout << fileName << endl;
-        break;
-      default:
-      	cout << "Unrecognized argument " << char(opt) << endl;
-				exit(0);
-      	break;
-    }
-  }
-}
