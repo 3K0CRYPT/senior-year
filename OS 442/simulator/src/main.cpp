@@ -6,6 +6,10 @@
 
 using namespace std;
 
+string fileName;
+int processQuantity, switchOverhead_thread, switchOverhead_process;
+priority_queue <Event, vector<Event>, Prioritized> PQ; 
+
 void argHandler(int argc, char* argv[]) {
 	cout << "arg length " << argc << endl; 
 	const char* const short_flag = "tva:h";
@@ -45,11 +49,6 @@ void argHandler(int argc, char* argv[]) {
     }
   }
 }
-
-
-string fileName;
-int processQuantity, switchOverhead_thread, switchOverhead_process;
-priority_queue <Event, vector<Event>, Prioritized> PQ; 
 
 int main(int argc, char* argv[]) {
   argHandler(argc, argv);
