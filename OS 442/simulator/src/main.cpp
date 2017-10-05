@@ -121,7 +121,9 @@ int main(int argc, char* argv[]) {
 }
 
 void argHandler(int argc, char* argv[]) {
-  const char* const short_flag = "tva:h";
+	size_t length = sizeof(argv)/sizeof(*argv);
+	cout << "arg length " << length << endl; 
+	const char* const short_flag = "tva:h";
   const option long_flag[] = {{"per_thread", argNone, 0, 't'},
                               {"verbose", argNone, 0, 'v'},
                               {"algorithm", argNone, 0, 'a'},
