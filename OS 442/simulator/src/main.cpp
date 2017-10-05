@@ -130,34 +130,35 @@ void argHandler(int argc, char* argv) {
   fileName = argv[argc-1];
   // int opt = 0;
   // while((opt = getopt_long(argc, argv, short_flag, long_flag, NULL)) != -1) {
-		for (char c: argv) {
-  	cout << "opt value: " << c << endl;
+		size_t length = sizeof(argv)/sizeof(*argv);
+		for (int i=0; i<length; i++) {
+  	cout << "opt value: " << argv[i] << endl;
 
-    if(sizeof(argv)/sizeof(*argv) < 1) {
-    	cout << "No arguments" << endl;
-      break;
-    }
-    switch(opt) {
-      case 't':
-        cout << "Flag t" << endl;
-      	cout << fileName << endl;
-        break;
-      case 'v':
-        cout << "-v" << endl;
-        cout << fileName << endl;
-      	break;
-      case 'a':
-        cout << "-a" << endl;
-      	cout << fileName << endl;
-        break;
-      case 'h':
-        cout << "-h" << endl;
-      	cout << fileName << endl;
-        break;
-      default:
-      	cout << "Unrecognized argument " << char(opt) << endl;
-				exit(0);
-      	break;
-    }
+    // if( < 1) {
+    // 	cout << "No arguments" << endl;
+    //   break;
+    // }
+    // switch(opt) {
+    //   case 't':
+    //     cout << "Flag t" << endl;
+    //   	cout << fileName << endl;
+    //     break;
+    //   case 'v':
+    //     cout << "-v" << endl;
+    //     cout << fileName << endl;
+    //   	break;
+    //   case 'a':
+    //     cout << "-a" << endl;
+    //   	cout << fileName << endl;
+    //     break;
+    //   case 'h':
+    //     cout << "-h" << endl;
+    //   	cout << fileName << endl;
+    //     break;
+    //   default:
+    //   	cout << "Unrecognized argument " << char(opt) << endl;
+		// 		exit(0);
+    //   	break;
+    // }
   }
 }
