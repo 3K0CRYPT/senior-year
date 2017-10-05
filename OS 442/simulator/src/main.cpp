@@ -163,7 +163,7 @@ void argHandler(int argc, char* argv[]) {
         cout << endl;
         break;
       default:
-      	cout << "Unrecognized argument " << opt+'0' << endl;
+      	cout << "Unrecognized argument " << char(opt+'0') << endl;
 				exit(0);
       	break;
     }
