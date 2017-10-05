@@ -144,27 +144,27 @@ void argHandler(int argc, char* argv[]) {
     switch(opt) {
       case 't':
         cout << "Flag t" << endl;
-      	printf(fileName);
+      	printf(fileName.c_str());
         cout << endl;
         break;
       case 'v':
         cout << "Flag v" << endl;
-      	printf(fileName);
+      	printf(fileName.c_str());
         cout << endl;
         break;
       case 'a':
         cout << "Flag a" << endl;
-      	printf(fileName);
+      	printf(fileName.c_str());
         cout << endl;
         break;
       case 'h':
         cout << "Flag h" << endl;
-      	printf(fileName);
+      	printf(fileName.c_str());
         cout << endl;
         break;
       default:
       	cout << "Unrecognized argument " << opt << endl;
-				exit(0;)
+				exit(0);
       	break;
     }
   }
