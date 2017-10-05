@@ -40,9 +40,9 @@ int main(int argc, char* argv[]) {
   	}
   	stringstream ss(line);
   	int process_type;
-  	ss >> process.pid >> process.inttype >> process.threadQuantity;
+  	ss >> process.processID >> process.inttype >> process.threadQuantity;
   	// This is the only obvious way to cast to enum
-  	process.type = static_cast<priorityState>(process.inttype); // well and contained inside this process
+  	process.state = static_cast<priorityState>(process.inttype); // well and contained inside this process
   	for(int j = 0; j < process.threadQuantity; j++) {
   		getline(file, line);
   		if(line.empty()) {
@@ -55,10 +55,10 @@ int main(int argc, char* argv[]) {
   		Thread thread;
   		stringstream sss(line);
   		// cout << "line" << line << endl;
-  		sss >> thread.arrivalTime >> thread.numBursts;
+  		sss >> thread.arriveTime >> thread.burstQuantity;
   		// We gotta go deeper
   		// last CPU burst doesn't have IO, so go up to second to last in input file
-  		for(int k = 0; k < thread.numBursts - 1; k++) {
+  		for(int k = 0; k < thread.burstQuantity - 1; k++) {
   			Burst burst;
   			getline(file, line);
   			stringstream ssss(line);
@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
   for(int i = 0; i < processes.size(); i++) {
   	for(int j = 0; j < processes[i].threadQuantity; j++) {
   		Event event;
-  		event.time = processes[i].threads[j].arrivalTime;
+  		event.time = processes[i].threads[j].arriveTime;
   		event.type = eventType::THREAD_ARRIVED; // threads have only arrived at this point
   		event.thread = processes[i].threads[j];
   		event.process = processes[i];
@@ -97,7 +97,7 @@ int main(int argc, char* argv[]) {
   	Event event = PQ.top();
   	// MAKE NOT HARD CODED LATER
   	eTypeString = "THREAD_ARRIVED";
-  	switch(event.process.type) {
+  	switch(event.process.state) {
   		case priorityState::SYSTEM:
   			pTypeString = "SYSTEM";
   			break;
