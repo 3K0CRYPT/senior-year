@@ -8,3 +8,10 @@ I added two more CSS3 features to *the navbar* which are:
 
 transform: transforming the element (in this case, rotating it)
 transition: creations animated/fading effects whenever the style of an element is modified by an event or selector style change.
+
+----------------------------------------------------------------
+
+jQuery extra credit:
+
+My questions are dynamically populated based on the JSON object specified at the top of the quiz.js file! This means you can simply specify any number of questions (with answer, description, and actual question) into the JSON object and the webpage will automatically create the buttons and check for the appropriate answer dynamically.
+
