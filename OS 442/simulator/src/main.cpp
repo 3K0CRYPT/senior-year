@@ -20,11 +20,9 @@ void argHandler(int argc, char *argv[]) {
 	int optarg2 = 0;
 
 	for (int i = 1; i < argc; i++) {
-		
-		
 		if (strcmp(argv[i], "-opt") == 0) {
 			opt = 1; /* This is used as a boolean value. */
-			if (i + 2 <= argc - 1) {
+			if (i + 1 <= argc - 1) {
 				i++;
 				optarg1 = atoi(argv[i]); /* Convert string to int. */
 				i++;
