@@ -132,11 +132,11 @@ void argHandler(int argc, char* argv[]) {
   // while((opt = getopt_long(argc, argv, short_flag, long_flag, NULL)) != -1) {
 		size_t length = sizeof(argv)/sizeof(*argv);
 		for (int i=0; i<length; i++) {
-  	if (argv[i] != '-') {
-			for(i; argv[i] != ' ' && i<length; i++) {}
+  	if (char(argv[i]) != '-') {
+			for(i; char(argv[i]) != ' ' && i<length; i++) {}
 		}
 		else {
-			for(i; argv[i] != ' ' && i<length; i++) {
+			for(i; char(argv[i]) != ' ' && i<length; i++) {
 				cout << argv[i];
 			}
 		}
