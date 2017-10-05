@@ -19,16 +19,17 @@ void argHandler(int argc, char *argv[]) {
 	int optarg1 = 0;
 	int optarg2 = 0;
 
-	for (int i = 1; i < argc; i++) /* Skip argv[0] (program name). */
-	{
-		if (strcmp(argv[i], "-opt") == 0) /* Process optional arguments. */
-		{
+	for (int i = 1; i < argc; i++) {
+		
+		
+		if (strcmp(argv[i], "-opt") == 0) {
 			opt = 1; /* This is used as a boolean value. */
 			if (i + 2 <= argc - 1) {
 				i++;
 				optarg1 = atoi(argv[i]); /* Convert string to int. */
 				i++;
 				optarg2 = atoi(argv[i]); /* Ditto. */
+				cout << optarg1 << " : " << optarg2 << endl;
 			}
 			else {
 				fprintf(stderr, "usage: %s filename word count [-w]\n", argv[0]);
