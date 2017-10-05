@@ -3,11 +3,11 @@
 #include <vector>
 #pragma once
 
-enum processType {SYSTEM = 0, INTERACTIVE = 1, NORMAL = 2, BATCH = 3}; // for prioritizing
+enum priorityState {SYSTEM = 0, INTERACTIVE = 1, NORMAL = 2, BATCH = 3}; // for prioritizing
 const char* ptypes[] = {"SYSTEM", "INTERACTIVE", "NORMAL", "BATCH"};
 
 struct Process {
-	processType type;
+	priorityState type;
 	int inttype;
 	int pid;
 	int num_threads;

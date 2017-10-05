@@ -1,14 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string>
+#include <getopt.h>
+#include <vector>
+#include <queue>
 #include "Process.h"
 #include "Event.h"
 #include "Burst.h"
 #include "Thread.h"
-#include <getopt.h>
-#include <vector>
-#include <queue>
-//#include <string>
 
 #define no_argument 0 // must be defined for getopt
 #define required_argument 1 // ""

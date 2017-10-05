@@ -23,9 +23,6 @@ struct Thread {
 	threadState current, last;
 	std::vector<Burst> bursts;
 
-	void setReady();
-	void setRunning();
-	void setBlocked();
-	void setExit();
+	void setReady(),  setRunning(),  setBlocked(),  setExit();
 
 };
