@@ -8,7 +8,7 @@ using namespace std;
 
 string fileName;
 int processQuantity, switchOverhead_thread, switchOverhead_process;
-priority_queue<Event, vector<Event>, Prioritized> PQ;
+priority_queue<Event, vector<Event>, Priority> PQ;
 bool h_flag, t_flag, v_flag, a_flag = false;
 
 void argHandler(int argc, char *argv[]) {

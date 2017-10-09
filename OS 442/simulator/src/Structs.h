@@ -83,3 +83,6 @@ struct Event {
 	Process process;
 	int time, threadNum, processNum;
 };
+
+struct Priority {
+};
