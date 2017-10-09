@@ -6,4 +6,7 @@
 #include <queue>
 
 // Self-implemented classes
-#include "Structs.h"
+#include "Process.h"
+#include "Event.h"
+#include "Burst.h"
+#include "Thread.h"

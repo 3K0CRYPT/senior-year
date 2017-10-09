@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "Process.h"
 #include "Thread.h"
 #pragma once
@@ -29,7 +28,7 @@ struct Event {
 	eventType type;
 	Thread thread;
 	Process process;
-	int time, thread_num, process_num;
+	int time, threadNum, processNum;
 };
 
 struct Prioritized {
