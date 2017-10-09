@@ -85,4 +85,5 @@ struct Event {
 };
 
 struct Priority {
+	bool operator()(const Event &event1, const Event &event2){ return event1.time>event2.time; }
 };
