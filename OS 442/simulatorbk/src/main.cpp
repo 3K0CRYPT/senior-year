@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 	string l;
 
 	for (int i = 0; i < processQuantity; i++)	{
-		Process process;
+		Process process; priorityState state; int process_type;
 		
 		getline(file, l); //Read in the line
 		if (l.empty()) while (l.empty() | file.eof()) getline(file, l); //Until it's not empty
@@ -61,21 +61,23 @@ int main(int argc, char *argv[]) {
 				thread.bursts.push_back(burst);
 			}
 			
-			Burst final;
+			Burst lastburst;
 			getline(file, l);
 			stringstream ___ss(l);
-			___ss >> final.cpuTime;
-			thread.bursts.push_back(final);
+			___ss >> lastburst.cpuTime;
+			thread.bursts.push_back(lastburst);
 			process.threads.push_back(thread);
 		}
 		processes.push_back(process);
 	}
 	file.close();
-	for (u_int i = 0; i < processes.size(); i++)	{
-		for (int j = 0; j < processes[i].threadQuantity; j++) {
+	for (int i = 0; i < processes.size(); i++)	{
+		for (int j = 0; j < processes[i].threadQuantity; j++)		{
 			Event event;
 			event.time = processes[i].threads[j].arriveTime;
-			event.type = eventType::THREAD_ARRIVED; //This deliverable only deals with arrived threads
+			
+			//This deliverable only deals with arrived threads
+			event.type = eventType::THREAD_ARRIVED;
 			event.thread = processes[i].threads[j];
 			event.process = processes[i];
 			event.threadNum = j;
@@ -84,12 +86,6 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	if (h_flag) cout << "help flag triggered." << endl;
-	if (a_flag) cout << "algorithm flag triggered." << endl;
-	if (t_flag) cout << "thread flag triggered." << endl;
-	if (v_flag) cout << "verbose flag triggered." << endl;
-	
-	
 	cout << "========================" << endl;
 	cout << "||  Processed Events  ||" << endl;
 	cout << "========================" << endl;

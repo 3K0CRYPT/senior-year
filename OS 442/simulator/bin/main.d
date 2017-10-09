@@ -1,12 +1,5 @@
-bin/main.o: src/main.cpp src/includes.h src/Process.h src/Thread.h \
- src/Burst.h src/Event.h
+bin/main.o: src/main.cpp src/includes.h src/Structs.h
 
 src/includes.h:
 
-src/Process.h:
-
-src/Thread.h:
-
-src/Burst.h:
-
-src/Event.h:
+src/Structs.h:
