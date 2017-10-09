@@ -17,7 +17,8 @@ void argHandler(int argc, char *argv[]) {
 		if (string(argv[i]).compare("-h") == 0 || string(argv[i]).compare("--help") == 0) h_flag = true;
 		if (string(argv[i]).compare("-v") == 0 || string(argv[i]).compare("--verbose") == 0) v_flag = true;
 		if (string(argv[i]).compare("-a") == 0 || string(argv[i]).compare("--algorithm") == 0) {
-			cout << "Test: " << argv[i+1][0] << endl;
+			if (argv[i+1][0] != '-') { cerr << "Error: Invalid algorithm \"" << argv[i+1] << "\". Aborting." << endl; exit(1); }
+			else if (i+1 >= argc-1) { cerr << "Error: Missing file or algorithm." << endl; exit(1); }
 			a_flag = true;
 		}
 		if (string(argv[i]).compare("-t") == 0 || string(argv[i]).compare("--per-thread") == 0) t_flag = true;
