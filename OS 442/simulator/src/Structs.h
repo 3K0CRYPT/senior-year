@@ -1,6 +1,4 @@
-#pragma once
 #include <vector>
-
 
 enum burstType {CPU, IO};
 
@@ -84,8 +82,4 @@ struct Event {
 	Thread thread;
 	Process process;
 	int time, threadNum, processNum;
-};
-
-struct Prioritized {
-	bool operator()(const Event &event1, const Event &event2){ return event1.time>event2.time; }
 };
