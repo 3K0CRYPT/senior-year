@@ -16,7 +16,10 @@ void argHandler(int argc, char *argv[]) {
 	for (int i = 1; i < argc-1; i++) {
 		if (string(argv[i]).compare("-h") == 0 || string(argv[i]).compare("--help") == 0) h_flag = true;
 		if (string(argv[i]).compare("-v") == 0 || string(argv[i]).compare("--verbose") == 0) v_flag = true;
-		if (string(argv[i]).compare("-a") == 0 || string(argv[i]).compare("--algorithm") == 0) a_flag = true;
+		if (string(argv[i]).compare("-a") == 0 || string(argv[i]).compare("--algorithm") == 0) {
+			cout << "Test: " << argv[i+1][0] << endl;
+			a_flag = true;
+		}
 		if (string(argv[i]).compare("-t") == 0 || string(argv[i]).compare("--per-thread") == 0) t_flag = true;
 	}
 }
