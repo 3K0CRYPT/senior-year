@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 		processes.push_back(process);
 	}
 	file.close();
-	for (u_int i = 0; i < processes.size(); i++)	{
+	for (__int8 i = 0; i < processes.size(); i++)	{
 		for (int j = 0; j < processes[i].threadQuantity; j++) {
 			Event event;
 			event.time = processes[i].threads[j].arriveTime;
