@@ -1,5 +1,6 @@
 <?php
-$thisPage = "Home"
+$page = "Home";
+$dir = __DIR__;
 echo "Dir: " . __DIR__ . "<br>"; // Displays: Line number 2
 ?>
 
