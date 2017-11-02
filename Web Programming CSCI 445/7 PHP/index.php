@@ -7,7 +7,6 @@
     <meta id="author" name="Michael Bartlett" content="Michael Bartlett" lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="csci445.css" />
-    <link rel="stylesheet" type="text/css" href="navbar.css" />
     <style>
     body {
         text-align: center;
