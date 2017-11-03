@@ -1,7 +1,7 @@
 <?php
 $page = "Home";
-$dir = __DIR__;
-echo "Dir: " . __DIR__ . "<br>"; // Displays: Line number 2
+$dir = substr(__DIR__,23) . "/";
+echo $dir . "<br>"; // Displays: Line number 2
 ?>
 
 <!DOCTYPE html >
