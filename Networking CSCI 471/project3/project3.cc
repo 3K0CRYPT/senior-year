@@ -29,9 +29,16 @@ void A_output(struct msg message)
   std::cout << "Layer 4 on side A has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
   struct pkt packet = make_pkt(message, seq, 1);
+  seq = !seq;
   
-  if (!ACKed) q.emplace(packet);
-  else { simulation->tolayer3(A,packet); ACKed = false; }
+  if (!ACKed)  {
+    q.emplace(packet);
+    std::cout << "\tEnqueued: " << packet << std::endl;
+  }
+  else { 
+    std::cout << "\tSending: " << packet << std::endl;
+    simulation->tolayer3(A,packet); ACKed = false; 
+  }
 }
 
 
@@ -43,11 +50,11 @@ void B_input(struct pkt packet)
 {
   std::cout << "Layer 4 on side B has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
 
-  struct pkt response;
-  response.seqnum = packet.seqnum;
-  response.acknum = packet.acknum;
-  response.checksum = 0;
-  bcopy("ACK",response.payload,20);
+  struct msg ack;
+  bcopy("ACK",ack.data,20);
+  
+  struct pkt response = make_pkt(ack, NULL, packet.seqnum)
+  std::cout << "\tACKing: " << response << std::endl;
   simulation->tolayer3(B,response);
   
   struct msg message;
@@ -62,7 +69,7 @@ void B_input(struct pkt packet)
 // ***************************************************************************
 void A_timerinterrupt()
 {
-  std::cout << "Side A's timer has gone off." << std::endl;
+  // std::cout << "Side A's timer has gone off." << std::endl;
 }
 
 // ***************************************************************************
@@ -70,7 +77,7 @@ void A_timerinterrupt()
 // ***************************************************************************
 void B_timerinterrupt()
 {
-    std::cout << "Side B's timer has gone off." << std::endl;
+    // std::cout << "Side B's timer has gone off." << std::endl;
 }
 
 // ***************************************************************************
@@ -125,9 +132,13 @@ void A_input(struct pkt packet)
   
   if (strcmp(packet.payload, "ACK") == 0) std::cout << "Omega dicks\n";
   if (!q.empty()) {
-    std::cout << "\tSending: " << q.front() << std::endl;
+    std::cout << "\tPopped: " << q.front() << std::endl;
     simulation->tolayer3(A,q.front());
     q.pop();
   }
+  else {
+    std::cout << "Last ack?\n";
+  }
+  
   
 }
