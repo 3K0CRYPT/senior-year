@@ -28,7 +28,7 @@ void A_output(struct msg message)
 {
   std::cout << "Layer 4 on side A has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
-  struct pkt packet = make_pkt(message);
+  struct pkt packet = make_pkt(message, seq, 1);
   
   if (!ACKed) q.emplace(packet);
   else { simulation->tolayer3(A,packet); ACKed = false; }
