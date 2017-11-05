@@ -49,7 +49,7 @@ void B_input(struct pkt packet)
   bcopy(_ack,ack.data,20);
   
   struct pkt response = make_pkt(ack, packet.seqnum);
-  std::cout << "\tACKing: " << response << std::endl;
+  // std::cout << "\tACKing: " << response << std::endl;
   simulation->tolayer3(B,response);
   
   struct msg message;
@@ -64,7 +64,7 @@ void B_input(struct pkt packet)
 // ***************************************************************************
 void A_timerinterrupt()
 {
-  // std::cout << "Side A's timer has gone off." << std::endl;
+  std::cout << "Side A's timer has gone off." << std::endl;
 }
 
 // ***************************************************************************
@@ -72,7 +72,7 @@ void A_timerinterrupt()
 // ***************************************************************************
 void B_timerinterrupt()
 {
-    // std::cout << "Side B's timer has gone off." << std::endl;
+    std::cout << "Side B's timer has gone off." << std::endl;
 }
 
 // ***************************************************************************
@@ -128,12 +128,12 @@ void A_input(struct pkt packet)
   if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
     // std::cout << "\tPopped: " << q.front() << std::endl;
-    std::cout << "\t" << packet.seqnum << " = " << q.front().seqnum << std::endl;
+    // std::cout << "\t" << packet.seqnum << " = " << q.front().seqnum << std::endl;
     q.pop();
     if (!q.empty()) simulation->tolayer3(A,q.front());
   }
   else {
-    std::cout << "Last ack?\n";
+    // std::cout << "Last ack?\n";
   }
   
   
