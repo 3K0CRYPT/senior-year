@@ -32,8 +32,8 @@ void A_output(struct msg message)
   std::cout << "A: Layer 4 has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
   struct pkt packet = make_pkt(message, _seq);
-  // _seq = (_seq+1)%2;
-  _seq++;
+  _seq = (_seq+1)%2;
+  // _seq++;
 
   if (q.empty()) { 
     simulation->tolayer3(A,packet);
@@ -60,7 +60,7 @@ pkt make_ack(struct msg message, int seq) {
 void B_input(struct pkt packet)
 {
   std::cout << "B: Layer 4 has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
-  packet.payload[20] = '\0';  //Replace garbage with proper nullterminator.
+  // packet.payload[20] = '\0';  //Replace garbage with proper nullterminator.
   
   //Send ACK for most recent packet
   
@@ -164,16 +164,16 @@ void A_input(struct pkt packet)
   struct msg message;
   bzero(message.data,20);
   bcopy(packet.payload,message.data,20);
-  message.data[20] = '\0';  //Replace garbage with proper nullterminator.
+  // message.data[20] = '\0';  //Replace garbage with proper nullterminator.
   // simulation->tolayer5(A,message);
   
   if (!q.empty()) {
-    q.front().payload[20] = '\0'; //Replace garbage with proper nullterminator.
+    // q.front().payload[20] = '\0'; //Replace garbage with proper nullterminator.
 
     // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
-    if ((packet.seqnum == q.front().seqnum) && (strcmp(message.data,q.front().payload) == 0)) { //Ack should have same payload + seq
+    if ((packet.seqnum == q.front().seqnum) && (strncmp(message.data,q.front().payload) == 0)) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
       struct pkt top = q.front(); 
