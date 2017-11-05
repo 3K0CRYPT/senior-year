@@ -31,7 +31,6 @@ void A_output(struct msg message)
 
   struct pkt packet = make_pkt(message, seq);
   seq = !seq;
-  std::cout << "Dicks: " << seq << " : " << (int)seq << std::endl;
   
   if (!ACKed)  {
     q.emplace(packet);
@@ -132,7 +131,7 @@ void A_input(struct pkt packet)
   simulation->tolayer5(B,message);
   
   if (strcmp(packet.payload, _ack) == 0) 
-  std::cout << "\t" << packet.acknum << " = " << seq << std::endl;
+  std::cout << "\t" << packet.seqnum << " = " << q.front().seqnum << std::endl;
   if (!q.empty()) {
     std::cout << "\tPopped: " << q.front() << std::endl;
     simulation->tolayer3(A,q.front());
