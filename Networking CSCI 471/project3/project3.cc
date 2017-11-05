@@ -170,6 +170,7 @@ void A_input(struct pkt packet)
       simulation->stoptimer(A);
       q.pop();
       if (!q.empty()) {
+        std::cout << "\tSending: " << q.front();
         simulation->tolayer3(A,q.front());  
         simulation->starttimer(A,TIMERLENGTH);
       }
