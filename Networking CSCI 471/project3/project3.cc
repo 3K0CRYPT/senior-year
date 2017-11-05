@@ -19,6 +19,10 @@ int chk(char *arr) {
   return std::accumulate(arr, arr+20, 0);
 }
 
+vector<pkt> vpop(v) {
+  return std::vector<pkt> _q(v.begin()+1, v.end());
+}
+
 pkt make_pkt(struct msg message, int seq) {
   struct pkt packet;
   packet.seqnum = seq;
@@ -192,8 +196,9 @@ void A_input(struct pkt packet)
       simulation->stoptimer(A);
       
       // q.pop();
-      std::vector<pkt> _q(q.begin()+1, q.end());
-      q = _q;
+      
+      // q = std::vector<pkt> _q(q.begin()+1, q.end());x
+      q = vpop(q);
       
       if (!q.empty()) {
         // q.front().seqnum = (top.seqnum + 1)%2;
