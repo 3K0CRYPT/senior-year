@@ -17,7 +17,7 @@ char _ack[20] = "ACK                ";
 const int TIMERLENGTH = 30;
 
 int chk(char *arr) {
-  return std::accumulate(std::begin(arr), std::end(arr);
+  return std::accumulate(std::begin(arr), std::end(arr));
 }
 
 pkt make_pkt(struct msg message, int seq) {
