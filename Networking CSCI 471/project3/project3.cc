@@ -66,6 +66,10 @@ void B_input(struct pkt packet)
 {
   std::cout << "B: Layer 4 has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
   if (qb.empty()) {
+    if (chk(packet.payload) != packet.checksum) {
+      std::cout << "\tREJECT corrupt packet\n";
+      return;
+    }
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     struct msg message;
     bcopy(packet.payload,message.data,20);
@@ -75,6 +79,11 @@ void B_input(struct pkt packet)
   }
   
   else if (packet.seqnum != qb.front().seqnum) { //New packet
+    if (chk(packet.payload) != packet.checksum) {
+      std::cout << "\tREJECT corrupt packet\n";
+      return;
+    }
+    
     simulation->stoptimer(B);
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     qb.pop(); //A got this ACK.
@@ -164,16 +173,21 @@ void B_output(struct msg message)
 void A_input(struct pkt packet)
 {
   std::cout << "A: Layer 4 has recieved an ACK sent over the network from side B:" << packet << std::endl;
-  struct msg message;
-  bzero(message.data,20);
-  bcopy(packet.payload,message.data,20);
+  // struct msg message;
+  // bzero(message.data,20);
+  // bcopy(packet.payload,message.data,20);
   // simulation->tolayer5(A,message);
+  
+  if (chk(packet.payload) != packet.checksum) {
+    std::cout << "\tREJECT corrupt ACK\n";
+    return;
+  }
   
   if (!q.empty()) {
     // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
-    if ((packet.seqnum == q.front().seqnum) && (strncmp(message.data,q.front().payload,20) == 0)) { //Ack should have same payload + seq
+    if ((packet.seqnum == q.front().seqnum) && (strncmp(packet.payload,q.front().payload,20) == 0)) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
       last = q.front(); 
