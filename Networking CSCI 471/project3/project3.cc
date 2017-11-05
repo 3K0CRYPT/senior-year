@@ -10,7 +10,7 @@ std::queue<pkt> q;
 std::queue<pkt> qb;
 int _seq = 0;
 bool expected = true;
-bool sendLast = false;
+bool sentLast = false;
 bool ACKed = true;
 char _ack[20] = "ACK                ";
 const int TIMERLENGTH = 30;
