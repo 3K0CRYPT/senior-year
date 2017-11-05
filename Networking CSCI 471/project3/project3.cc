@@ -94,10 +94,11 @@ void B_input(struct pkt packet)
     bcopy(packet.payload,message.data,20);
     simulation->tolayer5(B,message);
 
-    if (q.empty()) {
-      std::cout << "\nACKs: " << ACKs << std::endl;
-      exit(0);
-    }
+    // if (q.empty()) {
+      
+    //   std::cout << "\nACKs: " << ACKs << std::endl;
+    //   exit(0);
+    // }
     
     make_ack(packet);
   }
@@ -191,7 +192,6 @@ void A_input(struct pkt packet)
     if ((packet.seqnum == q.front().seqnum) && (strncmp(packet.payload,q.front().payload,20) == 0)) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
-      last = q.front(); 
       q.pop();
       if (!q.empty()) {
         // q.front().seqnum = (top.seqnum + 1)%2;
@@ -200,8 +200,8 @@ void A_input(struct pkt packet)
         std::cout << "\tSending next: " << q.front() << std::endl;
       }
       else {
-        // std::cout << "\nACKs: " << ACKs << std::endl;
-        // exit(0);
+        std::cout << "\nACKs: " << ACKs << std::endl;
+        exit(0);
         //Every other way I tried to terminate made the tests fail :'''^>
         //Since nsimmax is private, there's no other way to determine if it's the last packet without sending duplicates or NACKs or something
             // (which cause the tests to fail!)
