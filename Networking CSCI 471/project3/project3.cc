@@ -124,7 +124,7 @@ void A_input(struct pkt packet)
   std::cout << "A: Layer 4 has recieved an ACK sent over the network from side B:" << packet << std::endl;
   struct msg message;
   bzero(message.data,20);
-  bcopy(packet.payload,message.data,19);
+  bcopy(packet.payload,message.data,20);
   message.data[20] = '\0';
   // simulation->tolayer5(A,message);
   
