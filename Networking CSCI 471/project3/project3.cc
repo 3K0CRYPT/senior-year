@@ -124,7 +124,7 @@ void A_input(struct pkt packet)
   std::cout << "Layer 4 on side A has recieved a packet sent over the network from side B:" << packet << std::endl;
   struct msg message;
   bcopy(packet.payload,message.data,20);
-  simulation->tolayer5(A,message);
+  // simulation->tolayer5(A,message);
   
   // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
