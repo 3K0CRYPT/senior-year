@@ -190,6 +190,7 @@ void A_input(struct pkt packet)
     packet.seqnum = -1;
     // _seq = (_seq+1)%2;
     // _seq++;
+    std::cout << simulation->nsimmax << std::endl;
     simulation->tolayer3(A,packet);
     // simulation->starttimer(A,TIMERLENGTH);
     // q.emplace(packet);
