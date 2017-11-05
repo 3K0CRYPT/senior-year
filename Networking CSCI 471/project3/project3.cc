@@ -184,16 +184,16 @@ void A_input(struct pkt packet)
     else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << q.front() << std::endl;
     
   }
-  // else if (!sentLast) {
-  //   //Construct last packet with empty payload to end transmission?
-  //   sentLast = true;
-  //   packet.seqnum = -1;
-  //   // _seq = (_seq+1)%2;
-  //   // _seq++;
-  //   simulation->tolayer3(A,packet);
-  //   simulation->starttimer(A,TIMERLENGTH);
-  //   q.emplace(packet);
-  // }
+  else if (!sentLast) {
+    //Construct last packet with empty payload to end transmission?
+    sentLast = true;
+    packet.seqnum = -1;
+    // _seq = (_seq+1)%2;
+    // _seq++;
+    simulation->tolayer3(A,packet);
+    simulation->starttimer(A,TIMERLENGTH);
+    q.emplace(packet);
+  }
   
 
 }
