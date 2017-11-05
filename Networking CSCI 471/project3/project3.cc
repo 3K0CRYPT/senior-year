@@ -121,15 +121,15 @@ void B_output(struct msg message)
 // ***************************************************************************
 void A_input(struct pkt packet)
 {
-  std::cout << "A: Layer 4 has recieved a packet sent over the network from side B:" << packet << std::endl;
+  std::cout << "A: Layer 4 has recieved an ACK sent over the network from side B:" << packet << std::endl;
   struct msg message;
   bcopy(packet.payload,message.data,20);
   // simulation->tolayer5(A,message);
   
   // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
-    if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n.";
-    if (strcmp(packet.payload,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n.";
+    if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
+    if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
     q.pop();
     if (!q.empty()) simulation->tolayer3(A,q.front());
   }
