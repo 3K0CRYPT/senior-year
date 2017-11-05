@@ -7,7 +7,7 @@
 // ***************************************************************************
 #include <queue>
 std::queue<pkt> q;
-bool seq = true;
+bool seq = false;
 bool expected = true;
 bool ACKed = true;
 
@@ -17,7 +17,7 @@ pkt make_pkt(struct msg message, int seq) {
   packet.acknum = 0;
   packet.checksum = 1;
   bcopy(message.data,packet.payload,20);
-  std::cout << "\tNew pkt: " << packet << std::endl;
+  // std::cout << "\tNew pkt: " << packet << std::endl;
   return packet;
 }
 
