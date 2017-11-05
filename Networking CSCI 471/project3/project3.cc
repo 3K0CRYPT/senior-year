@@ -14,7 +14,8 @@ char _ack[20] = "ACK                ";
 
 pkt make_pkt(struct msg message, int &seq) {
   struct pkt packet;
-  packet.seqnum = (int)(seq = !seq);
+  seq = !seq
+  packet.seqnum = (int)seq;
   packet.acknum = 0;
   packet.checksum = 1;
   bcopy(message.data,packet.payload,20);
