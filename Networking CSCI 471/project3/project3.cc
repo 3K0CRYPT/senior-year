@@ -100,7 +100,7 @@ void B_input(struct pkt packet)
       // simulation->tolayer3(B,packet);
     }
   }
-    else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting seq=" << (qb.front().seq+1)%2 << std::endl;
+    else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting seq=" << (qb.front().seqnum+1)%2 << std::endl;
 }
 
 
