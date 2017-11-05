@@ -203,6 +203,8 @@ void A_input(struct pkt packet)
     
   }
   else {
+    simulation->stoptimer(A);
+    simulation->stoptimer(B);
     exit(0);
     //Every other way I tried to terminate made the tests fail :'''^>
     //Since nsimmax is private, there's no other way to determine if it's the last packet without sending duplicates or NACKs or something
