@@ -65,7 +65,7 @@ void B_input(struct pkt packet)
   
   
   if (qb.empty()) {
-    std::cout << "ACCEPT new packet: " << packet << std::endl;
+    std::cout << "\tACCEPT new packet: " << packet << std::endl;
     struct msg message;
     bcopy(packet.payload,message.data,20);
     simulation->tolayer5(B,message);
@@ -74,7 +74,7 @@ void B_input(struct pkt packet)
   }
   
   else if (packet.seqnum != qb.front().seqnum) { //New packet
-    std::cout << "ACCEPT new packet: " << packet << std::endl;
+    std::cout << "\tACCEPT new packet: " << packet << std::endl;
     qb.pop(); //A got this ACK.
     
     struct msg message;
@@ -83,7 +83,7 @@ void B_input(struct pkt packet)
     
     make_ack(message, packet.seqnum);
   }
-    else std::cout << "Ignoring new packet: " << packet << "\n\t\tExpecting: " << qb.front() << std::endl;
+    else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting: " << qb.front() << std::endl;
 }
 
 
@@ -93,7 +93,7 @@ void B_input(struct pkt packet)
 // ***************************************************************************
 void A_timerinterrupt()
 {
-  std::cout << "\tA's timer has gone off.\n\tResending: " << q.front() << std::endl;
+  std::cout << "A's timer has gone off.\n\tResending: " << q.front() << std::endl;
   
   simulation->tolayer3(A,q.front());  
   simulation->starttimer(A,TIMERLENGTH);
@@ -104,7 +104,7 @@ void A_timerinterrupt()
 // ***************************************************************************
 void B_timerinterrupt()
 {
-    std::cout << "\tB's timer has gone off.\n\tReACKing" << qb.front() << std::endl;
+    std::cout << "B's timer has gone off.\n\tReACKing" << qb.front() << std::endl;
     
     simulation->tolayer3(B,qb.front());
     simulation->starttimer(B,TIMERLENGTH);   
@@ -169,12 +169,13 @@ void A_input(struct pkt packet)
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
     if ((packet.seqnum == q.front().seqnum) && (strcmp(message.data,q.front().payload) == 0)) { //Ack should have same payload + seq
-      std::cout << "ACCEPT ACK: " << packet << std::endl;
+      std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
       q.pop();
       if (!q.empty()) {
         simulation->tolayer3(A,q.front());  
         simulation->starttimer(A,TIMERLENGTH);
+        std::cout << "\tSending next: " << q.front() << std::endl;
       }
     }
     else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << q.front() << std::endl;
