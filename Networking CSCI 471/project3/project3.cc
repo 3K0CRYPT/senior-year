@@ -20,7 +20,7 @@ pkt make_pkt(struct msg message, int seq) {
   packet.acknum = 0;
   packet.checksum = 1;
   bcopy(message.data,packet.payload,20);
-  // std::cout << "\tNew pkt: " << packet << std::endl;
+  std::cout << "\tNew pkt: " << packet << std::endl;
   return packet;
 }
 
@@ -170,7 +170,6 @@ void A_input(struct pkt packet)
       simulation->stoptimer(A);
       q.pop();
       if (!q.empty()) {
-        std::cout << "\tSending: " << q.front();
         simulation->tolayer3(A,q.front());  
         simulation->starttimer(A,TIMERLENGTH);
       }
