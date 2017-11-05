@@ -5,12 +5,10 @@
 // *
 // * These are the functions you need to fill in.
 // ***************************************************************************
-#include <vector>
 #include <queue>
-std::vector<pkt> q;
+std::queue<pkt> q;
 std::queue<pkt> qb;
 int _seq = 0;
-int lastACK = 0;
 int ACKs = 0;
 const int TIMERLENGTH = 30;
 const int WINDOW = 3;
@@ -25,7 +23,7 @@ pkt make_pkt(struct msg message, int seq) {
   packet.acknum = 0;
   packet.checksum = chk(message.data);
   bcopy(message.data,packet.payload,20);
-  std::cout << "\tNew pkt: " << packet << std::endl;
+  // std::cout << "\tNew pkt: " << packet << std::endl;
   return packet;
 }
 
@@ -37,14 +35,14 @@ void A_output(struct msg message)
   std::cout << "A: Layer 4 has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
   struct pkt packet = make_pkt(message, _seq);
-  _seq = (_seq+1)%WINDOW;
+  _seq = (_seq+1)%2;
   // _seq++;
 
   if (q.empty()) { 
     simulation->tolayer3(A,packet);
     simulation->starttimer(A,TIMERLENGTH);
   }  
-  q.push_back(packet);
+  q.emplace(packet);
 }
 
 
@@ -190,10 +188,7 @@ void A_input(struct pkt packet)
     if ((packet.seqnum == q.front().seqnum) && (strncmp(packet.payload,q.front().payload,20) == 0)) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
-      
-      // q.pop();
-      q = std::vector<int> _q(q.begin()+1, q.end());
-      
+      q.pop();
       if (!q.empty()) {
         // q.front().seqnum = (top.seqnum + 1)%2;
         simulation->tolayer3(A,q.front());  
