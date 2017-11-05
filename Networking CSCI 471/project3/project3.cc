@@ -20,7 +20,7 @@ pkt make_pkt(struct msg message, int seq) {
   struct pkt packet;
   packet.seqnum = seq;
   packet.acknum = 0;
-  packet.checksum = 1;
+  packet.checksum = std::accumulate(std::begin(message.data), std::end(message.data), 0);;
   bcopy(message.data,packet.payload,20);
   // std::cout << "\tNew pkt: " << packet << std::endl;
   return packet;
