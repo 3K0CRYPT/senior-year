@@ -16,7 +16,7 @@ bool ACKed = true;
 char _ack[20] = "ACK                ";
 const int TIMERLENGTH = 30;
 
-int chk(char arr[]) {
+int chk(char *arr) {
   return std::accumulate(std::begin(arr), std::end(arr);
 }
 
