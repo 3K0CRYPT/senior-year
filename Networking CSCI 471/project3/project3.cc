@@ -187,7 +187,7 @@ void A_input(struct pkt packet)
   else if (!sentLast) {
     //Construct last packet with empty payload to end transmission?
     sentLast = true;
-    top.seqnum = -1;
+    packet.seqnum = -1;
     // _seq = (_seq+1)%2;
     // _seq++;
     simulation->tolayer3(A,packet);
