@@ -47,6 +47,7 @@ sub doTest($$$) {
   print "Test ", join(' ',@binary);
   print " passed\n" if (!$failed);
   print " failed\n" if ($failed);
+  print " $count\n";
   print "$packetSent packets sent\n";
   print "$packetRecv packets recieved\n\n";
 }
