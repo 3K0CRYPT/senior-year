@@ -6,7 +6,7 @@
 // * These are the functions you need to fill in.
 // ***************************************************************************
 #include <queue>
-queue<pkt> q;
+std::queue<pkt> q;
 bool seq = true;
 bool ACKed = true;
 
@@ -50,7 +50,7 @@ void B_input(struct pkt packet)
   response.seqnum = 1;
   response.acknum = 1;
   response.checksum = 0;
-  bcopy(("ACK").data(),response.payload,20);
+  bcopy("ACK",response.payload,20);
   simulation->tolayer3(B,response);
   
   struct msg message;
