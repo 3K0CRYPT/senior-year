@@ -84,7 +84,7 @@ void B_input(struct pkt packet)
     }
     else {
       std::cout << "\tLast packet!\n";
-      simulation->tolayer3(B,packet);
+      // simulation->tolayer3(B,packet);
     }
   }
     else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting: " << qb.front() << std::endl;
@@ -191,8 +191,8 @@ void A_input(struct pkt packet)
     // _seq = (_seq+1)%2;
     // _seq++;
     simulation->tolayer3(A,packet);
-    simulation->starttimer(A,TIMERLENGTH);
-    q.emplace(packet);
+    // simulation->starttimer(A,TIMERLENGTH);
+    // q.emplace(packet);
   }
   
 
