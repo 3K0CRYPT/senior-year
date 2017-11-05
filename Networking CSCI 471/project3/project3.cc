@@ -65,6 +65,7 @@ void B_input(struct pkt packet)
   
   
   if (qb.empty()) {
+    std::cout << "ACCEPT new packet: " << packet << std::endl;
     struct msg message;
     bcopy(packet.payload,message.data,20);
     simulation->tolayer5(B,message);
@@ -73,6 +74,7 @@ void B_input(struct pkt packet)
   }
   
   else if (packet.seqnum != qb.front().seqnum) { //New packet
+    std::cout << "ACCEPT new packet: " << packet << std::endl;
     qb.pop(); //A got this ACK.
     
     struct msg message;
@@ -167,6 +169,7 @@ void A_input(struct pkt packet)
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
     if ((packet.seqnum == q.front().seqnum) && (strcmp(message.data,q.front().payload) == 0)) { //Ack should have same payload + seq
+      std::cout << "ACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
       q.pop();
       if (!q.empty()) {
