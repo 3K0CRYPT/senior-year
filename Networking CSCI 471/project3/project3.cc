@@ -16,11 +16,15 @@ bool ACKed = true;
 char _ack[20] = "ACK                ";
 const int TIMERLENGTH = 30;
 
+int chk(arr*) {
+  return std::accumulate(std::begin(arr), std::end(arr);
+}
+
 pkt make_pkt(struct msg message, int seq) {
   struct pkt packet;
   packet.seqnum = seq;
   packet.acknum = 0;
-  packet.checksum = std::accumulate(std::begin(message.data), std::end(message.data), 0);;
+  packet.checksum = chk(message.data);
   bcopy(message.data,packet.payload,20);
   // std::cout << "\tNew pkt: " << packet << std::endl;
   return packet;
