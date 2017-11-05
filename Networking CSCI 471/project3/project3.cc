@@ -66,11 +66,15 @@ pkt make_ack(struct pkt packet) {
 void B_input(struct pkt packet)
 {
   std::cout << "B: Layer 4 has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
+  if (chk(packet.payload) != packet.checksum) {
+    std::cout << "\tREJECT corrupt packet\n";
+    return;
+  }
+  
+  int expected = (qb.front().seqnum + 1)%2;
+  
   if (qb.empty()) {
-    if (chk(packet.payload) != packet.checksum) {
-      std::cout << "\tREJECT corrupt packet\n";
-      return;
-    }
+    
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     struct msg message;
     bcopy(packet.payload,message.data,20);
@@ -79,11 +83,7 @@ void B_input(struct pkt packet)
     make_ack(packet);
   }
   
-  else if (packet.seqnum != qb.front().seqnum) { //New packet
-    if (chk(packet.payload) != packet.checksum) {
-      std::cout << "\tREJECT corrupt packet\n";
-      return;
-    }
+  else if (packet.seqnum == expected) { //New packet
     
     simulation->stoptimer(B);
     ACKs++;
@@ -96,7 +96,7 @@ void B_input(struct pkt packet)
 
     make_ack(packet);
   }
-    else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting seq=" << (qb.front().seqnum+1)%2 << std::endl;
+    else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting seq=" << expected << std::endl;
 }
 
 
