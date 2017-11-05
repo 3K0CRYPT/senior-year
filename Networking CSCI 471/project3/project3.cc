@@ -11,6 +11,7 @@ bool seq = false;
 bool expected = true;
 bool ACKed = true;
 char _ack[20] = "ACK                ";
+const int TIMERLENGTH = 10;
 
 pkt make_pkt(struct msg message, int seq) {
   struct pkt packet;
@@ -32,7 +33,10 @@ void A_output(struct msg message)
   struct pkt packet = make_pkt(message, seq);
   seq = !seq;
 
-  if (q.empty()) simulation->tolayer3(A,packet);
+  if (q.empty()) { 
+    simulation->tolayer3(A,packet);
+    starttimer(A,TIMERLENGTH);
+  }  
   q.emplace(packet);
 }
 
@@ -125,20 +129,23 @@ void A_input(struct pkt packet)
   struct msg message;
   bzero(message.data,20);
   bcopy(packet.payload,message.data,20);
-  message.data[20] = '\0';  //Replace garage with proper nullterminator.
+  message.data[20] = '\0';  //Replace garbage with proper nullterminator.
   // simulation->tolayer5(A,message);
   
-  // std::cout << "\tWew: " << message.data << " = " << q.front().payload << std::endl;
-  
-  // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
-    q.front().payload[20] = '\0'; //Replace garage with proper nullterminator.
+    q.front().payload[20] = '\0'; //Replace garbage with proper nullterminator.
 
     // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
-    if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
+    // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
-    q.pop();
-    if (!q.empty()) simulation->tolayer3(A,q.front());
+    if ((packet.seqnum == q.front().seqnum) && (strcmp(message.data,q.front().payload) == 0)) { //Ack should have same payload + seq
+      stoptimer(A);
+      q.pop();
+      if (!q.empty()) {
+        simulation->tolayer3(A,q.front());  
+        starttimer(A,TIMERLENGTH);
+      }
+    }
   }
   else {
     // std::cout << "Last ack?\n";
