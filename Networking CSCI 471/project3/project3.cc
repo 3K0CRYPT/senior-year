@@ -20,7 +20,8 @@ int chk(char *arr) {
 }
 
 std::vector<pkt> vpop(std::vector<pkt> v) {
-  return std::vector<pkt> _q(v.begin()+1, v.end());
+  std::vector<pkt> _q(v.begin()+1, v.end());
+  return _q;
 }
 
 pkt make_pkt(struct msg message, int seq) {
