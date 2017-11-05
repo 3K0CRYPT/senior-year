@@ -21,7 +21,7 @@ pkt make_pkt(struct msg message, int seq) {
   packet.acknum = 0;
   packet.checksum = 1;
   bcopy(message.data,packet.payload,20);
-  std::cout << "\tNew pkt: " << packet << std::endl;
+  // std::cout << "\tNew pkt: " << packet << std::endl;
   return packet;
 }
 
@@ -50,7 +50,7 @@ void A_output(struct msg message)
 // ***************************************************************************
 pkt make_ack(struct pkt packet) {
   
-  std::cout << "\tACKing: " << packet << std::endl;
+  // std::cout << "\tACKing: " << packet << std::endl;
   
   qb.emplace(packet); //Store last ACK
   simulation->tolayer3(B,packet);
