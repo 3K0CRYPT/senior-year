@@ -51,16 +51,8 @@ void B_input(struct pkt packet)
   std::cout << "B: Layer 4 has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
   packet.payload[20] = '\0';  //Replace garbage with proper nullterminator.
   
-  if (packet.seqnum != qb.front().seqnum) { //New packet
-    qb.pop();
-    
-    struct msg message;
-    bcopy(packet.payload,message.data,20);
-    simulation->tolayer5(B,message);
-    
-    //Send ACK for most recent packet
-    struct msg ack;
-    bcopy(packet.payload,ack.data,20);
+  //Send ACK for most recent packet
+  pkt make_ack(struct msg message, int seq) {
     
     struct pkt response = make_pkt(ack, packet.seqnum);
     std::cout << "\tACKing: " << response << std::endl;
@@ -68,6 +60,24 @@ void B_input(struct pkt packet)
     qb.emplace(response); //Store last ACK
     simulation->tolayer3(B,response);
     simulation->starttimer(B,TIMERLENGTH);
+  }
+  
+  if (qb.empty()) {
+    struct msg message;
+    bcopy(packet.payload,message.data,20);
+    simulation->tolayer5(B,message);
+    
+    make_ack(message, packet.seqnum);
+  }
+  
+  else if (packet.seqnum != qb.front().seqnum) { //New packet
+    qb.pop(); //A got this ACK.
+    
+    struct msg message;
+    bcopy(packet.payload,message.data,20);
+    simulation->tolayer5(B,message);
+    
+    make_ack(message, packet.seqnum);
   }
 }
 
