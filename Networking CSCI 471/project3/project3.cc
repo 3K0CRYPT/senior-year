@@ -11,11 +11,11 @@ bool seq = true;
 bool expected = true;
 bool ACKed = true;
 
-pkt make_pkt(struct msg message, int seq, int checksum) {
+pkt make_pkt(struct msg message, int seq, int ack) {
   struct pkt packet;
   packet.seqnum = (int)seq;
-  // packet.acknum = 1; Unnecessary? If payload == ack, treat this as ack?
-  packet.checksum = checksum;
+  packet.acknum = 
+  packet.checksum = 1;
   bcopy(message.data,packet.payload,20);
   std::cout << "\tNew pkt: " << packet << std::endl;
   return packet;
