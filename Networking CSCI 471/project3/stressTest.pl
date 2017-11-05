@@ -42,7 +42,10 @@ sub doTest($$$) {
     }
   }
 
-  $failed = 1 if ($packetSent != $packetRecv);
+  if ($packetSent != $packetRecv) {
+    $failed = 1;
+    print "$packetSent != $packetRecv";
+  }
   
   print "Test ", join(' ',@binary);
   print " passed\n" if (!$failed);
