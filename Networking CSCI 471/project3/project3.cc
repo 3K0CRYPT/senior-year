@@ -19,7 +19,7 @@ int chk(char *arr) {
   return std::accumulate(arr, arr+20, 0);
 }
 
-vector<pkt> vpop(v) {
+std::vector<pkt> vpop(v) {
   return std::vector<pkt> _q(v.begin()+1, v.end());
 }
 
