@@ -70,6 +70,8 @@ void B_input(struct pkt packet)
 void A_timerinterrupt()
 {
   std::cout << "Side A's timer has gone off." << std::endl;
+  simulation->tolayer3(A,q.front());  
+  simulation->starttimer(A,TIMERLENGTH);
 }
 
 // ***************************************************************************
