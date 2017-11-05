@@ -12,7 +12,7 @@ bool expected = true;
 bool ACKed = true;
 char _ack[20] = "ACK                ";
 
-pkt make_pkt(struct msg message, int& seq) {
+pkt make_pkt(struct msg message, int &seq) {
   struct pkt packet;
   packet.seqnum = (int)(seq = !seq);
   packet.acknum = 0;
