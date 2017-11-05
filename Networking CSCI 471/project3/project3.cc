@@ -48,7 +48,7 @@ void A_output(struct msg message)
 // ***************************************************************************
 pkt make_ack(struct msg message, int seq) {
   
-  struct pkt response = make_pkt(ack, packet.seqnum);
+  struct pkt response = make_pkt(message, seq);
   std::cout << "\tACKing: " << response << std::endl;
   
   qb.emplace(response); //Store last ACK
