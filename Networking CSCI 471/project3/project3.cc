@@ -193,7 +193,7 @@ void A_input(struct pkt packet)
     // _seq++;
     // std::cout << simulation->nsimmax << std::endl;
     // simulation->tolayer3(A,packet);
-    return;
+    exit(0);
     // simulation->starttimer(A,TIMERLENGTH);
     // q.emplace(packet);
   }
