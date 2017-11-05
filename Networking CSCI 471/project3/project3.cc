@@ -47,34 +47,25 @@ void A_output(struct msg message)
 // ***************************************************************************
 // // called from layer 3, when a packet arrives for layer 4 on side B 
 // ***************************************************************************
-pkt make_ack(struct msg message, int seq) {
+pkt make_ack(struct pkt packet) {
   
-  struct pkt response = make_pkt(message, seq);
-  std::cout << "\tACKing: " << response << std::endl;
+  std::cout << "\tACKing: " << packet << std::endl;
   
-  qb.emplace(response); //Store last ACK
-  simulation->tolayer3(B,response);
+  qb.emplace(packet); //Store last ACK
+  simulation->tolayer3(B,packet);
   simulation->starttimer(B,TIMERLENGTH);
 }
 
 void B_input(struct pkt packet)
 {
   std::cout << "B: Layer 4 has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
-  // packet.payload[20] = '\0';  //Replace garbage with proper nullterminator.
-  
-  //Send ACK for most recent packet
-  
-  
   if (qb.empty()) {
-    simulation->stoptimer(B);
-  
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     struct msg message;
     bcopy(packet.payload,message.data,20);
     simulation->tolayer5(B,message);
     
-    
-    make_ack(message, packet.seqnum);
+    make_ack(packet);
   }
   
   else if (packet.seqnum != qb.front().seqnum) { //New packet
@@ -86,7 +77,7 @@ void B_input(struct pkt packet)
     bcopy(packet.payload,message.data,20);
     simulation->tolayer5(B,message);
     
-    make_ack(message, packet.seqnum);
+    make_ack(packet);
   }
     else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting: " << qb.front() << std::endl;
 }
@@ -164,12 +155,9 @@ void A_input(struct pkt packet)
   struct msg message;
   bzero(message.data,20);
   bcopy(packet.payload,message.data,20);
-  // message.data[20] = '\0';  //Replace garbage with proper nullterminator.
   // simulation->tolayer5(A,message);
   
   if (!q.empty()) {
-    // q.front().payload[20] = '\0'; //Replace garbage with proper nullterminator.
-
     // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
