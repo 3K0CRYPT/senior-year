@@ -47,6 +47,7 @@ void B_input(struct pkt packet)
 
   struct msg ack;
   bcopy(packet.payload,ack.data,20);
+  msg.data[0]='B';
   
   struct pkt response = make_pkt(ack, packet.seqnum);
   std::cout << "\tACKing: " << response << std::endl;
