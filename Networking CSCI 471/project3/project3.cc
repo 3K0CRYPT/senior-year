@@ -46,7 +46,7 @@ void B_input(struct pkt packet)
   std::cout << "Layer 4 on side B has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
 
   struct msg ack;
-  bcopy(_ack,ack.data,20);
+  bcopy(packet.payload,ack.data,20);
   
   struct pkt response = make_pkt(ack, packet.seqnum);
   // std::cout << "\tACKing: " << response << std::endl;
@@ -125,7 +125,7 @@ void A_input(struct pkt packet)
   bcopy(packet.payload,message.data,20);
   simulation->tolayer5(B,message);
   
-  if (strcmp(packet.payload, _ack) == 0) 
+  // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
     // std::cout << "\tPopped: " << q.front() << std::endl;
     // std::cout << "\t" << packet.seqnum << " = " << q.front().seqnum << std::endl;
