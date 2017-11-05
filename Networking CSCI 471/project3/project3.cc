@@ -128,9 +128,9 @@ void A_input(struct pkt packet)
   if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
     std::cout << "\tPopped: " << q.front() << std::endl;
-    simulation->tolayer3(A,q.front());
     std::cout << "\t" << packet.seqnum << " = " << q.front().seqnum << std::endl;
     q.pop();
+    simulation->tolayer3(A,q.front());
   }
   else {
     std::cout << "Last ack? << ";
