@@ -10,6 +10,7 @@ std::queue<pkt> q;
 std::queue<pkt> qb;
 int _seq = 0;
 bool expected = true;
+bool sendLast = false;
 bool ACKed = true;
 char _ack[20] = "ACK                ";
 const int TIMERLENGTH = 30;
@@ -77,7 +78,9 @@ void B_input(struct pkt packet)
     bcopy(packet.payload,message.data,20);
     simulation->tolayer5(B,message);
     
-    make_ack(packet);
+    struct msg empty;
+    bzero(empty.data,20);
+    if (strncmp(packet.payload,empty.data,20) != 0) make_ack(packet);
   }
     else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting: " << qb.front() << std::endl;
 }
@@ -176,8 +179,17 @@ void A_input(struct pkt packet)
     else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << q.front() << std::endl;
     
   }
-  else {
-    // std::cout << "Last ack?\n";
+  else if (!sentLast) {
+    //Construct last packet with empty payload to end transmission?
+    sentLast = true;
+    struct msg message;
+    bzero(message.data,20);
+    struct pkt packet = make_pkt(message, _seq);
+    // _seq = (_seq+1)%2;
+    // _seq++;
+    simulation->tolayer3(A,packet);
+    simulation->starttimer(A,TIMERLENGTH);
+    q.emplace(packet);
   }
   
 
