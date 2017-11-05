@@ -7,14 +7,13 @@
 // ***************************************************************************
 #include <queue>
 std::queue<pkt> q;
-bool _seq = true;
+bool seq = false;
 bool expected = true;
 bool ACKed = true;
 char _ack[20] = "ACK                ";
 
-pkt make_pkt(struct msg message, int &seq) {
+pkt make_pkt(struct msg message, int seq) {
   struct pkt packet;
-  seq = !seq;
   packet.seqnum = (int)seq;
   packet.acknum = 0;
   packet.checksum = 1;
@@ -30,7 +29,8 @@ void A_output(struct msg message)
 {
   std::cout << "Layer 4 on side A has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
-  struct pkt packet = make_pkt(message, _seq);
+  struct pkt packet = make_pkt(message, seq);
+  seq = !seq;
   
   if (!ACKed)  {
     q.emplace(packet);
@@ -131,7 +131,7 @@ void A_input(struct pkt packet)
   simulation->tolayer5(B,message);
   
   if (strcmp(packet.payload, _ack) == 0) 
-  std::cout << "\t" << packet.acknum << " = " << (int)seq << std::endl;
+  std::cout << "\t" << packet.acknum << " = " << seq << std::endl;
   if (!q.empty()) {
     std::cout << "\tPopped: " << q.front() << std::endl;
     simulation->tolayer3(A,q.front());
