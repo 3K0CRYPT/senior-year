@@ -126,6 +126,8 @@ void A_input(struct pkt packet)
   bcopy(packet.payload,message.data,20);
   // simulation->tolayer5(A,message);
   
+  std::cout << "\tWew:" << message.data << " = " << q.front().payload << std::endl;
+  
   // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
     if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
