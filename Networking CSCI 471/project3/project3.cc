@@ -8,14 +8,10 @@
 #include <queue>
 std::queue<pkt> q;
 std::queue<pkt> qb;
-struct pkt last; 
 int _seq = 0;
 int ACKs = 0;
-bool expected = true;
-bool sentLast = false;
-bool ACKed = true;
-char _ack[20] = "ACK                ";
 const int TIMERLENGTH = 30;
+const int WINDOW = 3;
 
 int chk(char *arr) {
   return std::accumulate(arr, arr+20, 0);
