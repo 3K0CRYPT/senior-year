@@ -8,7 +8,7 @@
 #include <queue>
 std::queue<pkt> q;
 std::queue<pkt> qb;
-bool seq = false;
+int seq = 0;
 bool expected = true;
 bool ACKed = true;
 char _ack[20] = "ACK                ";
@@ -32,7 +32,7 @@ void A_output(struct msg message)
   std::cout << "A: Layer 4 has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
   struct pkt packet = make_pkt(message, seq);
-  seq = !seq;
+  seq = (seq+1)%2;
 
   if (q.empty()) { 
     simulation->tolayer3(A,packet);
