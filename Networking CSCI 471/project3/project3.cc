@@ -50,8 +50,7 @@ void B_input(struct pkt packet)
   std::cout << "Layer 4 on side B has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
 
   struct msg ack;
-  bzero(ack.data, 20);
-  bcopy("ACK",ack.data,20);
+  bcopy("ACK                 ",ack.data,20);
   
   struct pkt response = make_pkt(ack, packet.seqnum);
   std::cout << "\tACKing: " << response << std::endl;
