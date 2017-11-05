@@ -7,6 +7,7 @@
 // ***************************************************************************
 #include <queue>
 std::queue<pkt> q;
+std::queue<pkt> qb;
 bool seq = false;
 bool expected = true;
 bool ACKed = true;
@@ -48,18 +49,26 @@ void A_output(struct msg message)
 void B_input(struct pkt packet)
 {
   std::cout << "B: Layer 4 has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
-
-  struct msg ack;
-  bzero(ack.data,20);
-  bcopy(packet.payload,ack.data,20);
+  packet.payload[20] = '\0';  //Replace garbage with proper nullterminator.
   
-  struct pkt response = make_pkt(ack, packet.seqnum);
-  // std::cout << "\tACKing: " << response << std::endl;
-  simulation->tolayer3(B,response);
-  
-  struct msg message;
-  bcopy(packet.payload,message.data,20);
-  simulation->tolayer5(B,message);
+  if (packet.seqnum != qb.front().seqnum) { //New packet
+    qb.pop();
+    
+    struct msg message;
+    bcopy(packet.payload,message.data,20);
+    simulation->tolayer5(B,message);
+    
+    //Send ACK for most recent packet
+    struct msg ack;
+    bcopy(packet.payload,ack.data,20);
+    
+    struct pkt response = make_pkt(ack, packet.seqnum);
+    // std::cout << "\tACKing: " << response << std::endl;
+    
+    qb.emplace(response); //Store last ACK
+    simulation->tolayer3(B,response);
+    simulation->starttimer(B,TIMERLENGTH);
+  }
 }
 
 
@@ -69,7 +78,7 @@ void B_input(struct pkt packet)
 // ***************************************************************************
 void A_timerinterrupt()
 {
-  std::cout << "\tSide A's timer has gone off.\n Resending: " << q.front() << std:endl;
+  std::cout << "\tA's timer has gone off.\n\tResending: " << q.front() << std::endl;
   
   simulation->tolayer3(A,q.front());  
   simulation->starttimer(A,TIMERLENGTH);
@@ -80,7 +89,10 @@ void A_timerinterrupt()
 // ***************************************************************************
 void B_timerinterrupt()
 {
-    std::cout << "Side B's timer has gone off." << std::endl;
+    std::cout << "\tB's timer has gone off.\n\tReACKing" << qb.front() << std::endl;
+    
+    simulation->tolayer3(B,qb.front());
+    simulation->starttimer(B,TIMERLENGTH);   
 }
 
 // ***************************************************************************
