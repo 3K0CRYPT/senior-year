@@ -65,15 +65,19 @@ void B_input(struct pkt packet)
   
   
   if (qb.empty()) {
+    simulation->stoptimer(B,TIMERLENGTH);
+  
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     struct msg message;
     bcopy(packet.payload,message.data,20);
     simulation->tolayer5(B,message);
     
+    
     make_ack(message, packet.seqnum);
   }
   
   else if (packet.seqnum != qb.front().seqnum) { //New packet
+    simulation->stoptimer(B,TIMERLENGTH);
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     qb.pop(); //A got this ACK.
     
