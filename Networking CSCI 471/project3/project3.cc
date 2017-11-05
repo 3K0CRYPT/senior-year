@@ -31,6 +31,7 @@ void A_output(struct msg message)
 
   struct pkt packet = make_pkt(message, seq);
   seq = !seq;
+  std::cout << "Dicks: " << seq << " : " << (int)seq << std::endl;
   
   if (!ACKed)  {
     q.emplace(packet);
