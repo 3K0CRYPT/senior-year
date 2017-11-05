@@ -8,6 +8,7 @@
 #include <queue>
 std::queue<pkt> q;
 std::queue<pkt> qb;
+struct pkt last; 
 int _seq = 0;
 bool expected = true;
 bool sentLast = false;
@@ -78,9 +79,7 @@ void B_input(struct pkt packet)
     bcopy(packet.payload,message.data,20);
     simulation->tolayer5(B,message);
     
-    struct msg empty;
-    bzero(empty.data,20);
-    if (strncmp(packet.payload,empty.data,20) != 0) {
+    if (packet.seqnum > -1) {
       make_ack(packet);
     }
     else {
@@ -173,7 +172,7 @@ void A_input(struct pkt packet)
     if ((packet.seqnum == q.front().seqnum) && (strncmp(message.data,q.front().payload,20) == 0)) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
-      struct pkt top = q.front(); 
+      last = q.front(); 
       q.pop();
       if (!q.empty()) {
         // q.front().seqnum = (top.seqnum + 1)%2;
@@ -188,9 +187,7 @@ void A_input(struct pkt packet)
   else if (!sentLast) {
     //Construct last packet with empty payload to end transmission?
     sentLast = true;
-    struct msg message;
-    bzero(message.data,20);
-    struct pkt packet = make_pkt(message, _seq);
+    top.seqnum = -1;
     // _seq = (_seq+1)%2;
     // _seq++;
     simulation->tolayer3(A,packet);
