@@ -49,7 +49,7 @@ void B_input(struct pkt packet)
   bcopy(packet.payload,ack.data,20);
   
   struct pkt response = make_pkt(ack, packet.seqnum);
-  // std::cout << "\tACKing: " << response << std::endl;
+  std::cout << "\tACKing: " << response << std::endl;
   simulation->tolayer3(B,response);
   
   struct msg message;
@@ -128,7 +128,8 @@ void A_input(struct pkt packet)
   // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
     // std::cout << "\tPopped: " << q.front() << std::endl;
-    // std::cout << "\t" << packet.seqnum << " = " << q.front().seqnum << std::endl;
+    std::cout << "\t" << packet.seqnum << " = " << q.front().seqnum << std::endl;
+    std::cout << "\t" << packet.payload << " = " << q.front().payload << std::endl;
     q.pop();
     if (!q.empty()) simulation->tolayer3(A,q.front());
   }
