@@ -53,7 +53,7 @@ void B_input(struct pkt packet)
   struct msg ack;
   bcopy("ACK",ack.data,20);
   
-  struct pkt response = make_pkt(ack, NULL, packet.seqnum)
+  struct pkt response = make_pkt(ack, NULL, packet.seqnum);
   std::cout << "\tACKing: " << response << std::endl;
   simulation->tolayer3(B,response);
   
