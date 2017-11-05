@@ -81,7 +81,7 @@ void B_input(struct pkt packet)
     
     make_ack(message, packet.seqnum);
   }
-    else std::cout << "Ignoring new packet: " << packet << std::endl;
+    else std::cout << "Ignoring new packet: " << packet << "\n\t\tExpecting: " << qb.front() << std::endl;
 }
 
 
@@ -174,7 +174,8 @@ void A_input(struct pkt packet)
         simulation->starttimer(A,TIMERLENGTH);
       }
     }
-    else std::cout << "Ignoring ACK: " << packet << std::endl;
+    else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << q.front() << std::endl;
+    
   }
   else {
     // std::cout << "Last ack?\n";
