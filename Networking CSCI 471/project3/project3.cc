@@ -10,7 +10,7 @@ std::queue<pkt> q;
 bool seq = false;
 bool expected = true;
 bool ACKed = true;
-char _ack[] = "ACK                 ";
+char _ack[20] = "ACK                 ";
 
 pkt make_pkt(struct msg message, int seq) {
   struct pkt packet;
