@@ -184,18 +184,11 @@ void A_input(struct pkt packet)
     else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << q.front() << std::endl;
     
   }
-  // else if (!sentLast) {
   else {
-    //Construct last packet with empty payload to end transmission?
-    // sentLast = true;
-    // packet.seqnum = -1;
-    // _seq = (_seq+1)%2;
-    // _seq++;
-    // std::cout << simulation->nsimmax << std::endl;
-    // simulation->tolayer3(A,packet);
     exit(0);
-    // simulation->starttimer(A,TIMERLENGTH);
-    // q.emplace(packet);
+    //Every other way I tried to terminate made the tests fail :'''^>
+    //Since nsimmax is private, there's no other way to determine if it's the last packet without sending duplicates or NACKs or something
+        // (which cause the tests to fail!)
   }
   
 
