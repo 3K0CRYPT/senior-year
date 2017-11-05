@@ -86,6 +86,7 @@ void B_input(struct pkt packet)
     }
     
     simulation->stoptimer(B);
+    ACKs++;
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     qb.pop(); //A got this ACK.
     
@@ -184,7 +185,6 @@ void A_input(struct pkt packet)
 
     if ((packet.seqnum == q.front().seqnum) && (strncmp(packet.payload,q.front().payload,20) == 0)) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
-      ACKs++;
       simulation->stoptimer(A);
       last = q.front(); 
       q.pop();
