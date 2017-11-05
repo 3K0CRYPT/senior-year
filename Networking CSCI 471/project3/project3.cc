@@ -171,8 +171,10 @@ void A_input(struct pkt packet)
     if ((packet.seqnum == q.front().seqnum) && (strcmp(message.data,q.front().payload) == 0)) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
+      struct pkt top = q.front(); 
       q.pop();
       if (!q.empty()) {
+        q.front().seqnum = (top.seqnum + 1)%2;
         simulation->tolayer3(A,q.front());  
         simulation->starttimer(A,TIMERLENGTH);
         std::cout << "\tSending next: " << q.front() << std::endl;
