@@ -65,7 +65,7 @@ void B_input(struct pkt packet)
   
   
   if (qb.empty()) {
-    simulation->stoptimer(B,TIMERLENGTH);
+    simulation->stoptimer(B);
   
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     struct msg message;
@@ -77,7 +77,7 @@ void B_input(struct pkt packet)
   }
   
   else if (packet.seqnum != qb.front().seqnum) { //New packet
-    simulation->stoptimer(B,TIMERLENGTH);
+    simulation->stoptimer(B);
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     qb.pop(); //A got this ACK.
     
