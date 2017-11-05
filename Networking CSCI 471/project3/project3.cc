@@ -81,7 +81,7 @@ void B_input(struct pkt packet)
     
     make_ack(message, packet.seqnum);
   }
-    else cout << "Ignoring new packet: " << packet << std::endl;
+    else std::cout << "Ignoring new packet: " << packet << std::endl;
 }
 
 
@@ -174,7 +174,7 @@ void A_input(struct pkt packet)
         simulation->starttimer(A,TIMERLENGTH);
       }
     }
-    else cout << "Ignoring ACK: " << packet << std::endl;
+    else std::cout << "Ignoring ACK: " << packet << std::endl;
   }
   else {
     // std::cout << "Last ack?\n";
