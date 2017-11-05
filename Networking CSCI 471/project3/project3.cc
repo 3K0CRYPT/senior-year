@@ -10,7 +10,7 @@ std::queue<pkt> q;
 bool seq = false;
 bool expected = true;
 bool ACKed = true;
-char _ack[20] = "ACK                 ";
+char _ack[20] = "ACK                ";
 
 pkt make_pkt(struct msg message, int seq) {
   struct pkt packet;
@@ -130,7 +130,8 @@ void A_input(struct pkt packet)
   bcopy(packet.payload,message.data,20);
   simulation->tolayer5(B,message);
   
-  if (strcmp(packet.payload, _ack) == 0) std::cout << "\tThis is indeed an ACK!\n";
+  if (strcmp(packet.payload, _ack) == 0) 
+  std::cout << "\t" << packet.acknum << " = " << (int)seq << std::endl;
   if (!q.empty()) {
     std::cout << "\tPopped: " << q.front() << std::endl;
     simulation->tolayer3(A,q.front());
