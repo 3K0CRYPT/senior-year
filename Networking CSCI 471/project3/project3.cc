@@ -46,21 +46,23 @@ void A_output(struct msg message)
 // ***************************************************************************
 // // called from layer 3, when a packet arrives for layer 4 on side B 
 // ***************************************************************************
+pkt make_ack(struct msg message, int seq) {
+  
+  struct pkt response = make_pkt(ack, packet.seqnum);
+  std::cout << "\tACKing: " << response << std::endl;
+  
+  qb.emplace(response); //Store last ACK
+  simulation->tolayer3(B,response);
+  simulation->starttimer(B,TIMERLENGTH);
+}
+
 void B_input(struct pkt packet)
 {
   std::cout << "B: Layer 4 has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
   packet.payload[20] = '\0';  //Replace garbage with proper nullterminator.
   
   //Send ACK for most recent packet
-  pkt make_ack(struct msg message, int seq) {
-    
-    struct pkt response = make_pkt(ack, packet.seqnum);
-    std::cout << "\tACKing: " << response << std::endl;
-    
-    qb.emplace(response); //Store last ACK
-    simulation->tolayer3(B,response);
-    simulation->starttimer(B,TIMERLENGTH);
-  }
+  
   
   if (qb.empty()) {
     struct msg message;
