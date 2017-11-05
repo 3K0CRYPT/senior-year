@@ -5,8 +5,20 @@
 // *
 // * These are the functions you need to fill in.
 // ***************************************************************************
+#include <queue>
+queue<pkt> q;
+bool seq = true;
+bool ACKed = true;
 
-
+pkt make_pkt(struct msg message) {
+  struct pkt packet;
+  packet.seqnum = (int)(seq = !seq);
+  packet.acknum = 1;
+  packet.checksum = 0;
+  bcopy(message.data,packet.payload,20);
+  std::cout << "\tNew pkt: " << packet << std::endl;
+  return packet;
+}
 
 // ***************************************************************************
 // * Called from layer 5, passed the data to be sent to other side 
@@ -15,6 +27,7 @@ void A_output(struct msg message)
 {
   std::cout << "Layer 4 on side A has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
+  
   struct pkt packet;
   packet.seqnum = 1;
   packet.acknum = 1;
@@ -33,6 +46,13 @@ void B_input(struct pkt packet)
 {
   std::cout << "Layer 4 on side B has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
 
+  struct pkt response;
+  response.seqnum = 1;
+  response.acknum = 1;
+  response.checksum = 0;
+  bcopy(("ACK").data(),response.payload,20);
+  simulation->tolayer3(B,response);
+  
   struct msg message;
   bcopy(packet.payload,message.data,20);
   simulation->tolayer5(B,message);
@@ -105,4 +125,12 @@ void A_input(struct pkt packet)
   struct msg message;
   bcopy(packet.payload,message.data,20);
   simulation->tolayer5(B,message);
+  
+  std::cout << packet.payload << std::endl;
+  if (std::to_string(packet.payload) == "ACK") std::cout << "Omega dicks\n";
+  if (!q.empty()) {
+    simulation->tolayer5(A,q.front());
+    q.pop();
+  }
+  
 }
