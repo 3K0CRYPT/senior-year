@@ -47,7 +47,7 @@ sub doTest($$$) {
   print "Test ", join(' ',@binary);
   print " passed\n" if (!$failed);
   print " failed\n" if ($failed);
-  print " $count\n";
+  print " \n";
   print "$packetSent packets sent\n";
   print "$packetRecv packets recieved\n\n";
 }
@@ -74,11 +74,7 @@ foreach $letter (a..z) {
 # Run the tests.
 ###############
 doTest(10000,0,0);
-doTest(10000,0,0);
+doTest(10000,.01,0);
 doTest(10000,0,.01);
 doTest(10000,.01,.01);
-
-# doTest(10000,.01,0);
-# doTest(10000,0,.01);
-# doTest(10000,.01,.01);
 
