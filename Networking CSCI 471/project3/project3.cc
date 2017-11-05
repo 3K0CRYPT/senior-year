@@ -35,7 +35,7 @@ void A_output(struct msg message)
 
   if (q.empty()) { 
     simulation->tolayer3(A,packet);
-    starttimer(A,TIMERLENGTH);
+    simulation->starttimer(A,TIMERLENGTH);
   }  
   q.emplace(packet);
 }
@@ -139,11 +139,11 @@ void A_input(struct pkt packet)
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
     if ((packet.seqnum == q.front().seqnum) && (strcmp(message.data,q.front().payload) == 0)) { //Ack should have same payload + seq
-      stoptimer(A);
+      simulation->stoptimer(A);
       q.pop();
       if (!q.empty()) {
         simulation->tolayer3(A,q.front());  
-        starttimer(A,TIMERLENGTH);
+        simulation->starttimer(A,TIMERLENGTH);
       }
     }
   }
