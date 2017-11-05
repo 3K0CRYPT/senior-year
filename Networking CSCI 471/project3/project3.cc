@@ -7,14 +7,14 @@
 // ***************************************************************************
 #include <queue>
 std::queue<pkt> q;
-bool seq = true;
+bool _seq = true;
 bool expected = true;
 bool ACKed = true;
 char _ack[20] = "ACK                ";
 
 pkt make_pkt(struct msg message, int &seq) {
   struct pkt packet;
-  seq = !seq
+  seq = !seq;
   packet.seqnum = (int)seq;
   packet.acknum = 0;
   packet.checksum = 1;
@@ -30,7 +30,7 @@ void A_output(struct msg message)
 {
   std::cout << "Layer 4 on side A has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
-  struct pkt packet = make_pkt(message, seq);
+  struct pkt packet = make_pkt(message, _seq);
   
   if (!ACKed)  {
     q.emplace(packet);
