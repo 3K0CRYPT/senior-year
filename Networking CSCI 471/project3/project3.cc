@@ -192,7 +192,8 @@ void A_input(struct pkt packet)
       simulation->stoptimer(A);
       
       // q.pop();
-      q = std::vector<int> _q(q.begin()+1, q.end());
+      std::vector<auto> _q(q.begin()+1, q.end());
+      q = _q;
       
       if (!q.empty()) {
         // q.front().seqnum = (top.seqnum + 1)%2;
