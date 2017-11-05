@@ -74,7 +74,11 @@ foreach $letter (a..z) {
 # Run the tests.
 ###############
 doTest(10000,0,0);
-doTest(10000,.01,0);
+doTest(10000,0,0);
 doTest(10000,0,.01);
 doTest(10000,.01,.01);
+
+# doTest(10000,.01,0);
+# doTest(10000,0,.01);
+# doTest(10000,.01,.01);
 
