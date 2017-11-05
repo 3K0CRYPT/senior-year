@@ -32,7 +32,8 @@ void A_output(struct msg message)
   std::cout << "A: Layer 4 has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
   struct pkt packet = make_pkt(message, _seq);
-  _seq = (_seq+1)%2;
+  // _seq = (_seq+1)%2;
+  _seq++;
 
   if (q.empty()) { 
     simulation->tolayer3(A,packet);
@@ -178,7 +179,7 @@ void A_input(struct pkt packet)
       struct pkt top = q.front(); 
       q.pop();
       if (!q.empty()) {
-        q.front().seqnum = (top.seqnum + 1)%2;
+        // q.front().seqnum = (top.seqnum + 1)%2;
         simulation->tolayer3(A,q.front());  
         simulation->starttimer(A,TIMERLENGTH);
         std::cout << "\tSending next: " << q.front() << std::endl;
