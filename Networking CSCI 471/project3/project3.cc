@@ -12,7 +12,7 @@ bool seq = false;
 bool expected = true;
 bool ACKed = true;
 char _ack[20] = "ACK                ";
-const int TIMERLENGTH = 20;
+const int TIMERLENGTH = 30;
 
 pkt make_pkt(struct msg message, int seq) {
   struct pkt packet;
