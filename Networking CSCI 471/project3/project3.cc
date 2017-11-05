@@ -8,13 +8,14 @@
 #include <queue>
 std::queue<pkt> q;
 bool seq = true;
+bool expected = true;
 bool ACKed = true;
 
-pkt make_pkt(struct msg message) {
+pkt make_pkt(struct msg message, int seq, int checksum) {
   struct pkt packet;
-  packet.seqnum = (int)(seq = !seq);
-  packet.acknum = 1;
-  packet.checksum = 0;
+  packet.seqnum = (int)seq;
+  // packet.acknum = 1; Unnecessary? If payload == ack, treat this as ack?
+  packet.checksum = checksum;
   bcopy(message.data,packet.payload,20);
   std::cout << "\tNew pkt: " << packet << std::endl;
   return packet;
@@ -27,14 +28,10 @@ void A_output(struct msg message)
 {
   std::cout << "Layer 4 on side A has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
+  struct pkt packet = make_pkt(message);
   
-  struct pkt packet;
-  packet.seqnum = 1;
-  packet.acknum = 1;
-  packet.checksum = 0;
-  bcopy(message.data,packet.payload,20);
-
-  simulation->tolayer3(A,packet);
+  if (!ACKed) q.emplace(packet);
+  else { simulation->tolayer3(A,packet); ACKed = false; }
 }
 
 
@@ -47,8 +44,8 @@ void B_input(struct pkt packet)
   std::cout << "Layer 4 on side B has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
 
   struct pkt response;
-  response.seqnum = 1;
-  response.acknum = 1;
+  response.seqnum = packet.seqnum;
+  response.acknum = packet.acknum;
   response.checksum = 0;
   bcopy("ACK",response.payload,20);
   simulation->tolayer3(B,response);
@@ -126,9 +123,9 @@ void A_input(struct pkt packet)
   bcopy(packet.payload,message.data,20);
   simulation->tolayer5(B,message);
   
-  std::cout << packet.payload << std::endl;
   if (strcmp(packet.payload, "ACK") == 0) std::cout << "Omega dicks\n";
   if (!q.empty()) {
+    std::cout << "\tSending: " << q.front() << std::endl;
     simulation->tolayer3(A,q.front());
     q.pop();
   }
