@@ -128,10 +128,8 @@ void A_input(struct pkt packet)
   
   // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
-    std::cout << "\t" << packet.seqnum << " = " << q.front().seqnum << std::endl;
-    std::cout << "\t" << packet.payload << " = " << q.front().payload << std::endl;
     if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n.";
-    if (strcomp(packet.payload,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n.";
+    if (strcmp(packet.payload,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n.";
     q.pop();
     if (!q.empty()) simulation->tolayer3(A,q.front());
   }
