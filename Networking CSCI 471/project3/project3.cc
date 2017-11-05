@@ -132,7 +132,7 @@ void A_input(struct pkt packet)
   // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
     if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
-    std::cout << "Wew2: " << message.data,q.front().payload) << std::endl;
+    std::cout << "Wew2: " << strcmp(message.data,q.front().payload) << std::endl;
     if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
     q.pop();
     if (!q.empty()) simulation->tolayer3(A,q.front());
