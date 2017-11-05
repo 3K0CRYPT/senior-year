@@ -69,7 +69,7 @@ void B_input(struct pkt packet)
     return;
   }
   
-  int expected = (qb.front().seqnum + 1)%2;
+  int expected = (qb.front().seqnum + 1)%WINDOW;
   
   if (qb.empty()) {
     
