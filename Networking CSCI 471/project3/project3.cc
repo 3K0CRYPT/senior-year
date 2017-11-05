@@ -83,7 +83,10 @@ void B_input(struct pkt packet)
     if (strncmp(packet.payload,empty.data,20) != 0) {
       make_ack(packet);
     }
-    else std::cout << "\tLast packet!\n";
+    else {
+      std::cout << "\tLast packet!\n";
+      simulation->tolayer3(B,packet);
+    }
   }
     else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting: " << qb.front() << std::endl;
 }
