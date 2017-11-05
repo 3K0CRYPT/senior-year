@@ -127,7 +127,7 @@ void A_input(struct pkt packet)
   simulation->tolayer5(B,message);
   
   std::cout << packet.payload << std::endl;
-  if (std::to_string(packet.payload) == "ACK") std::cout << "Omega dicks\n";
+  if (strcmp(packet.payload, "ACK") == 0) std::cout << "Omega dicks\n";
   if (!q.empty()) {
     simulation->tolayer5(A,q.front());
     q.pop();
