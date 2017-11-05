@@ -27,7 +27,7 @@ pkt make_pkt(struct msg message, int seq) {
 // ***************************************************************************
 void A_output(struct msg message)
 {
-  std::cout << "Layer 4 on side A has recieved a message from the application that should be sent to side B: " << message << std::endl;
+  std::cout << "A: Layer 4 has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
   struct pkt packet = make_pkt(message, seq);
   seq = !seq;
@@ -43,9 +43,10 @@ void A_output(struct msg message)
 // ***************************************************************************
 void B_input(struct pkt packet)
 {
-  std::cout << "Layer 4 on side B has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
+  std::cout << "B: Layer 4 has recieved a packet from layer 3 sent over the network from side A:" << packet << std::endl;
 
   struct msg ack;
+  bzero(ack.data,20);
   bcopy(packet.payload,ack.data,20);
   
   struct pkt response = make_pkt(ack, packet.seqnum);
@@ -110,7 +111,7 @@ void B_init()
 // ***************************************************************************
 void B_output(struct msg message)  
 {
-  std::cout << "Layer 4 on side B has recieved a message from the application that should be sent to side A: " << message << std::endl;
+  std::cout << "B: Layer 4 has recieved a message from the application that should be sent to side A: " << message << std::endl;
 }
 
 
@@ -120,7 +121,7 @@ void B_output(struct msg message)
 // ***************************************************************************
 void A_input(struct pkt packet)
 {
-  std::cout << "Layer 4 on side A has recieved a packet sent over the network from side B:" << packet << std::endl;
+  std::cout << "A: Layer 4 has recieved a packet sent over the network from side B:" << packet << std::endl;
   struct msg message;
   bcopy(packet.payload,message.data,20);
   // simulation->tolayer5(A,message);
