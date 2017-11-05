@@ -125,7 +125,7 @@ void A_input(struct pkt packet)
   struct msg message;
   bzero(message.data,20);
   bcopy(packet.payload,message.data,20);
-  message.data[19] = '\0';
+  message.data[20] = '\0';
   // simulation->tolayer5(A,message);
   
   std::cout << "\tWew: " << message.data << " = " << q.front().payload << std::endl;
@@ -133,7 +133,7 @@ void A_input(struct pkt packet)
   // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
     if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
-    std::cout << "\t\strcmp: " << strcmp(message.data,q.front().payload) << std::endl;
+    std::cout << "\t\tstrcmp: " << strcmp(message.data,q.front().payload) << std::endl;
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
     q.pop();
     if (!q.empty()) simulation->tolayer3(A,q.front());
