@@ -133,6 +133,7 @@ void A_input(struct pkt packet)
   // if (strcmp(packet.payload, _ack) == 0) 
   if (!q.empty()) {
     // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
+    q.front().payload[20] = '\0';
     std::cout << "\t\tstrcmp: " << strcmp(message.data,q.front().payload) << std::endl;
     if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
     q.pop();
