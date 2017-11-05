@@ -10,6 +10,7 @@ std::queue<pkt> q;
 std::queue<pkt> qb;
 struct pkt last; 
 int _seq = 0;
+int ACKs = 0;
 bool expected = true;
 bool sentLast = false;
 bool ACKed = true;
@@ -183,6 +184,7 @@ void A_input(struct pkt packet)
 
     if ((packet.seqnum == q.front().seqnum) && (strncmp(packet.payload,q.front().payload,20) == 0)) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
+      ACKs++;
       simulation->stoptimer(A);
       last = q.front(); 
       q.pop();
@@ -193,6 +195,7 @@ void A_input(struct pkt packet)
         std::cout << "\tSending next: " << q.front() << std::endl;
       }
       else {
+        std::cout << "\nACKs: " << ACKs << std::endl;
         exit(0);
         //Every other way I tried to terminate made the tests fail :'''^>
         //Since nsimmax is private, there's no other way to determine if it's the last packet without sending duplicates or NACKs or something
