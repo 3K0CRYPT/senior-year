@@ -123,7 +123,7 @@ void A_timerinterrupt()
 {
   
   std::string seqs = "";
-  for (pkt p: flight) seqs += p.seqnum + ", ";
+  for (const pkt& p: flight) seqs += std::to_string(p.seqnum) + " ";
   std::cout << "A's timer has gone off.\n\tResending flight packets: " << seqs << std::endl;
   
   for (pkt p: flight) {
