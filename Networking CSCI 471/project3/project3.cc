@@ -205,7 +205,7 @@ void A_input(struct pkt packet)
     // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
-    if ((packet.seqnum == flight.front().seqnum) && (strncmp(packet.payload,flight.front().payload,20) == 0)) { //Ack should have same payload + seq
+    if (packet.seqnum == flight.front().seqnum) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
       
@@ -233,14 +233,14 @@ void A_input(struct pkt packet)
             // (which cause the tests to fail!)
       }
     }
-    else {
+    else if (packet.seqnum > flight.front().seqnum) {
         flight = vpop(flight);
         if (!q.empty()) {
           flight.push_back(q.front());
           q.pop();
         }
     }
-    std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << flight.front() << std::endl;
+    else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << flight.front() << std::endl;
     
   }
 }
