@@ -217,13 +217,13 @@ void A_input(struct pkt packet)
       }
       
       
-      if (!q.empty() && !flight.empty()) {
+      if (!flight.empty()) {
         // q.front().seqnum = (top.seqnum + 1)%2;
         simulation->tolayer3(A,flight.front());  
         simulation->starttimer(A,TIMERLENGTH);
         std::cout << "\tSending next: " << flight.front() << std::endl;
       }
-      else {
+      else if (q.empty()) {
         exit(0);
         //Every other way I tried to terminate made the tests fail :'''^>
         //Since nsimmax is private, there's no other way to determine if it's the last packet without sending duplicates or NACKs or something
