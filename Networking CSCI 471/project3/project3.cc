@@ -121,7 +121,10 @@ void B_input(struct pkt packet)
 // ***************************************************************************
 void A_timerinterrupt()
 {
-  std::cout << "A's timer has gone off.\n\tResending flight packets: " << flight.front() << std::endl;
+  
+  std::string seqs = "";
+  for (pkt p: flight) seqs += p.seqnum + ", ";
+  std::cout << "A's timer has gone off.\n\tResending flight packets: " << seqs << std::endl;
   
   for (pkt p: flight) {
     simulation->tolayer3(A,p);  
