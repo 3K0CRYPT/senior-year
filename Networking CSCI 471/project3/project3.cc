@@ -11,9 +11,8 @@ std::vector<pkt> q, flight;
 std::queue<pkt> qb;
 int _seq = 0;
 int lastACK = 0;
-int ACKs = 0;
 const int TIMERLENGTH = 30;
-const int WINDOW = 3;
+const int WINDOW = 4;
 
 int chk(char *arr) {
   return std::accumulate(arr, arr+20, 0);
@@ -48,10 +47,11 @@ void A_output(struct msg message)
 
   struct pkt packet = make_pkt(message, _seq);
   _seq = (_seq+1)%WINDOW;
-
+  
+  if (flight.empty()) simulation->starttimer(A,TIMERLENGTH);
+  
   if (flight.size() <= WINDOW) { 
     simulation->tolayer3(A,packet);
-    simulation->starttimer(A,TIMERLENGTH);
     flight.push_back(packet);
     std::cout << "\tIn flight\n";
   }  
@@ -95,7 +95,6 @@ void B_input(struct pkt packet)
   else if (packet.seqnum == expected) { //New packet
     
     simulation->stoptimer(B);
-    ACKs++;
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     qb.pop(); //A got this ACK.
     
@@ -121,9 +120,11 @@ void B_input(struct pkt packet)
 // ***************************************************************************
 void A_timerinterrupt()
 {
-  std::cout << "A's timer has gone off.\n\tResending: " << q.front() << std::endl;
+  std::cout << "A's timer has gone off.\n\tResending flight packets: " << flight.front() << std::endl;
   
-  simulation->tolayer3(A,q.front());  
+  for (pkt p: flight) {
+    simulation->tolayer3(A,p);  
+  }
   simulation->starttimer(A,TIMERLENGTH);
 }
 
@@ -194,27 +195,34 @@ void A_input(struct pkt packet)
     return;
   }
   
+  
+  
   if (!q.empty()) {
     // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
-    if ((packet.seqnum == q.front().seqnum) && (strncmp(packet.payload,q.front().payload,20) == 0)) { //Ack should have same payload + seq
+    if ((packet.seqnum == flight.front().seqnum) && (strncmp(packet.payload,q.front().payload,20) == 0)) { //Ack should have same payload + seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
+      
       
       // q.pop();
       
       // q = std::vector<pkt> _q(q.begin()+1, q.end());x
-      q = vpop(q);
-      
+      flight = vpop(flight);
       if (!q.empty()) {
+        flight.push_back(q[0]);
+        q = vpop(q);
+      }
+      
+      
+      if (!q.empty() && !flight.empty()) {
         // q.front().seqnum = (top.seqnum + 1)%2;
-        simulation->tolayer3(A,q.front());  
+        simulation->tolayer3(A,flight.front());  
         simulation->starttimer(A,TIMERLENGTH);
-        std::cout << "\tSending next: " << q.front() << std::endl;
+        std::cout << "\tSending next: " << flight.front() << std::endl;
       }
       else {
-        std::cout << "\nACKs: " << ACKs << std::endl;
         exit(0);
         //Every other way I tried to terminate made the tests fail :'''^>
         //Since nsimmax is private, there's no other way to determine if it's the last packet without sending duplicates or NACKs or something
