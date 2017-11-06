@@ -7,8 +7,8 @@
 // ***************************************************************************
 #include <vector>
 #include <queue>
-std::vector<pkt> q, flight;
-std::queue<pkt> qb;
+std::vector<pkt> flight;
+std::queue<pkt> q, qb;
 int _seq = 0;
 int lastACK = 0;
 std::string seqs = "";
@@ -57,7 +57,7 @@ void A_output(struct msg message)
     flight.push_back(packet);
     std::cout << "\tIn flight\n";
   }  
-  else q.push_back(packet);
+  else q.emplace(packet);
 }
 
 
@@ -201,7 +201,6 @@ void A_input(struct pkt packet)
   }
   
   
-  
   if (!flight.empty()) {
     // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
@@ -216,8 +215,8 @@ void A_input(struct pkt packet)
       // q = std::vector<pkt> _q(q.begin()+1, q.end());x
       flight = vpop(flight);
       if (!q.empty()) {
-        flight.push_back(q[0]);
-        q = vpop(q);
+        flight.push_back(q.front());
+        q.pop();
       }
       
       
@@ -238,8 +237,8 @@ void A_input(struct pkt packet)
       while (flight.front().seqnum != packet.seqnum) {
         flight = vpop(flight);
         if (!q.empty()) {
-          flight.push_back(q[0]);
-          q = vpop(q);
+          flight.push_back(q.front());
+          q.pop();
         }
       }
     }
