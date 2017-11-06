@@ -7,7 +7,7 @@
 // ***************************************************************************
 #include <vector>
 #include <queue>
-std::vector<pkt> q;
+std::vector<pkt> q, flight;
 std::queue<pkt> qb;
 int _seq = 0;
 int lastACK = 0;
@@ -21,6 +21,11 @@ int chk(char *arr) {
 
 std::vector<pkt> vpop(std::vector<pkt> v) {
   std::vector<pkt> _q(v.begin()+1, v.end());
+  return _q;
+}
+
+std::vector<pkt> slice(std::vector<pkt> v, int s, int f) {
+  std::vector<pkt> _q(v.begin()+s, v.begin()+f);
   return _q;
 }
 
@@ -43,13 +48,13 @@ void A_output(struct msg message)
 
   struct pkt packet = make_pkt(message, _seq);
   _seq = (_seq+1)%WINDOW;
-  // _seq++;
 
-  if (q.empty()) { 
+  if (flight.size() >= WINDOW-1) { 
     simulation->tolayer3(A,packet);
     simulation->starttimer(A,TIMERLENGTH);
+    flight.push_back(packet);
   }  
-  q.push_back(packet);
+  else q.push_back(packet);
 }
 
 
