@@ -127,7 +127,7 @@ void A_timerinterrupt()
   for (const pkt& p: flight) seqs += std::to_string(p.seqnum) + " ";
   std::cout << "A's timer has gone off.\n\tResending flight packets: " << seqs << std::endl;
   
-  for (pkt p: flight) {
+  for (const pkt& p: flight) {
     simulation->tolayer3(A,p);  
   }
   simulation->starttimer(A,TIMERLENGTH);
