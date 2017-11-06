@@ -53,6 +53,7 @@ void A_output(struct msg message)
     simulation->tolayer3(A,packet);
     simulation->starttimer(A,TIMERLENGTH);
     flight.push_back(packet);
+    std::cout << "\tIn flight\n";
   }  
   else q.push_back(packet);
 }
