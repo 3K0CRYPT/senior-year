@@ -55,7 +55,6 @@ void A_output(struct msg message)
   if (flight.size() <= WINDOW) { 
     simulation->tolayer3(A,packet);
     flight.push_back(packet);
-    std::cout << "\tIn flight\n";
   }  
   else q.emplace(packet);
 }
