@@ -234,13 +234,11 @@ void A_input(struct pkt packet)
       }
     }
     else {
-      while (flight.front().seqnum != packet.seqnum) {
         flight = vpop(flight);
         if (!q.empty()) {
           flight.push_back(q.front());
           q.pop();
         }
-      }
     }
     std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << flight.front() << std::endl;
     
