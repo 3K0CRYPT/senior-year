@@ -35,7 +35,7 @@ pkt make_pkt(struct msg message, int seq) {
   packet.acknum = 0;
   packet.checksum = chk(message.data);
   bcopy(message.data,packet.payload,20);
-  std::cout << "\tNew pkt: " << packet << std::endl;
+  // std::cout << "\tNew pkt: " << packet << std::endl;
   return packet;
 }
 
