@@ -125,6 +125,7 @@ void A_timerinterrupt()
   std::string seqs = "";
   for (const pkt& p: flight) seqs += std::to_string(p.seqnum) + " ";
   std::cout << "A's timer has gone off.\n\tResending flight packets: " << seqs << std::endl;
+  std::cout << q.size();
   
   for (pkt p: flight) {
     simulation->tolayer3(A,p);  
@@ -201,7 +202,7 @@ void A_input(struct pkt packet)
   
   
   
-  if (!q.empty()) {
+  if (!flight.empty()) {
     // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
     // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
 
