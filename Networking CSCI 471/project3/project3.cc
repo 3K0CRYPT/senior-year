@@ -11,6 +11,7 @@ std::vector<pkt> q, flight;
 std::queue<pkt> qb;
 int _seq = 0;
 int lastACK = 0;
+std::string seqs = "";
 const int TIMERLENGTH = 30;
 const int WINDOW = 4;
 const int BASE = 0;
@@ -122,10 +123,9 @@ void B_input(struct pkt packet)
 void A_timerinterrupt()
 {
   
-  std::string seqs = "";
+  seqs = "";
   for (const pkt& p: flight) seqs += std::to_string(p.seqnum) + " ";
   std::cout << "A's timer has gone off.\n\tResending flight packets: " << seqs << std::endl;
-  std::cout << q.size();
   
   for (pkt p: flight) {
     simulation->tolayer3(A,p);  
@@ -234,7 +234,16 @@ void A_input(struct pkt packet)
             // (which cause the tests to fail!)
       }
     }
-    else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << flight.front() << std::endl;
+    else if (seqs.find(std::to_string(packet.seqnum) == std::string::npos)) {
+      while (flight.front().seqnum != packet.seqnum) {
+        flight = vpop(flight);
+        if (!q.empty()) {
+          flight.push_back(q[0]);
+          q = vpop(q);
+        }
+      }
+    }
+    std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << flight.front() << std::endl;
     
   }
 }
