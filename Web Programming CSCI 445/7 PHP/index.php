@@ -1,7 +1,5 @@
 <?php
-$page = "Home";
-$dir = substr(__DIR__,23) . "/";
-echo $dir . "<br>"; // Displays: Line number 2
+$page = basename($_SERVER['PHP_SELF']);
 ?>
 
 <!DOCTYPE html >
@@ -27,13 +25,7 @@ echo $dir . "<br>"; // Displays: Line number 2
             <h4> This is in an aside tag! </h4>
     </section>
     <hr />
-    <footer>&copy; Am I even allowed to copyright this? Either way, I listed my e-mail above if you have complaints!
-        <p>
-        <img src="./images/css3-blue.png" alt="css3-blue.png" width="50" height="18">
-        <img src="./images/html5-blue.jpg" alt="html5-blue.png" width="50" height="18">
-        <img src="./images/wcag2AAA-blue.png" alt="wcag2AAA-blue.png" width="50" height="18">
-        </p>
-    </footer>
+    <?php include 'templateFooter.php';?>
 </body>
 
 </html>
