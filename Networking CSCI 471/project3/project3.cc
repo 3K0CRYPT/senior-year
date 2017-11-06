@@ -218,13 +218,13 @@ void A_input(struct pkt packet)
       }
     }
     //If what the receiver wants is bigger, move our window?
-    // else if (packet.seqnum > flight.front().seqnum) {
-    //     flight = vpop(flight);
-    //     if (!q.empty()) {
-    //       flight.push_back(q.front());
-    //       q.pop();
-    //     }
-    // }
+    else if (packet.seqnum == flight.back().seqnum) {
+        flight = vpop(flight);
+        if (!q.empty()) {
+          flight.push_back(q.front());
+          q.pop();
+        }
+    }
     else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << flight.front() << std::endl;
     
   }
