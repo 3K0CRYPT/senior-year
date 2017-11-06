@@ -10,27 +10,21 @@
 std::vector<pkt> flight;
 std::queue<pkt> q, qb;
 int _seq = 0;
-int lastACK = 0;
 std::string seqs = "";
 const int TIMERLENGTH = 30;
 const int WINDOW = 4;
 const int BASE = 0;
 
-int chk(char *arr) {
+int chk(char *arr) {  //Checksum
   return std::accumulate(arr, arr+20, 0);
 }
 
-std::vector<pkt> vpop(std::vector<pkt> v) {
+std::vector<pkt> vpop(std::vector<pkt> v) { //Created a vector.pop() for managing in-flight ACKs
   std::vector<pkt> _q(v.begin()+1, v.end());
   return _q;
 }
 
-std::vector<pkt> slice(std::vector<pkt> v, int s, int f) {
-  std::vector<pkt> _q(v.begin()+s, v.begin()+f);
-  return _q;
-}
-
-pkt make_pkt(struct msg message, int seq) {
+pkt make_pkt(struct msg message, int seq) { //Reduce duplicate code, as both sides use this
   struct pkt packet;
   packet.seqnum = seq;
   packet.acknum = 0;
@@ -50,13 +44,15 @@ void A_output(struct msg message)
   struct pkt packet = make_pkt(message, _seq);
   _seq++;
   
+  //First packet
   if (flight.empty()) simulation->starttimer(A,TIMERLENGTH);
   
+  //Send out packets until window is full.
   if (flight.size() <= WINDOW) { 
     simulation->tolayer3(A,packet);
     flight.push_back(packet);
   }  
-  else q.emplace(packet);
+  else q.emplace(packet); //Once window is full, enqueue.
 }
 
 
@@ -64,10 +60,12 @@ void A_output(struct msg message)
 // ***************************************************************************
 // // called from layer 3, when a packet arrives for layer 4 on side B 
 // ***************************************************************************
-pkt make_ack(struct pkt packet) {
+
+pkt make_ack(struct pkt packet) { //Helped function for creating an ACK and sending it.
   
   // std::cout << "\tACKing: " << packet << std::endl;
   
+  //Simply  mirror the packet to confirm its reception and contents.
   qb.emplace(packet); //Store last ACK
   simulation->tolayer3(B,packet);
   simulation->starttimer(B,TIMERLENGTH);
@@ -81,9 +79,9 @@ void B_input(struct pkt packet)
     return;
   }
   
-  int expected = qb.front().seqnum + 1;
+  int expected = qb.front().seqnum + 1; //The expected sequence #
   
-  if (qb.empty()) {
+  if (qb.empty()) { //First packet received, no timer to stop
     
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
     struct msg message;
@@ -93,7 +91,7 @@ void B_input(struct pkt packet)
     make_ack(packet);
   }
   
-  else if (packet.seqnum == expected) { //New packet
+  else if (packet.seqnum == expected) { //New packet, restart timer
     
     simulation->stoptimer(B);
     std::cout << "\tACCEPT new packet: " << packet << std::endl;
@@ -103,15 +101,11 @@ void B_input(struct pkt packet)
     bcopy(packet.payload,message.data,20);
     simulation->tolayer5(B,message);
 
-    // if (q.empty()) {
-      
-    //   std::cout << "\nACKs: " << ACKs << std::endl;
-    //   exit(0);
-    // }
-    
     make_ack(packet);
   }
-    else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting seq=" << expected << std::endl;
+  
+  //The packet is not anything we expect at this point.
+  else std::cout << "\tIgnoring new packet: " << packet << "\n\t\tExpecting seq=" << expected << std::endl;
 }
 
 
@@ -122,13 +116,16 @@ void B_input(struct pkt packet)
 void A_timerinterrupt()
 {
   
+  //Purely for readbility, shows the sequence #'s currently in flight.
   seqs = "";
   for (const pkt& p: flight) seqs += std::to_string(p.seqnum) + " ";
+  
   std::cout << "A's timer has gone off.\n\tResending flight packets: " << seqs << std::endl;
   
-  for (const pkt& p: flight) {
-    simulation->tolayer3(A,p);  
-  }
+  /*
+    The MEAT of GoBackN, since our timer expired we resend EVERY packet currently in flight.
+  */
+  for (const pkt& p: flight) simulation->tolayer3(A,p);  
   simulation->starttimer(A,TIMERLENGTH);
 }
 
@@ -137,10 +134,13 @@ void A_timerinterrupt()
 // ***************************************************************************
 void B_timerinterrupt()
 {
-    std::cout << "B's timer has gone off.\n\tReACKing" << qb.front() << std::endl;
     
-    simulation->tolayer3(B,qb.front());
-    simulation->starttimer(B,TIMERLENGTH);   
+  std::cout << "B's timer has gone off.\n\tReACKing" << qb.front() << std::endl;
+  
+  //We haven't gotten the packet we're expected, so just resend the same ACK to show we haven't lost connection 
+  //    but haven't gotten the packet we need.
+  simulation->tolayer3(B,qb.front());
+  simulation->starttimer(B,TIMERLENGTH);   
 }
 
 // ***************************************************************************
@@ -151,8 +151,6 @@ void A_init()
 {
 }
 
-
-
 // ***************************************************************************
 // * The following rouytine will be called once (only) before any other 
 // * entity B routines are called. You can use it to do any initialization 
@@ -160,10 +158,6 @@ void A_init()
 void B_init()
 {
 }
-
-
-
-
 
 // ***************************************************************************
 // ***************************************************************************
@@ -189,56 +183,48 @@ void B_output(struct msg message)
 void A_input(struct pkt packet)
 {
   std::cout << "A: Layer 4 has recieved an ACK sent over the network from side B:" << packet << std::endl;
-  // struct msg message;
-  // bzero(message.data,20);
-  // bcopy(packet.payload,message.data,20);
-  // simulation->tolayer5(A,message);
-  
+
+  //If corrupt, ignore
   if (chk(packet.payload) != packet.checksum) {
     std::cout << "\tREJECT corrupt ACK\n";
     return;
   }
   
-  
-  if (!flight.empty()) {
-    // if (packet.seqnum == q.front().seqnum) std::cout << "\tSequence # are equal! (" << q.front().seqnum << ")\n";
-    // if (strcmp(message.data,q.front().payload) == 0) std::cout << "\tPayloads are equal! (" << q.front().payload << ")\n";
+  //If flight isn't empty, that means we're still transmitting.
+  if (!flight.empty()) {  
 
-    if (packet.seqnum == flight.front().seqnum) { //Ack should have same payload + seq
+    if (packet.seqnum == flight.front().seqnum) { //Ack should have same seq
       std::cout << "\tACCEPT ACK: " << packet << std::endl;
       simulation->stoptimer(A);
       
       
-      // q.pop();
-      
-      // q = std::vector<pkt> _q(q.begin()+1, q.end());x
-      flight = vpop(flight);
+      flight = vpop(flight);  //vector pop() flight, then enqueue next packet if there is one.
       if (!q.empty()) {
         flight.push_back(q.front());
         q.pop();
       }
       
       
-      if (!flight.empty()) {
-        // q.front().seqnum = (top.seqnum + 1)%2;
+      if (!flight.empty()) {  //If flight isn't empty after poping and enqueing, there's still more data.
         simulation->tolayer3(A,flight.front());  
         simulation->starttimer(A,TIMERLENGTH);
         std::cout << "\tSending next: " << flight.front() << std::endl;
       }
-      else if (q.empty()) {
+      else if (q.empty()) { //If our packets in flight are exhausted, we're done transmitting.
         exit(0);
         //Every other way I tried to terminate made the tests fail :'''^>
         //Since nsimmax is private, there's no other way to determine if it's the last packet without sending duplicates or NACKs or something
             // (which cause the tests to fail!)
       }
     }
-    else if (packet.seqnum > flight.front().seqnum) {
-        flight = vpop(flight);
-        if (!q.empty()) {
-          flight.push_back(q.front());
-          q.pop();
-        }
-    }
+    //If what the receiver wants is bigger, move our window?
+    // else if (packet.seqnum > flight.front().seqnum) {
+    //     flight = vpop(flight);
+    //     if (!q.empty()) {
+    //       flight.push_back(q.front());
+    //       q.pop();
+    //     }
+    // }
     else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << flight.front() << std::endl;
     
   }
