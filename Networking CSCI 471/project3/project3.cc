@@ -13,6 +13,7 @@ int _seq = 0;
 int lastACK = 0;
 const int TIMERLENGTH = 30;
 const int WINDOW = 4;
+const int BASE = 0;
 
 int chk(char *arr) {
   return std::accumulate(arr, arr+20, 0);
@@ -46,7 +47,7 @@ void A_output(struct msg message)
   std::cout << "A: Layer 4 has recieved a message from the application that should be sent to side B: " << message << std::endl;
 
   struct pkt packet = make_pkt(message, _seq);
-  _seq = (_seq+1)%WINDOW;
+  _seq++;
   
   if (flight.empty()) simulation->starttimer(A,TIMERLENGTH);
   
@@ -80,7 +81,7 @@ void B_input(struct pkt packet)
     return;
   }
   
-  int expected = (qb.front().seqnum + 1)%WINDOW;
+  int expected = qb.front().seqnum + 1;
   
   if (qb.empty()) {
     
