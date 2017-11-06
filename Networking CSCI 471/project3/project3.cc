@@ -234,7 +234,7 @@ void A_input(struct pkt packet)
             // (which cause the tests to fail!)
       }
     }
-    else if (seqs.find(std::to_string(packet.seqnum)) == std::string::npos) {
+    else {
       while (flight.front().seqnum != packet.seqnum) {
         flight = vpop(flight);
         if (!q.empty()) {
