@@ -229,7 +229,7 @@ void A_input(struct pkt packet)
             // (which cause the tests to fail!)
       }
     }
-    else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << q.front() << std::endl;
+    else std::cout << "\tIgnoring ACK: " << packet << "\n\t\tExpecting: " << flight.front() << std::endl;
     
   }
 }
