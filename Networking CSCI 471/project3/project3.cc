@@ -49,7 +49,7 @@ void A_output(struct msg message)
   struct pkt packet = make_pkt(message, _seq);
   _seq = (_seq+1)%WINDOW;
 
-  if (flight.size() >= WINDOW-1) { 
+  if (flight.size() <= WINDOW) { 
     simulation->tolayer3(A,packet);
     simulation->starttimer(A,TIMERLENGTH);
     flight.push_back(packet);
