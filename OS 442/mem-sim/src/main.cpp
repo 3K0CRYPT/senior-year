@@ -21,11 +21,11 @@ using namespace std;
 
 
 
-void fileopen(string filename){
+void readFile(string filename){
+	ifstream in;
+	in.open(filename);
 	int numProcesses;
 	string line;
-	ifstream in;
-	in.open(filename);	
 	getline(in, line);
 	stringstream ss(line);
 	ss >> numProcesses;
@@ -54,15 +54,17 @@ void fileopen(string filename){
 			virtAddresses.push_back(va);
 	}
 	
-	}
+	}//END OF READFILE
 	
 	void printProcesses(){
 	map<int,Process*>::iterator it;
 	for(it = procIds.begin(); it != procIds.end(); it++){
 		cout << "ProcessId " << it->first << " size: " << it->second->size() << endl;
 	}
-	for(int i = 0; i < virtAddresses.size(); i++) cout << virtAddresses[i] << endl;
+	for(int i = 0; i < virtAddresses.size(); i++){
+		cout << virtAddresses[i] << endl;
 	}
+	}//end of printProcesses
 
 
 
@@ -70,8 +72,10 @@ int main(int argc, char** argv) {
 	Simulation sim;
 	FlagOptions flags;
 	parse_flags(argc, argv, flags);
- 	fileopen(flags.filename);
+	readFile (flags.filename);
 	printProcesses();
+
+
 	sim.run();
-	return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
