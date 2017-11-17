@@ -19,46 +19,52 @@
 
 using namespace std;
 
-void fileopen(string filename){
-	int processQuantity;
-	string l;
+
+
+void readFile(string filename){
 	ifstream in;
-	
-	in.open(filename);	
-	getline(in, l);
-	stringstream ss(l);
-	ss >> processQuantity;
-	
-	for (int i = 0; i < processQuantity; i++){
-		int pID; string pf;
-		getline(in,l);
-		while(l.empty()) getline(in,l);
-		stringstream ss1(l);
-		ss1 >> pID >> pf;
-		ifstream in2(pf);
+	in.open(filename);
+	int numProcesses;
+	string line;
+	getline(in, line);
+	stringstream ss(line);
+	ss >> numProcesses;
+	for (int i =0; i < numProcesses; i++){
+		int processId;
+		string processfile;
+		getline(in,line);
+		while(line.empty()){getline(in,line);}
+		stringstream ss1(line);
+		ss1 >> processId >> processfile;
+		ifstream inFile(processfile);
 		istreambuf_iterator<char> eos;
-		string s(istreambuf_iterator<char>(in2), eos);
-		istringstream pStream(s);
-		Process* p = Process::read_from_input(pStream);
-		processIDs[pID] = p;
+		  string s(istreambuf_iterator<char>(inFile), eos);
+		istringstream process_stream(s);
+		Process* p = Process::read_from_input(process_stream);
+		procIds[processId] = p;
 		processes.push_back(p);
 	}
-	while(getline(in,l)){
-		if(l.empty()) getline(in,l);
-		int pid;
-		string virtualAddress_str
-		stringstream ss2(l);
-		ss2 >> pid >> virtualAddress_str
-		VirtualAddress va = VirtualAddress::from_string(pid, virtualAddress_str);
-		virtAddresses.push_back(va);
+	while(getline(in,line)){
+		if(line.empty()) getline(in,line);
+			int pid;
+			string virtAdd;
+			stringstream ss2(line);
+			ss2 >> pid >> virtAdd;
+			VirtualAddress va = VirtualAddress::from_string(pid, virtAdd);
+			virtAddresses.push_back(va);
 	}
-}
 	
-void processPrint(){
+	}//END OF READFILE
+	
+	void printProcesses(){
 	map<int,Process*>::iterator it;
-	for(it = processIDs.begin(); it != processIDs.end(); it++) cout << "Process ID: " << it->first << " size: " << it->second->size() << endl;
-	for(int i = 0; i < virtAddresses.size(); i++) cout << virtAddresses[i] << endl;
-}
+	for(it = procIds.begin(); it != procIds.end(); it++){
+		cout << "ProcessId " << it->first << " size: " << it->second->size() << endl;
+	}
+	for(int i = 0; i < virtAddresses.size(); i++){
+		cout << virtAddresses[i] << endl;
+	}
+	}//end of printProcesses
 
 
 
@@ -66,8 +72,10 @@ int main(int argc, char** argv) {
 	Simulation sim;
 	FlagOptions flags;
 	parse_flags(argc, argv, flags);
- 	fileopen(flags.filename);
-	processPrint();
+	readFile (flags.filename);
+	printProcesses();
+
+
 	sim.run();
-	return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
