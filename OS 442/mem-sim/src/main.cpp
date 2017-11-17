@@ -19,13 +19,16 @@
 
 using namespace std;
 
+map<int, Process*> procIds;
+vector<Process*> processes;
+vector<VirtualAddress> virtAddresses;
 
 
-void readFile(string filename){
-	ifstream in;
-	in.open(filename);
+void fileopen(string filename){
 	int numProcesses;
 	string line;
+	ifstream in;
+	in.open(filename);	
 	getline(in, line);
 	stringstream ss(line);
 	ss >> numProcesses;
@@ -54,17 +57,15 @@ void readFile(string filename){
 			virtAddresses.push_back(va);
 	}
 	
-	}//END OF READFILE
+	}
 	
 	void printProcesses(){
 	map<int,Process*>::iterator it;
 	for(it = procIds.begin(); it != procIds.end(); it++){
 		cout << "ProcessId " << it->first << " size: " << it->second->size() << endl;
 	}
-	for(int i = 0; i < virtAddresses.size(); i++){
-		cout << virtAddresses[i] << endl;
+	for(int i = 0; i < virtAddresses.size(); i++) cout << virtAddresses[i] << endl;
 	}
-	}//end of printProcesses
 
 
 
@@ -72,10 +73,8 @@ int main(int argc, char** argv) {
 	Simulation sim;
 	FlagOptions flags;
 	parse_flags(argc, argv, flags);
-	readFile (flags.filename);
+ 	fileopen(flags.filename);
 	printProcesses();
-
-
 	sim.run();
-  return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
