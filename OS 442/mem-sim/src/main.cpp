@@ -72,5 +72,5 @@ int main(int argc, char** argv) {
  	readfile(flags.filename);
 	processPrint();
 	_simulation.run();
-	return EX_iterator_SUCCESS;
+	return EXIT_SUCCESS;
 }
