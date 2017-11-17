@@ -54,7 +54,7 @@ void fileopen(string filename){
 			virtAddresses.push_back(va);
 	}
 	
-	}/
+	}
 	
 	void printProcesses(){
 	map<int,Process*>::iterator it;
