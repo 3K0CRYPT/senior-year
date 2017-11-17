@@ -34,60 +34,43 @@ void print_usage() {
 
 bool parse_flags(int argc, char** argv, FlagOptions& flags) {
 const char* const short_options = "v::s:f:h";
-const option long_options[] = {
-        {"verbose", no_argument, 0, 'v'},
-        {"strategy", required_argument, 0, 's'},
-        {"max-frames", required_argument, 0, 'f'},
-        {"help", no_argument, 0, 'h'}
-        };
-int optionNum = 0;
-int opt;
-bool noError = true;
+const option long_options[] = { {"verbose", no_argument, 0, 'v'}, {"strategy", required_argument, 0, 's'}, {"max-frames", required_argument, 0, 'f'}, {"help", no_argument, 0, 'h'} };
+
+int option_int = 0, opt; bool noError = true;
 
 while(true) {
-opt = getopt_long(argc, argv, short_options, long_options, &optionNum);
-if (opt == -1)
-        break;
-switch (opt){
-	case '?':
-		noError = false;
-		break;
-        case 'v':
-                {
-		flags.verbose = true;
-                }
-        break;
-        case 's':
-                {   
-		string strat;
-		strat = argv[optind-1];
+        opt = getopt_long(argc, argv, short_options, long_options, &option_int);
+        if (opt == -1) break;
+        switch (opt) {
+                case '?':
+                        noError = false;
+                        break;
+                case 'v':
+                        flags.verbose = true;
+                        break;
+                case 's':
+                        string strat;
+                        strat = argv[optind-1];
 
-		if(strat == "LRU") flags.strategy = ReplacementStrategy::LRU;
-		else if (strat == "FIFO") flags.strategy = ReplacementStrategy::FIFO;
-		else noError=false;
-		}
-        break;
-        case 'f':
-                {   
-		int maxFrames= atoi(argv[optind-1]);
-		if (maxFrames <= 0)
-			noError = false;
-		else
-			flags.max_frames = maxFrames;
-                }   
-        break;
-        case 'h':
-        default:
-               print_usage(); 
-        break;
+                        if(strat == "LRU") flags.strategy = ReplacementStrategy::LRU;
+                        else if (strat == "FIFO") flags.strategy = ReplacementStrategy::FIFO;
+                        else noError=false;
+                        break;
+                case 'f':
+                        int maxFrames= atoi(argv[optind-1]);
+                        if (maxFrames <= 0) noError = false;
+                        else flags.max_frames = maxFrames;
+                        break;
+                case 'h':
+                default:
+                print_usage(); 
+                break;
+        }
+}
 
-}
-}
-if(argv[1] != NULL){
-	flags.filename = argv[argc-1];
-}
+if(argv[1] != NULL) flags.filename = argv[argc-1];
 else noError = false;
-
 return noError;
+
 }
 
