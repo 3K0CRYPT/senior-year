@@ -42,13 +42,15 @@ while(true) {
         opt = getopt_long(argc, argv, short_options, long_options, &option_int);
         if (opt == -1) break;
         switch (opt) {
-                case '?':
+                case '?': {
                         noError = false;
                         break;
-                case 'v':
+                }
+                case 'v': {
                         flags.verbose = true;
                         break;
-                case 's':
+                }
+                case 's': {
                         string strat;
                         strat = argv[optind-1];
 
@@ -56,11 +58,13 @@ while(true) {
                         else if (strat == "FIFO") flags.strategy = ReplacementStrategy::FIFO;
                         else noError=false;
                         break;
-                case 'f':
+                }
+                case 'f': {
                         int maxFrames= atoi(argv[optind-1]);
                         if (maxFrames <= 0) noError = false;
                         else flags.max_frames = maxFrames;
                         break;
+                }
                 case 'h':
                 default:
                 print_usage(); 
