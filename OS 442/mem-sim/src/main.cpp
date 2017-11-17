@@ -60,7 +60,7 @@ void readfile(string filename) {
 	
 void processPrint(){
 	map<int,Process*>::iterator _iterator;
-	for(_iterator = processIDs.begin(); _iterator != processIDs.end(); _iterator++) cout << "Process ID: " << _iterator->first << " size: " << _iterator->second->size() << endl;
+	for(_iterator = processIDs.begin(); _iterator != processIDs.end(); _iterator++) cout << "Process ID: " << _iterator->first << ", size: " << _iterator->second->size() << endl;
 	for(int i = 0; i < virtualAddresses.size(); i++) cout << virtualAddresses[i] << endl;
 }
 
