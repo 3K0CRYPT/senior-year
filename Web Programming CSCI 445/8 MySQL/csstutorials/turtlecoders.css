@@ -1,0 +1,64 @@
+body {
+    background-color: #ffffcc;
+    color: #333333;
+    font-family: sans-serif;
+}
+
+header {
+    font-family: serif;
+    background-color: #ccff99;
+    text-align: center;
+    text-shadow: 3px 3px #aaaaaa;
+    border-radius: 15px;
+    border: 1px solid #333333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: serif;
+}
+
+.company_name {
+    font-weight: bolder;
+}
+
+#intro {
+    text-indent: 50px;
+}
+
+#services {
+    line-height: 1.5;
+}
+
+nav a {
+    background-color: #ccff99;
+    color: #333333;
+    border: 1px solid #333333;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    left: 20px;
+    padding: 5px;
+}
+
+.motto {
+    font-style: italic;
+    text-align: center;
+    border: 10px ridge #99aa33;
+    border-left-width: 40px;
+}
+
+#wrapper {
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+}
+
+#content {
+    padding: 5%; 
+}

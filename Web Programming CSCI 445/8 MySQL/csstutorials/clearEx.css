@@ -1,0 +1,27 @@
+#turtle_left {
+    float: left;
+    border: 3px inset orangered;
+    margin-right: 25px;
+}
+
+.div3 {
+    background-color: #90ee90;
+    padding: 10px;
+}
+
+#cat_right {
+    float: right;
+    border: 3px inset #ff4500;
+    margin-left: 25px;
+}
+
+.div4 {
+    background-color: #efc0fa;
+    padding: 10px;
+}
+
+.clear-it {
+    clear: right;
+}
+
+/* Clearing right makes the cat fit, but otherwise the property doesn't afect the turtle */
