@@ -47,19 +47,19 @@ void fileRead(string filename){
 
 void processPrint(){
 	map<int,Process*>::iterator it;
-	int memAccesses=0, pageFaults=0, usedFrames=0;
+	int memoryAccessQuantity=0, pageFaultQuantity=0, usedFrameQuantity=0;
 	for(it = processIDs.begin(); it != processIDs.end(); it++){
 		cout << "Process " << it->first << "\tMemory Accesses: " << it->second->memory_accesses <<
 			"\tPage Faults: " << it->second->page_faults << "\tFree Frames " << (flags.max_frames - it->second->get_rss()) <<
 			"\tFault Rate: " << it->second->get_fault_percent() <<
 			"\tRSS: " << it->second->get_rss() << endl;
-		memAccesses += it->second->memory_accesses;
-		pageFaults += it->second->page_faults;
-		usedFrames += (it->second->get_rss());
+		memoryAccessQuantity += it->second->memory_accesses;
+		pageFaultQuantity += it->second->page_faults;
+		usedFrameQuantity += (it->second->get_rss());
 	}
-	cout << "TOTAL MEMORY ACCESSES: " << memAccesses <<endl;
-	cout << "TOTAL PAGE FAULTS: " << pageFaults <<endl;
-	cout << "TOTAL FREE FRAMES: " << 512 - usedFrames << endl;
+	cout << "TOTAL MEMORY ACCESSES: " << memoryAccessQuantity <<endl;
+	cout << "TOTAL PAGE FAULTS: " << pageFaultQuantity <<endl;
+	cout << "TOTAL FREE FRAMES: " << 512 - usedFrameQuantity << endl;
 }
 
 int main(int argc, char** argv) {
