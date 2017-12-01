@@ -84,7 +84,7 @@
 	 FlagOptions flags;
 	 parse_flags(argc, argv, flags);
 	  readfile(flags.filename);
-	 processPrint();
-	 _simulation.run();
+	  _simulation.run();
+	  processPrint();
 	 return EXIT_SUCCESS;
  }
