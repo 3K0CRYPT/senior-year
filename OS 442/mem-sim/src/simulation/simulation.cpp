@@ -6,14 +6,12 @@
  */
 
 #include "simulation/simulation.h"
-#include "iostream"
-#include "flag_parser/flag_parser.h"
 
 using namespace std;
 
 
 void Simulation::run() {
-  //do something with flags.filename
+  // TODO: implement me
 }
 
 

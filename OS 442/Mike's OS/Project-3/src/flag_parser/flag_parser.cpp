@@ -74,6 +74,7 @@ switch (opt){
 			noError = false;
 		else
 			flags.max_frames = maxFrames;
+			cout << "Max frames set to " << flags.max_frames << endl;
                 }   
         break;
         case 'h':
