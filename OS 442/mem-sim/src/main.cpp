@@ -24,8 +24,8 @@ void fileRead(string filename){
 		string _line;
 		getline(in,line);
 		while(line.empty()){getline(in,line);}
-		stringstream ss1(line);
-		ss1 >> processId >> _line;
+		stringstream _ss(line);
+		_ss >> processId >> _line;
 		ifstream inFile(_line);
 		istreambuf_iterator<char> eos;
 		string s(istreambuf_iterator<char>(inFile), eos);
@@ -38,8 +38,8 @@ void fileRead(string filename){
 		if(line.empty()) getline(in,line);
 		int processID;
 		string virtualAddress;
-		stringstream ss2(line);
-		ss2 >> processID >> virtualAddress;
+		stringstream __ss(line);
+		__ss >> processID >> virtualAddress;
 		VirtualAddress va = VirtualAddress::from_string(processID, virtualAddress);
 		virtualAddresses.push_back(va);
 		}
