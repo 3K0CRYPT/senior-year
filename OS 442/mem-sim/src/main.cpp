@@ -59,9 +59,23 @@
  }
 	 
  void processPrint(){
-	 map<int,Process*>::iterator _iterator;
-	 for(_iterator = processIDs.begin(); _iterator != processIDs.end(); _iterator++) cout << "Process ID: " << _iterator->first << ", size: " << _iterator->second->size() << endl;
-	 for(int i = 0; i < virtualAddresses.size(); i++) cout << virtualAddresses[i] << endl;
+	map<int,Process*>::iterator _iterator;
+	int memAccesses=0;
+	int pageFaults=0;
+	int usedFrames=0;
+	for(_iterator = procIds.begin(); _iterator != procIds.end(); _iterator++){
+		//cout << "ProcessId " << _iterator->first << " size: " << _iterator->second->size() << endl;
+		cout << "Process " << _iterator->first << "\tMemory Accesses: " << _iterator->second->memory_accesses <<
+			"\tPage Faults: " << _iterator->second->page_faults << "\tFree Frames " << (flags.max_frames - _iterator->second->get_rss()) <<
+			"\tFault Rate: " << _iterator->second->get_fault_percent() <<
+			"\tRSS: " << _iterator->second->get_rss() << endl;
+		memAccesses += _iterator->second->memory_accesses;
+		pageFaults += _iterator->second->page_faults;
+		usedFrames += (_iterator->second->get_rss());
+	}
+	cout << "TOTAL MEMORY ACCESSES: " << memAccesses <<endl;
+	cout << "TOTAL PAGE FAULTS: " << pageFaults <<endl;
+	cout << "TOTAL FREE FRAMES: " << 512 - usedFrames << endl;
  }
  
  
