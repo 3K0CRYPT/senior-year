@@ -13,13 +13,13 @@
 
 using namespace std;
 
-map<int, Process*> procIds;
+map<int, Process*> processIDs;
 vector<Process*> processes;
-vector<VirtualAddress> virtAddresses;
+vector<VirtualAddress> virtualAddresses;
 FlagOptions flags;
 
 
-void readFile(string filename){
+void fileRead(string filename){
 ifstream in;
 in.open(filename);
 int numProcesses;
@@ -39,7 +39,7 @@ for (int i =0; i < numProcesses; i++){
   	string s(istreambuf_iterator<char>(inFile), eos);
 	istringstream process_stream(s);
 	Process* p = Process::read_from_input(process_stream);
-	procIds[processId] = p;
+	processIDs[processId] = p;
 	processes.push_back(p);
 }
 while(getline(in,line)){
@@ -49,17 +49,17 @@ while(getline(in,line)){
 		stringstream ss2(line);
 		ss2 >> pid >> virtAdd;
 		VirtualAddress va = VirtualAddress::from_string(pid, virtAdd);
-		virtAddresses.push_back(va);
+		virtualAddresses.push_back(va);
 }
 
 }
 
-void printProcesses(){
+void processPrint(){
 map<int,Process*>::iterator it;
 int memAccesses=0;
 int pageFaults=0;
 int usedFrames=0;
-for(it = procIds.begin(); it != procIds.end(); it++){
+for(it = processIDs.begin(); it != processIDs.end(); it++){
 	
 	cout << "Process " << it->first << "\tMemory Accesses: " << it->second->memory_accesses <<
 		"\tPage Faults: " << it->second->page_faults << "\tFree Frames " << (flags.max_frames - it->second->get_rss()) <<
@@ -72,7 +72,7 @@ for(it = procIds.begin(); it != procIds.end(); it++){
 cout << "TOTAL MEMORY ACCESSES: " << memAccesses <<endl;
 cout << "TOTAL PAGE FAULTS: " << pageFaults <<endl;
 cout << "TOTAL FREE FRAMES: " << 512 - usedFrames << endl;
-for(int i = 0; i < virtAddresses.size(); i++){
+for(int i = 0; i < virtualAddresses.size(); i++){
 	
 }
 }
@@ -81,10 +81,9 @@ int main(int argc, char** argv) {
 	Simulation sim;
 
 	parse_flags(argc, argv, flags);
-	readFile (flags.filename);
+	fileRead(flags.filename);
 	sim.run();
-	printProcesses();
-
+	processPrint();
 
   return EXIT_SUCCESS;
 }
