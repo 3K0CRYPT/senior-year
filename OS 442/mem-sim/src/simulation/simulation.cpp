@@ -16,7 +16,7 @@ using namespace std;
 
 extern vector<VirtualAddress> virtualAddresses;
 extern map<int, Process*> processIDs;
-FlagOptions flags;
+extern FlagOptions flags;
 int currentEmptyFrame =0;
 size_t currentTime=0;
 size_t frameToReplace=0;
