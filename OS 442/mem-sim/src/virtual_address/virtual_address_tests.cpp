@@ -1,9 +1,3 @@
-/**
- * This file contains tests for the VirtualAddress class.
- *
- * You need to implement VirtualAddress so that these tests pass.
- */
-
 #include "virtual_address/virtual_address.h"
 #include "gtest/gtest.h"
 #include <bitset>
@@ -12,13 +6,13 @@
 using namespace std;
 
 
-// The PID used in the tests below.
+
 const int PID = 42;
 
-// The address used in the tests below.
+
 const string ADDRESS_STRING = "1000100011101010";
 
-// The page and offset corresponding to the above address.
+
 const size_t PAGE = bitset<32>("1000100011").to_ulong();
 const size_t OFFSET = bitset<32>("101010").to_ulong();
 
@@ -55,7 +49,7 @@ TEST(VirtualAddress, OutputOperator) {
   VirtualAddress address = VirtualAddress::from_string(PID, ADDRESS_STRING);
   stringstream expected_output, output;
 
-  // Form the expected output string.
+  
   expected_output
       << "PID " << PID
       << " @ " << ADDRESS_STRING

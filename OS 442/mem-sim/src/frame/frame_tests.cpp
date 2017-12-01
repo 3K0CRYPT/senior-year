@@ -1,9 +1,3 @@
-/**
- * This file contains tests for the Frame class.
- *
- * You need to implement Frame so that these tests pass.
- */
-
 #include "frame/frame.h"
 #include "gtest/gtest.h"
 #include <sstream>

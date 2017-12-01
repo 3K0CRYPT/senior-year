@@ -1,41 +1,41 @@
-// Copyright 2009 Google Inc.  All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are
-// met:
-//
-//     * Redistributions of source code must retain the above copyright
-// notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above
-// copyright notice, this list of conditions and the following disclaimer
-// in the documentation and/or other materials provided with the
-// distribution.
-//     * Neither the name of Google Inc. nor the names of its
-// contributors may be used to endorse or promote products derived from
-// this software without specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-// Author: vladl@google.com (Vlad Losev)
-//
-// The Google C++ Testing Framework (Google Test)
-//
-// This file contains tests verifying correctness of data provided via
-// UnitTest's public methods.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #include "gtest/gtest.h"
 
-#include <string.h>  // For strcmp.
+#include <string.h>  
 #include <algorithm>
 
 using ::testing::InitGoogleTest;
@@ -52,8 +52,8 @@ struct LessByName {
 
 class UnitTestHelper {
  public:
-  // Returns the array of pointers to all test cases sorted by the test case
-  // name.  The caller is responsible for deleting the array.
+  
+  
   static TestCase const** GetSortedTestCases() {
     UnitTest& unit_test = *UnitTest::GetInstance();
     TestCase const** const test_cases =
@@ -68,8 +68,8 @@ class UnitTestHelper {
     return test_cases;
   }
 
-  // Returns the test case by its name.  The caller doesn't own the returned
-  // pointer.
+  
+  
   static const TestCase* FindTestCase(const char* name) {
     UnitTest& unit_test = *UnitTest::GetInstance();
     for (int i = 0; i < unit_test.total_test_case_count(); ++i) {
@@ -80,9 +80,9 @@ class UnitTestHelper {
     return NULL;
   }
 
-  // Returns the array of pointers to all tests in a particular test case
-  // sorted by the test name.  The caller is responsible for deleting the
-  // array.
+  
+  
+  
   static TestInfo const** GetSortedTests(const TestCase* test_case) {
     TestInfo const** const tests =
         new const TestInfo*[test_case->total_test_count()];
@@ -106,11 +106,11 @@ const int kTypedTests = 1;
 #else
 const int kTypedTestCases = 0;
 const int kTypedTests = 0;
-#endif  // GTEST_HAS_TYPED_TEST
+#endif  
 
-// We can only test the accessors that do not change value while tests run.
-// Since tests can be run in any order, the values the accessors that track
-// test execution (such as failed_test_count) can not be predicted.
+
+
+
 TEST(ApiTest, UnitTestImmutableAccessorsWork) {
   UnitTest* unit_test = UnitTest::GetInstance();
 
@@ -126,14 +126,14 @@ TEST(ApiTest, UnitTestImmutableAccessorsWork) {
   EXPECT_STREQ("DISABLED_Test", test_cases[1]->name());
 #if GTEST_HAS_TYPED_TEST
   EXPECT_STREQ("TestCaseWithCommentTest/0", test_cases[2]->name());
-#endif  // GTEST_HAS_TYPED_TEST
+#endif  
 
   delete[] test_cases;
 
-  // The following lines initiate actions to verify certain methods in
-  // FinalSuccessChecker::TearDown.
+  
+  
 
-  // Records a test property to verify TestResult::GetTestProperty().
+  
   RecordProperty("key", "value");
 }
 
@@ -204,7 +204,7 @@ TEST(ApiTest, TestCaseImmutableAccessorsWork) {
   EXPECT_TRUE(tests[0]->should_run());
 
   delete[] tests;
-#endif  // GTEST_HAS_TYPED_TEST
+#endif  
 }
 
 TEST(ApiTest, TestCaseDisabledAccessorsWork) {
@@ -226,8 +226,8 @@ TEST(ApiTest, TestCaseDisabledAccessorsWork) {
   EXPECT_FALSE(test_info->should_run());
 }
 
-// These two tests are here to provide support for testing
-// test_case_to_run_count, disabled_test_count, and test_to_run_count.
+
+
 TEST(ApiTest, DISABLED_Dummy1) {}
 TEST(DISABLED_Test, Dummy2) {}
 
@@ -274,7 +274,7 @@ class FinalSuccessChecker : public Environment {
     EXPECT_EQ(0, test_cases[2]->failed_test_count());
     EXPECT_TRUE(test_cases[2]->Passed());
     EXPECT_FALSE(test_cases[2]->Failed());
-#endif  // GTEST_HAS_TYPED_TEST
+#endif  
 
     const TestCase* test_case = UnitTestHelper::FindTestCase("ApiTest");
     const TestInfo** tests = UnitTestHelper::GetSortedTests(test_case);
@@ -324,13 +324,13 @@ class FinalSuccessChecker : public Environment {
     EXPECT_EQ(0, tests[0]->result()->test_property_count());
 
     delete[] tests;
-#endif  // GTEST_HAS_TYPED_TEST
+#endif  
     delete[] test_cases;
   }
 };
 
-}  // namespace internal
-}  // namespace testing
+}  
+}  
 
 int main(int argc, char **argv) {
   InitGoogleTest(&argc, argv);

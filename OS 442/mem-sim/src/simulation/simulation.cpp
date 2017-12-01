@@ -1,10 +1,3 @@
-/**
- * This file contains implementations for the methods defined in the Simulation
- * class.
- *
- * You'll probably spend a lot of your time here.
- */
-
 #include <stdlib.h>
 #include "simulation/simulation.h"
 #include "iostream"

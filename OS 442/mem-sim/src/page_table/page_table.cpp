@@ -1,9 +1,3 @@
-/**
- * This file contains implementations for methods in the PageTable class.
- *
- * You'll need to add code here to make the corresponding tests pass.
- */
-
 #include "page_table/page_table.h"
 
 using namespace std;

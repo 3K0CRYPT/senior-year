@@ -1,8 +1,3 @@
-/**
- * This file contains implementations for methods in the PhysicalAddress class.
- *
- * You'll need to add code here to make the corresponding tests pass.
- */
 
 #include "physical_address/physical_address.h"
 #include <bitset>
@@ -10,7 +5,7 @@
 using namespace std;
 
 
-string PhysicalAddress::to_string() const { //done
+string PhysicalAddress::to_string() const { 
 string frameString, offsetString, address;                                                                                                              
 frameString = bitset<10>(frame).to_string();
 offsetString = bitset<6>(offset).to_string();

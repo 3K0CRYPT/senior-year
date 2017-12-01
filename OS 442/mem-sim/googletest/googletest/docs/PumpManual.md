@@ -40,7 +40,7 @@ maintain.
 ## Highlights ##
 
   * The implementation is in a single Python script and thus ultra portable: no build or installation is needed and it works cross platforms.
-  * Pump tries to be smart with respect to [Google's style guide](http://code.google.com/p/google-styleguide/): it breaks long lines (easy to have when they are generated) at acceptable places to fit within 80 columns and indent the continuation lines correctly.
+  * Pump tries to be smart with respect to [Google's style guide](http:
   * The format is human-readable and more concise than XML.
   * The format works relatively well with Emacs' C++ mode.
 
@@ -53,7 +53,7 @@ $var n = 3     $$ Defines a meta variable n.
 $range i 0..n  $$ Declares the range of meta iterator i (inclusive).
 $for i [[
                $$ Meta loop.
-// Foo$i does blah for $i-ary predicates.
+
 $range j 1..i
 template <size_t N $for j [[, typename A$j]]>
 class Foo$i {
@@ -72,25 +72,25 @@ $if i == 0 [[
 will be translated by the Pump compiler to:
 
 ```
-// Foo0 does blah for 0-ary predicates.
+
 template <size_t N>
 class Foo0 {
   blah a;
 };
 
-// Foo1 does blah for 1-ary predicates.
+
 template <size_t N, typename A1>
 class Foo1 {
   blah b;
 };
 
-// Foo2 does blah for 2-ary predicates.
+
 template <size_t N, typename A1, typename A2>
 class Foo2 {
   blah b;
 };
 
-// Foo3 does blah for 3-ary predicates.
+
 template <size_t N, typename A1, typename A2, typename A3>
 class Foo3 {
   blah c;
@@ -108,11 +108,11 @@ $$ The text between i and [[ is the separator between iterations.
 will generate one of the following lines (without the comments), depending on the value of `n`:
 
 ```
-Func();              // If n is 0.
-Func(a1);            // If n is 1.
-Func(a1 + a2);       // If n is 2.
-Func(a1 + a2 + a3);  // If n is 3.
-// And so on...
+Func();              
+Func(a1);            
+Func(a1 + a2);       
+Func(a1 + a2 + a3);  
+
 ```
 
 ## Constructs ##
@@ -169,7 +169,7 @@ improving Pump.
 
 ## Real Examples ##
 
-You can find real-world applications of Pump in [Google Test](http://www.google.com/codesearch?q=file%3A\.pump%24+package%3Ahttp%3A%2F%2Fgoogletest\.googlecode\.com) and [Google Mock](http://www.google.com/codesearch?q=file%3A\.pump%24+package%3Ahttp%3A%2F%2Fgooglemock\.googlecode\.com).  The source file `foo.h.pump` generates `foo.h`.
+You can find real-world applications of Pump in [Google Test](http:
 
 ## Tips ##
 

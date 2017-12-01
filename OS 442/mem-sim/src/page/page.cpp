@@ -1,9 +1,3 @@
-/**
- * This file contains implementations for methods in the Page class.
- *
- * You'll need to add code here to make the corresponding tests pass.
- */
-
 #include "page/page.h"
 #include <iostream>
 #include <string.h>
@@ -11,7 +5,7 @@
 using namespace std;
 
 
-// Ensure PAGE_SIZE is initialized.
+
 const size_t Page::PAGE_SIZE;
 
 
@@ -49,9 +43,9 @@ bool Page::is_valid_offset(size_t offset) const {
 }
 
 
-char Page::get_byte_at_offset(size_t offset) { //STILL WORKING ON
+char Page::get_byte_at_offset(size_t offset) { 
 	size_t sizer = size();
-//	cout << "SIZE " << sizer << endl;
+
   if(is_valid_offset(offset)){
   	return this->Page::bytes.at(offset);}
   else return 0;

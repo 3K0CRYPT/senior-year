@@ -1,9 +1,3 @@
-/**
- * This file contains tests for the methods declared in the flag_parser.h file.
- *
- * You need to implement these methods so that the tests in this file pass.
- */
-
 #include "flag_parser/flag_parser.h"
 #include "gtest/gtest.h"
 #include <vector>
@@ -166,10 +160,10 @@ bool parse_flags(initializer_list<string> arg_list, FlagOptions& flags) {
 
   int argc = argv.size();
 
-  // argv is always null-terminated.
+  
   argv.push_back(nullptr);
 
-  // Reset getopts. Boo for global variables.
+  
   optind = 0;
 
   testing::internal::CaptureStderr();

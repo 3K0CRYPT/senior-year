@@ -10,11 +10,11 @@ First, let's give you some background of the project.
 
 ## Licensing ##
 
-All Google Test source and pre-built packages are provided under the [New BSD License](http://www.opensource.org/licenses/bsd-license.php).
+All Google Test source and pre-built packages are provided under the [New BSD License](http:
 
 ## The Google Test Community ##
 
-The Google Test community exists primarily through the [discussion group](http://groups.google.com/group/googletestframework) and the GitHub repository.
+The Google Test community exists primarily through the [discussion group](http:
 You are definitely encouraged to contribute to the
 discussion and you can also help us to keep the effectiveness of the
 group high by following and promoting the guidelines listed here.
@@ -71,8 +71,8 @@ base.
 You must sign a Contributor License Agreement (CLA) before we can
 accept any code.  The CLA protects you and us.
 
-  * If you are an individual writing original source code and you're sure you own the intellectual property, then you'll need to sign an [individual CLA](http://code.google.com/legal/individual-cla-v1.0.html).
-  * If you work for a company that wants to allow you to contribute your work to Google Test, then you'll need to sign a [corporate CLA](http://code.google.com/legal/corporate-cla-v1.0.html).
+  * If you are an individual writing original source code and you're sure you own the intellectual property, then you'll need to sign an [individual CLA](http:
+  * If you work for a company that wants to allow you to contribute your work to Google Test, then you'll need to sign a [corporate CLA](http:
 
 Follow either of the two links above to access the appropriate CLA and
 instructions for how to sign and return it.
@@ -80,8 +80,8 @@ instructions for how to sign and return it.
 ## Coding Style ##
 
 To keep the source consistent, readable, diffable and easy to merge,
-we use a fairly rigid coding style, as defined by the [google-styleguide](http://code.google.com/p/google-styleguide/) project.  All patches will be expected
-to conform to the style outlined [here](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml).
+we use a fairly rigid coding style, as defined by the [google-styleguide](http:
+to conform to the style outlined [here](http:
 
 ## Updating Generated Code ##
 
@@ -94,7 +94,7 @@ can read the PumpManual for details.
 
 Please do submit code. Here's what you need to do:
 
-  1. A submission should be a set of changes that addresses one issue in the [issue tracker](https://github.com/google/googletest/issues). Please don't mix more than one logical change per submittal, because it makes the history hard to follow. If you want to make a change that doesn't have a corresponding issue in the issue tracker, please create one.
+  1. A submission should be a set of changes that addresses one issue in the [issue tracker](https:
   1. Also, coordinate with team members that are listed on the issue in question. This ensures that work isn't being duplicated and communicating your plan early also generally leads to better patches.
   1. Ensure that your code adheres to the [Google Test source code style](#Coding_Style.md).
   1. Ensure that there are unit tests for your code.
@@ -123,4 +123,4 @@ We follow a typical release process:
 
 ---
 
-This page is based on the [Making GWT Better](http://code.google.com/webtoolkit/makinggwtbetter.html) guide from the [Google Web Toolkit](http://code.google.com/webtoolkit/) project.  Except as otherwise [noted](http://code.google.com/policies.html#restrictions), the content of this page is licensed under the [Creative Commons Attribution 2.5 License](http://creativecommons.org/licenses/by/2.5/).
+This page is based on the [Making GWT Better](http:

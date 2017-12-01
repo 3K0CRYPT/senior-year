@@ -1,9 +1,3 @@
-/**
- * This file contains tests for the Process class.
- *
- * You need to implement Process so that these tests pass.
- */
-
 #include "process/process.h"
 #include "page/page.h"
 #include "gtest/gtest.h"

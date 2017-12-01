@@ -219,17 +219,17 @@ name.
 
 For example, let's take a simple integer function:
 ```
-int Factorial(int n); // Returns the factorial of n
+int Factorial(int n); 
 ```
 
 A test case for this function might look like:
 ```
-// Tests factorial of 0.
+
 TEST(FactorialTest, HandlesZeroInput) {
   EXPECT_EQ(1, Factorial(0));
 }
 
-// Tests factorial of positive numbers.
+
 TEST(FactorialTest, HandlesPositiveInput) {
   EXPECT_EQ(1, Factorial(1));
   EXPECT_EQ(2, Factorial(2));
@@ -289,12 +289,12 @@ For each test defined with `TEST_F()`, Google Test will:
 As an example, let's write tests for a FIFO queue class named `Queue`, which
 has the following interface:
 ```
-template <typename E> // E is the element type.
+template <typename E> 
 class Queue {
  public:
   Queue();
   void Enqueue(const E& element);
-  E* Dequeue(); // Returns NULL if the queue is empty.
+  E* Dequeue(); 
   size_t size() const;
   ...
 };
@@ -311,7 +311,7 @@ class QueueTest : public ::testing::Test {
     q2_.Enqueue(3);
   }
 
-  // virtual void TearDown() {}
+  
 
   Queue<int> q0_;
   Queue<int> q1_;
@@ -407,37 +407,37 @@ You can start from this boilerplate:
 
 namespace {
 
-// The fixture for testing class Foo.
+
 class FooTest : public ::testing::Test {
  protected:
-  // You can remove any or all of the following functions if its body
-  // is empty.
+  
+  
 
   FooTest() {
-    // You can do set-up work for each test here.
+    
   }
 
   virtual ~FooTest() {
-    // You can do clean-up work that doesn't throw exceptions here.
+    
   }
 
-  // If the constructor and destructor are not enough for setting up
-  // and cleaning up each test, you can define the following methods:
+  
+  
 
   virtual void SetUp() {
-    // Code here will be called immediately after the constructor (right
-    // before each test).
+    
+    
   }
 
   virtual void TearDown() {
-    // Code here will be called immediately after each test (right
-    // before the destructor).
+    
+    
   }
 
-  // Objects declared here can be used by all tests in the test case for Foo.
+  
 };
 
-// Tests that the Foo::Bar() method does Abc.
+
 TEST_F(FooTest, MethodBarDoesAbc) {
   const string input_filepath = "this/package/testdata/myinputfile.dat";
   const string output_filepath = "this/package/testdata/myoutputfile.dat";
@@ -445,12 +445,12 @@ TEST_F(FooTest, MethodBarDoesAbc) {
   EXPECT_EQ(0, f.Bar(input_filepath, output_filepath));
 }
 
-// Tests that Foo does Xyz.
+
 TEST_F(FooTest, DoesXyz) {
-  // Exercises the Xyz feature of Foo.
+  
 }
 
-}  // namespace
+}  
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
@@ -470,7 +470,7 @@ in programs compiled in `UNICODE` mode as well.
 But maybe you think that writing all those main() functions is too much work? We agree with you completely and that's why Google Test provides a basic implementation of main(). If it fits your needs, then just link your test with gtest\_main library and you are good to go.
 
 ## Important note for Visual C++ users ##
-If you put your tests into a library and your `main()` function is in a different library or in your .exe file, those tests will not run. The reason is a [bug](https://connect.microsoft.com/feedback/viewfeedback.aspx?FeedbackID=244410&siteid=210) in Visual C++. When you define your tests, Google Test creates certain static objects to register them. These objects are not referenced from elsewhere but their constructors are still supposed to run. When Visual C++ linker sees that nothing in the library is referenced from other places it throws the library out. You have to reference your library with tests from your main program to keep the linker from discarding it. Here is how to do it. Somewhere in your library code declare a function:
+If you put your tests into a library and your `main()` function is in a different library or in your .exe file, those tests will not run. The reason is a [bug](https:
 ```
 __declspec(dllexport) int PullInMyLibrary() { return 0; }
 ```

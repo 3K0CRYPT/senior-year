@@ -6,7 +6,7 @@ This guide will explain how to use the Google Testing Framework in your Xcode pr
 
 Here is the quick guide for using Google Test in your Xcode project.
 
-  1. Download the source from the [website](http://code.google.com/p/googletest) using this command: `svn checkout http://googletest.googlecode.com/svn/trunk/ googletest-read-only`
+  1. Download the source from the [website](http:
   1. Open up the `gtest.xcodeproj` in the `googletest-read-only/xcode/` directory and build the gtest.framework.
   1. Create a new "Shell Tool" target in your Xcode project called something like "UnitTests"
   1. Add the gtest.framework to your project and add it to the "Link Binary with Libraries" build phase of "UnitTests"
@@ -18,23 +18,23 @@ The following sections further explain each of the steps listed above in depth, 
 
 # Get the Source #
 
-Currently, the gtest.framework discussed here isn't available in a tagged release of Google Test, it is only available in the trunk. As explained at the Google Test [site](http://code.google.com/p/googletest/source/checkout">svn), you can get the code from anonymous SVN with this command:
+Currently, the gtest.framework discussed here isn't available in a tagged release of Google Test, it is only available in the trunk. As explained at the Google Test [site](http:
 
 ```
-svn checkout http://googletest.googlecode.com/svn/trunk/ googletest-read-only
+svn checkout http:
 ```
 
 Alternatively, if you are working with Subversion in your own code base, you can add Google Test as an external dependency to your own Subversion repository. By following this approach, everyone that checks out your svn repository will also receive a copy of Google Test (a specific version, if you wish) without having to check it out explicitly. This makes the set up of your project simpler and reduces the copied code in the repository.
 
 To use `svn:externals`, decide where you would like to have the external source reside. You might choose to put the external source inside the trunk, because you want it to be part of the branch when you make a release. However, keeping it outside the trunk in a version-tagged directory called something like `third-party/googletest/1.0.1`, is another option. Once the location is established, use `svn propedit svn:externals _directory_` to set the svn:externals property on a directory in your repository. This directory won't contain the code, but be its versioned parent directory.
 
-The command `svn propedit` will bring up your Subversion editor, making editing the long, (potentially multi-line) property simpler. This same method can be used to check out a tagged branch, by using the appropriate URL (e.g. `http://googletest.googlecode.com/svn/tags/release-1.0.1`). Additionally, the svn:externals property allows the specification of a particular revision of the trunk with the `-r_##_` option (e.g. `externals/src/googletest -r60 http://googletest.googlecode.com/svn/trunk`).
+The command `svn propedit` will bring up your Subversion editor, making editing the long, (potentially multi-line) property simpler. This same method can be used to check out a tagged branch, by using the appropriate URL (e.g. `http:
 
 Here is an example of using the svn:externals properties on a trunk (read via `svn propget`) of a project. This value checks out a copy of Google Test into the `trunk/externals/src/googletest/` directory.
 
 ```
 [Computer:svn] user$ svn propget svn:externals trunk
-externals/src/googletest http://googletest.googlecode.com/svn/trunk
+externals/src/googletest http:
 ```
 
 # Add the Framework to Your Project #

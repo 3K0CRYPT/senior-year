@@ -170,7 +170,7 @@ Caveats:
 
 We also have reports on successful cross compilation of Google Test
 MinGW binaries on Linux using
-[these instructions](http://wiki.wxwidgets.org/Cross-Compiling_Under_Linux#Cross-compiling_under_Linux_for_MS_Windows)
+[these instructions](http:
 on the WxWidgets site.
 
 Please contact `googletestframework@googlegroups.com` if you are
@@ -303,7 +303,7 @@ possibly allows.  In particular:
 If you prefer one death test per test method, you can write your tests in that style too, but we don't want to impose that on the users.  The fewer artificial limitations the better.
   * `ASSERT_DEATH` can reference local variables in the current function, and you can decide how many death tests you want based on run-time information.  For example,
 ``` cpp
-    const int count = GetCount();  // Only known at run time.
+    const int count = GetCount();  
     for (int i = 1; i <= count; i++) {
       ASSERT_DEATH({
         double* buffer = new double[i];
@@ -336,7 +336,7 @@ as running in a parallel universe, more or less.
 If your class has a static data member:
 
 ``` cpp
-// foo.h
+
 class Foo {
   ...
   static const int kBar = 100;
@@ -346,7 +346,7 @@ class Foo {
 You also need to define it _outside_ of the class body in `foo.cc`:
 
 ``` cpp
-const int Foo::kBar;  // No initializer here.
+const int Foo::kBar;  
 ```
 
 Otherwise your code is **invalid C++**, and may break in unexpected ways. In
@@ -377,28 +377,28 @@ to write tests using each derived fixture.
 Typically, your code looks like this:
 
 ``` cpp
-// Defines a base test fixture.
+
 class BaseTest : public ::testing::Test {
   protected:
    ...
 };
 
-// Derives a fixture FooTest from BaseTest.
+
 class FooTest : public BaseTest {
   protected:
     virtual void SetUp() {
-      BaseTest::SetUp();  // Sets up the base fixture first.
+      BaseTest::SetUp();  
       ... additional set-up work ...
     }
     virtual void TearDown() {
       ... clean-up work for FooTest ...
-      BaseTest::TearDown();  // Remember to tear down the base fixture
-                             // after cleaning up FooTest!
+      BaseTest::TearDown();  
+                             
     }
     ... functions and variables for FooTest ...
 };
 
-// Tests that use the fixture FooTest.
+
 TEST_F(FooTest, Bar) { ... }
 TEST_F(FooTest, Baz) { ... }
 
@@ -655,8 +655,8 @@ class Foo {
 class FooTest : public ::testing::Test {
  protected:
   ...
-  void Test1() {...} // This accesses private members of class Foo.
-  void Test2() {...} // So does this one.
+  void Test1() {...} 
+  void Test2() {...} 
 };
 
 TEST_F(FooTest, Test1) {
@@ -692,15 +692,15 @@ TEST_F(FooTest, Test1) {
 ``` cpp
 class YourClass {
   ...
- protected: // protected access for testability.
+ protected: 
   int DoSomethingReturningInt();
   ...
 };
 
-// in the your_class_test.cc file:
+
 class TestableYourClass : public YourClass {
   ...
- public: using YourClass::DoSomethingReturningInt; // changes access rights
+ public: using YourClass::DoSomethingReturningInt; 
   ...
 };
 
@@ -718,33 +718,33 @@ them free functions instead.
 
 Instead of:
 ``` cpp
-// foo.h
+
 class Foo {
   ...
  private:
   static bool Func(int n);
 };
 
-// foo.cc
+
 bool Foo::Func(int n) { ... }
 
-// foo_test.cc
+
 EXPECT_TRUE(Foo::Func(12345));
 ```
 
 You probably should better write:
 ``` cpp
-// foo.h
+
 class Foo {
   ...
 };
 
-// foo.cc
+
 namespace internal {
   bool Func(int n) { ... }
 }
 
-// foo_test.cc
+
 namespace internal {
   bool Func(int n);
 }
@@ -775,17 +775,17 @@ If you are adding tests to an existing file and don't want an intrusive change
 like this, there is a hack: just include the entire `foo.cc` file in your unit
 test. For example:
 ``` cpp
-// File foo_unittest.cc
 
-// The headers section
+
+
 ...
 
-// Renames main() in foo.cc to make room for the unit test main()
+
 #define main FooMain
 
 #include "a/b/foo.cc"
 
-// The tests start here.
+
 ...
 ```
 
@@ -806,32 +806,32 @@ reference global and/or local variables, and can be:
 Some examples are shown here:
 
 ``` cpp
-// A death test can be a simple function call.
+
 TEST(MyDeathTest, FunctionCall) {
   ASSERT_DEATH(Xyz(5), "Xyz failed");
 }
 
-// Or a complex expression that references variables and functions.
+
 TEST(MyDeathTest, ComplexExpression) {
   const bool c = Condition();
   ASSERT_DEATH((c ? Func1(0) : object2.Method("test")),
                "(Func1|Method) failed");
 }
 
-// Death assertions can be used any where in a function. In
-// particular, they can be inside a loop.
+
+
 TEST(MyDeathTest, InsideLoop) {
-  // Verifies that Foo(0), Foo(1), ..., and Foo(4) all die.
+  
   for (int i = 0; i < 5; i++) {
     EXPECT_DEATH_M(Foo(i), "Foo has \\d+ errors",
                    ::testing::Message() << "where i is " << i);
   }
 }
 
-// A death assertion can contain a compound statement.
+
 TEST(MyDeathTest, CompoundStatement) {
-  // Verifies that at lease one of Bar(0), Bar(1), ..., and
-  // Bar(4) dies.
+  
+  
   ASSERT_DEATH({
     for (int i = 0; i < 5; i++) {
       Bar(i);
@@ -846,7 +846,7 @@ TEST(MyDeathTest, CompoundStatement) {
 
 On POSIX systems, Google Test uses the POSIX Extended regular
 expression syntax
-(http://en.wikipedia.org/wiki/Regular_expression#POSIX_Extended_Regular_Expressions).
+(http:
 On Windows, it uses a limited variant of regular expression
 syntax. For more details, see the
 [regular expression syntax](AdvancedGuide.md#Regular_Expression_Syntax).
@@ -976,12 +976,12 @@ different things accordingly, you are leaking test-only logic into
 production code and there is no easy way to ensure that the test-only
 code paths aren't run by mistake in production.  Such cleverness also
 leads to
-[Heisenbugs](http://en.wikipedia.org/wiki/Unusual_software_bug#Heisenbug).
+[Heisenbugs](http:
 Therefore we strongly advise against the practice, and Google Test doesn't
 provide a way to do it.
 
 In general, the recommended way to cause the code to behave
-differently under test is [dependency injection](http://jamesshore.com/Blog/Dependency-Injection-Demystified.html).
+differently under test is [dependency injection](http:
 You can inject different functionality from the test and from the
 production code.  Since your production code doesn't link in the
 for-test logic at all, there is no danger in accidentally running it.
@@ -1015,7 +1015,7 @@ instead of
 ```
 in order to define a test.
 
-Currently, the following `TEST`, `FAIL`, `SUCCEED`, and the basic comparison assertion macros can have alternative names. You can see the full list of covered macros [here](http://www.google.com/codesearch?q=if+!GTEST_DONT_DEFINE_\w%2B+package:http://googletest\.googlecode\.com+file:/include/gtest/gtest.h). More information can be found in the "Avoiding Macro Name Clashes" section of the README file.
+Currently, the following `TEST`, `FAIL`, `SUCCEED`, and the basic comparison assertion macros can have alternative names. You can see the full list of covered macros [here](http:
 
 
 ## Is it OK if I have two separate `TEST(Foo, Bar)` test methods defined in different namespaces? ##
@@ -1029,31 +1029,31 @@ namespace foo {
 TEST(CoolTest, DoSomething) {
   SUCCEED();
 }
-}  // namespace foo
+}  
 
 namespace bar {
 TEST(CoolTest, DoSomething) {
   SUCCEED();
 }
-}  // namespace foo
+}  
 ```
 
 However, the following code is **not allowed** and will produce a runtime error from Google Test because the test methods are using different test fixture classes with the same test case name.
 
 ``` cpp
 namespace foo {
-class CoolTest : public ::testing::Test {};  // Fixture foo::CoolTest
+class CoolTest : public ::testing::Test {};  
 TEST_F(CoolTest, DoSomething) {
   SUCCEED();
 }
-}  // namespace foo
+}  
 
 namespace bar {
-class CoolTest : public ::testing::Test {};  // Fixture: bar::CoolTest
+class CoolTest : public ::testing::Test {};  
 TEST_F(CoolTest, DoSomething) {
   SUCCEED();
 }
-}  // namespace foo
+}  
 ```
 
 ## How do I build Google Testing Framework with Xcode 4? ##
@@ -1067,11 +1067,11 @@ If you cannot find the answer to your question in this FAQ, there are
 some other resources you can use:
 
   1. read other [wiki pages](../docs),
-  1. search the mailing list [archive](https://groups.google.com/forum/#!forum/googletestframework),
-  1. ask it on [googletestframework@googlegroups.com](mailto:googletestframework@googlegroups.com) and someone will answer it (to prevent spam, we require you to join the [discussion group](http://groups.google.com/group/googletestframework) before you can post.).
+  1. search the mailing list [archive](https:
+  1. ask it on [googletestframework@googlegroups.com](mailto:googletestframework@googlegroups.com) and someone will answer it (to prevent spam, we require you to join the [discussion group](http:
 
 Please note that creating an issue in the
-[issue tracker](https://github.com/google/googletest/issues) is _not_
+[issue tracker](https:
 a good way to get your answer, as it is monitored infrequently by a
 very small number of people.
 

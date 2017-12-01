@@ -1,8 +1,3 @@
-/**
- * This file contains tests for the PageTable class.
- *
- * You need to implement PageTable so that these tests pass.
- */
 
 #include "page_table/page_table.h"
 #include "gtest/gtest.h"
@@ -45,7 +40,7 @@ TEST(PageTable, GetOldestPage) {
     page_table.rows[i].present = true;
   }
 
-  // Should only include present pages, so page 2 is oldest of those present.
+  
   ASSERT_EQ(2, page_table.get_oldest_page());
 }
 
@@ -62,7 +57,7 @@ TEST(PageTable, GetLeastRecentlyUsedPage) {
     page_table.rows[i].present = true;
   }
 
-  // Should only include present pages, so page 14 is least recently used of
-  // those present.
+  
+  
   ASSERT_EQ(14, page_table.get_least_recently_used_page());
 }

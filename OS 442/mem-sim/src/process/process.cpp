@@ -1,9 +1,3 @@
-/**
- * This file contains implementations for methods in the Process class.
- *
- * You'll need to add code here to make the corresponding tests pass.
- */
-
 #include "process/process.h"
 #include <sstream>
 #include <iostream>
@@ -18,11 +12,11 @@ Process* Process::read_from_input(std::istream& in) {
  vector<Page*> proc_pages;
 for(int i = 0; i < s.size()/Page::PAGE_SIZE +1; i++){
   string ps = s.substr(i*Page::PAGE_SIZE,Page::PAGE_SIZE);
-  //cout << "====SUBSTRING = " << ps << endl;
+  
   istringstream is(ps);
   Page* p = Page::read_from_input(is);
   proc_pages.push_back(p);
-  //cout << "PAGES SIZE: " << proc_pages.size();
+  
 }
 Process* p = new Process((size_t)s.length(),proc_pages);
   return p;

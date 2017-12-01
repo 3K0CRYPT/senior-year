@@ -1,9 +1,3 @@
-/**
- * This file contains implementations for methods in the flag_parser.h file.
- *
- * You'll need to add code here to make the corresponding tests pass.
- */
-
 #include "flag_parser/flag_parser.h"
 #include <iostream>
 #include <getopt.h>

@@ -1,9 +1,3 @@
-/**
- * This file contains tests for the Page class.
- *
- * You need to implement Page so that these tests pass.
- */
-
 #include "page/page.h"
 #include "gtest/gtest.h"
 #include <sstream>
@@ -16,8 +10,8 @@ TEST(Page, ReadFromInput_EmptyStream) {
 
   Page* page = Page::read_from_input(empty_stream);
 
-  // Reading from an empty stream should return null, to indicate that the
-  // input stream has been fully consumed.
+  
+  
   ASSERT_EQ(nullptr, page);
 }
 
@@ -28,8 +22,8 @@ TEST(Page, ReadFromInput_StreamContainsLessThanFullPage) {
 
   Page* page = Page::read_from_input(input_stream);
 
-  // Reading from a stream that contains less than a full page of bytes should
-  // consume the entire stream.
+  
+  
   ASSERT_EQ(contents.length(), page->size());
 }
 
@@ -41,8 +35,8 @@ TEST(Page, ReadFromInput_StreamContainsMoreThanFullPage) {
 
   Page* page = Page::read_from_input(input_stream);
 
-  // Reading from a stream that contains more than a full page of bytes should
-  // consume only Page::PAGE_SIZE total bytes from the stream.
+  
+  
   ASSERT_EQ(Page::PAGE_SIZE, page->size());
 }
 
@@ -50,12 +44,12 @@ TEST(Page, ReadFromInput_StreamContainsMoreThanFullPage) {
 TEST(Page, ReadFromInput_StreamContainsNullCharacters) {
   stringstream input_stream;
 
-  // Populate the stream with some null characters.
+  
   input_stream << '\0' << '1' << '\0' << '2' << '\0';
 
   Page* page = Page::read_from_input(input_stream);
 
-  // The stream should include every character (byte) present in the stream.
+  
   ASSERT_EQ(5, page->size());
 }
 
@@ -66,7 +60,7 @@ TEST(Page, ReadFromInput_StreamContainsWhitespaceCharacters) {
 
   Page* page = Page::read_from_input(input_stream);
 
-  // The page should have all characters from the stream, including whitespace.
+  
   ASSERT_EQ(contents.length(), page->size());
 }
 
