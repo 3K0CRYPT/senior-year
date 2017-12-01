@@ -20,7 +20,7 @@
  using namespace std;
  
  map<int, Process*> processIDs; vector<Process*> processes; vector<VirtualAddress> virtualAddresses;
- 
+ FlagOptions flags;
  
  void readfile(string filename) {
 	 int processQuantity; string l; ifstream fs;
@@ -63,7 +63,7 @@
 	int memAccesses=0;
 	int pageFaults=0;
 	int usedFrames=0;
-	for(_iterator = procIds.begin(); _iterator != procIds.end(); _iterator++){
+	for(_iterator = procIds.begin(); _iterator != processIds.end(); _iterator++){
 		//cout << "ProcessId " << _iterator->first << " size: " << _iterator->second->size() << endl;
 		cout << "Process " << _iterator->first << "\tMemory Accesses: " << _iterator->second->memory_accesses <<
 			"\tPage Faults: " << _iterator->second->page_faults << "\tFree Frames " << (flags.max_frames - _iterator->second->get_rss()) <<
