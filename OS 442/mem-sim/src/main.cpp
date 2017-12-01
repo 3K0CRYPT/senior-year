@@ -36,11 +36,11 @@ void fileRead(string filename){
 	}
 	while(getline(in,line)){
 		if(line.empty()) getline(in,line);
-		int pid;
+		int processID;
 		string virtualAddress;
 		stringstream ss2(line);
-		ss2 >> pid >> virtualAddress;
-		VirtualAddress va = VirtualAddress::from_string(pid, virtualAddress);
+		ss2 >> processID >> virtualAddress;
+		VirtualAddress va = VirtualAddress::from_string(processID, virtualAddress);
 		virtualAddresses.push_back(va);
 		}
 }
