@@ -27,8 +27,8 @@ void fileRead(string filename){
 		stringstream _ss(line);
 		_ss >> processId >> _line;
 		ifstream inFile(_line);
-		istreambuf_iterator<char> eos;
-		string s(istreambuf_iterator<char>(inFile), eos);
+		istreambuf_iterator<char> endOfStream;
+		string s(istreambuf_iterator<char>(inFile), endOfStream);
 		istringstream process_stream(s);
 		Process* p = Process::read_from_input(process_stream);
 		processIDs[processId] = p;

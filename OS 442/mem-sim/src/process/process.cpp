@@ -7,8 +7,8 @@ using namespace std;
 
 Process* Process::read_from_input(std::istream& in) {
   if(in.peek() == istream::traits_type::eof()) return nullptr;
-  istreambuf_iterator<char> eos;
-  string s(istreambuf_iterator<char>(in), eos);
+  istreambuf_iterator<char> endOfStream;
+  string s(istreambuf_iterator<char>(in), endOfStream);
  vector<Page*> proc_pages;
 for(int i = 0; i < s.size()/Page::PAGE_SIZE +1; i++){
   string ps = s.substr(i*Page::PAGE_SIZE,Page::PAGE_SIZE);

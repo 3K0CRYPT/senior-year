@@ -11,8 +11,8 @@ const size_t Page::PAGE_SIZE;
 
 Page* Page::read_from_input(std::istream& in) {
   if(in.peek() == istream::traits_type::eof()) return nullptr;
-  istreambuf_iterator<char> eos;
-  string s(istreambuf_iterator<char>(in), eos);
+  istreambuf_iterator<char> endOfStream;
+  string s(istreambuf_iterator<char>(in), endOfStream);
   vector<char> bytes;
   if(s.size() > PAGE_SIZE){
   for(int i = 0; i < PAGE_SIZE; i++){
