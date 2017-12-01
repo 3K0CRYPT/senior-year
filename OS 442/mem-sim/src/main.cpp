@@ -29,8 +29,8 @@ void fileRead(string filename){
 		ifstream inFile(_line);
 		istreambuf_iterator<char> endOfStream;
 		string s(istreambuf_iterator<char>(inFile), endOfStream);
-		istringstream process_stream(s);
-		Process* p = Process::read_from_input(process_stream);
+		istringstream processStream(s);
+		Process* p = Process::read_from_input(processStream);
 		processIDs[processId] = p;
 		processes.push_back(p);
 	}
