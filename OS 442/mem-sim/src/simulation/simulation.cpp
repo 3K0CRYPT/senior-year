@@ -14,8 +14,8 @@
 
 using namespace std;
 
-vector<VirtualAddress> virtualAddresses;
-map<int, Process*> processIDs;
+extern vector<VirtualAddress> virtualAddresses;
+extern map<int, Process*> processIDs;
 FlagOptions flags;
 int currentEmptyFrame =0;
 size_t currentTime=0;
