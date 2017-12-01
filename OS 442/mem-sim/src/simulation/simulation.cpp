@@ -14,8 +14,8 @@
 
 using namespace std;
 
-extern vector<VirtualAddress> virtualAddresses;
-extern map<int, Process*> processIDs;
+extern vector<VirtualAddress> virtAddresses;
+extern map<int, Process*> procIds;
 extern FlagOptions flags;
 int currentEmptyFrame =0;
 size_t currentTime=0;
@@ -24,8 +24,8 @@ size_t numPagesInTable = 0;
 
 
 void Simulation::run() {
-for(int i =0; i < virtualAddresses.size(); i++){
-	perform_memory_access(virtualAddresses[i]);
+for(int i =0; i < virtAddresses.size(); i++){
+	perform_memory_access(virtAddresses[i]);
 	
 	currentTime = i+1;
 }
@@ -38,7 +38,7 @@ if(flags.verbose)cout << address << endl;
 
 int workingProcessId = address.process_id;
 size_t pageNumber = address.page;
-Process* workingProcess = processIDs[workingProcessId];
+Process* workingProcess = procIds[workingProcessId];
 if(!workingProcess->page_table.rows[pageNumber].present){
 	handle_page_fault(workingProcess, pageNumber);
 	}
