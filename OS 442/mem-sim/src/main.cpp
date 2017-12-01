@@ -19,7 +19,7 @@ vector<VirtualAddress> virtAddresses;
 FlagOptions flags;
 
 
- readFile(string filename){
+void readFile(string filename){
 ifstream in;
 in.open(filename);
 int numProcesses;
