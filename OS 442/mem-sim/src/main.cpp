@@ -63,7 +63,7 @@
 	int memAccesses=0;
 	int pageFaults=0;
 	int usedFrames=0;
-	for(_iterator = procIds.begin(); _iterator != processIds.end(); _iterator++){
+	for(_iterator = processIDs.begin(); _iterator != processIDs.end(); _iterator++){
 		//cout << "ProcessId " << _iterator->first << " size: " << _iterator->second->size() << endl;
 		cout << "Process " << _iterator->first << "\tMemory Accesses: " << _iterator->second->memory_accesses <<
 			"\tPage Faults: " << _iterator->second->page_faults << "\tFree Frames " << (flags.max_frames - _iterator->second->get_rss()) <<
