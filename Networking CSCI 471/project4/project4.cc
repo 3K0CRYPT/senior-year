@@ -21,7 +21,7 @@ struct ipHdr {
   __u8 ip_hl:4,	ip_v:4;
   __u8 tos;
   __u16 tl;
-}
+};
 
 void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *packet) {
 
