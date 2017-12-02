@@ -7,6 +7,7 @@
 //
 
 #include "project4.h"
+using namespace std;
 
 
 // ****************************************************************************
@@ -20,6 +21,27 @@ void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *
   resultsC* results = (resultsC*)user;
   results->incrementPacketCount();
   TRACE << "Processing packet #" << results->packetCount() << ENDL;
+  
+  cout << packet[14] << endl;
+  
+  char *ipHeader = (char *)(packet+14);
+  cout << ipHeader[0] << endl;
+  
+  std::cout <<	ipHeader[2]	<<	std::endl;
+  std::cout <<	std::hex	<<	ipHeader[2]	<<	ipHeader[3]	<<	std::endl;
+  std::cout <<	std::hex	<<	(u_short)ipHeader[2]	<<	(u_short)ipHeader[3]	<<	std::endl;
+  std::cout <<	(ipHeader[2]	<<	8)	+	ipHeader[3]	<<	std::endl;
+  
+  struct ipHdr {
+    __u8 ip_hl:4,	ip_v:4;
+    __u8 tos;
+    __u16 tl;
+  }
+  stuct ipHdr *	ipHeader =	(struct ipHdr *)(packet	+	14);
+  std::cout <<	(int)ipHeader->ip_v <<	std::endl;
+  std::cout <<	(int)ipHeader->ip_hl <<	std::endl;
+  std::cout <<	ntohs(ipHeader->tl )	<<	std::endl;
+    
 
   return;
 }
