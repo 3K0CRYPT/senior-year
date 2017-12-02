@@ -40,7 +40,7 @@ void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *
   std::cout <<	(ipHeader[2]	<<	8)	+	ipHeader[3]	<<	std::endl;
   
   
-  stuct ipHdr *	ipHeader =	(struct ipHdr *)(packet	+	14);
+  struct ipHdr *	ipHeader =	(struct ipHdr *)(packet	+	14);
   std::cout <<	(int)ipHeader->ip_v <<	std::endl;
   std::cout <<	(int)ipHeader->ip_hl <<	std::endl;
   std::cout <<	ntohs(ipHeader->tl )	<<	std::endl;
