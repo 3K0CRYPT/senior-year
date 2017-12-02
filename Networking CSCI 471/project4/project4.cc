@@ -76,10 +76,13 @@ int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
     
    // Decide if the packet is IP or ARP, then print it.
     switch (PKT_TYPE)
-    case IP: print_ip_pkt(pkt_ptr,length);
-    break;
-    case ARP: print_arp_pkt(pkt_ptr,length);
-    break;
+    case IP: 
+        // print_ip_pkt(pkt_ptr,length);
+        break;
+    case ARP: 
+        // print_arp_pkt(pkt_ptr,length);
+        cout << "ARP\n";
+        break;
     default: printf("Unknown packet type");	 
 
 return 0;
