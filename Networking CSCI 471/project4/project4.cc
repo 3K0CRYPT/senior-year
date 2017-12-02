@@ -16,6 +16,13 @@ using namespace std;
 // *  it will originate here). The function will be called once for every 
 // *  packet in the savefile.
 // ****************************************************************************
+
+struct ipHdr {
+  __u8 ip_hl:4,	ip_v:4;
+  __u8 tos;
+  __u16 tl;
+}
+
 void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *packet) {
 
   resultsC* results = (resultsC*)user;
@@ -32,11 +39,7 @@ void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *
   std::cout <<	std::hex	<<	(u_short)ipHeader[2]	<<	(u_short)ipHeader[3]	<<	std::endl;
   std::cout <<	(ipHeader[2]	<<	8)	+	ipHeader[3]	<<	std::endl;
   
-  struct ipHdr {
-    __u8 ip_hl:4,	ip_v:4;
-    __u8 tos;
-    __u16 tl;
-  }
+  
   stuct ipHdr *	ipHeader =	(struct ipHdr *)(packet	+	14);
   std::cout <<	(int)ipHeader->ip_v <<	std::endl;
   std::cout <<	(int)ipHeader->ip_hl <<	std::endl;
