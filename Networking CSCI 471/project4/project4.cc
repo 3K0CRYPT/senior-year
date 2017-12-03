@@ -95,15 +95,14 @@ void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *
   results->incrementPacketCount();
   TRACE << "Processing packet #" << results->packetCount() << ENDL;
   
-  print_ether_hdr(packet);
-  
   cout << packet[14] << endl;
   
   struct ipHdr *	ipHeader =	(struct ipHdr *)(packet	+	14);
   std::cout <<	(int)ipHeader->ip_v <<	std::endl;
   std::cout <<	(int)ipHeader->ip_hl <<	std::endl;
-  std::cout <<	ntohs(ipHeader->tl )	<<	std::endl;
-    
+  
+
+  print_ether_hdr(packet, ntohs(ipHeader->tl ));
 
   return;
 }
