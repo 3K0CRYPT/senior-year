@@ -31,8 +31,6 @@ int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
    register const unsigned short ARP=0x806;
    int i;
    
-    
-   printf("\n========New Etherenet Packet===========\n");
    printf(".........(Ethernet Header)..............\n");
     
    //Extract the Dest. MAC Address
@@ -78,10 +76,11 @@ int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
     switch (PKT_TYPE) {
     case IP:
         // print_ip_pkt(pkt_ptr,length);
+        printf("IP\n");
         break;
     case ARP:
         // print_arp_pkt(pkt_ptr,length);
-        cout << "ARP\n";
+        printf("ARP\n");
         break;
     default: printf("Unknown packet type");	 
     }
