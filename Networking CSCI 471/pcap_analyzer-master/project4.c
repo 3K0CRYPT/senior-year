@@ -1,18 +1,4 @@
-/*
- * Cameron Burwell (cburwell)
- *
- * Packet sniffing program that analyzes pcap files and dissects
- * the received packets, giving information about the various
- * protocols encountered.
- */
-
-#include "pcap_analyzer.h"
-
-/* 
- * Printing utility that takes in an array of bytes to print,
- * how many bytes there are, divisions (ex: ':' or '.'),
- * and the required format
- */
+#include "project4.h"
 void fmt_print(u_char *toPrint, int iter, char *div, char *fmt)
 {
     int i;
