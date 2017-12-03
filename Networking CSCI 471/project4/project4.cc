@@ -31,12 +31,8 @@ int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
    register const unsigned short ARP=0x806;
    int i;
    
-   printf(".........(Ethernet Header)..............\n");
-    
-   //Extract the Dest. MAC Address
-    
-     for (i=0;i<3;i++)
-      {
+   printf("----------------------------------------\n");
+     for (i=0;i<3;i++) {
        buffer=*pkt_ptr << 8;
        *pkt_ptr++;
        buffer |=*pkt_ptr;
@@ -45,11 +41,10 @@ int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
       }
         
    // Print the Dest. MAC
-   printf("Dest. MAC Addr : %04x%04x%04x\n",DST_MAC[0],DST_MAC[1],DST_MAC[2]);
+   printf("Dest. MAC Addr : %04x:%04x:%04x\n",DST_MAC[0],DST_MAC[1],DST_MAC[2]);
    //Extract the Src. MAC Address
     
-   for (i=0;i<3;i++)
-      {
+   for (i=0;i<3;i++) {
        buffer=*pkt_ptr << 8;
        *pkt_ptr++;
        buffer |=*pkt_ptr;
@@ -57,7 +52,7 @@ int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
        SRC_MAC[i]=buffer;
       }
    // Print the Src. MAC
-   printf("Source MAC Addr: %04x%04x%04x\n",SRC_MAC[0],SRC_MAC[1],SRC_MAC[2]);
+   printf("Source MAC Addr: %04x:%04x:%04x\n",SRC_MAC[0],SRC_MAC[1],SRC_MAC[2]);
     
    //Extract the Ethernet Type
    buffer=*pkt_ptr<<8;   
@@ -70,7 +65,7 @@ int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
       printf("Packet Type/Len : %04x\n",PKT_TYPE);
   //   else 
 //     printf(" Data Packet Lengeth  : %04x\n",PKT_TYPE);
-   printf("----------------------------------------\n");
+   printf("----------------------------------------\n\n");
     
    // Decide if the packet is IP or ARP, then print it.
     switch (PKT_TYPE) {
