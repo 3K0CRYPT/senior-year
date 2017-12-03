@@ -65,7 +65,6 @@ int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
       printf("Packet Type/Len : %04x\n",PKT_TYPE);
   //   else 
 //     printf(" Data Packet Lengeth  : %04x\n",PKT_TYPE);
-   printf("----------------------------------------\n\n");
     
    // Decide if the packet is IP or ARP, then print it.
     switch (PKT_TYPE) {
@@ -80,6 +79,8 @@ int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
     default: printf("Unknown packet type");	 
     }
 
+  printf("----------------------------------------\n\n");
+    
 return 0;
 };
 
