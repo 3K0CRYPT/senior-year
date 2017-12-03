@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <netinet/in.h>
-#include <netinet/in_cksum.c>
+#include "in_cksum.c"
 
 #define TYPE_ARP 0x0806
 #define TYPE_IP 0x0800
