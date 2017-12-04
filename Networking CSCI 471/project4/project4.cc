@@ -169,7 +169,8 @@ void IP(const u_char *packet) {
     results->ipv4++;
     string sip = printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");;
     string dip=printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");    
-    cout << "\r\r\r";
+    cout << "\x1b[A";
+    cout << "\x1b[A";
    results->ips[sip]=true;
    results->ips[dip]=true;
 }
