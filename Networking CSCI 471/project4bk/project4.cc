@@ -7,7 +7,7 @@
 //
 
 #include "project4.h"
-using namespace std;
+
 
 // ****************************************************************************
 // * pk_processor()
@@ -15,89 +15,11 @@ using namespace std;
 // *  it will originate here). The function will be called once for every 
 // *  packet in the savefile.
 // ****************************************************************************
-
-struct ipHdr {
-  __u8 ip_hl:4,	ip_v:4;
-  __u8 tos;
-  __u16 tl;
-};
-
-int print_ether_hdr(const unsigned char *pkt_ptr,unsigned int length) {
-   unsigned  short DST_MAC[3];
-   unsigned  short SRC_MAC[3];
-   register unsigned short  buffer=0x00;
-   register unsigned short  PKT_TYPE;
-   register const unsigned short IP=0x800;
-   register const unsigned short ARP=0x806;
-   int i;
-   
-   printf("----------------------------------------\n");
-     for (i=0;i<3;i++) {
-       buffer=*pkt_ptr << 8;
-       *pkt_ptr++;
-       buffer |=*pkt_ptr;
-       *pkt_ptr++;
-       DST_MAC[i]=buffer;
-      }
-        
-   // Print the Dest. MAC
-   printf("Dest. MAC Addr : %04x:%04x:%04x\n",DST_MAC[0],DST_MAC[1],DST_MAC[2]);
-   //Extract the Src. MAC Address
-    
-   for (i=0;i<3;i++) {
-       buffer=*pkt_ptr << 8;
-       *pkt_ptr++;
-       buffer |=*pkt_ptr;
-       *pkt_ptr++;
-       SRC_MAC[i]=buffer;
-      }
-   // Print the Src. MAC
-   printf("Source MAC Addr: %04x:%04x:%04x\n",SRC_MAC[0],SRC_MAC[1],SRC_MAC[2]);
-    
-   //Extract the Ethernet Type
-   buffer=*pkt_ptr<<8;   
-   *pkt_ptr++;
-   buffer =buffer | *pkt_ptr;
-   PKT_TYPE=buffer;
-   *pkt_ptr++;
-   // Print Ethernet packet Type.
-  // if (PKT_TYPE>0x5ee)
-      printf("Packet Type/Len : %04x\n",PKT_TYPE);
-  //   else 
-//     printf(" Data Packet Lengeth  : %04x\n",PKT_TYPE);
-    
-   // Decide if the packet is IP or ARP, then print it.
-    switch (PKT_TYPE) {
-    case IP:
-        // print_ip_pkt(pkt_ptr,length);
-        printf("IP\n");
-        break;
-    case ARP:
-        // print_arp_pkt(pkt_ptr,length);
-        printf("ARP\n");
-        break;
-    default: printf("Unknown packet type");	 
-    }
-
-  printf("----------------------------------------\n\n");
-    
-return 0;
-};
-
 void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *packet) {
 
   resultsC* results = (resultsC*)user;
   results->incrementPacketCount();
   TRACE << "Processing packet #" << results->packetCount() << ENDL;
-  
-  cout << packet[14] << endl;
-  
-  struct ipHdr *	ipHeader =	(struct ipHdr *)(packet	+	14);
-  std::cout <<	(int)ipHeader->ip_v <<	std::endl;
-  std::cout <<	(int)ipHeader->ip_hl <<	std::endl;
-  
-
-  print_ether_hdr(packet, ntohs(ipHeader->tl ));
 
   return;
 }
@@ -161,8 +83,6 @@ int main (int argc, char **argv)
   // **********************************************************************
   char errbuf[PCAP_ERRBUF_SIZE];
   pcap_t *PT;
-  struct pcap_pkthdr *header;
-  uint8_t *packet;
 
   bzero(errbuf,PCAP_ERRBUF_SIZE);
   if ((PT = pcap_open_offline(filename,errbuf)) == NULL ) {
@@ -180,7 +100,7 @@ int main (int argc, char **argv)
   // * The dispatcher will call the packet processor once for packet
   // * in the capture file.
   // **********************************************************************
-  int pk_count, stat;
+  int pk_count;
   DEBUG << "Calling dispatcher." << ENDL;
   if ((pk_count = pcap_dispatch(PT, -1, pk_processor, (u_char *)results)) < 0) {
     FATAL << "Error calling dispatcher: " << pcap_geterr(PT) << ENDL;

@@ -1,7 +1,7 @@
 #include "project4.h"
 
-unsigned short in_cksum(unsigned short *addr, int len) {
-	int				nleft = len, sum = 0;
+unsigned short chksum(unsigned short *addr, int len) {
+	int nleft = len, sum = 0;
 	unsigned short	*w = addr, answer = 0;
 	while (nleft > 1)  { sum += *w++; nleft -= 2; }
 	if (nleft == 1) { *(unsigned char *)(&answer) = *(unsigned char *)w; sum += answer; }
@@ -57,8 +57,7 @@ void udp(uint8_t *packet)
 
 /* Analyzes TCP segment of the packet and performs checksum on
  * the new packet that has the attached pseudoheader */
-void tcp(uint8_t *packet, uint8_t *_headerIP)
-{
+void tcp(uint8_t *packet, uint8_t *_headerIP) {
     headerTCP *head = (headerTCP*)packet;
     headerIP *ip = (headerIP*)_headerIP;
     uint16_t cksum, ret;
@@ -90,7 +89,7 @@ void tcp(uint8_t *packet, uint8_t *_headerIP)
     printf("\t\tChecksum: ");
     
     cksum = ntohs(head->checksum);
-    ret = in_cksum((uint16_t *)buff, sizeof(headerPsuedo) +
+    ret = chksum((uint16_t *)buff, sizeof(headerPsuedo) +
             ntohs(pseudo.tcp_len));
     if (ret == 0)
         printf("Correct ");
@@ -140,7 +139,7 @@ void ip(uint8_t *packet)
 
     printf("\t\tChecksum: ");
     cksum = ntohs(head->checksum);
-    ret = in_cksum((uint16_t*)head, sizeof(headerIP));
+    ret = chksum((uint16_t*)head, sizeof(headerIP));
     if (ret == 0)
         printf("Correct ");
     else
