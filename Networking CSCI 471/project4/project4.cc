@@ -194,7 +194,6 @@ void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet)
         IP(packet + ETHERNET_SIZE);
     }
     else printf("Unknown\n");
-    printf("\n");
 }
 ///////////////////////////////////////
 
