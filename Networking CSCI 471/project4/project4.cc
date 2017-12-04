@@ -145,8 +145,10 @@ void IP(const u_char *packet) {
     /* If ihl > 5, must take option length into account */
     if ((head->ver_ihl & IHL_MASK) > 5) addtl = (head->ver_ihl & IHL_MASK);
 
+    uint8_t *_packet = packet;
+    
     if (type == TYPE_ICMP) ICMP(packet + IP_SIZE + addtl);
-    else if (type == TYPE_TCP) TCP(packet + IP_SIZE + addtl, packet);
+    else if (type == TYPE_TCP) TCP(packet + IP_SIZE + addtl, _packet);
     else if (type == TYPE_UDP) UDP(packet + IP_SIZE + addtl);
 }
 
