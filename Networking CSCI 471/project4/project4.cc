@@ -61,7 +61,7 @@ void UDP(const u_char *packet) {
     printf("  Dest Port:  ");
     printPort(ntohs(head->portDestination));
     
-    resultsC->udp++;
+    results->udp++;
 }
 
 /* Analyzes TCP segment of the packet and performs checksum on
@@ -204,7 +204,7 @@ void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet)
 ///////////////////////////////////////
 
 void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *packet) {
-  results = (resultsC*)user
+  results = (resultsC*)user;
   results->incrementTotalPacketCount();
   TRACE << "Processing packet #" << results->packetCount() << ENDL;
   int count = results->packetCount();
