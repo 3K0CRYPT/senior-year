@@ -177,7 +177,7 @@ void ARP(const u_char *packet) {
  * to the appropraite protocol handlers */
 void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet) {
     headerETH *head = (headerETH*)packet; u_short type;
-    printf("\n[Packet #%d (Length=%d)]\n", count, header->len);
+    printf("[Packet #%d (Length=%d)]\n", count, header->len);
     printf(" Ethernet Header\n  Destination MAC: ");
     printFormat(head->source, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     printf("  Source MAC: ");
