@@ -168,10 +168,10 @@ void IP(const u_char *packet) {
     
     results->ipv4++;
     string sip = printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");;
-    string dip=printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");
-    printf("\r\r");
-  //  results->ips[sip]=true;
-  //  results->ips[dip]=true;
+    string dip=printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");    
+    cout << "\r\r\r";
+   results->ips[sip]=true;
+   results->ips[dip]=true;
 }
 
 void ARP(const u_char *packet) {
