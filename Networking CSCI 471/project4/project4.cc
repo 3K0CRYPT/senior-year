@@ -167,8 +167,8 @@ void IP(const u_char *packet) {
     else results->other++;
     
     results->ipv4++;
-    // string sip = to_string(head->s_ip);
-    // string dip=to_string(head->d_ip);
+    string sip = printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
+    string dip=printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");
   //  results->ips[sip]=true;
   //  results->ips[dip]=true;
 }
