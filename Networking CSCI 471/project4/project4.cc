@@ -105,8 +105,9 @@ void TCP(const u_char *packet, uint8_t *_headerIP) {
     printf("(0x%x)\n", cksum);
     
     results->tcp++;
-//    results->tcport[to_string(head->portSource)]=true;
-//    results->tcport[to_string(head->portDestination)]=true;
+    string sp = to_string(head->portSource), dp=to_string(head->portDestination);
+    results->udport[sp]=true;
+    results->udport[dp]=true;
 }
 
 void ICMP(const u_char *packet) {
