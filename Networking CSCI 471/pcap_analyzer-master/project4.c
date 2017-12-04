@@ -60,7 +60,7 @@ void udp(uint8_t *packet)
 void tcp(uint8_t *packet, uint8_t *IP_header)
 {
     headerTCP *head = (headerTCP*)packet;
-    IP_header *ip = (IP_header*)IP_header;
+    // IP_header *ip = (IP_header*)IP_header;
     uint16_t cksum, ret;
     headerPsuedo pseudo;
 
