@@ -85,10 +85,10 @@ class resultsC {
    unsigned int syn=0;
    unsigned int fin=0;
    unsigned int frags=0;
-   map<string, bool> macs;
-   map<string, bool> ips;
-   map<string, bool> udport;
-   map<string, bool> tcport;
+   std::map<std::string, bool> macs;
+   std::map<std::string, bool> ips;
+   std::map<std::string, bool> udport;
+   std::map<std::string, bool> tcport;
 };
 
 #endif
