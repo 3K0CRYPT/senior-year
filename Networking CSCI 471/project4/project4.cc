@@ -49,7 +49,7 @@ void printPort(uint16_t port) {
 }
 
 /* Analyzes UDP segment of the packet */
-void UDP(uint8_t *packet) {
+void UDP(u_char const *packet) {
     headerUDP *head = (headerUDP*)packet;
 
     printf("\n\tUDP Header\n");
@@ -61,7 +61,7 @@ void UDP(uint8_t *packet) {
 
 /* Analyzes TCP segment of the packet and performs checksum on
  * the new packet that has the attached pseudoheader */
-void TCP(uint8_t *packet, uint8_t *_headerIP) {
+void TCP(u_char const *packet, uint8_t *_headerIP) {
     headerTCP *head = (headerTCP*)packet;
     headerIP *ip = (headerIP*)_headerIP;
     uint16_t cksum, ret;
@@ -76,8 +76,6 @@ void TCP(uint8_t *packet, uint8_t *_headerIP) {
 
     /* Glue pseudo header to TCP header */
     auto *buff = malloc(sizeof(headerPsuedo) + ntohs(pseudo.tcp_len));
-    //project4.cc:78:27: error: invalid conversion from ‘void*’ to ‘uint8_t* {aka unsigned char*}’ [-fpermissive]
-     
     memcpy(buff, &pseudo, sizeof(headerPsuedo));
     memcpy(buff + sizeof(headerPsuedo), head, ntohs(pseudo.tcp_len));
 
@@ -102,7 +100,7 @@ void TCP(uint8_t *packet, uint8_t *_headerIP) {
 }
 
 /* Analyzes ICMP packet */
-void ICMP(uint8_t *packet) {
+void ICMP(u_char const *packet) {
     headerICMP *head = (headerICMP*)packet;
     uint8_t type;
 
@@ -115,7 +113,7 @@ void ICMP(uint8_t *packet) {
 }
 
 /* Analyze IP packet and send to appropriate protocol handler */
-void IP(uint8_t *packet) {
+void IP(u_char const *packet) {
     headerIP *head = (headerIP*)packet;
     uint16_t ret, cksum;
     int type, addtl = 0;
@@ -153,7 +151,7 @@ void IP(uint8_t *packet) {
 }
 
 /* Analyzes ARP packet */
-void ARP(uint8_t *packet) {
+void ARP(u_char const *packet) {
     headerARP *head = (headerARP*)(packet + ARP_OFFSET);
 
     printf("\tARP header\n");
@@ -176,7 +174,7 @@ void ARP(uint8_t *packet) {
 
 /* Takes in the packet off Ethernet and strips it, sending it
  * to the appropraite protocol handlers */
-void Ethernet(int count, const struct pcap_pkthdr *header, uint8_t *packet) {
+void Ethernet(int count, const struct pcap_pkthdr *header, u_char const *packet) {
     headerETH *head = (headerETH*)packet;
     u_short type;
 
@@ -205,7 +203,7 @@ void Ethernet(int count, const struct pcap_pkthdr *header, uint8_t *packet) {
 }
 ///////////////////////////////////////
 
-void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, uint8_t *packet) {
+void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, u_char const *packet) {
 
   resultsC* results = (resultsC*)user;
   results->incrementPacketCount();
