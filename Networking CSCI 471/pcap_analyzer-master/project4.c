@@ -57,10 +57,10 @@ void udp(uint8_t *packet)
 
 /* Analyzes TCP segment of the packet and performs checksum on
  * the new packet that has the attached pseudoheader */
-void tcp(uint8_t *packet, uint8_t *headerIP)
+void tcp(uint8_t *packet, uint8_t *_headerIP)
 {
     headerTCP *head = (headerTCP*)packet;
-    headerIP *ip = (headerIP*)headerIP;
+    headerIP *ip = (headerIP*)_headerIP;
     uint16_t cksum, ret;
     headerPsuedo pseudo;
 
@@ -211,11 +211,11 @@ void ethernet(int count, struct pcap_pkthdr *header, uint8_t *packet)
     if (type == TYPE_ARP) {
         printf("ARP\n\n");
         /* Pass data starting after internet header */
-        arp(packet + ETHER_SIZE);
+        arp(packet + ETHERNET_SIZE);
     }
     else if (type == TYPE_IP) {
         printf("IP\n\n");
-        ip(packet + ETHER_SIZE);
+        ip(packet + ETHERNET_SIZE);
     }
     else {
         printf("Unknown\n");
