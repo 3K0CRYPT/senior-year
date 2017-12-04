@@ -126,7 +126,6 @@ void ICMP(const u_char *packet) {
     results->icmp++;
 }
 
-/* Analyze IP packet and send to appropriate protocol handler */
 void IP(const u_char *packet) {
     headerIP *head = (headerIP*)packet;
     uint16_t ret, cksum;
@@ -147,7 +146,10 @@ void IP(const u_char *packet) {
     printf("  Checksum: ");
     cksum = ntohs(head->checksum);
     ret = chksum((uint16_t*)head, sizeof(headerIP));
-    if (ret == 0) printf("Correct ");
+    if (ret == 0) {
+      printf("Correct ");
+      results->checks++;
+    }
     else printf("Incorrect ");
     printf("(0x%x)\n", cksum);
     

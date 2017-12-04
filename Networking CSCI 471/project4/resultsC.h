@@ -84,6 +84,7 @@ class resultsC {
    unsigned int syn=0;
    unsigned int fin=0;
    unsigned int frags=0;
+   unsigned int checks=0;
    std::map<std::string, bool> macs;
    std::map<std::string, bool> ips;
    std::map<std::string, bool> udport;
