@@ -69,9 +69,24 @@ class resultsC {
 
   public:
    resultsC();
-   void incrementPacketCount() { totalPacketCount++; };
+   void incrementTotalPacketCount() { totalPacketCount++; };
    void displayResults();
    int packetCount() { return totalPacketCount; };
+   unsigned int frames=0;
+   unsigned int arp=0;
+   unsigned int ipv4=0;
+   unsigned int ipv6=0;
+   unsigned int other=0;
+   unsigned int icmp=0;
+   unsigned int udp=0;
+   unsigned int tcp=0;
+   unsigned int syn=0;
+   unsigned int fin=0;
+   unsigned int frags=0;
+   map<string, bool> macs;
+   map<string, bool> ips;
+   map<string, bool> udport;
+   map<string, bool> tcport;
 };
 
 #endif

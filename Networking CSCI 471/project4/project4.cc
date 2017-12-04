@@ -7,6 +7,7 @@
 //
 
 #include "project4.h"
+#include <map>
 using namespace std;
 
 // ****************************************************************************
@@ -18,6 +19,9 @@ using namespace std;
 
 
 /////////////////////////////////////// Helpers
+
+resultsC* results = (resultsC*)user;
+
 unsigned short chksum(unsigned short *addr, int len) {
 	int nleft = len, sum = 0;
 	unsigned short	*w = addr, answer = 0;
@@ -57,6 +61,8 @@ void UDP(const u_char *packet) {
     printPort(ntohs(head->portSource));
     printf("  Dest Port:  ");
     printPort(ntohs(head->portDestination));
+    
+    resultsC->udp++;
 }
 
 /* Analyzes TCP segment of the packet and performs checksum on
@@ -200,17 +206,13 @@ void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet)
 
 void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *packet) {
 
-  resultsC* results = (resultsC*)user;
-  results->incrementPacketCount();
+  results->incrementTotalPacketCount();
   TRACE << "Processing packet #" << results->packetCount() << ENDL;
   int count = results->packetCount();
   
   Ethernet(count, pkthdr, packet);
   cout << "----------------------------------\n";
   
-  // struct ipHdr *	ipHeader =	(struct ipHdr *)(packet	+	14);
-  // std::cout <<	(int)ipHeader->ip_v <<	std::endl;
-  // std::cout <<	(int)ipHeader->ip_hl <<	std::endl;
   
   return;
 }

@@ -24,6 +24,5 @@ resultsC::resultsC() {
 // *  collected to stdout.
 // ***************************************************************************
 void resultsC::displayResults() {
-
   std::cout << "\nA total of " << totalPacketCount << " packets processed." << std::endl;
 }
