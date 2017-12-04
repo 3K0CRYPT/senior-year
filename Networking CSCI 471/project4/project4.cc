@@ -161,8 +161,6 @@ int main (int argc, char **argv)
   // **********************************************************************
   char errbuf[PCAP_ERRBUF_SIZE];
   pcap_t *PT;
-  struct pcap_pkthdr *header;
-  uint8_t *packet;
 
   bzero(errbuf,PCAP_ERRBUF_SIZE);
   if ((PT = pcap_open_offline(filename,errbuf)) == NULL ) {
@@ -180,7 +178,7 @@ int main (int argc, char **argv)
   // * The dispatcher will call the packet processor once for packet
   // * in the capture file.
   // **********************************************************************
-  int pk_count, stat;
+  int pk_count;
   DEBUG << "Calling dispatcher." << ENDL;
   if ((pk_count = pcap_dispatch(PT, -1, pk_processor, (u_char *)results)) < 0) {
     FATAL << "Error calling dispatcher: " << pcap_geterr(PT) << ENDL;
