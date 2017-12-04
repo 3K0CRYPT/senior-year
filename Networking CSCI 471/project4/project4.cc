@@ -55,7 +55,7 @@ void UDP(const u_char *packet) {
     printf("\n UDP Header\n");
     printf("  Source Port:  ");
     printPort(ntohs(head->portSource));
-    printf("  Destination Port:  ");
+    printf("  Dest Port:  ");
     printPort(ntohs(head->portDestination));
 }
 
@@ -83,7 +83,7 @@ void TCP(const u_char *packet, uint8_t *_headerIP) {
     printf("\n TCP Header\n");
     printf("  Source Port:  ");
     printPort(ntohs(head->portSource));
-    printf("  Destination Port:  ");
+    printf("  Dest Port:  ");
     printPort(ntohs(head->portDestination));
     printf("  Sequence Number: %u\n", ntohl(head->seq));
     printf("  ACK Number: %u\n", ntohl(head->ack));
@@ -139,7 +139,7 @@ void IP(const u_char *packet) {
     printf("  Sender IP:\t");
     printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
     
-    printf("  Destination IP:\t");
+    printf("  Dest IP:\t");
     printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");
   
     /* If ihl > 5, must take option length into account */
@@ -178,9 +178,9 @@ void ARP(const u_char *packet) {
 void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet) {
     headerETH *head = (headerETH*)packet; u_short type;
     printf("[Packet #%d (Length=%d)]\n", count, header->len);
-    printf(" Ethernet Header\n  Destination MAC:\t");
+    printf(" Ethernet Header\n  Dest MAC:\t");
     printFormat(head->source, ETHERNET_ADDRESS_LENGTH, ":", "%x");
-    printf("  Source MAC:\t\t");
+    printf("  Source MAC:\t");
     printFormat(head->destination, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     printf(" Type: ");
     type = ntohs(head->type);
