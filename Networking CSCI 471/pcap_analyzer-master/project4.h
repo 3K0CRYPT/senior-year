@@ -26,26 +26,26 @@
 #define RST_MASK 0x4
 #define IHL_MASK 0xf
 
- struct headerETH {
+ typedef struct {
     uint8_t source[ETHERNET_ADDRESS_LENGTH], destination[ETHERNET_ADDRESS_LENGTH];
     uint16_t type;
-};
- struct headerARP {
+} headerETH;
+ typedef struct {
     uint8_t s_mac[ETHERNET_ADDRESS_LENGTH], s_ip[IP_ADDRESS_LENGTH], t_mac[ETHERNET_ADDRESS_LENGTH], t_ip[IP_ADDRESS_LENGTH];
     uint16_t op;
-};
- struct headerIP {
+} headerARP;
+ typedef struct {
     uint8_t ver_ihl, tos, ttl, protocol, s_ip[IP_ADDRESS_LENGTH], d_ip[IP_ADDRESS_LENGTH];
     uint16_t len, id, flags_frag, checksum;
-};
- struct headerUDP { uint16_t portSource, portDestination; };
- struct headerICMP { uint8_t type; };
- struct headerTCP {
+} headerIP;
+ typedef struct { uint16_t portSource, portDestination; } headerUDP;
+ typedef struct { uint8_t type; } headerICMP;
+ typedef struct {
     uint8_t offset, flags;
     uint16_t portSource, portDestination, win_size, checksum;
     uint32_t seq, ack;
-};
- struct headerPsuedo {
+} headerTCP;
+ typedef struct {
     uint8_t s_ip[IP_ADDRESS_LENGTH], d_ip[IP_ADDRESS_LENGTH], zeros, protocol;               
     uint16_t tcp_len;
-};
+} headerPsuedo;
