@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pcap/pcap.h>
+#include <pcap.h>
 #include "checksum.h"
 #include <string.h>
 #include <stdint.h>
 #include <netinet/in.h>
+#include "in_cksum.c"
 
 #define TYPE_ARP 0x0806
 #define TYPE_IP 0x0800
@@ -13,10 +15,10 @@
 #define TYPE_UDP 0x11
 
 #define ETHER_SIZE 14
-#define ETHERNET_ADDRESS_LENGTH 6
+#define ETHER_ADDR_LEN 6
 
 #define IP_SIZE 20
-#define IP_ADDRESS_LENGTH 4
+#define IP_ADDR_LEN 4
 
 #define ARP_SIZE 28
 #define ARP_OFFSET 6
@@ -26,26 +28,57 @@
 #define RST_MASK 0x4
 #define IHL_MASK 0xf
 
- typedef struct {
-    uint8_t source[ETHERNET_ADDRESS_LENGTH], destination[ETHERNET_ADDRESS_LENGTH];
-    uint16_t type;
-} headerETH;
- typedef struct {
-    uint8_t s_mac[ETHERNET_ADDRESS_LENGTH], s_ip[IP_ADDRESS_LENGTH], t_mac[ETHERNET_ADDRESS_LENGTH], t_ip[IP_ADDRESS_LENGTH];
-    uint16_t op;
-} headerARP;
- typedef struct {
-    uint8_t ver_ihl, tos, ttl, protocol, s_ip[IP_ADDRESS_LENGTH], d_ip[IP_ADDRESS_LENGTH];
-    uint16_t len, id, flags_frag, checksum;
-} headerIP;
- typedef struct { uint16_t portSource, portDestination; } headerUDP;
- typedef struct { uint8_t type; } headerICMP;
- typedef struct {
-    uint8_t offset, flags;
-    uint16_t portSource, portDestination, win_size, checksum;
-    uint32_t seq, ack;
-} headerTCP;
- typedef struct {
-    uint8_t s_ip[IP_ADDRESS_LENGTH], d_ip[IP_ADDRESS_LENGTH], zeros, protocol;               
-    uint16_t tcp_len;
-} headerPsuedo;
+typedef struct {
+    uint8_t src[ETHER_ADDR_LEN];     /* Source IP Address */ 
+    uint8_t dest[ETHER_ADDR_LEN];    /* Destination IP Address */
+    uint16_t type;                   /* Type */
+} Ether_Head;
+
+typedef struct {
+    uint16_t op;                    /* Operation flag (request, reply) */
+    uint8_t s_mac[ETHER_ADDR_LEN];   /* Sender Hardware Address (MAC) */
+    uint8_t s_ip[IP_ADDR_LEN];       /* Sender IP Address */
+    uint8_t t_mac[ETHER_ADDR_LEN];   /* Target Hardware Address (MAC) */
+    uint8_t t_ip[IP_ADDR_LEN];       /* Target IP Address */
+} Arp_Head;
+
+typedef struct {
+    uint8_t ver_ihl;
+    uint8_t tos;
+    uint16_t len;
+    uint16_t id;
+    uint16_t flags_frag; 
+    uint8_t ttl;
+    uint8_t protocol;
+    uint16_t checksum;
+    uint8_t s_ip[IP_ADDR_LEN];
+    uint8_t d_ip[IP_ADDR_LEN];
+} Ip_Head;
+
+typedef struct {
+    uint16_t s_port;    /* Source port */
+    uint16_t d_port;    /* Dest port */
+} Udp_Head;
+
+typedef struct {
+    uint8_t type;
+} Icmp_Head;
+
+typedef struct {
+    uint16_t s_port;                    /* Source port */
+    uint16_t d_port;                    /* Dest port */
+    uint32_t seq;                       /* Sequence number */
+    uint32_t ack;                       /* Acknowledgement number */
+    uint8_t offset;			/* Data offset, etc. */
+    uint8_t flags;
+    uint16_t win_size;                  /* Window size */
+    uint16_t checksum;
+} Tcp_Head;
+
+typedef struct {
+    uint8_t s_ip[IP_ADDR_LEN];          /* Source ip address */
+    uint8_t d_ip[IP_ADDR_LEN];          /* Destination ip address */
+    uint8_t zeros;                      
+    uint8_t protocol;               
+    uint16_t tcp_len;                   /* Length of the tcp header */
+} Pseudo_Head;
