@@ -136,10 +136,10 @@ void IP(const u_char *packet) {
     else printf("Incorrect ");
     printf("(0x%x)\n", cksum);
     
-    printf("  Sender IP: ");
+    printf("  Sender IP:\t");
     printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
     
-    printf("  Destination IP: ");
+    printf("  Destination IP:\t");
     printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");
   
     /* If ihl > 5, must take option length into account */
@@ -159,17 +159,17 @@ void ARP(const u_char *packet) {
     printf(" ARP header\n  Opcode: ");
     printf(ntohs(head->op) == 1 ? "Request\n" : "Reply\n");
     
-    printf("  Sender MAC: ");
+    printf("  Sender MAC:\t");
     printFormat(head->s_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     
-    printf("  Sender IP: ");
+    printf("  Sender IP:\t");
     printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
     
-    printf("  Target MAC: ");
+    printf("  Target MAC:\t");
     if (ntohs(head->op) == 1) printf("0:0:0:0:0:0\n");
     else printFormat(head->t_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     
-    printf("  Target IP: ");
+    printf("  Target IP:\t");
     printFormat(head->t_ip, IP_ADDRESS_LENGTH, ".", "%d");
 }
 
@@ -178,9 +178,9 @@ void ARP(const u_char *packet) {
 void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet) {
     headerETH *head = (headerETH*)packet; u_short type;
     printf("[Packet #%d (Length=%d)]\n", count, header->len);
-    printf(" Ethernet Header\n  Destination MAC: ");
+    printf(" Ethernet Header\n  Destination MAC:\t");
     printFormat(head->source, ETHERNET_ADDRESS_LENGTH, ":", "%x");
-    printf("  Source MAC: ");
+    printf("  Source MAC:\t");
     printFormat(head->destination, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     printf(" Type: ");
     type = ntohs(head->type);
