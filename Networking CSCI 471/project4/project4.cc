@@ -160,7 +160,7 @@ void IP(const u_char *packet) {
     if (type == TYPE_ICMP) ICMP(packet + IP_SIZE + addtl);
     else if (type == TYPE_TCP) TCP(packet + IP_SIZE + addtl, _packet);
     else if (type == TYPE_UDP) UDP(packet + IP_SIZE + addtl);
-    else results->other++
+    else results->other++;
     
     results->ipv4++;
 //    results->ips[to_string(head->s_ip)]=true;
