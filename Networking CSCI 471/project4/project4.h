@@ -15,9 +15,6 @@
 #include <string.h>
 #include <iostream>
 #include <pcap/pcap.h>
-#include	<iomanip>
-#include	<linux/types.h>
-#include	<netinet/ip.h>
 
 // Include files specific to this project.
 #include "resultsC.h"
