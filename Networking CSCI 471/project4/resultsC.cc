@@ -20,7 +20,7 @@ unsigned short chksum(unsigned short *addr, int len) {
 	return(answer);
 }
 
-void fmt_print(u_char *toPrint, int iter, char *div, char *fmt) {
+void printFormat(u_char *toPrint, int iter, char *div, char *fmt) {
     for (int i = 0; i < iter; i++) {
         if (i != 0) printf("%s", div);
         printf(fmt, toPrint[i]);
@@ -28,45 +28,31 @@ void fmt_print(u_char *toPrint, int iter, char *div, char *fmt) {
     printf("\n");
 }
 
-/* Printing utility for known ports */
-void print_port(uint16_t port) {
+void printPort(uint16_t port) {
     switch (port) {
-        case 80:
-            printf("HTTP\n");
-            break;
-        case 23:
-            printf("Telnet\n");
-            break;
-        case 21:
-            printf("FTP\n");
-            break;
-        case 110:
-            printf("POP3\n");
-            break;
-        case 25:
-            printf("SMTP\n");
-            break;
-        default:
-            printf("%hu\n", port);
-            break;
+        case 80: printf("HTTP\n"); break;
+        case 23: printf("Telnet\n"); break;
+        case 21: printf("FTP\n"); break;
+        case 110: printf("POP3\n"); break;
+        case 25: printf("SMTP\n"); break;
+        default: printf("%hu\n", port); break;
     }
 }
 
 /* Analyzes UDP segment of the packet */
-void udp(uint8_t *packet)
-{
+void UDP(uint8_t *packet) {
     headerUDP *head = (headerUDP*)packet;
 
     printf("\n\tUDP Header\n");
     printf("\t\tSource Port:  ");
-    print_port(ntohs(head->portSource));
+    printPort(ntohs(head->portSource));
     printf("\t\tdestination Port:  ");
-    print_port(ntohs(head->portDestination));
+    printPort(ntohs(head->portDestination));
 }
 
 /* Analyzes TCP segment of the packet and performs checksum on
  * the new packet that has the attached pseudoheader */
-void tcp(uint8_t *packet, uint8_t *_headerIP) {
+void TCP(uint8_t *packet, uint8_t *_headerIP) {
     headerTCP *head = (headerTCP*)packet;
     headerIP *ip = (headerIP*)_headerIP;
     uint16_t cksum, ret;
@@ -79,16 +65,16 @@ void tcp(uint8_t *packet, uint8_t *_headerIP) {
     pseudo.protocol = ip->protocol;
     pseudo.tcp_len = htons(ntohs(ip->len) - (ip->ver_ihl & IHL_MASK) * 4);
 
-    /* Glue pseudo header to tcp header */
+    /* Glue pseudo header to TCP header */
     uint8_t *buff = malloc(sizeof(headerPsuedo) + ntohs(pseudo.tcp_len));
     memcpy(buff, &pseudo, sizeof(headerPsuedo));
     memcpy(buff + sizeof(headerPsuedo), head, ntohs(pseudo.tcp_len));
 
     printf("\n\tTCP Header\n");
     printf("\t\tSource Port:  ");
-    print_port(ntohs(head->portSource));
+    printPort(ntohs(head->portSource));
     printf("\t\tdestination Port:  ");
-    print_port(ntohs(head->portDestination));
+    printPort(ntohs(head->portDestination));
     printf("\t\tSequence Number: %u\n", ntohl(head->seq));
     printf("\t\tACK Number: %u\n", ntohl(head->ack));
     printf("\t\tSYN Flag: %s\n", head->flags & SYN_MASK ? "Yes" : "No");
@@ -98,35 +84,27 @@ void tcp(uint8_t *packet, uint8_t *_headerIP) {
     printf("\t\tChecksum: ");
     
     cksum = ntohs(head->checksum);
-    ret = chksum((uint16_t *)buff, sizeof(headerPsuedo) +
-            ntohs(pseudo.tcp_len));
-    if (ret == 0)
-        printf("Correct ");
-    else
-        printf("Incorrect ");
+    ret = chksum((uint16_t *)buff, sizeof(headerPsuedo) + ntohs(pseudo.tcp_len));
+    if (ret == 0) printf("Correct ");
+    else printf("Incorrect ");
     printf("(0x%x)\n", cksum);
 }
 
 /* Analyzes ICMP packet */
-void icmp(uint8_t *packet)
-{
+void ICMP(uint8_t *packet) {
     headerICMP *head = (headerICMP*)packet;
     uint8_t type;
 
     printf("\n\tICMP Header\n");
     printf("\t\tType: ");
     type = head->type;
-    if (type == 0)
-        printf("Reply");
-    else if (type == 8)
-        printf("Request");
-    else
-        printf("Unknown");
+    if (type == 0) printf("Reply");
+    else if (type == 8) printf("Request");
+    else printf("Unknown");
 }
 
 /* Analyze IP packet and send to appropriate protocol handler */
-void ip(uint8_t *packet)
-{
+void IP(uint8_t *packet) {
     headerIP *head = (headerIP*)packet;
     uint16_t ret, cksum;
     int type, addtl = 0;
@@ -137,45 +115,34 @@ void ip(uint8_t *packet)
     
     printf("\t\tProtocol: ");
     type = head->protocol;
-    if (type == TYPE_ICMP)
-        printf("ICMP\n");
-    else if (type == TYPE_TCP)
-        printf("TCP\n");
-    else if (type == TYPE_UDP)
-        printf("UDP\n");
-    else
-        printf("Unknown\n");
+    if (type == TYPE_ICMP)  printf("ICMP\n");
+    else if (type == TYPE_TCP) printf("TCP\n");
+    else if (type == TYPE_UDP) printf("UDP\n");
+    else printf("Unknown\n");
 
     printf("\t\tChecksum: ");
     cksum = ntohs(head->checksum);
     ret = chksum((uint16_t*)head, sizeof(headerIP));
-    if (ret == 0)
-        printf("Correct ");
-    else
-        printf("Incorrect ");
+    if (ret == 0) printf("Correct ");
+    else printf("Incorrect ");
     printf("(0x%x)\n", cksum);
     
     printf("\t\tSender IP: ");
-    fmt_print(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
+    printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
     
     printf("\t\tdestination IP: ");
-    fmt_print(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");
+    printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");
   
     /* If ihl > 5, must take option length into account */
-    if ((head->ver_ihl & IHL_MASK) > 5)
-        addtl = (head->ver_ihl & IHL_MASK);
+    if ((head->ver_ihl & IHL_MASK) > 5) addtl = (head->ver_ihl & IHL_MASK);
 
-    if (type == TYPE_ICMP)
-        icmp(packet + IP_SIZE + addtl);
-    else if (type == TYPE_TCP)
-        tcp(packet + IP_SIZE + addtl, packet);
-    else if (type == TYPE_UDP)
-        udp(packet + IP_SIZE + addtl);
+    if (type == TYPE_ICMP) ICMP(packet + IP_SIZE + addtl);
+    else if (type == TYPE_TCP) TCP(packet + IP_SIZE + addtl, packet);
+    else if (type == TYPE_UDP) UDP(packet + IP_SIZE + addtl);
 }
 
 /* Analyzes ARP packet */
-void arp(uint8_t *packet)
-{
+void ARP(uint8_t *packet) {
     headerARP *head = (headerARP*)(packet + ARP_OFFSET);
 
     printf("\tARP header\n");
@@ -183,25 +150,22 @@ void arp(uint8_t *packet)
     printf(ntohs(head->op) == 1 ? "Request\n" : "Reply\n");
     
     printf("\t\tSender MAC: ");
-    fmt_print(head->s_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");
+    printFormat(head->s_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     
     printf("\t\tSender IP: ");
-    fmt_print(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
+    printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
     
     printf("\t\tTarget MAC: ");
-    if (ntohs(head->op) == 1)
-        printf("0:0:0:0:0:0\n");
-    else
-        fmt_print(head->t_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");
+    if (ntohs(head->op) == 1) printf("0:0:0:0:0:0\n");
+    else printFormat(head->t_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     
     printf("\t\tTarget IP: ");
-    fmt_print(head->t_ip, IP_ADDRESS_LENGTH, ".", "%d");
+    printFormat(head->t_ip, IP_ADDRESS_LENGTH, ".", "%d");
 }
 
-/* Takes in the packet off ethernet and strips it, sending it
+/* Takes in the packet off Ethernet and strips it, sending it
  * to the appropraite protocol handlers */
-void ethernet(int count, struct pcap_pkthdr *header, uint8_t *packet)
-{
+void Ethernet(int count, struct pcap_pkthdr *header, uint8_t *packet) {
     headerETH *head = (headerETH*)packet;
     u_short type;
 
@@ -209,25 +173,23 @@ void ethernet(int count, struct pcap_pkthdr *header, uint8_t *packet)
     printf("\tEthernet Header\n");
     
     printf("\t\tdestination MAC: ");
-    fmt_print(head->source, ETHERNET_ADDRESS_LENGTH, ":", "%x");
+    printFormat(head->source, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     
     printf("\t\tSource MAC: ");
-    fmt_print(head->destination, ETHERNET_ADDRESS_LENGTH, ":", "%x");
+    printFormat(head->destination, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     
     printf("\t\tType: ");
     type = ntohs(head->type);
     if (type == TYPE_ARP) {
         printf("ARP\n\n");
         /* Pass data starting after internet header */
-        arp(packet + ETHERNET_SIZE);
+        ARP(packet + ETHERNET_SIZE);
     }
     else if (type == TYPE_IP) {
         printf("IP\n\n");
-        ip(packet + ETHERNET_SIZE);
+        IP(packet + ETHERNET_SIZE);
     }
-    else {
-        printf("Unknown\n");
-    }
+    else printf("Unknown\n");
     printf("\n");
 }
 ///////////////////////////////////////

@@ -19,27 +19,14 @@ void printFormat(u_char *toPrint, int iter, char *div, char *fmt) {
     printf("\n");
 }
 
-/* Printing utility for known ports */
 void printPort(uint16_t port) {
     switch (port) {
-        case 80:
-            printf("HTTP\n");
-            break;
-        case 23:
-            printf("Telnet\n");
-            break;
-        case 21:
-            printf("FTP\n");
-            break;
-        case 110:
-            printf("POP3\n");
-            break;
-        case 25:
-            printf("SMTP\n");
-            break;
-        default:
-            printf("%hu\n", port);
-            break;
+        case 80: printf("HTTP\n"); break;
+        case 23: printf("Telnet\n"); break;
+        case 21: printf("FTP\n"); break;
+        case 110: printf("POP3\n"); break;
+        case 25: printf("SMTP\n"); break;
+        default: printf("%hu\n", port); break;
     }
 }
 
@@ -88,12 +75,9 @@ void TCP(uint8_t *packet, uint8_t *_headerIP) {
     printf("\t\tChecksum: ");
     
     cksum = ntohs(head->checksum);
-    ret = chksum((uint16_t *)buff, sizeof(headerPsuedo) +
-            ntohs(pseudo.tcp_len));
-    if (ret == 0)
-        printf("Correct ");
-    else
-        printf("Incorrect ");
+    ret = chksum((uint16_t *)buff, sizeof(headerPsuedo) + ntohs(pseudo.tcp_len));
+    if (ret == 0) printf("Correct ");
+    else printf("Incorrect ");
     printf("(0x%x)\n", cksum);
 }
 
@@ -105,12 +89,9 @@ void ICMP(uint8_t *packet) {
     printf("\n\tICMP Header\n");
     printf("\t\tType: ");
     type = head->type;
-    if (type == 0)
-        printf("Reply");
-    else if (type == 8)
-        printf("Request");
-    else
-        printf("Unknown");
+    if (type == 0) printf("Reply");
+    else if (type == 8) printf("Request");
+    else printf("Unknown");
 }
 
 /* Analyze IP packet and send to appropriate protocol handler */
@@ -166,10 +147,8 @@ void ARP(uint8_t *packet) {
     printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
     
     printf("\t\tTarget MAC: ");
-    if (ntohs(head->op) == 1)
-        printf("0:0:0:0:0:0\n");
-    else
-        printFormat(head->t_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");
+    if (ntohs(head->op) == 1) printf("0:0:0:0:0:0\n");
+    else printFormat(head->t_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");
     
     printf("\t\tTarget IP: ");
     printFormat(head->t_ip, IP_ADDRESS_LENGTH, ".", "%d");
@@ -201,9 +180,7 @@ void Ethernet(int count, struct pcap_pkthdr *header, uint8_t *packet) {
         printf("IP\n\n");
         IP(packet + ETHERNET_SIZE);
     }
-    else {
-        printf("Unknown\n");
-    }
+    else printf("Unknown\n");
     printf("\n");
 }
 
