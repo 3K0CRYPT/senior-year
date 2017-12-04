@@ -75,7 +75,7 @@ void TCP(uint8_t *packet, uint8_t *_headerIP) {
     pseudo.tcp_len = htons(ntohs(ip->len) - (ip->ver_ihl & IHL_MASK) * 4);
 
     /* Glue pseudo header to TCP header */
-    uint8_t *buff = malloc(sizeof(headerPsuedo) + ntohs(pseudo.tcp_len));
+    // uint8_t *buff = malloc(sizeof(headerPsuedo) + ntohs(pseudo.tcp_len));
     memcpy(buff, &pseudo, sizeof(headerPsuedo));
     memcpy(buff + sizeof(headerPsuedo), head, ntohs(pseudo.tcp_len));
 
