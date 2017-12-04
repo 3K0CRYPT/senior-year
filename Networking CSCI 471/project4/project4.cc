@@ -205,7 +205,7 @@ void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *
   int count = results->packetCount();
   
   Ethernet(count, pkthdr, packet);
-  cout << "------------------------------------\n";
+  cout << "----------------------------------\n";
   
   // struct ipHdr *	ipHeader =	(struct ipHdr *)(packet	+	14);
   // std::cout <<	(int)ipHeader->ip_v <<	std::endl;
