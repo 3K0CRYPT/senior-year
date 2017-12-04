@@ -24,6 +24,9 @@ resultsC::resultsC() {
 // *  collected to stdout.
 // ***************************************************************************
 void resultsC::displayResults() {
+  cout << "\x1b[A";
+  cout << "                          \n                                  \n";
+  
   std::cout << "\nA total of " << totalPacketCount << " packets processed." << std::endl;
   std::cout << "ARPs: " << arp << "\nIPv4: " << ipv4 << "\nOther types: " << other 
   << "\nICMP: "<< icmp <<"\nUDP: " << udp << "\nTCP: " << tcp << "\nSYNs: " << syn << "\nFINs: " << fin;
