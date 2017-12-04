@@ -25,6 +25,7 @@ resultsC::resultsC() {
 // ***************************************************************************
 void resultsC::displayResults() {
   std::cout << "                             \n";
+  std::cout << "                             \n";
   
   std::cout << "\nA total of " << totalPacketCount << " packets processed." << std::endl;
   std::cout << "ARPs: " << arp << "\nIPv4: " << ipv4 << "\nIPv6: " << ipv6 << "\nOther types: " << other 
