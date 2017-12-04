@@ -57,10 +57,10 @@ void udp(uint8_t *packet)
 
 /* Analyzes TCP segment of the packet and performs checksum on
  * the new packet that has the attached pseudoheader */
-void tcp(uint8_t *packet, uint8_t *headerIP)
+void tcp(uint8_t *packet, uint8_t *IP_header)
 {
     headerTCP *head = (headerTCP*)packet;
-    headerIP *ip = (headerIP*)headerIP;
+    IP_header *ip = (IP_header*)IP_header;
     uint16_t cksum, ret;
     headerPsuedo pseudo;
 
@@ -119,7 +119,7 @@ void icmp(uint8_t *packet)
 /* Analyze IP packet and send to appropriate protocol handler */
 void ip(uint8_t *packet)
 {
-    headerIP *head = (headerIP*)packet;
+    IP_header *head = (IP_header*)packet;
     uint16_t ret, cksum;
     int type, addtl = 0;
 
@@ -140,7 +140,7 @@ void ip(uint8_t *packet)
 
     printf("\t\tChecksum: ");
     cksum = ntohs(head->checksum);
-    ret = in_cksum((uint16_t*)head, sizeof(headerIP));
+    ret = in_cksum((uint16_t*)head, sizeof(IP_header));
     if (ret == 0)
         printf("Correct ");
     else

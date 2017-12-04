@@ -37,7 +37,7 @@
  typedef struct {
     uint8_t ver_ihl, tos, ttl, protocol, s_ip[IP_ADDRESS_LENGTH], d_ip[IP_ADDRESS_LENGTH];
     uint16_t len, id, flags_frag, checksum;
-} headerIP;
+} IP_header;
  typedef struct { uint16_t portSource, portDestination; } headerUDP;
  typedef struct { uint8_t type; } headerICMP;
  typedef struct {
