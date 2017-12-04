@@ -55,7 +55,7 @@ void UDP(const u_char *packet) {
     printf("\n\tUDP Header\n");
     printf("\t\tSource Port:  ");
     printPort(ntohs(head->portSource));
-    printf("\t\tdestination Port:  ");
+    printf("\t\tDestination Port:  ");
     printPort(ntohs(head->portDestination));
 }
 
@@ -82,7 +82,7 @@ void TCP(const u_char *packet, uint8_t *_headerIP) {
     printf("\n\tTCP Header\n");
     printf("\t\tSource Port:  ");
     printPort(ntohs(head->portSource));
-    printf("\t\tdestination Port:  ");
+    printf("\t\tDestination Port:  ");
     printPort(ntohs(head->portDestination));
     printf("\t\tSequence Number: %u\n", ntohl(head->seq));
     printf("\t\tACK Number: %u\n", ntohl(head->ack));
