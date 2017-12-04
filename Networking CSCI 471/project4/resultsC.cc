@@ -25,5 +25,12 @@ resultsC::resultsC() {
 // ***************************************************************************
 void resultsC::displayResults() {
   std::cout << "\nA total of " << totalPacketCount << " packets processed." << std::endl;
-  std::cout << arp << ipv4 << other << icmp << udp << tcp << syn << fin;
+  std::cout << "ARPs: " << arp << "\nIPv4: " << ipv4 << "\nOther types: " << other 
+  << "\bICMP: "<< icmp <<"\nUDP: " << udp << "\nTCP: " << tcp << "\nSYNs: " << syn << "\nFINs: " << fin;
+  int nmac=0, nip=0, nup=0, ntp=0;
+  for (auto p: macs) nmac++;
+  for (auto p: ips) nip++;
+  for (auto p: udport) nup++;
+  for (auto p: tdport) ntp++;
+  cout << "\nMACs: " << nmac << "\nIPs: " << nip << "\nUDP ports: " << nup << "\nTCP ports: " << ntp << endl;
 }
