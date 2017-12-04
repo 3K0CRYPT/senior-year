@@ -78,7 +78,7 @@ void TCP(const u_char *packet, uint8_t *_headerIP) {
     auto psuedosize = sizeof(headerPsuedo);
     auto *buff = malloc(psuedosize + ntohs(pseudo.tcp_len));
     memcpy(buff, &pseudo, psuedosize);
-    memcpy(buff + psuedosize, head, ntohs(pseudo.tcp_len));
+    memcpy(buff, head, ntohs(pseudo.tcp_len));
 
     printf("\n\tTCP Header\n");
     printf("\t\tSource Port:  ");
