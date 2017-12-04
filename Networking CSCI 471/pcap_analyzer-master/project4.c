@@ -1,18 +1,26 @@
 #include "project4.h"
-void fmt_print(u_char *toPrint, int iter, char *div, char *fmt)
-{
-    int i;
-    for (i = 0; i < iter; i++) {
-        if (i != 0)
-            printf("%s", div);
+
+unsigned short in_cksum(unsigned short *addr, int len) {
+	int				nleft = len, sum = 0;
+	unsigned short	*w = addr, answer = 0;
+	while (nleft > 1)  { sum += *w++; nleft -= 2; }
+	if (nleft == 1) { *(unsigned char *)(&answer) = *(unsigned char *)w; sum += answer; }
+	sum = (sum >> 16) + (sum & 0xffff);
+	sum += (sum >> 16);
+	answer = ~sum;
+	return(answer);
+}
+
+void fmt_print(u_char *toPrint, int iter, char *div, char *fmt) {
+    for (int i = 0; i < iter; i++) {
+        if (i != 0) printf("%s", div);
         printf(fmt, toPrint[i]);
     }
     printf("\n");
 }
 
 /* Printing utility for known ports */
-void print_port(uint16_t port)
-{
+void print_port(uint16_t port) {
     switch (port) {
         case 80:
             printf("HTTP\n");
