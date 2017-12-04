@@ -32,12 +32,15 @@ unsigned short chksum(unsigned short *addr, int len) {
 	return(answer);
 }
 
-void printFormat(u_char *toPrint, int iter, const char *div, const char *fmt) {
-    for (int i = 0; i < iter; i++) {
-        if (i != 0) printf("%s", div);
+string printFormat(u_char *toPrint, int iter, const char *div, const char *fmt) {
+  string str = "";  
+  for (int i = 0; i < iter; i++) {
+        if (i != 0) { printf("%s", div); str += div; }
         printf(fmt, toPrint[i]);
+        str += toPrint[i];
     }
     printf("\n");
+    return str;
 }
 
 void printPort(uint16_t port) {
@@ -164,7 +167,8 @@ void IP(const u_char *packet) {
     else results->other++;
     
     results->ipv4++;
-    string sip = to_string(head->s_ip), dip=to_string(head->d_ip);
+    string sip = to_string(head->s_ip);
+    string dip=to_string(head->d_ip);
    results->ips[sip]=true;
    results->ips[dip]=true;
 }
