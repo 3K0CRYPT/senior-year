@@ -195,10 +195,19 @@ void ARP(const u_char *packet) {
     printFormat(head->t_ip, IP_ADDRESS_LENGTH, ".", "%d");
     
     results->arp++;
-//    results->macs[to_string(head->s_mac)]=true;
-//    results->macs[to_string(head->t_mac)]=true;
-//    results->ips[to_string(head->s_ip)]=true;
-//    results->ips[to_string(head->t_ip)]=true;
+    
+    string sip = printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
+    string tip=printFormat(head->t_ip, IP_ADDRESS_LENGTH, ".", "%d");  
+    string smac = printFormat(head->s_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");  
+    string tmac = printFormat(head->t_mac, ETHERNET_ADDRESS_LENGTH, ":", "%x");  
+    cout << "\x1b[A";
+    cout << "\x1b[A";
+    cout << "\x1b[A";
+    cout << "\x1b[A";
+   results->ips[sip]=true;
+   results->ips[tip]=true;
+   results->macs[smac]=true;
+   results->macs[tmac]=true;
 }
 
 void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet) {
