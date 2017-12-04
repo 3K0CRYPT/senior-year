@@ -7,7 +7,6 @@
 //
 
 #include "project4.h"
-#include <map>
 using namespace std;
 
 // ****************************************************************************
@@ -20,7 +19,7 @@ using namespace std;
 
 /////////////////////////////////////// Helpers
 
-resultsC* results = (resultsC*)user;
+resultsC* results;
 
 unsigned short chksum(unsigned short *addr, int len) {
 	int nleft = len, sum = 0;
@@ -205,7 +204,7 @@ void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet)
 ///////////////////////////////////////
 
 void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *packet) {
-
+  results = (resultsC*)user
   results->incrementTotalPacketCount();
   TRACE << "Processing packet #" << results->packetCount() << ENDL;
   int count = results->packetCount();
