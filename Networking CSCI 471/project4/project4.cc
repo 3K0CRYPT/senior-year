@@ -174,7 +174,7 @@ void ARP(uint8_t *packet) {
 
 /* Takes in the packet off Ethernet and strips it, sending it
  * to the appropraite protocol handlers */
-void Ethernet(int count, struct pcap_pkthdr *header, uint8_t *packet) {
+void Ethernet(int count, struct pcap_pkthdr *header, u_char *packet) {
     headerETH *head = (headerETH*)packet;
     u_short type;
 
@@ -208,8 +208,9 @@ void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *
   resultsC* results = (resultsC*)user;
   results->incrementPacketCount();
   TRACE << "Processing packet #" << results->packetCount() << ENDL;
+  int count = results->packetCount();
   
-  Ethernet((results->packetCount()), pkthdr, packet);
+  Ethernet(count, pkthdr, packet);
   
   // struct ipHdr *	ipHeader =	(struct ipHdr *)(packet	+	14);
   // std::cout <<	(int)ipHeader->ip_v <<	std::endl;
