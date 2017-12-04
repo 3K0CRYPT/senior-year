@@ -62,8 +62,8 @@ void UDP(const u_char *packet) {
     printPort(ntohs(head->portDestination));
     
     results->udp++;
-    results->udport[head->portSource]=true;
-    results->udport[head->portDestination]=true;
+    results->udport[to_string(head->portSource)]=true;
+    results->udport[to_string(head->portDestination)]=true;
 }
 
 /* Analyzes TCP segment of the packet and performs checksum on
