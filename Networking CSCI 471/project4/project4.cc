@@ -164,8 +164,9 @@ void IP(const u_char *packet) {
     else results->other++;
     
     results->ipv4++;
-//    results->ips[to_string(head->s_ip)]=true;
-//    results->ips[to_string(head->d_ip)]=true;
+    string sip = to_string(head->s_ip), dip=to_string(head->d_ip);
+   results->ips[sip]=true;
+   results->ips[dip]=true;
 }
 
 void ARP(const u_char *packet) {
