@@ -35,14 +35,11 @@ unsigned short chksum(unsigned short *addr, int len) {
 string printFormat(u_char *toPrint, int iter, const char *div, const char *fmt) {
   string str = "";  
   for (int i = 0; i < iter; i++) {
-        if (i != 0) { 
-          // printf("%s", div);
-          str += div;
-        }
-        // printf(fmt, toPrint[i]);
+        if (i != 0) { printf("%s", div); str += div; }
+        printf(fmt, toPrint[i]);
         str += toPrint[i];
     }
-    // printf("\n");
+    printf("\n");
     return str;
 }
 
@@ -155,8 +152,7 @@ void IP(const u_char *packet) {
     printf("(0x%x)\n", cksum);
     
     printf("  Sender IP:\t");
-    printf(printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d"));
-    printf("\n");
+    printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
     
     printf("  Dest IP:\t");
     printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");
@@ -171,8 +167,9 @@ void IP(const u_char *packet) {
     else results->other++;
     
     results->ipv4++;
-    string sip = printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");
+    string sip = printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");;
     string dip=printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");
+    printf("\r\r");
   //  results->ips[sip]=true;
   //  results->ips[dip]=true;
 }
