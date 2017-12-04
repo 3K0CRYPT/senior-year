@@ -27,8 +27,8 @@ void resultsC::displayResults() {
   std::cout << "                             \n";
   
   std::cout << "\nA total of " << totalPacketCount << " packets processed." << std::endl;
-  std::cout << "ARPs: " << arp << "\nIPv4: " << ipv4 << "\nOther types: " << other 
-  << "\nICMP: "<< icmp <<"\nUDP: " << udp << "\nTCP: " << tcp << "\nSYNs: " << syn << "\nFINs: " << fin;
+  std::cout << "ARPs: " << arp << "\nIPv4: " << ipv4 << "\nIPv6: " << ipv6 << "\nOther types: " << other 
+  << "\nICMP: "<< icmp <<"\nUDP: " << udp << "\nTCP: " << tcp << "\nSYNs: " << syn << "\nFINs: " << fin << "\nFrags: " << frags;
   int nmac=0, nip=0, nup=0, ntp=0;
   for (auto p: macs) nmac++;
   for (auto p: ips) nip++;
