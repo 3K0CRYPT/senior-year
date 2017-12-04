@@ -12,7 +12,7 @@
 #define TYPE_ICMP 0x01
 #define TYPE_UDP 0x11
 
-#define ETHER_SIZE 14
+#define ETHERNET_SIZE 14
 #define ETHERNET_ADDRESS_LENGTH 6
 
 #define IP_SIZE 20
@@ -35,16 +35,8 @@
     uint16_t op;
 } headerARP;
  typedef struct {
-    uint8_t ver_ihl;
-    uint8_t tos;
-    uint16_t len;
-    uint16_t id;
-    uint16_t flags_frag; 
-    uint8_t ttl;
-    uint8_t protocol;
-    uint16_t checksum;
-    uint8_t s_ip[IP_ADDR_LEN];
-    uint8_t d_ip[IP_ADDR_LEN];
+    uint8_t ver_ihl, tos, ttl, protocol, s_ip[IP_ADDRESS_LENGTH], d_ip[IP_ADDRESS_LENGTH];
+    uint16_t len, id, flags_frag, checksum;
 } headerIP;
  typedef struct { uint16_t portSource, portDestination; } headerUDP;
  typedef struct { uint8_t type; } headerICMP;
