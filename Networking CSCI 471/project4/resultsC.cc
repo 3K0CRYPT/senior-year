@@ -32,5 +32,5 @@ void resultsC::displayResults() {
   for (auto p: ips) nip++;
   for (auto p: udport) nup++;
   for (auto p: tdport) ntp++;
-  cout << "\nMACs: " << nmac << "\nIPs: " << nip << "\nUDP ports: " << nup << "\nTCP ports: " << ntp << endl;
+  std::cout << "\nMACs: " << nmac << "\nIPs: " << nip << "\nUDP ports: " << nup << "\nTCP ports: " << ntp << std::endl;
 }
