@@ -61,8 +61,9 @@ void UDP(const u_char *packet) {
     printPort(ntohs(head->portDestination));
     
     results->udp++;
-    results->udport[to_string(head->portSource)]=true;
-    results->udport[to_string(head->portDestination)]=true;
+    string sp = to_string(head->portSource), dp=to_string(head->portDestination);
+    results->udport[sp]=true;
+    results->udport[dp]=true;
 }
 
 void TCP(const u_char *packet, uint8_t *_headerIP) {
@@ -104,8 +105,8 @@ void TCP(const u_char *packet, uint8_t *_headerIP) {
     printf("(0x%x)\n", cksum);
     
     results->tcp++;
-    results->tcport[to_string(head->portSource)]=true;
-    results->tcport[to_string(head->portDestination)]=true;
+//    results->tcport[to_string(head->portSource)]=true;
+//    results->tcport[to_string(head->portDestination)]=true;
 }
 
 void ICMP(const u_char *packet) {
@@ -162,8 +163,8 @@ void IP(const u_char *packet) {
     else results->other++
     
     results->ipv4++;
-    results->ips[to_string(head->s_ip)]=true;
-    results->ips[to_string(head->d_ip)]=true;
+//    results->ips[to_string(head->s_ip)]=true;
+//    results->ips[to_string(head->d_ip)]=true;
 }
 
 void ARP(const u_char *packet) {
@@ -186,10 +187,10 @@ void ARP(const u_char *packet) {
     printFormat(head->t_ip, IP_ADDRESS_LENGTH, ".", "%d");
     
     results->arp++;
-    results->macs[to_string(head->s_mac)]=true;
-    results->macs[to_string(head->t_mac)]=true;
-    results->ips[to_string(head->s_ip)]=true;
-    results->ips[to_string(head->t_ip)]=true;
+//    results->macs[to_string(head->s_mac)]=true;
+//    results->macs[to_string(head->t_mac)]=true;
+//    results->ips[to_string(head->s_ip)]=true;
+//    results->ips[to_string(head->t_ip)]=true;
 }
 
 void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet) {
