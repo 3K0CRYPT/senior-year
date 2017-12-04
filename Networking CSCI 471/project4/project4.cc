@@ -174,7 +174,7 @@ void ARP(uint8_t *packet) {
 
 /* Takes in the packet off Ethernet and strips it, sending it
  * to the appropraite protocol handlers */
-void Ethernet(int count, const struct pcap_pkthdr *header, u_char *packet) {
+void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet) {
     headerETH *head = (headerETH*)packet;
     u_short type;
 
