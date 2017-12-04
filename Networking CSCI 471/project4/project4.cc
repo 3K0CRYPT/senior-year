@@ -124,7 +124,7 @@ void IP(const u_char *packet) {
     
     printf("  Protocol: ");
     type = head->protocol;
-    printf(type);
+    printf("(0x%x\n) ", type);
     if (type == TYPE_ICMP)  printf("ICMP\n");
     else if (type == TYPE_TCP) printf("TCP\n");
     else if (type == TYPE_UDP) printf("UDP\n");
