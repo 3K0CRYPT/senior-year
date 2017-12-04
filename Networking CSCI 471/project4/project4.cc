@@ -29,7 +29,7 @@ unsigned short chksum(unsigned short *addr, int len) {
 	return(answer);
 }
 
-void printFormat(u_char *toPrint, int iter, const char *div, char *fmt) {
+void printFormat(u_char *toPrint, int iter, const char *div, const char *fmt) {
     for (int i = 0; i < iter; i++) {
         if (i != 0) printf("%s", div);
         printf(fmt, toPrint[i]);
