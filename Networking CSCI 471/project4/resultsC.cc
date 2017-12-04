@@ -25,4 +25,5 @@ resultsC::resultsC() {
 // ***************************************************************************
 void resultsC::displayResults() {
   std::cout << "\nA total of " << totalPacketCount << " packets processed." << std::endl;
+  std::cout << arp << ipv4 << other << icmp << udp << tcp << syn << fin;
 }

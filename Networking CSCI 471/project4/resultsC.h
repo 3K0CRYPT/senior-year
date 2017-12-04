@@ -74,7 +74,6 @@ class resultsC {
    void incrementTotalPacketCount() { totalPacketCount++; };
    void displayResults();
    int packetCount() { return totalPacketCount; };
-   unsigned int frames=0;
    unsigned int arp=0;
    unsigned int ipv4=0;
    unsigned int ipv6=0;
