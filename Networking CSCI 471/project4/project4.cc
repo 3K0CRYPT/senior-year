@@ -49,7 +49,7 @@ void printPort(uint16_t port) {
 }
 
 /* Analyzes UDP segment of the packet */
-void UDP(u_char const *packet) {
+void UDP(const u_char *packet) {
     headerUDP *head = (headerUDP*)packet;
 
     printf("\n\tUDP Header\n");
@@ -61,7 +61,7 @@ void UDP(u_char const *packet) {
 
 /* Analyzes TCP segment of the packet and performs checksum on
  * the new packet that has the attached pseudoheader */
-void TCP(u_char const *packet, uint8_t *_headerIP) {
+void TCP(const u_char *packet, uint8_t *_headerIP) {
     headerTCP *head = (headerTCP*)packet;
     headerIP *ip = (headerIP*)_headerIP;
     uint16_t cksum, ret;
@@ -100,7 +100,7 @@ void TCP(u_char const *packet, uint8_t *_headerIP) {
 }
 
 /* Analyzes ICMP packet */
-void ICMP(u_char const *packet) {
+void ICMP(const u_char *packet) {
     headerICMP *head = (headerICMP*)packet;
     uint8_t type;
 
@@ -113,7 +113,7 @@ void ICMP(u_char const *packet) {
 }
 
 /* Analyze IP packet and send to appropriate protocol handler */
-void IP(u_char const *packet) {
+void IP(const u_char *packet) {
     headerIP *head = (headerIP*)packet;
     uint16_t ret, cksum;
     int type, addtl = 0;
@@ -151,7 +151,7 @@ void IP(u_char const *packet) {
 }
 
 /* Analyzes ARP packet */
-void ARP(u_char const *packet) {
+void ARP(const u_char *packet) {
     headerARP *head = (headerARP*)(packet + ARP_OFFSET);
 
     printf("\tARP header\n");
@@ -174,7 +174,7 @@ void ARP(u_char const *packet) {
 
 /* Takes in the packet off Ethernet and strips it, sending it
  * to the appropraite protocol handlers */
-void Ethernet(int count, const struct pcap_pkthdr *header, u_char const *packet) {
+void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet) {
     headerETH *head = (headerETH*)packet;
     u_short type;
 
@@ -203,7 +203,7 @@ void Ethernet(int count, const struct pcap_pkthdr *header, u_char const *packet)
 }
 ///////////////////////////////////////
 
-void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, u_char const *packet) {
+void pk_processor(u_char *user, const struct pcap_pkthdr *pkthdr, const u_char *packet) {
 
   resultsC* results = (resultsC*)user;
   results->incrementPacketCount();
