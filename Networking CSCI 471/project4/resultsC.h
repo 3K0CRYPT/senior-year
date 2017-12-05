@@ -86,8 +86,8 @@ class resultsC {
    unsigned int fin=0;
    unsigned int frags=0;
    unsigned int checks=0;
-   std::vector<int> ipv4l = {0};
-   std::vector<int> ipv6l = {0};
+   std::vector<int> ipv4l;
+   std::vector<int> ipv6l;
    std::map<std::string, bool> macs;
    std::map<std::string, bool> ips;
    std::map<std::string, bool> udport;
