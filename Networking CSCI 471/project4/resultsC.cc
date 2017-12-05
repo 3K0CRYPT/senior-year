@@ -39,6 +39,8 @@ void resultsC::displayResults() {
     v4avg += len;
   }
   v4avg /= ipv4l.size();
-  std::cout << "ARPs: " << arp << "\nIPv4's: " << ipv4 << ", Max Length: " << v4max << ", Min Length: " << v4min << ", Avg Length: " << v4min << "\nIPv6: " << ipv6 << "\nOther types: " << other << "\nICMP: "<< icmp <<"\nUDP: " << udp << "\nTCP: " << tcp << "\nSYNs: " << syn << "\nFINs: " << fin << "\nFrags: " << frags;
+  std::cout << "ARPs: " << arp;
+  if (arp) std::cout << ", Max Length: 60, Min Length: 60, Avg Length: 60";
+  std::cout << "\nIPv4's: " << ipv4 << ", Max Length: " << v4max << ", Min Length: " << v4min << ", Avg Length: " << v4min << "\nIPv6: " << ipv6 << "\nOther types: " << other << "\nICMP: "<< icmp <<"\nUDP: " << udp << "\nTCP: " << tcp << "\nSYNs: " << syn << "\nFINs: " << fin << "\nFrags: " << frags;
   std::cout << "\nMACs: " << nmac << "\nIPs: " << nip << "\nUDP ports: " << nup << "\nTCP ports: " << ntp << "\nCorrect Checksums: " << checks << std::endl;
 }
