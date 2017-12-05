@@ -234,7 +234,7 @@ void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet)
       results->other++;
     }
     
-    results->ipv4l.push_back(header->len);
+    results->ipv4l.push_back(packet->len);
 }
 ///////////////////////////////////////
 
