@@ -50,8 +50,8 @@ void resultsC::displayResults() {
   
   std::cout << "ARPs: " << arp;
   if (arp) std::cout << ", Max Length: 60, Min Length: 60, Avg Length: 60";
-  if (ipv4l.size()) std::cout << "\nIPv4's: " << ipv4 << ", Max Length: " << v4max << ", Min Length: " << v4min << ", Avg Length: " << v4min 
-  if (ipv6l.size()) std::cout << "\nIPv6: " << ipv6 << ", Max Length: " << v6max << ", Min Length: " << v6min << ", Avg Length: " << v6min
+  if (ipv4l.size()) std::cout << "\nIPv4's: " << ipv4 << ", Max Length: " << v4max << ", Min Length: " << v4min << ", Avg Length: " << v4min;
+  if (ipv6l.size()) std::cout << "\nIPv6: " << ipv6 << ", Max Length: " << v6max << ", Min Length: " << v6min << ", Avg Length: " << v6min;
   std::cout << "\nOther types: " << other << "\nICMP: "<< icmp <<"\nUDP: " << udp << "\nTCP: " << tcp << "\nSYNs: " << syn << "\nFINs: " << fin << "\nFrags: " << frags;
   std::cout << "\nMACs: " << nmac << "\nIPs: " << nip << "\nUDP ports: " << nup << "\nTCP ports: " << ntp << "\nCorrect Checksums: " << checks << std::endl;
 }
