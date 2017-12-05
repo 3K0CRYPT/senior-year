@@ -41,13 +41,6 @@ void resultsC::displayResults() {
   }
   v4avg /= ipv4l.size();
   
-  for (int len: ipv6l) {
-    v6max = len > v6max ? len : v6max;
-    v6min = len < v6min ? len : v6min;
-    v6avg += len;
-  }
-  v6avg /= ipv6l.size();
-  
   std::cout << "ARPs: " << arp;
   if (arp) std::cout << ", Max Length: 60, Min Length: 60, Avg Length: 60";
   if (ipv4l.size()) std::cout << "\nIPv4's: " << ipv4 << ", Max Length: " << v4max << ", Min Length: " << v4min << ", Avg Length: " << v4min;
