@@ -18,6 +18,7 @@
 #include <stdint.h>
 #include <netinet/in.h>
 #include <map>
+#include <vector>
 
 
 #define TYPE_ARP 0x0806
@@ -85,6 +86,8 @@ class resultsC {
    unsigned int fin=0;
    unsigned int frags=0;
    unsigned int checks=0;
+   std::vector<int> ipv4l;
+   std::vector<int> ipv6l;
    std::map<std::string, bool> macs;
    std::map<std::string, bool> ips;
    std::map<std::string, bool> udport;

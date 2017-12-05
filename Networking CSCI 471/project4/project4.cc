@@ -233,6 +233,8 @@ void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet)
       printf("Unknown\n");
       results->other++;
     }
+    
+    results->ipv4.push_back(header->len);
 }
 ///////////////////////////////////////
 
