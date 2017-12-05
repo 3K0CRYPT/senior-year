@@ -169,6 +169,7 @@ void IP(const u_char *packet) {
     else results->other++;
     
     results->ipv4++;
+    results->ipv4l.push_back(head->len);
     string sip = printFormat(head->s_ip, IP_ADDRESS_LENGTH, ".", "%d");;
     string dip=printFormat(head->d_ip, IP_ADDRESS_LENGTH, ".", "%d");    
     cout << "\x1b[A";
@@ -234,7 +235,6 @@ void Ethernet(int count, const struct pcap_pkthdr *header, const u_char *packet)
       results->other++;
     }
     
-    results->ipv4l.push_back(packet->len);
 }
 ///////////////////////////////////////
 
