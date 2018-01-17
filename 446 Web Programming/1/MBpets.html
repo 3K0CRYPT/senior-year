@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!--
+ (1) HTML with doctype
+ (1) Title: Michael Bartlett 446 Assignment 1
+ (1) Header: "Here is a header"
+ (1) Paragraph: "Here is a paragraph"
+ (1) List: "Here is a list"
+ (4) Table: Zodiac signs
+ (1) Hyperlink: Zodiac symbols and link to wikipedia in header
+ (1) Image hyperlink: The Zodiac symbols
+ (2) alt tags: alt="Libra" etc.
+ (1) Text format: strong
+ (1) Special entity: ndash in timerange for each zodiac classification
+ (4) Nav bar: First of each type of element on the page
+ (2) Tooltips: display when hover
+ (4) Div with image + text: The fractal image with the text
+ (2) Styled div: At the bottom, gradient background
+ 
+ CSS requirements: 
+ (1) CSS file: style.css
+ (2) Comments for nav bar, tooltips, etc.
+ (5) Nav bar style. First table is on the right. I have background
+ colors for the entire nav bar and the list items. Text is 
+ centered horizontally. 
+ 
+ (3) Tooltips style. Grey background, blue text, rounded corners
+ 
+ (4) Table style: outside: green dashed 3px, header: gradient bg, rows: double red 1px
+ 
+ (2) Div with image/text. Floated right. 
+ 
+ Font options (at least 4) 
+ 1) h1 sans-serif
+ 2) p serif
+ 3) navbar monospace and small caps
+ 4) "Differently" styled div different sans-serif 
+ 
+ (2) Differently styled div. gradient bg, white color, centered text.
+ 
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Michael Bartlett 446 Assignment 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <ul id="menu">
+        <li>
+            <a href="#header" class="tooltip">First Header on Page
+                <span class="tooltipcontent">Go to the first header that appears in this document.</span>
+            </a>
+        </li>
+        <li>
+            <a href="#paragraph" class="tooltip">First Paragraph on Page
+                <span class="tooltipcontent">Go to the first paragraph that appears in this document.</span>
+                </a>
+        </li>
+        <li>
+            <a href="#list" class="tooltip">First List on Page
+                    <span class="tooltipcontent">Go to the first list that appears in this document.</span>
+            </a>
+        </li>
+        <li>
+            <a href="#table" class="tooltip" id="right">First Table on Page
+                    <span class="tooltipcontent">Go to the first table that appears in this document.</span>
+            </a>
+        </li>
+    </ul>
+    <h1 id="header">Here is a header</h1>
+    <p id="header">Here is a paragraph.</p>
+    <ul id="list">
+        Here's a list
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <table id="header" border="0" cellspacing="0" cellpadding="0">
+        <colgroup>
+            <col />
+            <col />
+            <col />
+        </colgroup>
+        <tbody>
+            <th colspan="3">
+                An <strong>interesting</strong> table of <a href="https://en.wikipedia.org/wiki/Zodiac">Zodiac trivia</a>
+            </th>
+            <tr id="Libra">
+                <td>Libra</td>
+                <td>24 September&ndash;23 October</td>
+                <td>
+                    <table cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="https://en.wikipedia.org/wiki/File:Libra.svg"><img title="Libra" src="images/libra.png" alt="Libra" border="0" /></a>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>Capricorn</td>
+                <td>&nbsp;22 December&ndash;20 January</td>
+                <td>
+                    <table cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="https://en.wikipedia.org/wiki/File:Capricorn.svg"><img title="Capricornus" src="images/capricorn.png" alt="Capricornus" border="0" /></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>Scorpio</td>
+                <td>24 October&ndash;22 November</td>
+                <td>
+                    <table cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="https://en.wikipedia.org/wiki/File:Scorpio.svg"><img title="Scorpio" src="images/scorpio.png" alt="Scorpio" border="0" /></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <h3>Here is a div with text and an image!</h3>
+        <img src="http://fractalfoundation.org/wp-content/uploads/2016/03/Fractalflower-copy.jpeg" alt="mandelbrot fractal">
+    </div>
+
+    <div id="alternative">
+        <h3>Here is a div with alternative styling!</h3>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+body {
+    background: #dcdcdc;
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+    font-family: 'Times New Roman', Times, serif
+}
+
+/* Here's the CSS that styles the navbar */
+ul#menu li {
+    display: inline;
+    margin: 4px;
+    border: solid 1px black;
+    text-align: center;
+    font-family: Courier New, Courier, monospace;
+    font-variant: small-caps;
+}
+
+ul#menu li a {
+    color: #0099dd;
+    text-decoration: none;
+}
+
+ul#menu {
+    border-bottom: solid 1px black;
+    background-color: #f3e3e3;
+}
+
+#list {
+    border: 2px dotted cyan;
+    margin: auto;
+    width: 25%;
+}
+
+/* Arbitrarily right-floated element in navbar */
+#right {
+    float: right;
+}
+
+table {
+    float: left;
+    border: 3px dashed #00dd77;
+    
+}
+
+th {
+    background: linear-gradient(45deg,#00dd88, #0088dd);
+}
+
+td {
+    border: 1px double red;
+}
+
+div {
+    width: 75%;
+    border: solid 1px black;
+    float: right;
+}
+
+img {
+    width: inherit;
+}
+
+/* The "differently" styled div CSS */
+
+#alternative {
+    background: linear-gradient(45deg, red, blue);
+    color: white;
+    text-align: center;
+    float: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+/* Here's the CSS for the tooltips */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltipcontent {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #0099ff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip:hover .tooltipcontent {
+    visibility: visible;
+    opacity: 1;
+}
