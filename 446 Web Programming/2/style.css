@@ -1,0 +1,143 @@
+body {
+    background: #83c9ff;
+    text-align: center;
+    height: 100%;
+}
+
+input[type=submit], input[type=reset], button {
+    padding: 0.5em 1em;
+    font-size: 110%;
+    background-color: #0099ff;
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 13px 3px darkslategrey;
+    color: rgb(204, 200, 200);
+    cursor: pointer;
+    transition: 0.33s;
+}
+
+input[type=submit]:hover, input[type=reset]:hover, button:hover {
+    background-color: #ff9900;
+    box-shadow: inset 2px 2px 13px 3px crimson;
+    color: black;
+}
+
+fieldset {
+    margin: auto;
+    width: fit-content;
+    display: block;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+article {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#nav {
+    background: linear-gradient(0deg, #922ce0 0%,#128ae5 100%); 
+    padding: 10px;
+}
+
+#left {
+    background: linear-gradient(180deg, #922ce0 0%,#128ae5 100%);
+    color: white;
+}
+
+#right {
+    background: linear-gradient(180deg, #922ce0 0%,#128ae5 100%);
+    color: white;
+}
+
+#bottom {
+    background: linear-gradient(0deg, #922ce0 0%,#128ae5 100%);
+    color: white;
+}
+
+ #motto, #motto * {
+     text-justify: right;
+     text-align: right;
+     padding: 2px;
+     font-family: 'Courier New', Courier, monospace;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+ #charter {
+    border: 12px double #FF9900;
+    border-radius: 10px;
+ }
+ 
+ #talents {
+     align-items: center;
+ }
+ 
+ .row {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-around;
+ }
+ 
+ .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+ 
+
+ textarea {
+     flex-wrap: wrap-reverse;
+     overflow-y: scroll
+ }
+ 
+ section {
+     width: inherit;
+ }
+ 
+ #class, #talents {
+    text-transform: capitalize;
+ }
+ 
+ img {
+     object-fit: contain;
+     margin: 2em 0;
+     max-width:25%;
+max-height:25%;
+
+ }
+ 
+/* Here's the CSS for the tooltips */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltipcontent {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #0099ff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip:hover .tooltipcontent {
+    visibility: visible;
+    opacity: 1;
+}

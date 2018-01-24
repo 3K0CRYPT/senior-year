@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!--
+HTML
+(3) Nav bar: Account and Logout, Motto floated to right
+
+Sections
+(4) Middle area (left, middle, right)
+(2) Bottom area: 3 thematic images
+
+Form requirements (middle section)
+(4) First/Last name: Malcior Goblinheart, 15
+(4) Two new input types: Birthday(date) and Skin tone (color)
+(3) Radio buttons for race
+(3) Checkboxes for special charactertistics
+(2) Fieldsets used to segregation information into categories
+(2) Dropdown for Class, A hidden option with instructions is selected to let the user know to pick an option.
+(1) Multiple item dropbox for talents
+(2) Text area for character manifesto, default is a letter for default character's backstory.
+(1) Submit with no action 
+(1) Reset buttons - does reset
+
+CSS
+(3) Flex honestly everywhere, anything that's a .row or .col
+
+(4) justify-content options: 
+Also everywhere, everything that's centered was done so with justify-content.
+Talents has align-items
+
+(2) Variety of row and column flex-directions used throughout
+
+(2) Flex-wrap with overflow-y scroll used for manifesto
+
+(3) Nav buttons transition from blue to orange
+(1) Nav buttons have cursor pointer
+(1) Buttons are blue with white outline
+(2) Motto is right justified
+(1) Motto has padding and bold white letters
+
+(2) Images are styled with rounded borders and red background
+Used object-fit: contain to maintain aspect ratio
+
+(5) Basic CSS used (at least 5):
+background-color
+color
+border
+border-radius
+padding
+margin
+text-align
+text-decoration
+font-weight
+font-family
+font-size
+height
+width
+position
+display
+
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Michael Bartlett 446 Assignment 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="nav">
+        <h2 id="motto">A Land of Magic and Whimiscality!</h2>
+        <div class="row">
+            <button>Account</button>
+            <button>Logout</button>
+        </div>
+    </div>
+    <article class="row" style="justify-content: stretch;">
+        <section class="col" id="left">
+            <p style="padding: 10px;">Welcome to the character creation screen! Fill in your character's details here.</p>
+        </section>
+        <section id="charter" class="row">
+            <div>            </div>
+            <form action="">
+                <fieldset>
+                    <legend>Character Charter</legend>
+                    <!-- Use a fieldset with legend to group items -->
+                    <!-- { -->
+                    <fieldset>
+                        <!-- } -->
+                        <legend>Bureaucratics</legend>
+                        <!-- First and last name, specify default value and size -->
+                        <!-- { -->
+                        <div class="row">
+                            <div class="col">
+                                <label for="first">First Name</label>
+                                <input type="text" name="first" id="first" value="Malcior" size="15">
+                            </div>
+                            <div class="col">
+                                <label for="last">Last Name</label>
+                                <input type="text" name="last" id="last" value="Goblinheart" size="15">
+                            </div>
+                        </div>
+                        <!-- } -->
+
+                        <!-- At least two HTML5 input types. -->
+                        <!-- { -->
+                        <div class="row">
+                            <div class="col">
+                                <label for="bday">Birthday</label>
+                                <input type="date" name="bday" id="bday">
+                            </div>
+                            <div class="col">
+                                <label for="skin">Skin Tone</label>
+                                <input type="color" name="skin" id="skin" value="#11cc44">
+                            </div>
+                        </div>
+                        <!-- } -->
+
+                        <fieldset>
+                            <legend>Race</legend>
+                            <!-- Radio buttons with clickable labels. -->
+                            <!-- { -->
+                            <label for="troll">Troll</label>
+                            <input type="radio" name="troll" id="troll" checked>
+                            <label for="lizardman">Lizardman</label>
+                            <input type="radio" name="lizardman" id="lizardman">
+                            <label for="human">Human</label>
+                            <input type="radio" name="human" id="human">
+                            <!-- } -->
+                        </fieldset>
+                        <div>
+                            <label for="undead">Undead</label>
+                            <input type="checkbox" name="undead" id="undead">
+                            <label for="robot">Robot</label>
+                            <input type="checkbox" name="robot" id="robot">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="attributes">
+                        <legend>Attributes</legend>
+                        <div class="row">
+                            <div class="col">
+                                <label for="class">Class</label>
+                                <!-- A dropdown (select) box, with one item selected -->
+                                <!-- { -->
+                                <select name="class" id="class">
+                            <option value="" disabled selected hidden>Select class</option>
+                            <option value="mage">mage</option>
+                            <option value="warrior">warrior</option>
+                            <option value="bard">bard</option>
+                            <option value="priest">priest</option>
+                            <option value="thief">thief</option>
+                        </select>
+                                <!-- } -->
+                            </div>
+                            <div class="col">
+                                <label for="talents">Talents</label>
+                                <!-- A dropbox that allows multiple items to be selected -->
+                                <!-- { -->
+                                <select multiple name="talents" id="talents">
+                            <option value="archery">archery</option>
+                            <option value="lockpicking">lockpicking</option>
+                            <option value="athletics">athletics</option>
+                            <option value="fisticuffs">fisticuffs</option>
+                            <option value="swordplay">swordplay</option>
+                            <option value="clairvoyance">clairvoyance</option>
+                            <option value="charisma">charisma</option>
+                        </select>
+                                <!-- } -->
+                            </div>
+                        </div>
+                        <div>
+                            <fieldset>
+                                <legend>Manifesto</legend>
+                                <textarea name="manifesto" id="manifesto" cols="50" rows="5">To my loved ones,
+
+I feel an inexplicable calling in my heart. It cries out for exploration. I will be gone by the time you read this. I do not know when I'll return. Please pray for me in my travels.
+
+Yours,
+
+Malcior</textarea>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                </fieldset>
+                <div>
+                    <input type="submit" value="Save">
+                    <input type="reset" value="Reset">
+                </div>
+            </form>
+            <div>            </div>
+
+        </section>
+        <section class="col" id="right">
+            <p style="padding: 10px;">When finished, click save to finalize your character!</p>
+        </section>
+    </article>
+    <article class="col" id="bottom">
+        <div class="row">
+            <img src="images/2.png" alt="unicorn">
+            <img src="images/3.png" alt="unicorn">
+            <img src="images/4.png" alt="unicorn">
+        </div>
+    </article>
+</body>
+
+</html>
