@@ -25,7 +25,7 @@ static int usage(const char *message)
        << "usage: find_route <filename> <origin> <destination>\n";
   return 1;
 }
-w
+
 int main(int argc, char *argv[])
 {
   if (argc != 4)
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
       {
         // cout << "We found it! " << neighbor.first << " = " << destination << endl;
         path[neighbor.first] = make_pair(city.first, neighbor.second);
-        
+
        //Retrace path
         int total_cost = 0;
         vector<pair<string, int>> inverted;

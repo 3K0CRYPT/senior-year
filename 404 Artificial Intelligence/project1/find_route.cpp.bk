@@ -25,7 +25,7 @@ static int usage(const char *message)
        << "usage: find_route <filename> <origin> <destination>\n";
   return 1;
 }
-w
+
 int main(int argc, char *argv[])
 {
   if (argc != 4)
