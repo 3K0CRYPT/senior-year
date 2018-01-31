@@ -1,4 +1,4 @@
-CXX = "C:\Program Files (x86)\Dev-Cpp\MinGW64\bin\g++.exe"
+CXX=g++
 SOURCE=$(wildcard *.cpp)
 OBJECT=$(SOURCE:.cpp=.o)
 BINARY=$(SOURCE:.cpp=)
