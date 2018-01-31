@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     var highlightPlayer;
     (highlightPlayer = function() { //Highlight's the turn of the current player
-        headers[playerOneTurn ? 0 : 1].style.border = "1vh dashed #FFFF00"
+        headers[playerOneTurn ? 0 : 1].style.border = "1vh dashed #00FF00"
         headers[playerOneTurn ? 1 : 0].style.border = "none"
     })()
 
