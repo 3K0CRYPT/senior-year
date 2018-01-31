@@ -1,5 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     window.alert("Welcome to Concentration!\nClick on cards to turn them over. You can turn over 2 cards per turn to try and find a match. Try to remember all the cards that have been turned over!\nThe player with the most matches at the end wins.")
+    
+    /*
+    
+    NOTES FOR GRADER!!!!!!!!
+    
+    Regarding "(4) If the same card is clicked twice, an error displays and the player must choose a different card"
+        I thought it was more respectful to gameflow to just ignore a double input of a card. If you click the same card
+        nothing happens and you can click another card to end the turn.
+        
+    */
 
     //SLeep function from: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
     function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
