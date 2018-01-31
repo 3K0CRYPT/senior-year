@@ -27,3 +27,7 @@ Manchester Birmingham 84
 Birmingham Bristol 85
 Birmingham London 117
 END OF INPUT
+
+./find_route input1.txt Bremen Dresden
+
+//solution = bremen -> hannover -> madeburg -> berlin -> dresden
