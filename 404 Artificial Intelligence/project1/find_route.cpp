@@ -47,14 +47,22 @@ int main(int argc, char *argv[]) {
   }
   file.close();
 
+  //Trivial and/or error checks
   if (input.find(origin) == input.end()) return usage(("City \"" + origin + "\" not present in input file.").c_str());
   if (input.find(destination) == input.end()) return usage(("City \"" + destination + "\" not present in input file.").c_str());
+  if (origin == destination) {
+    cout << "distance: 0 km\nroute:\n" << origin << " to " << origin << ", 0 km\n";
+    return 0;
+  }
 
   map<string, int> visited;             //Keep track of minimum cost to a city
   map<string, pair<string, int>> path;  //Keep track of the path between 2 cities
   pq q;                                 //The priority queue
 
-  q.emplace(make_pair(origin, 0));      //Initialize with origin
+  q.emplace(make_pair(origin, 0));      //Initialize with origin; just itself is always lowest cost
+
+  unsigned int total_cost = 4294967295;   //Effectively infinity;
+  
 
   //The magic!
   while (!q.empty())  {
@@ -62,8 +70,8 @@ int main(int argc, char *argv[]) {
     q.pop();
     for (auto neighbor : input[city.first])    {
       int cost_so_far = neighbor.second + city.second;
+      if (neighbor.first == destination && cost_so_far < total_cost) total_cost = cost_so_far;
       auto it = visited.find(neighbor.first);
-
       if (it == visited.end() || it->second > cost_so_far)      {
         //Either we haven't visited this neighbor, or we found a better route to it
         q.emplace(make_pair(neighbor.first, cost_so_far));
@@ -72,28 +80,24 @@ int main(int argc, char *argv[]) {
       }
     }
   }
-
-  if (visited.find(destination) == visited.end())  { //We didn't find a route :(
+  
+  if (total_cost == 4294967295) { //We didn't find a route
     cout << "distance: infinity\nroute:\nnone\n";
-    return 1;
+    return 0;
   }
 
   //Retrace path
-  int total_cost = 0;
   vector<string> inverted = {destination};
 
   auto current = path[destination];
 
   while (current.first != origin)  {
-    total_cost += current.second;
     inverted.push_back(current.first);
     current = path[current.first];
   }
   inverted.push_back(origin);
   
-  total_cost += input[inverted[inverted.size()-1]][inverted[inverted.size()-2]];
-  
-  cout << "distance: " << total_cost << "km\nroute:\n";
+  cout << "distance: " << total_cost << " km\nroute:\n";
 
   for (int i = inverted.size() - 1; i > 0; i--)  cout << inverted[i] << " to " << inverted[i-1] << ", " << input[inverted[i]][inverted[i-1]] << " km\n";
 
