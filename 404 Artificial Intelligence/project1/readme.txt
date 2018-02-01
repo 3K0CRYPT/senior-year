@@ -14,6 +14,6 @@ IF THE MAKEFILE FAILS: Using g++, run in a teriminal in the directory:
 	g++ -std=c++14 find_route.cpp -o find_route
 
 To execute the resulting binary in terminal:
-	./find_route.exe input1.txt Bremen Frankfurt
+	./find_route input1.txt Bremen Frankfurt
 
 ***I've included an .exe compiled on x64 Windows 10 if all else fails.
