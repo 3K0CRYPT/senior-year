@@ -17,3 +17,4 @@ To execute the resulting binary in terminal:
 	./find_route input1.txt Bremen Frankfurt
 
 ***I've included an .exe compiled on x64 Windows 10 if all else fails.
+If all this fails, shoot me an e-mail at mbartlet@mines.edu and I can give more specific instructions
