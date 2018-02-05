@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Unit 4</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+    
+    var squares = [
+        { theColor: "#00FFFF", theName: "Aqua" },
+        { theColor: "#0000FF", theName: "Blue" },
+        { theColor: "#FF7F50", theName: "Coral" },
+        { theColor: "#DC143C", theName: "Crimson" },
+        { theColor: "#8B008B", theName: "Dark Magenta" },
+        { theColor: "#FF00FF", theName: "Fuchsia" },
+        { theColor: "#FFD700", theName: "Gold" },
+        { theColor: "#20B2AA", theName: "Light Sea Green" }
+    ]
+    
+    var cycle = (function(n) { //Cycle through card colorations with loop-back
+        return function() { 
+            n++;
+            if (n >= squares.length) { n = 0 };
+            return squares[n];
+        }
+    }(-1));
+    
+    function randomHex() {  //Get random BG color
+        return '#'+Math.floor(Math.random()*16777215).toString(16)
+    }
+    
+class Subcard extends React.Component {
+    render() {
+        return <div style={{
+            background: this.props.bg,
+            padding: "10px",
+            boxShadow: "3px 3px 5px 3px #222",
+            color: "#FFF",
+            fontSize: "18px",
+            fontFamily: "sans-serif",
+            textAlign: "center"
+        }}>{this.props.children}</div>
+    }   
+}
+
+class Card extends React.Component {
+    render() {
+        var bg = [cycle(), cycle()]
+        return(
+            <div style={
+                {
+                    backgroundColor: this.props.bg,
+                    color: "#FFF",
+                    borderRadius: "1vh",
+                    padding: "1vh",
+                    margin: "1vw",
+                    width: "8vw",
+                    height: "10vw",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                    textAlign: "center",
+                    alignSelf: "center",
+                    boxShadow: "5px 5px 10px 3px #222"
+                }
+            }>
+                <Subcard bg={this.props.col1.theColor}>{this.props.col1.theName}</Subcard>
+                <Subcard bg={this.props.col2.theColor}>{this.props.col2.theName}</Subcard>
+                <button style={{
+                    backgroundColor: "#a98888",
+                    fontWeight: "bold",
+                    margin: "0px 20px"
+                }}>Pick us!</button>   
+            </div>
+            )
+    }
+}
+ 
+ReactDOM.render(
+<div style={{
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around"
+}}>    
+    <Card bg={randomHex()} col1={cycle()} col2={cycle()}/>
+    <Card bg={randomHex()} col1={cycle()} col2={cycle()}/>
+    <Card bg={randomHex()} col1={cycle()} col2={cycle()}/>
+    <Card bg={randomHex()} col1={cycle()} col2={cycle()}/>
+</div>,
+  document.querySelector("#container")
+); 
+    </script>
+</body>
+
+</html>
