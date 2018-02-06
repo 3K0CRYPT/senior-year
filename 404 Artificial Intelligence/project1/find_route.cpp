@@ -11,7 +11,7 @@ using namespace std;
 class ComparisonClass {
  public:
   bool operator()(pair<string, int> a, pair<string, int> b) {
-    return a.second < b.second;
+    return a.second > b.second;
   }
 };
 
@@ -21,8 +21,7 @@ typedef priority_queue<pair<string, int>, vector<pair<string, int>>, ComparisonC
 
 // Error message for when improper arguments are given.
 static int usage(const char* message) {
-  cerr << message << endl
-       << "usage: find_route <filename> <origin> <destination>\n";
+  cerr << message << endl << "usage: find_route <filename> <origin> <destination>\n";
   return 1;
 }
 
@@ -30,9 +29,7 @@ static int usage(const char* message) {
 int main(int argc, char* argv[]) {
   // Gather inputs to the function and make sure they're in a valid format
   if (argc != 4) return usage("Improper argument format.");
-  string s = argv[1];
-  string origin = argv[2];
-  string destination = argv[3];
+  string s = argv[1], origin = argv[2], destination = argv[3];
   ifstream file;
   file.open(argv[1]);
   if (!file) return usage(("Unable to open \"" + s + '"').c_str());
@@ -74,9 +71,12 @@ int main(int argc, char* argv[]) {
   while (!q.empty()) {
     auto city = q.top();  //dequeue
     q.pop();
+    if (city.first == destination) {  //If we popped our destination from the queue, we found the optimal path!
+      total_cost = city.second;
+      break;
+    }
     for (auto neighbor : input[city.first]) {
       int cost_so_far = neighbor.second + city.second;  // This is the cost that will be enqueued and sorted by priority
-      if (neighbor.first == destination && cost_so_far < total_cost) total_cost = cost_so_far; // Update cost to target if its smaller
       auto it = visited.find(neighbor.first);
       if (it == visited.end() || it->second > cost_so_far) {
         // Either we haven't visited this neighbor, or we found a better route to it
