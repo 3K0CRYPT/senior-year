@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Unit 5</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+    
+    var ascii = `⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⢀⣤⣤⣤⣤⣀⡀⢀⣠⣤⣤⣤⣀
+⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⣰⡿⠟⠛⠛⠻⢿⣷⡿⠟⠛⠛⠻⣿⣧
+⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡟⡀⡀⡀⡀⡀⡀⠉⡀⡀⡀⡀⡀⠈⢻
+⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⣧⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡜
+⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⠘⢷⣤⡀⡀⡀⡀⡀⡀⡀⡀⡀⣠⡾⠁
+⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⣠⣴⣾⣦⡀⡀⡀⡀⠈⠛⢿⣷⣄⡀⡀⡀⢀⣴⡿⠋⡀⡀⡀⣀⣴⣶⣦⣄⡀⡀⡀⡀⡀⡀⡀⡀⢀⣠⣤⣤⣄⣀
+⡀⡀⡀⡀⡀⣀⣀⣀⣀⣀⣀⣀⡀⡀⡀⡀⡀⡀⢰⣿⣿⣿⣿⣿⣿⣷⣄⡀⡀⡀⡀⠈⠻⣷⡄⣰⠟⠋⡀⡀⡀⢀⣾⣿⣿⣿⣿⠟⢻⣷⣦⣀⡀⣠⣴⣾⠿⠿⣵⣿⣿⣿⣿⣷⣶⣤⣄⣀⡀
+⡀⢀⣠⣶⣿⣿⣿⡿⠋⠁⠙⢿⣿⣿⣶⣤⣀⡀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⡀⡀⡀⡀⢘⣿⠃⡀⡀⡀⡀⢠⣿⣿⣿⡿⠋⡀⡀⠘⣿⣿⣿⣿⣿⣿⡏⡀⡀⡀⠉⠛⠿⣿⣿⣿⣿⣿⣿⡿⠋
+⠶⢿⣿⣿⣿⠟⠁⡀⡀⡀⡀⡀⠙⢿⣿⣿⣿⣿⣶⣿⣿⣿⣿⠏⠛⢿⣿⣿⣿⣷⣤⣀⣀⣠⣿⣆⡀⡀⢀⣴⣿⣿⡿⠋⡀⡀⡀⡀⡀⢻⣿⣿⣿⣿⡿⡀⡀⡀⡀⡀⡀⡀⡀⡀⠉⠙⠛⠋
+⡀⡀⡀⠉⠁⡀⡀⡀⡀⡀⡀⡀⡀⡀⠙⠿⣿⣿⣿⣿⡿⠛⠁⡀⡀⡀⠉⠻⢿⣿⣿⣿⡿⠋⡀⠙⠿⠿⡿⠿⠟⠋⡀⡀⡀⡀⡀⡀⡀⠘⠿⠿⠿⠿⠇
+⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⠉⠛⠁⡀⡀⡀⡀⡀⡀⡀⡀⡀⠈`
+
+var foregroundColors = ["#00FFFF","#FF7F50","#FFD700", "#FFF", "#000"];
+var backgroundColors = ["#0000FF","#DC143C","#20B2AA", "#FFF", "#000"];
+
+var getFore = (function(n) { //Cycle through card colorations with loop-back
+    return function() { 
+        n++;
+        if (n >= foregroundColors.length) { n = 0 };
+        return foregroundColors[n];
+    }
+}(-1));
+
+var getBack = (function(n) { //Cycle through card colorations with loop-back
+    return function() { 
+        n++;
+        if (n >= backgroundColors.length) { n = 0 };
+        return backgroundColors[n];
+    }
+}(-1));
+    
+function randomHex() { return '#'+Math.floor(Math.random()*16777215).toString(16) }
+    
+class Card extends React.Component {
+    render() {
+        return(
+            <div style={
+                {
+                    backgroundColor: "#Faa",
+                    borderRadius: "1vh",
+                    padding: "1vh",
+                    margin: "1vw",
+                    width: "90%",
+                    display: "flex",
+                    flexDirection: "row-reverse",
+                    justifyContent: "space-around",
+                    textAlign: "center",
+                    alignSelf: "center",
+                    boxShadow: "5px 5px 10px 3px #222"
+                }
+            }>
+                <Input></Input>
+                <Output></Output>
+            </div>
+            )
+    }
+}
+ 
+
+class Output extends React.Component {
+    render() {
+        return <div style={{
+            background: "#F0F",
+            padding: "10px",
+            fontSize: "18px",
+            fontFamily: "sans-serif",
+            textAlign: "center"
+        }}>{this.props.children}</div>
+    }   
+}
+
+class Input extends React.Component {
+    fieldStyle = {
+            justifyContent: "space-around",
+        }
+        divStyle = {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            justifyItems: "space-around",
+            width: "fit-content",
+        }
+    render() {
+        return(
+        <div>
+            <div>
+                <label>To:</label>
+                <input type="text" name="to" id="to"/>
+            </div>
+            <div>
+                <label>From:</label>
+                <input type="text" name="from" id="from"/>
+            </div>
+            <fieldset style={this.fieldStyle}>
+                <legend>Foreground</legend>
+                <div style={this.divStyle}>
+                <ButtonFG></ButtonFG>
+                <ButtonFG></ButtonFG>
+                <ButtonFG></ButtonFG>
+                <ButtonFG></ButtonFG>
+                <ButtonFG></ButtonFG>
+                </div>
+            </fieldset>
+            <fieldset style={this.fieldStyle}>
+                <legend>Background</legend>
+                <div style={this.divStyle}>
+                <ButtonBG></ButtonBG>
+                <ButtonBG></ButtonBG>
+                <ButtonBG></ButtonBG>
+                <ButtonBG></ButtonBG>
+                <ButtonBG></ButtonBG>
+                </div>
+            </fieldset>
+        </div>
+        )
+    }   
+}
+
+class ColorButton extends React.Component {
+    emitUpdate() { console.log("I have been clicked!") }
+    getBG() { console.log("unspecified!"); return "#FF0";}
+    render() {
+        return(
+            <div style={
+                {
+                    backgroundColor: this.getBG(),
+                    color: "#FFF",
+                    width: "5vw",
+                    border: "1px solid black",
+                    height: "5vw",
+                }
+            } onClick={this.emitUpdate}>               
+            </div>
+            )        
+    }   
+}
+
+class ButtonBG extends ColorButton {
+    emitUpdate() { console.log("BG") }
+    getBG = getBack
+}
+
+class ButtonFG extends ColorButton {
+    emitUpdate() { console.log("FG") }
+    getBG = getFore
+}
+
+
+ReactDOM.render(
+<div style={{
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around"
+}}>    
+    <Card/>    
+</div>,
+  document.querySelector("#container")
+); 
+    </script>
+    
+
+</body>
+
+</html>
