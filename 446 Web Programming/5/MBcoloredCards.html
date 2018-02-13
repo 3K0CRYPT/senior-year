@@ -13,7 +13,8 @@
     <div id="container"></div>
     <script type="text/babel">
     
-    var ascii = `⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⢀⣤⣤⣤⣤⣀⡀⢀⣠⣤⣤⣤⣀
+    var ascii = `
+⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⢀⣤⣤⣤⣤⣀⡀⢀⣠⣤⣤⣤⣀
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⣰⡿⠟⠛⠛⠻⢿⣷⡿⠟⠛⠛⠻⣿⣧
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡟⡀⡀⡀⡀⡀⡀⠉⡀⡀⡀⡀⡀⠈⢻
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⣧⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡜
@@ -45,9 +46,29 @@ var getBack = (function(n) { //Cycle through card colorations with loop-back
 }(-1));
     
 function randomHex() { return '#'+Math.floor(Math.random()*16777215).toString(16) }
-    
+
 class Card extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+            to: '',
+            from: ''
+        };
+        
+        this.changeText = this.changeText.bind(this);
+    }
+    
+    changeText(event) {
+        event.persist()
+        this.setState((p) => {
+            var exp = {};
+            exp[event.target.id] = event.target.value;
+            return exp;
+        });
+    }
     render() {
+        
         return(
             <div style={
                 {
@@ -64,8 +85,8 @@ class Card extends React.Component {
                     boxShadow: "5px 5px 10px 3px #222"
                 }
             }>
-                <Input></Input>
-                <Output></Output>
+                <Input listener={this.changeText}></Input>
+                <Output recipient={this.state.to} sender={this.state.from}></Output>
             </div>
             )
     }
@@ -80,7 +101,8 @@ class Output extends React.Component {
             fontSize: "18px",
             fontFamily: "sans-serif",
             textAlign: "center"
-        }}>{this.props.children}</div>
+        }}
+        >{this.props.recipient}{this.props.sender}</div>
     }   
 }
 
@@ -99,12 +121,12 @@ class Input extends React.Component {
         return(
         <div>
             <div>
-                <label>To:</label>
-                <input type="text" name="to" id="to"/>
+                <label htmlFor="to">To:</label>
+                <input type="text" name="to" id="to" onChange={this.props.listener}/>
             </div>
             <div>
-                <label>From:</label>
-                <input type="text" name="from" id="from"/>
+                <label htmlFor="from">From:</label>
+                <input type="text" name="from" id="from" onChange={this.props.listener}/>
             </div>
             <fieldset style={this.fieldStyle}>
                 <legend>Foreground</legend>
@@ -132,7 +154,7 @@ class Input extends React.Component {
 }
 
 class ColorButton extends React.Component {
-    emitUpdate() { console.log("I have been clicked!") }
+    emitUpdate(e) { console.log("I have been clicked!") }
     getBG() { console.log("unspecified!"); return "#FF0";}
     render() {
         return(
@@ -150,16 +172,16 @@ class ColorButton extends React.Component {
     }   
 }
 
+
+class ButtonFG extends ColorButton {
+    emitUpdate(e) { console.log(e.relatedTarget) }
+    getBG = getFore
+}
+
 class ButtonBG extends ColorButton {
     emitUpdate() { console.log("BG") }
     getBG = getBack
 }
-
-class ButtonFG extends ColorButton {
-    emitUpdate() { console.log("FG") }
-    getBG = getFore
-}
-
 
 ReactDOM.render(
 <div style={{
@@ -167,7 +189,7 @@ ReactDOM.render(
     flexDirection: "row",
     justifyContent: "space-around"
 }}>    
-    <Card/>    
+    <Card id="main"/>    
 </div>,
   document.querySelector("#container")
 ); 
