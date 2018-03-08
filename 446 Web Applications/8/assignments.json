@@ -1,0 +1,28 @@
+{
+    "CSCI-404": [{
+            "title": "Unit 1",
+            "due": "2/9/18",
+            "points": 100,
+            "status": "Done"
+        },
+        {
+            "title": "Unit 2",
+            "due": "3/9/18",
+            "points": 100,
+            "status": "In progress"
+        }
+    ],
+    "CSCI-446": [{
+            "title": "Unit 1",
+            "due": "2/9/18",
+            "points": 100,
+            "status": "Done"
+        },
+        {
+            "title": "Unit 2",
+            "due": "3/9/18",
+            "points": 100,
+            "status": "In progress"
+        }
+    ]
+}

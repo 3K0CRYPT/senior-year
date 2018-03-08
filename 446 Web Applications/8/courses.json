@@ -1,0 +1,18 @@
+{
+    "courses": {
+        "CSCI-404": {
+            "title": "CSCI-404",
+            "name": "Artificial Intelligence",
+            "professor": "Hua Wang",
+            "room": "BB 280F",
+            "grader": "Saad Elbeleidy"
+        },
+        "CSCI-446": {
+            "title": "CSCI-446",
+            "name": "Web Applications",
+            "professor": "Cyndi Rader",
+            "room" : "N/A",
+            "grader": "Unlisted"
+        }
+    }
+}

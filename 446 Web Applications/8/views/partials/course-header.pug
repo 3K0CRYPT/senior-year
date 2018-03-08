@@ -1,0 +1,16 @@
+head
+    title Michael Bartlett Unit 8
+    link(rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+    script(type='text/javascript' src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
+    link(rel='stylesheet' type='text/css' href='/stylesheets/main.css')
+include ../partials/nav.pug
+
+.jumbotron.text-center
+  .container(style='display:inline;')
+    div(id="welcome")
+        div(style="background-color: rgba(83, 47, 140, 0.66); width: fit-content; margin: auto; padding: 0 1em; border-radius: 0.75em;")
+            span.title !{course.title} 
+            span.strapline !{course.name}
+    canvas#canvas
+    script(src='/js/particles.js')

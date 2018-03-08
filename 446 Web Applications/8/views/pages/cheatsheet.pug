@@ -1,0 +1,96 @@
+doctype html
+include ../partials/header.pug
+.container
+  .alert.alert-info.text-center(role='alert')
+    a(href='/cool')
+      h3 Check out some nifty emojis
+  ul
+    li
+      strong Semantic Versioning with Git: 
+      | I wasn&apos;t aware you could change the version number of a repo from cli, that&apos;s handy to know: 
+      br
+      code
+        | git tag -a v0.2.4 -m &apos;my version 0.2.4&apos;
+        br
+        | git push origin --tags
+    li
+      strong Inequalities of versions in package: 
+      br
+      ul
+        li
+          code version
+          | : must match 
+          code version
+          |  exactly
+        li
+          code =version
+          | : same as just 
+          code version
+        li
+          code &gt;version
+          | : must be greater than 
+          code version
+        li
+          code &gt;=version
+          | : must be greater than or equal to 
+          code version
+        li
+          code &amp;lt;version
+          | : must be less than
+          code version
+        li
+          code &amp;lt;=version
+          | : must be less than or equal to 
+          code version
+        li
+          code ~1.2.0
+          | : must be at least as high as 
+          code 1.2.0
+          |  but less than the next major version 
+          code 2.0.0
+        li
+          code 1.2.x
+          | : must start with 
+          code 1.2
+          |  but any digit may be used in place of the x
+        li
+          code *
+          | : matches any version
+        li
+          code &quot;&quot;
+          | : (empty string) matches any version (same as *)
+        li
+          code version1 - version2
+          | : same as 
+          code &gt;=version1 &amp;lt;=version2
+        li
+          code range1 - range2
+          | : passes if range1 or range2 are satisfied&grave;
+    li
+      strong express cli preprocessors: 
+      ul
+        li
+          code --css less|stylus
+          |  Adds a CSS preprocessor to your project, either Less or Stylus,
+          |           depending on which you type in the command.
+        li
+          code --ejs
+          |  Changes the HTML template engine from Jade to EJS.
+        li
+          code --jshtml
+          |  Changes the HTML template engine from Jade to JsHtml.
+        li
+          code --hogan
+          |  Changes the HTML template engine from Jade to Hogan
+    li
+      strong Preview before pushing with: 
+      code ./node_modules/.bin/nf start
+    li
+      strong
+        | Access 
+        a(href='https://pure-wave-74089.herokuapp.com/') this webpage.
+    li
+      strong Quick deploy: 
+      code git add . ; git commit -m &quot;nice&quot; ; git push heroku master
+  hr
+include ../partials/footer.pug

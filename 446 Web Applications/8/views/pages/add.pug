@@ -1,0 +1,29 @@
+doctype html
+include ../partials/add-header.pug
+hr
+center
+    .container
+        .container
+            label(for='name') Name
+            br
+            input#name(type='text' name='name' value='')
+        .container
+            label(for='due') Due
+            br
+            input#due(type='text' name='due')
+        .container
+            label(for='points') Points
+            br
+            input#points(type='text' name='points')
+        .container
+            label(for='status') Status
+            br
+            select#status(name='status')
+                option(value='-1') Not started
+                option(value='0') In progress
+                option(value='1') Done
+                option(value='2') Submitted
+        br
+        a.btn.btn-danger(href='#') Add This Assignment
+hr
+include ../partials/footer.pug

@@ -1,0 +1,13 @@
+doctype html
+include ../partials/header.pug
+.container
+ul
+  each course in courses
+    li
+      h3(style="background-color: #222; width: inherit; margin: 0; padding: 0.25em;")
+        a(href="/courses/" + course.title)
+          span.text-primary !{course.title} 
+        span.text-muted !{course.name} - !{course.professor}
+    
+  hr
+include ../partials/footer.pug

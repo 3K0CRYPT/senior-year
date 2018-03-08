@@ -9,6 +9,13 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 </head>
 
+<!-- GRADER:
+Regarding: (10) To and From fields. When user presses enter or tab, card is updated.
+
+As a design choice I have the card update its text on any change.
+I've noticed some browsers have finnicky behavior with tab/enter being used in the same input.
+-->
+
 <body>
     <div id="container"></div>
     <script type="text/babel">
@@ -52,21 +59,41 @@ class Card extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            to: '',
-            from: ''
+            to: 'My Love',
+            from: 'Your Love',
+            fg: "#222",
+            bg: "#Fa5",
         };
         
         this.changeText = this.changeText.bind(this);
+        this.changeFG = this.changeFG.bind(this);
+        this.changeBG = this.changeBG.bind(this);
     }
     
     changeText(event) {
         event.persist()
         this.setState((p) => {
-            var exp = {};
-            exp[event.target.id] = event.target.value;
-            return exp;
+            p[event.target.id] = event.target.value;
+            return p;
         });
     }
+    
+    changeFG(event) {
+        event.persist()
+        this.setState((p) => {
+            p.fg = event.target.style.backgroundColor;
+            return p;
+        });
+    }
+    
+    changeBG(event) {
+        event.persist()
+        this.setState((p) => {
+            p.bg = event.target.style.backgroundColor;
+            return p;
+        });
+    }
+    
     render() {
         
         return(
@@ -80,13 +107,16 @@ class Card extends React.Component {
                     display: "flex",
                     flexDirection: "row-reverse",
                     justifyContent: "space-around",
-                    textAlign: "center",
                     alignSelf: "center",
                     boxShadow: "5px 5px 10px 3px #222"
                 }
             }>
-                <Input listener={this.changeText}></Input>
-                <Output recipient={this.state.to} sender={this.state.from}></Output>
+                <Input listeners={{
+                    text: this.changeText,
+                    fg: this.changeFG,
+                    bg: this.changeBG
+                    }}></Input>
+                <Output recipient={this.state.to} sender={this.state.from} fore={this.state.fg} back={this.state.bg}></Output>
             </div>
             )
     }
@@ -94,59 +124,81 @@ class Card extends React.Component {
  
 
 class Output extends React.Component {
+    
+    
     render() {
         return <div style={{
-            background: "#F0F",
+            color: this.props.fore,
+            backgroundColor: this.props.back,
             padding: "10px",
             fontSize: "18px",
             fontFamily: "sans-serif",
-            textAlign: "center"
+            borderRadius: "1vw",
+            margin: "1vw",
+            lineHeight: "50%",
         }}
-        >{this.props.recipient}{this.props.sender}</div>
+        >
+        <h2>Dear {this.props.recipient},</h2>
+        <code style={{
+            fontSize: "1vw",  
+            letterSpacing: "-3px",       
+            whiteSpace: "pre-line"     
+        }}>
+        {ascii}
+        </code>
+        <h3>You can't top this ASCII art.</h3>
+        <h2>Love,</h2>
+        <h2>{this.props.sender}</h2>
+        </div>
     }   
 }
 
 class Input extends React.Component {
-    fieldStyle = {
-            justifyContent: "space-around",
+        fieldStyle = {
+            justifyContent: "space-between",
         }
+        
         divStyle = {
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-around",
-            justifyItems: "space-around",
-            width: "fit-content",
+            justifyContent: "space-between",
         }
+        
+        FGbuttons = (() => {
+            var arr = [];
+            for (var e of foregroundColors) arr.push(React.createElement(ButtonFG, { key: e, listener: this.props.listeners.fg}, ''))
+            return arr;
+        })()
+        
+        BGbuttons = (() => {
+            var arr = [];
+            for (var e of backgroundColors) arr.push(React.createElement(ButtonBG, { key: e, listener: this.props.listeners.bg}, ''))
+            return arr;
+        })()
+        
     render() {
         return(
-        <div>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+        }}>
             <div>
                 <label htmlFor="to">To:</label>
-                <input type="text" name="to" id="to" onChange={this.props.listener}/>
+                <input type="text" name="to" id="to" defaultValue="My Love" onChange={this.props.listeners.text} onFocus={function(e) { e.persist(); e.target.value = ''; }}/>
             </div>
             <div>
                 <label htmlFor="from">From:</label>
-                <input type="text" name="from" id="from" onChange={this.props.listener}/>
+                <input type="text" name="from" id="from" defaultValue="Your Love" onChange={this.props.listeners.text} onFocus={function(e) { e.persist(); e.target.value = ''; }}/>
             </div>
             <fieldset style={this.fieldStyle}>
-                <legend>Foreground</legend>
-                <div style={this.divStyle}>
-                <ButtonFG></ButtonFG>
-                <ButtonFG></ButtonFG>
-                <ButtonFG></ButtonFG>
-                <ButtonFG></ButtonFG>
-                <ButtonFG></ButtonFG>
-                </div>
+                <legend>Foreground (click to select)</legend>
+                <div style={this.divStyle}>{ this.FGbuttons }</div>
             </fieldset>
             <fieldset style={this.fieldStyle}>
-                <legend>Background</legend>
-                <div style={this.divStyle}>
-                <ButtonBG></ButtonBG>
-                <ButtonBG></ButtonBG>
-                <ButtonBG></ButtonBG>
-                <ButtonBG></ButtonBG>
-                <ButtonBG></ButtonBG>
-                </div>
+                <legend>Background (click to select)</legend>
+                <div style={this.divStyle}>{ this.BGbuttons }</div>
             </fieldset>
         </div>
         )
@@ -154,7 +206,6 @@ class Input extends React.Component {
 }
 
 class ColorButton extends React.Component {
-    emitUpdate(e) { console.log("I have been clicked!") }
     getBG() { console.log("unspecified!"); return "#FF0";}
     render() {
         return(
@@ -165,23 +216,19 @@ class ColorButton extends React.Component {
                     width: "5vw",
                     border: "1px solid black",
                     height: "5vw",
+                    margin: "1vw",
+                    boxShadow: "5px 5px 10px 3px #555"
                 }
-            } onClick={this.emitUpdate}>               
+            } onClick={this.props.listener}>
             </div>
             )        
     }   
 }
 
 
-class ButtonFG extends ColorButton {
-    emitUpdate(e) { console.log(e.relatedTarget) }
-    getBG = getFore
-}
+class ButtonFG extends ColorButton { getBG = getFore }
 
-class ButtonBG extends ColorButton {
-    emitUpdate() { console.log("BG") }
-    getBG = getBack
-}
+class ButtonBG extends ColorButton { getBG = getBack }
 
 ReactDOM.render(
 <div style={{

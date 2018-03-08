@@ -1,0 +1,18 @@
+doctype html
+include ../partials/course-header.pug
+.container
+  h3="Instructor: " + course.professor
+  h3="Location: " + course.room
+  h3="Grader: " + course.grader
+  hr
+  form(action='/add/' + course.title)
+  a.btn.btn-warning(href='/add/' + course.title) Create New Assignment
+  hr
+  each a in assignments
+    ul
+      h4.text-primary(style="background-color: #222; width: inherit; margin: 0; padding: 0.25em;") !{a.title}
+      li="Due date: " + a.due
+      li="Points: " + a.points
+      li="Status: " + a.status
+  hr
+include ../partials/footer.pug
