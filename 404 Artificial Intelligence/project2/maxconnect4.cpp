@@ -65,7 +65,7 @@ void printGameBoardToFile(gameStatus& currentGame) {
     for (j = 0; j < 7; j++) {
       fprintf(currentGame.gameFile, "%li", currentGame.gameBoard[i][j]);
     }
-    fprintf(currentGame.gameFile, "\r\n");
+    fprintf(currentGame.gameFile, "\n");
   }
   fprintf(currentGame.gameFile, "%d\r\n", currentGame.currentTurn);
 }
