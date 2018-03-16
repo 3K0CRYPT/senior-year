@@ -55,7 +55,7 @@ void printGameBoard(gameStatus& currentGame) {
     printf("| \n");
   }
   printf(" -----------------\n");
-    
+  printf(" -|1|2|3|4|5|6|7|-\n");
 }
 
 // Output current game status to file
@@ -374,7 +374,7 @@ void aiPlay(gameStatus& currentGame) {
   
   if (result == 0) aiPlay(currentGame);
   else {
-    printf("\n\nAI move %li: Player %li, column %li\n", currentGame.pieceCount, currentGame.currentTurn, randColumn + 1);
+    printf("\n\nMove %li: Player %li (AI), column %li\n", currentGame.pieceCount, currentGame.currentTurn, randColumn + 1);
     if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
     else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
   }
@@ -392,7 +392,7 @@ void humanPlay(gameStatus& currentGame) {
     result = playPiece(col-1, currentGame);  //Random
   } while(!result);
   
-    printf("\n\nHuman move %li: Player %li, column %li\n", currentGame.pieceCount, currentGame.currentTurn, col);
+    printf("\n\nMove %li: Player %li (Human), column %li\n", currentGame.pieceCount, currentGame.currentTurn, col);
     if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
     else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
 }
