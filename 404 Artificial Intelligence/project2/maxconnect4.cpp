@@ -1,5 +1,3 @@
-// MaxConnect-4 code
-
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -87,21 +85,6 @@ int playPiece(int column, gameStatus& currentGame) {
     }
   }
   return 0;
-}
-
-// The AI section.  Currently plays randomly.
-void aiPlay(gameStatus& currentGame) {
-  int randColumn = (int)rand() % 7;
-  
-  int result = 0;
-  result = playPiece(randColumn, currentGame);  //Random
-  
-  if (result == 0) aiPlay(currentGame);
-  else {
-    printf("\n\nmove %li: Player %li, column %li\n", currentGame.pieceCount, currentGame.currentTurn, randColumn + 1);
-    if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
-    else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
-  }
 }
 
 void countScore(gameStatus& currentGame) {
@@ -379,7 +362,39 @@ void countScore(gameStatus& currentGame) {
   }
 }
 
+// The AI section.  Currently plays randomly.
+void aiPlay(gameStatus& currentGame) {
+  int randColumn = (int)rand() % 7;
+  
+  int result = 0;
+  result = playPiece(randColumn, currentGame);  //Random
+  
+  if (result == 0) aiPlay(currentGame);
+  else {
+    printf("\n\nAI move %li: Player %li, column %li\n", currentGame.pieceCount, currentGame.currentTurn, randColumn + 1);
+    if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
+    else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
+  }
+}
+
+void humanPlay(gameStatus& currentGame) {
+  int result = 0, col;
+  
+  do {
+    printf("Column #: ");
+    scanf ("%d",&col);
+    
+    result = playPiece(col-1, currentGame);  //Random
+  } while(!result);
+  
+    printf("\n\nHuman move %li: Player %li, column %li\n", currentGame.pieceCount, currentGame.currentTurn, col + 1);
+    if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
+    else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
+}
+
 int main(int argc, char** argv) {
+  bool interactive = false;
+  bool computerTurn = false;  // Whether or not it's computer-next or human-next
   char** command_line = argv;
 
   if (argc != 5) {
@@ -397,69 +412,67 @@ int main(int argc, char** argv) {
   char* game_mode = command_line[1];
 
   if (strcmp(game_mode, "interactive") == 0) {
-    printf("interactive mode is currently not implemented\n");
-    return 0;
-  } else if (strcmp(game_mode, "one-move") != 0) {
+    printf("Starting interactive session.\n");
+    interactive = true;
+  } 
+  else if (strcmp(game_mode, "one-move") != 0) {
     printf("%s is an unrecognized game mode\n", game_mode);
     return 0;
   }
 
+  int depth = int(command_line[4]);
   char* input = command_line[2];
-  char* output = command_line[3];
-
-  gameStatus currentGame;  // Declare current game
+  char* output = command_line[3]; 
+  
+  // Any arg that's not "computer-next" will default top human-turn.
+  if (interactive && output == "computer-next") computerTurn = true;
+  
+  gameStatus currentGame;  // Initialize game instance
   printf("\nMaxConnect-4 game\n");
-
-  currentGame.gameFile = fopen(input, "r");
-  printf("game state before move:\n");
 
   // set currentTurn
   char current = 0;
-  int i, j;
+  
+  // Initialize gameboard (count number of previous turns, load file to 2D array) from input
+  currentGame.gameFile = fopen(input, "r");
+  printf("Initial state:\n");
   if (currentGame.gameFile != 0) {
-    for (i = 0; i < 6; i++) {
-      for (j = 0; j < 7; j++) {
-        do {
-          current = getc(currentGame.gameFile);
-        } while ((current == ' ') || (current == '\n') || (current == '\r'));
+    for (int i = 0; i < 6; i++) for (int j = 0; j < 7; j++) {
+        do { current = getc(currentGame.gameFile); } while ((current == ' ') || (current == '\n') || (current == '\r'));
 
         currentGame.gameBoard[i][j] = current - 48;
-        if (currentGame.gameBoard[i][j] > 0) {
-          currentGame.pieceCount++;
-        }
-      }
+        if (currentGame.gameBoard[i][j] > 0) currentGame.pieceCount++;
     }
 
-    do {
-      current = getc(currentGame.gameFile);
-    } while ((current == ' ') || (current == '\n') || (current == '\r'));
+    do { current = getc(currentGame.gameFile); } while ((current == ' ') || (current == '\n') || (current == '\r'));
 
     currentGame.currentTurn = current - 48;
     fclose(currentGame.gameFile);
   }
 
-  printGameBoard(currentGame);
-  countScore(currentGame);
-  printf("Score: Player 1 = %d, Player 2 = %d\n\n", currentGame.player1Score,
-         currentGame.player2Score);
+  do { // Loop this part while we're in interactive mode.
+  
+    printGameBoard(currentGame);
+    countScore(currentGame);
+    printf("Score: Player 1 = %d, Player 2 = %d\n\n", currentGame.player1Score, currentGame.player2Score);
 
-  // Seed random number generator
-  int seed = time(NULL);
-  srand(seed);
+    // Seed random number generator
+    int seed = time(NULL);
+    srand(seed);
 
-  if (currentGame.pieceCount == 42) {
-    printf("\nBOARD FULL\n");
-    printf("Game over!\n\n");
+    if (currentGame.pieceCount == 42) {
+      printf("\nBOARD FULL\n");
+      printf("Game over!\n\n");
+      return 1;
+    }
 
-    return 1;
-  }
-
-  aiPlay(currentGame);
-  printf("game state after move:\n");
-  printGameBoard(currentGame);
-  countScore(currentGame);
-  printf("Score: Player 1 = %d, Player 2 = %d\n\n", currentGame.player1Score,
-         currentGame.player2Score);
+    if (computerTurn) aiPlay(currentGame);
+    else humanPlay(currentGame);
+    
+    computerTurn = !computerTurn;
+    currentGame.currentTurn = (int)computerTurn + 1;
+    
+  } while (interactive);
 
   currentGame.gameFile = fopen(output, "w");
   if (currentGame.gameFile != 0) {
