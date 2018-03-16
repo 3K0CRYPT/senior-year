@@ -74,9 +74,7 @@ void printGameBoardToFile(gameStatus& currentGame) {
 // place that player's piece in the requested column
 int playPiece(int column, gameStatus& currentGame) {
   // if column full, return 1
-  if (currentGame.gameBoard[0][column] != 0) {
-    return 0;
-  }
+  if (currentGame.gameBoard[0][column] != 0) return 0;
 
   int i;
   // starting at the bottom of the board, place the piece into the
@@ -94,17 +92,15 @@ int playPiece(int column, gameStatus& currentGame) {
 // The AI section.  Currently plays randomly.
 void aiPlay(gameStatus& currentGame) {
   int randColumn = (int)rand() % 7;
+  
   int result = 0;
-  result = playPiece(randColumn, currentGame);
-  if (result == 0) {
-    aiPlay(currentGame);
-  } else {
-    printf("\n\nmove %li: Player %li, column %li\n", currentGame.pieceCount,
-           currentGame.currentTurn, randColumn + 1);
-    if (currentGame.currentTurn == 1)
-      currentGame.currentTurn = 2;
-    else if (currentGame.currentTurn == 2)
-      currentGame.currentTurn = 1;
+  result = playPiece(randColumn, currentGame);  //Random
+  
+  if (result == 0) aiPlay(currentGame);
+  else {
+    printf("\n\nmove %li: Player %li, column %li\n", currentGame.pieceCount, currentGame.currentTurn, randColumn + 1);
+    if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
+    else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
   }
 }
 
