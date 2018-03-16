@@ -54,7 +54,6 @@ void printGameBoard(gameStatus& currentGame) {
     }
     printf("| \n");
   }
-  printf(" -----------------\n");
   printf(" -|1|2|3|4|5|6|7|-\n");
 }
 
