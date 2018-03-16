@@ -4,6 +4,7 @@
 #include <string.h>
 #include <time.h>
 
+
 class gameStatus {
  private:
   long* gameData;
@@ -44,15 +45,17 @@ class gameStatus {
 void printGameBoard(gameStatus& currentGame) {
   int i = 0;
   int j = 0;
+  char chars[] = {'-', '@', 'X'};
   printf(" -----------------\n");
   for (i = 0; i < 6; i++) {
     printf(" | ");
     for (j = 0; j < 7; j++) {
-      printf("%li ", currentGame.gameBoard[i][j]);
+      printf("%lc ", chars[currentGame.gameBoard[i][j]] );
     }
     printf("| \n");
   }
   printf(" -----------------\n");
+    
 }
 
 // Output current game status to file
@@ -375,6 +378,7 @@ void aiPlay(gameStatus& currentGame) {
     if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
     else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
   }
+  fflush(stdout);
 }
 
 void humanPlay(gameStatus& currentGame) {
@@ -382,12 +386,13 @@ void humanPlay(gameStatus& currentGame) {
   
   do {
     printf("Column #: ");
+    fflush(stdout);
     scanf ("%d",&col);
     
     result = playPiece(col-1, currentGame);  //Random
   } while(!result);
   
-    printf("\n\nHuman move %li: Player %li, column %li\n", currentGame.pieceCount, currentGame.currentTurn, col + 1);
+    printf("\n\nHuman move %li: Player %li, column %li\n", currentGame.pieceCount, currentGame.currentTurn, col);
     if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
     else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
 }
