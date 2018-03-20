@@ -3,18 +3,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <vector>
 
 
 class gameStatus {
  private:
-  long* gameData;
 
  public:
+  long* gameData;
   long* gameBoard[6];
   long currentTurn;
   int player1Score;
   int player2Score;
   int pieceCount;
+  int depth;
   FILE* gameFile;
 
   gameStatus() {
@@ -30,12 +32,13 @@ class gameStatus {
     for (i = 0; i < 42; i++) {
       gameData[i] = 0;
     }
-
+    
     currentTurn = 1;
     player1Score = 0;
     player2Score = 0;
     pieceCount = 0;
     gameFile = 0;
+    depth = 1;
   }
 
   ~gameStatus() { delete[] gameData; }
@@ -50,7 +53,7 @@ void printGameBoard(gameStatus& currentGame) {
   for (i = 0; i < 6; i++) {
     printf(" | ");
     for (j = 0; j < 7; j++) {
-      printf("%lc ", chars[currentGame.gameBoard[i][j]] );
+      printf("%li ", currentGame.gameBoard[i][j] );
     }
     printf("| \n");
   }
@@ -75,7 +78,6 @@ void printGameBoardToFile(gameStatus& currentGame) {
 int playPiece(int column, gameStatus& currentGame) {
   // if column full, return 1
   if (currentGame.gameBoard[0][column] != 0) return 0;
-
   int i;
   // starting at the bottom of the board, place the piece into the
   // first empty spot
@@ -364,20 +366,79 @@ void countScore(gameStatus& currentGame) {
   }
 }
 
+void minimax(gameStatus& currentGame, int* bestInfo, bool max) {
+  --currentGame.depth;  //Took a step down
+  currentGame.currentTurn = max + 1;
+  if (currentGame.depth < 0) return; // Reached the bottom, end the search.
+  
+  for (int c = 0; c < 6; c++) { // Iterate over columns for potential moves.
+  
+    gameStatus potentialGame;
+    potentialGame = currentGame;    //Make a copy of current state.
+    // for (int i = 0; i < 42; i++) {printf("%i ", currentGame.gameData[i]);} printf("\n");
+    printGameBoard(potentialGame);
+    playPiece(c, potentialGame);
+
+    
+    int result = playPiece(c, potentialGame); //Play the move
+    //IT'S NOT PLAYPIECE
+    
+    if (!result) continue;                    //If invalid, don't care
+    
+    countScore(potentialGame); //Evaluate the move.
+    //IT'S NOT COUNTSCORE
+
+    int potentialInfo[2];
+    memcpy(potentialInfo, bestInfo, 2); // Make a copy of current best info before messing with it in recursion.
+    
+    minimax(potentialGame, potentialInfo, !max); //Otherwise, keep checking 
+    printf("\n");
+    
+    if (max) {  //If current move evaluation is MAX player
+      if(potentialInfo[1] > bestInfo[1]) {  //MAX play wants a higher score
+          bestInfo[1] = potentialInfo[1];
+          bestInfo[0] = c;
+        }
+    }
+    else {  //Then it's MIN player
+      if(potentialInfo[1] < bestInfo[1]) {  //MIN wants lower score
+          bestInfo[1] = potentialInfo[1];
+          bestInfo[0] = c;
+        }
+    }    
+    
+  }
+    
+  return;
+}
+
 // The AI section.  Currently plays randomly.
 void aiPlay(gameStatus& currentGame) {
-  int randColumn = (int)rand() % 7;
+  int results[2] =  { 0, -1000 }; // [Column, Score], records best move and its respective score
   
-  int result = 0;
-  result = playPiece(randColumn, currentGame);  //Random
+  gameStatus gameCopy;
+  gameCopy = currentGame; // Make a copy just for safety
   
-  if (result == 0) aiPlay(currentGame);
-  else {
-    printf("\n\nMove %li: Player %li (AI), column %li\n", currentGame.pieceCount, currentGame.currentTurn, randColumn + 1);
+  minimax(gameCopy, results, true); // Do the minimax search.
+  
+  // printGameBoard(currentGame);
+  // int col = 0;
+  // scanf ("%d",&col);
+  
+  
+  printf("Got results: %i, %i\n\n", results[0], results[1]);
+  printGameBoard(currentGame);
+  
+  playPiece(results[0], currentGame); //Play the move
+  
+  // if (result == 0) aiPlay(currentGame);
+  // else {
+    printf("\n\nMove %li: Player %li (AI), column %li\n", currentGame.pieceCount, currentGame.currentTurn, results[0] + 1);
     if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
     else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
-  }
-  fflush(stdout);
+  // }
+  
+  fflush(stdout); // Stupid dumb windows
 }
 
 void humanPlay(gameStatus& currentGame) {
@@ -394,6 +455,7 @@ void humanPlay(gameStatus& currentGame) {
     printf("\n\nMove %li: Player %li (Human), column %li\n", currentGame.pieceCount, currentGame.currentTurn, col);
     if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
     else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
+  fflush(stdout); // Stupid dumb windows
 }
 
 int main(int argc, char** argv) {
@@ -424,7 +486,7 @@ int main(int argc, char** argv) {
     return 0;
   }
 
-  int depth = int(command_line[4]);
+  int depth = atoi(command_line[4]);
   char* input = command_line[2];
   char* output = command_line[3]; 
   
@@ -436,7 +498,7 @@ int main(int argc, char** argv) {
 
   // set currentTurn
   char current = 0;
-  
+  currentGame.depth = depth;
   // Initialize gameboard (count number of previous turns, load file to 2D array) from input
   currentGame.gameFile = fopen(input, "r");
   printf("Initial state:\n");
@@ -472,7 +534,7 @@ int main(int argc, char** argv) {
 
     if (computerTurn) aiPlay(currentGame);
     else humanPlay(currentGame);
-    
+    // humanPlay(currentGame);    
     computerTurn = !computerTurn;
     currentGame.currentTurn = (int)computerTurn + 1;
     
