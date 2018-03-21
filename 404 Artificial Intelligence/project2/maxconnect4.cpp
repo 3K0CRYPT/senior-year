@@ -74,7 +74,10 @@ class GameStatus {
       printf("| \n");
     }
     printf(" -|1|2|3|4|5|6|7|-\n");
-    printf("Scores\t1: %i - 2: %i\n", player1Score, player2Score);
+    // printf("Scores\t1: %i - 2: %i\n", player1Score, player2Score);
+    printf("\n\tcolumn ");
+    for (i=0; i<7; i++) printf("%i ", gameBoard[0][i]);
+    printf("\n");
     // fflush(stdout);
 }
 
@@ -407,7 +410,7 @@ void maxSearch(GameStatus& currentGame, int* bestInfo) {
     potentialGame.countScore(); //Evaluate the move.
     
     int potentialBest[2] = {-1, potentialGame.player2Score};
-    printf("1: %i\t 2: %i\n", potentialGame.player1Score, potentialGame.player2Score);
+    // printf("1: %i\t 2: %i\n", potentialGame.player1Score, potentialGame.player2Score);
     fflush(stdout);
     
     minSearch(potentialGame, potentialBest); //Otherwise, keep checking 
@@ -458,24 +461,15 @@ void aiPlay(GameStatus& currentGame) {
   
   maxSearch(gameCopy, results); // Do the minimax search.
   
-  // printf("DICKS\n");
-  // printf("DICKS\n\n%i\n\nDICKS\n", results[1]);
-  
-  // currentGame.print();
-  // int col = 0;
-  // scanf ("%d",&col);
-  
-  
   printf("Got results: %i, %i\n\n", results[0], results[1]);
-  currentGame.print();
-  
-   currentGame.play(results[0]); //Play the move
+  currentGame.play(results[0]); //Play the move
   
   // if (result == 0) aiPlay(currentGame);
   // else {
     printf("\n\nMove %li: Player %li (AI), column %li\n", currentGame.pieceCount, currentGame.currentTurn, results[0] + 1);
-    if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
-    else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
+    currentGame.currentTurn = !(currentGame.currentTurn-1) + 1;
+    // if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
+    // else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
   // }
   
   fflush(stdout); // Stupid dumb windows
@@ -493,8 +487,9 @@ void humanPlay(GameStatus& currentGame) {
   } while(!result);
   
     printf("\n\nMove %li: Player %li (Human), column %li\n", currentGame.pieceCount, currentGame.currentTurn, col);
-    if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
-    else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
+    // if (currentGame.currentTurn == 1) currentGame.currentTurn = 2;
+    // else if (currentGame.currentTurn == 2) currentGame.currentTurn = 1;
+    currentGame.currentTurn = !(currentGame.currentTurn-1) + 1;
   fflush(stdout); // Stupid dumb windows
 }
 
@@ -566,10 +561,14 @@ int main(int argc, char** argv) {
     int seed = time(NULL);
     srand(seed);
 
-    if (currentGame.pieceCount == 42) {
-      printf("\nBOARD FULL\n");
-      printf("Game over!\n\n");
-      return 1;
+    unsigned char checksum = 0;
+      for (int i=0; i<7; i++) if (currentGame.gameBoard[0][i]) checksum ++;
+    
+    // if (currentGame.pieceCount == 42) 
+      if (checksum > 6) {
+        printf("\nBOARD FULL\n");
+        printf("Game over!\n\n");
+        return 1;
     }
 
     if (computerTurn) aiPlay(currentGame);
@@ -577,6 +576,7 @@ int main(int argc, char** argv) {
     // humanPlay(currentGame);    
     computerTurn = !computerTurn;
     currentGame.currentTurn = (int)computerTurn + 1;
+    
     
   } while (interactive);
 
