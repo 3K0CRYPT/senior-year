@@ -27,6 +27,139 @@ def extract_symbols(kb, s):
         for se in kb.subexpressions:
             s = extract_symbols(se,s)
     return s
+    
+def print_to_file(result):
+    text_file = open("result.txt", "w")
+    text_file.write(result)
+    text_file.close()
+    
+def check_true_false(knowledge_base, statement, values):
+        # definitely true:  kb |= statement && kb !|= !statement
+        # definitely false: kb |= !statement && kb !|= statement
+        # maybe true        kb !|= statement && kb !|= !statement
+        #both: kb |= statement && kb |= !statement -----> kb is bad
+        test1 = logical_expression()
+        test2 = logical_expression()
+        not_statement = logical_expression()
+                
+        test1.connective = ['and']
+        test2.connective = ['and']
+        not_statement.connective = ['not']
+        
+        test1.subexpressions = [statement, knowledge_base]
+        not_statement.subexpressions = [statement]
+        test2.subexpressions = [not_statement, knowledge_base]
+        
+        test1 = evaluate_statement(test1, values)
+        test2 = evaluate_statement(test2, values)
+        
+        if test1 == 'false':
+            if test2 == 'false': # kb !|= statement && kb !|= !statement
+                return 'possibly true, possibly false'
+            else: # kb |= !statement && kb !|= statement
+                return 'definitely false'
+        else:
+            if test2 == 'false': 
+                return 'definitely true' # kb |= statement && kb !|= !statement
+            else: #  kb |= statement && kb |= !statement -----> kb is bad
+                return 'both true and false'
+    
+def evaluate_statement(statement, values):
+    # sys.stdout.write('EVAL: ')
+    # print_expression(statement, '')
+    # print   
+
+    if (statement.symbol[0] != ''):
+        if values[statement.symbol[0]] == 'false':
+            return 'false'         
+        elif values[statement.symbol[0]] == 'true':
+            return 'true'
+        else:
+            return statement.symbol[0]
+       
+
+    if (statement.connective[0] == "and"):
+        if not statement.subexpressions:
+            return 'true'
+        else:
+            for exp in statement.subexpressions:
+                if evaluate_statement(exp, values) == 'false':
+                    return 'false'
+            return 'true'
+
+    if (statement.connective[0] == "or") :
+
+        if not statement.subexpressions:
+            return 'false'
+        else:
+            for exp in statement.subexpressions:
+                if evaluate_statement(exp, values) == 'true':
+                    return 'true'
+            return 'false'
+
+    if (statement.connective[0] == "xor"):
+
+        if not statement.subexpressions:
+            return 'false'
+        else:
+            result_list = []
+            for exp in statement.subexpressions:
+                result_list.append(evaluate_statement(exp, values))
+            if result_list.count("true") == 1:
+                return 'true'
+            else:
+                return 'false'
+
+    if (statement.connective[0] == "not"): 
+
+        if not statement.subexpressions:
+            exit()            
+        else:
+            value = evaluate_statement(statement.subexpressions[0], values)
+            if value == 'true':
+                return 'false'
+            if value == 'false':
+                return 'true'
+            else:
+                if not isinstance(value, basestring):
+                    return '(not' + value.symbol[0] + ')'
+                else:
+                    return '(not' + value + ')'
+
+    if (statement.connective == "if"):
+
+        if (len(statement.subexpressions) != 2):
+            exit()
+        else:
+            result1 = evaluate_statement(statement.subexpressions[0], values)
+            if result1 == 'true':
+                result1 = 'false'
+            elif result1 == 'false':
+                result1 = 'true'
+            else:
+                result1 = '(not '+result1+')'
+                
+            result2 = evaluate_statement(statement.subexpressions[1], values)
+            
+            if result1 == 'true' or result2 == 'true':
+                return 'true'
+            else:
+                return 'false'
+
+    if (statement.connective == "iff"):
+
+        if (len(statement.subexpressions) != 2):
+            exit()
+        else:
+            result1 = evaluate_statement(statement.subexpressions[0], values)
+            result2 = evaluate_statement(statement.subexpressions[1], values)
+            if result1 == result2:
+                return 'true'
+            else:
+                return 'false'
+    
+    return '?'
+
 
 def print_expression(expression, separator):
     """Prints the given expression using the given separator"""

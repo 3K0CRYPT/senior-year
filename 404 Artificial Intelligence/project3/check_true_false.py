@@ -74,15 +74,40 @@ def main(argv):
     print_expression(statement, '')
     print
     
-    print('Unique symbols:')
-    print(extract_symbols(knowledge_base, statement))
-    print()    
+    unique_symbols = list(set().union(extract_symbols(knowledge_base, [])+extract_symbols(statement, [])))    
+    values = dict.fromkeys(unique_symbols, '?')
     
-    def check_true_false(knowledge_base, statement):
-        print knowledge_base  
-
+    print 'Unique symbols:',  extract_symbols(knowledge_base, [])
+    print
+    
+    for value in values:
+        new_statement = logical_expression()
+        new_statement.symbol = [value]        
+        result = check_true_false(knowledge_base, new_statement, values)
+        if result == 'definitely true':
+            values[value] = 'true'
+        elif result == 'definitely false':
+            values[value] = 'false'
+        elif result == 'both true and false':
+            print result            
+            print_to_file(result)
+            exit()
+        else: #no definitive conclusion
+            values[value] = 'true'
+            for value2 in values:
+                new_statement2 = logical_expression()
+                new_statement2.symbol = [value2]        
+                result2 = check_true_false(knowledge_base, new_statement2, values)
+                if result2 == 'both true and false':
+                    values[value] = 'false'
+                    break
+        
+    print values
+    
     # Run the statement through the inference engine
-    check_true_false(knowledge_base, statement)
+    result = check_true_false(knowledge_base, statement, values)
+    print result
+    print_to_file(result)
 
     sys.exit(1)
     
