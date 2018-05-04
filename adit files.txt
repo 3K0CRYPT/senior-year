@@ -1,0 +1,2251 @@
+.
+├── 403
+│   ├── GuiApplication.class
+│   ├── GuiApplication.java
+│   ├── GuiEditAlbumDialog.class
+│   ├── GuiEditAlbumDialog.java
+│   ├── GuiLoginDialog$1.class
+│   ├── GuiLoginDialog.class
+│   ├── GuiLoginDialog.java
+│   ├── GuiModel.class
+│   ├── GuiModel.java
+│   └── postgresql-9.4.1209.jar
+├── adit
+├── adit files.txt
+├── Assem1.avi
+├── Banana Havok
+│   ├── Banana Havok
+│   │   ├── data
+│   │   │   └── Thumbs.db
+│   │   ├── Debug
+│   │   │   ├── main.obj
+│   │   │   ├── sfml-template.log
+│   │   │   ├── sfml-template.tlog
+│   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   ├── link.command.1.tlog
+│   │   │   │   ├── link.read.1.tlog
+│   │   │   │   ├── link.write.1.tlog
+│   │   │   │   └── sfml-template.lastbuildstate
+│   │   │   └── vc120.idb
+│   │   ├── include
+│   │   │   └── SFML
+│   │   │       ├── Audio
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── Listener.hpp
+│   │   │       │   ├── Music.hpp
+│   │   │       │   ├── Sound.hpp
+│   │   │       │   ├── SoundBuffer.hpp
+│   │   │       │   ├── SoundBufferRecorder.hpp
+│   │   │       │   ├── SoundRecorder.hpp
+│   │   │       │   ├── SoundSource.hpp
+│   │   │       │   └── SoundStream.hpp
+│   │   │       ├── Audio.hpp
+│   │   │       ├── Config.hpp
+│   │   │       ├── Graphics
+│   │   │       │   ├── BlendMode.hpp
+│   │   │       │   ├── CircleShape.hpp
+│   │   │       │   ├── Color.hpp
+│   │   │       │   ├── ConvexShape.hpp
+│   │   │       │   ├── Drawable.hpp
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── Font.hpp
+│   │   │       │   ├── Glyph.hpp
+│   │   │       │   ├── Image.hpp
+│   │   │       │   ├── PrimitiveType.hpp
+│   │   │       │   ├── Rect.hpp
+│   │   │       │   ├── Rect.inl
+│   │   │       │   ├── RectangleShape.hpp
+│   │   │       │   ├── RenderStates.hpp
+│   │   │       │   ├── RenderTarget.hpp
+│   │   │       │   ├── RenderTexture.hpp
+│   │   │       │   ├── RenderWindow.hpp
+│   │   │       │   ├── Shader.hpp
+│   │   │       │   ├── Shape.hpp
+│   │   │       │   ├── Sprite.hpp
+│   │   │       │   ├── Text.hpp
+│   │   │       │   ├── Texture.hpp
+│   │   │       │   ├── Transform.hpp
+│   │   │       │   ├── Transformable.hpp
+│   │   │       │   ├── Vertex.hpp
+│   │   │       │   ├── VertexArray.hpp
+│   │   │       │   └── View.hpp
+│   │   │       ├── Graphics.hpp
+│   │   │       ├── Network
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── Ftp.hpp
+│   │   │       │   ├── Http.hpp
+│   │   │       │   ├── IpAddress.hpp
+│   │   │       │   ├── Packet.hpp
+│   │   │       │   ├── Socket.hpp
+│   │   │       │   ├── SocketHandle.hpp
+│   │   │       │   ├── SocketSelector.hpp
+│   │   │       │   ├── TcpListener.hpp
+│   │   │       │   ├── TcpSocket.hpp
+│   │   │       │   └── UdpSocket.hpp
+│   │   │       ├── Network.hpp
+│   │   │       ├── OpenGL.hpp
+│   │   │       ├── System
+│   │   │       │   ├── Clock.hpp
+│   │   │       │   ├── Err.hpp
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── InputStream.hpp
+│   │   │       │   ├── Lock.hpp
+│   │   │       │   ├── Mutex.hpp
+│   │   │       │   ├── NonCopyable.hpp
+│   │   │       │   ├── Sleep.hpp
+│   │   │       │   ├── String.hpp
+│   │   │       │   ├── Thread.hpp
+│   │   │       │   ├── Thread.inl
+│   │   │       │   ├── ThreadLocal.hpp
+│   │   │       │   ├── ThreadLocalPtr.hpp
+│   │   │       │   ├── ThreadLocalPtr.inl
+│   │   │       │   ├── Time.hpp
+│   │   │       │   ├── Utf.hpp
+│   │   │       │   ├── Utf.inl
+│   │   │       │   ├── Vector2.hpp
+│   │   │       │   ├── Vector2.inl
+│   │   │       │   ├── Vector3.hpp
+│   │   │       │   └── Vector3.inl
+│   │   │       ├── System.hpp
+│   │   │       ├── Window
+│   │   │       │   ├── Context.hpp
+│   │   │       │   ├── ContextSettings.hpp
+│   │   │       │   ├── Event.hpp
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── GlResource.hpp
+│   │   │       │   ├── Joystick.hpp
+│   │   │       │   ├── Keyboard.hpp
+│   │   │       │   ├── Mouse.hpp
+│   │   │       │   ├── VideoMode.hpp
+│   │   │       │   ├── Window.hpp
+│   │   │       │   ├── WindowHandle.hpp
+│   │   │       │   └── WindowStyle.hpp
+│   │   │       └── Window.hpp
+│   │   ├── Libs
+│   │   │   ├── Debug
+│   │   │   │   ├── sfml-audio-s-d.lib
+│   │   │   │   ├── sfml-graphics-s-d.lib
+│   │   │   │   ├── sfml-main-d.lib
+│   │   │   │   ├── sfml-network-s-d.lib
+│   │   │   │   ├── sfml-system-s-d.lib
+│   │   │   │   └── sfml-window-s-d.lib
+│   │   │   └── Release
+│   │   │       ├── sfml-audio-s.lib
+│   │   │       ├── sfml-graphics-s.lib
+│   │   │       ├── sfml-main.lib
+│   │   │       ├── sfml-network-s.lib
+│   │   │       ├── sfml-system-s.lib
+│   │   │       └── sfml-window-s.lib
+│   │   ├── sfml-template.vcxproj
+│   │   └── sfml-template.vcxproj.filters
+│   ├── Banana Havok.v12.suo
+│   ├── Debug
+│   │   ├── ModifiedStars.txt
+│   │   └── src
+│   │       ├── save
+│   │       │   └── save.txt
+│   │       └── sprites
+│   │           ├── baddy1.png
+│   │           ├── baddy2.png
+│   │           ├── baddy3.png
+│   │           ├── baddy3.png.bk
+│   │           ├── blank.png
+│   │           ├── swgothe.TTF
+│   │           ├── swgothe.ttf.bk
+│   │           ├── tower1.png
+│   │           ├── tower10.png
+│   │           ├── tower2.png
+│   │           ├── tower3.png
+│   │           ├── tower4.png
+│   │           ├── tower5.png
+│   │           ├── tower6.png
+│   │           ├── tower7.png
+│   │           ├── tower8.png
+│   │           └── tower9.png
+│   ├── sfml-template
+│   │   ├── Debug
+│   │   │   ├── baddy.obj
+│   │   │   ├── death.obj
+│   │   │   ├── laz.obj
+│   │   │   ├── main.obj
+│   │   │   ├── save.obj
+│   │   │   ├── sfml-template.Build.CppClean.log
+│   │   │   ├── sfml-template.log
+│   │   │   ├── sfml-template.tlog
+│   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   ├── link.command.1.tlog
+│   │   │   │   ├── link.read.1.tlog
+│   │   │   │   ├── link.write.1.tlog
+│   │   │   │   ├── link-cvtres.read.1.tlog
+│   │   │   │   ├── link-cvtres.write.1.tlog
+│   │   │   │   ├── link-rc.read.1.tlog
+│   │   │   │   ├── link-rc.write.1.tlog
+│   │   │   │   ├── sfml-template.lastbuildstate
+│   │   │   │   └── unsuccessfulbuild
+│   │   │   ├── tower.obj
+│   │   │   ├── vc120.idb
+│   │   │   └── vc140.idb
+│   │   ├── include
+│   │   │   └── SFML
+│   │   │       ├── Audio
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── Listener.hpp
+│   │   │       │   ├── Music.hpp
+│   │   │       │   ├── Sound.hpp
+│   │   │       │   ├── SoundBuffer.hpp
+│   │   │       │   ├── SoundBufferRecorder.hpp
+│   │   │       │   ├── SoundRecorder.hpp
+│   │   │       │   ├── SoundSource.hpp
+│   │   │       │   └── SoundStream.hpp
+│   │   │       ├── Audio.hpp
+│   │   │       ├── Config.hpp
+│   │   │       ├── Graphics
+│   │   │       │   ├── BlendMode.hpp
+│   │   │       │   ├── CircleShape.hpp
+│   │   │       │   ├── Color.hpp
+│   │   │       │   ├── ConvexShape.hpp
+│   │   │       │   ├── Drawable.hpp
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── Font.hpp
+│   │   │       │   ├── Glyph.hpp
+│   │   │       │   ├── Image.hpp
+│   │   │       │   ├── PrimitiveType.hpp
+│   │   │       │   ├── Rect.hpp
+│   │   │       │   ├── Rect.inl
+│   │   │       │   ├── RectangleShape.hpp
+│   │   │       │   ├── RenderStates.hpp
+│   │   │       │   ├── RenderTarget.hpp
+│   │   │       │   ├── RenderTexture.hpp
+│   │   │       │   ├── RenderWindow.hpp
+│   │   │       │   ├── Shader.hpp
+│   │   │       │   ├── Shape.hpp
+│   │   │       │   ├── Sprite.hpp
+│   │   │       │   ├── Text.hpp
+│   │   │       │   ├── Texture.hpp
+│   │   │       │   ├── Transform.hpp
+│   │   │       │   ├── Transformable.hpp
+│   │   │       │   ├── Vertex.hpp
+│   │   │       │   ├── VertexArray.hpp
+│   │   │       │   └── View.hpp
+│   │   │       ├── Graphics.hpp
+│   │   │       ├── Network
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── Ftp.hpp
+│   │   │       │   ├── Http.hpp
+│   │   │       │   ├── IpAddress.hpp
+│   │   │       │   ├── Packet.hpp
+│   │   │       │   ├── Socket.hpp
+│   │   │       │   ├── SocketHandle.hpp
+│   │   │       │   ├── SocketSelector.hpp
+│   │   │       │   ├── TcpListener.hpp
+│   │   │       │   ├── TcpSocket.hpp
+│   │   │       │   └── UdpSocket.hpp
+│   │   │       ├── Network.hpp
+│   │   │       ├── OpenGL.hpp
+│   │   │       ├── System
+│   │   │       │   ├── Clock.hpp
+│   │   │       │   ├── Err.hpp
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── InputStream.hpp
+│   │   │       │   ├── Lock.hpp
+│   │   │       │   ├── Mutex.hpp
+│   │   │       │   ├── NonCopyable.hpp
+│   │   │       │   ├── Sleep.hpp
+│   │   │       │   ├── String.hpp
+│   │   │       │   ├── Thread.hpp
+│   │   │       │   ├── Thread.inl
+│   │   │       │   ├── ThreadLocal.hpp
+│   │   │       │   ├── ThreadLocalPtr.hpp
+│   │   │       │   ├── ThreadLocalPtr.inl
+│   │   │       │   ├── Time.hpp
+│   │   │       │   ├── Utf.hpp
+│   │   │       │   ├── Utf.inl
+│   │   │       │   ├── Vector2.hpp
+│   │   │       │   ├── Vector2.inl
+│   │   │       │   ├── Vector3.hpp
+│   │   │       │   └── Vector3.inl
+│   │   │       ├── System.hpp
+│   │   │       ├── Window
+│   │   │       │   ├── Context.hpp
+│   │   │       │   ├── ContextSettings.hpp
+│   │   │       │   ├── Event.hpp
+│   │   │       │   ├── Export.hpp
+│   │   │       │   ├── GlResource.hpp
+│   │   │       │   ├── Joystick.hpp
+│   │   │       │   ├── Keyboard.hpp
+│   │   │       │   ├── Mouse.hpp
+│   │   │       │   ├── VideoMode.hpp
+│   │   │       │   ├── Window.hpp
+│   │   │       │   ├── WindowHandle.hpp
+│   │   │       │   └── WindowStyle.hpp
+│   │   │       └── Window.hpp
+│   │   ├── Libs
+│   │   │   ├── Debug
+│   │   │   │   ├── sfml-audio-s-d.lib
+│   │   │   │   ├── sfml-graphics-s-d.lib
+│   │   │   │   ├── sfml-main-d.lib
+│   │   │   │   ├── sfml-network-s-d.lib
+│   │   │   │   ├── sfml-system-s-d.lib
+│   │   │   │   └── sfml-window-s-d.lib
+│   │   │   └── Release
+│   │   │       ├── sfml-audio-s.lib
+│   │   │       ├── sfml-graphics-s.lib
+│   │   │       ├── sfml-main.lib
+│   │   │       ├── sfml-network-s.lib
+│   │   │       ├── sfml-system-s.lib
+│   │   │       └── sfml-window-s.lib
+│   │   ├── sfml-template.vcxproj
+│   │   ├── sfml-template.vcxproj.filters
+│   │   └── src
+│   │       ├── baddy.cpp
+│   │       ├── baddy.h
+│   │       ├── laz.cpp
+│   │       ├── laz.h
+│   │       ├── main.cpp
+│   │       ├── save
+│   │       │   └── save.txt
+│   │       ├── save.cpp
+│   │       ├── save.h
+│   │       ├── sprites
+│   │       │   ├── baddy1.png
+│   │       │   ├── baddy10.png
+│   │       │   ├── baddy2.png
+│   │       │   ├── baddy3.png
+│   │       │   ├── baddy4.png
+│   │       │   ├── baddy5.png
+│   │       │   ├── baddy6.png
+│   │       │   ├── baddy7.png
+│   │       │   ├── baddy8.png
+│   │       │   ├── baddy9.png
+│   │       │   ├── blank.png
+│   │       │   ├── swgothe.TTF
+│   │       │   ├── Thumbs.db
+│   │       │   ├── tower1.png
+│   │       │   ├── tower10.png
+│   │       │   ├── tower2.png
+│   │       │   ├── tower3.png
+│   │       │   ├── tower4.png
+│   │       │   ├── tower5.png
+│   │       │   ├── tower6.png
+│   │       │   ├── tower7.png
+│   │       │   ├── tower8.png
+│   │       │   └── tower9.png
+│   │       ├── tower.cpp
+│   │       └── tower.h
+│   ├── sfml-template.sln
+│   ├── sfml-template.suo
+│   └── sfml-template.v12.suo
+├── Completed
+│   ├── 04B
+│   │   ├── 04B
+│   │   │   ├── 04B.vcxproj
+│   │   │   ├── 04B.vcxproj.filters
+│   │   │   ├── Debug
+│   │   │   │   ├── 04B.log
+│   │   │   │   ├── 04B.tlog
+│   │   │   │   │   ├── 04B.lastbuildstate
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   └── src
+│   │   ├── 04B.sln
+│   │   ├── 04B.v12.suo
+│   │   └── Debug
+│   │       ├── 04B.exe
+│   │       └── 04B.ilk
+│   ├── 10A-Money Class
+│   │   ├── Debug
+│   │   │   ├── Lab10A.exe
+│   │   │   └── Lab10A.ilk
+│   │   ├── Lab10A
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab10A.log
+│   │   │   │   ├── Lab10A.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab10A.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   ├── link.write.1.tlog
+│   │   │   │   │   └── unsuccessfulbuild
+│   │   │   │   ├── money.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab10A.vcxproj
+│   │   │   ├── Lab10A.vcxproj.filters
+│   │   │   └── src
+│   │   │       └── money.h
+│   │   ├── Lab10A.sln
+│   │   └── Lab10A.v12.suo
+│   ├── 10B-Box Class
+│   │   ├── Debug
+│   │   │   ├── Lab10B.exe
+│   │   │   └── Lab10B.ilk
+│   │   ├── Lab10B
+│   │   │   ├── Debug
+│   │   │   │   ├── box.obj
+│   │   │   │   ├── Lab10B.log
+│   │   │   │   ├── Lab10B.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab10B.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   ├── test.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab10B.vcxproj
+│   │   │   ├── Lab10B.vcxproj.filters
+│   │   │   └── src
+│   │   │       ├── box.h
+│   │   │       └── test.h
+│   │   ├── Lab10B.sln
+│   │   └── Lab10B.v12.suo
+│   ├── Homwork 4
+│   │   ├── Debug
+│   │   │   ├── Homwork 4.exe
+│   │   │   └── Homwork 4.ilk
+│   │   ├── Homwork 4
+│   │   │   ├── Debug
+│   │   │   │   ├── Homwork 4.log
+│   │   │   │   ├── Homwork 4.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Homwork 4.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Homwork 4.vcxproj
+│   │   │   ├── Homwork 4.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Homwork 4.sln
+│   │   └── Homwork 4.v12.suo
+│   ├── HW05
+│   │   ├── Debug
+│   │   │   ├── HW05.exe
+│   │   │   └── HW05.ilk
+│   │   ├── HW05
+│   │   │   ├── Debug
+│   │   │   │   ├── HW05.log
+│   │   │   │   ├── HW05.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── HW05.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── HW05.vcxproj
+│   │   │   ├── HW05.vcxproj.filters
+│   │   │   └── src
+│   │   ├── HW05.sln
+│   │   └── HW05.v12.suo
+│   ├── HW06
+│   │   ├── Debug
+│   │   │   ├── HW06.exe
+│   │   │   └── HW06.ilk
+│   │   ├── HW06
+│   │   │   ├── Debug
+│   │   │   │   ├── HW06.log
+│   │   │   │   ├── HW06.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── HW06.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── src.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── HW06.vcxproj
+│   │   │   ├── HW06.vcxproj.filters
+│   │   │   ├── output.txt
+│   │   │   ├── record.txt
+│   │   │   └── src
+│   │   ├── HW06.sln
+│   │   └── HW06.v12.suo
+│   ├── HW07
+│   │   ├── Debug
+│   │   │   ├── HW07.exe
+│   │   │   └── HW07.ilk
+│   │   ├── HW07.sln
+│   │   ├── HW07.suo
+│   │   ├── HW07.v12.suo
+│   │   └── SFMLVSProject
+│   │       ├── alice.txt
+│   │       ├── chinese.txt
+│   │       ├── data
+│   │       │   ├── alice.txt
+│   │       │   └── arial.ttf
+│   │       ├── Debug
+│   │       │   ├── HW07.tlog
+│   │       │   │   ├── cl.command.1.tlog
+│   │       │   │   ├── CL.read.1.tlog
+│   │       │   │   ├── CL.write.1.tlog
+│   │       │   │   ├── HW07.lastbuildstate
+│   │       │   │   ├── link.command.1.tlog
+│   │       │   │   ├── link.read.1.tlog
+│   │       │   │   └── link.write.1.tlog
+│   │       │   ├── main.obj
+│   │       │   ├── SFMLVSProject.log
+│   │       │   └── vc120.idb
+│   │       ├── include
+│   │       │   └── SFML
+│   │       │       ├── Audio
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── Listener.hpp
+│   │       │       │   ├── Music.hpp
+│   │       │       │   ├── Sound.hpp
+│   │       │       │   ├── SoundBuffer.hpp
+│   │       │       │   ├── SoundBufferRecorder.hpp
+│   │       │       │   ├── SoundRecorder.hpp
+│   │       │       │   ├── SoundSource.hpp
+│   │       │       │   └── SoundStream.hpp
+│   │       │       ├── Audio.hpp
+│   │       │       ├── Config.hpp
+│   │       │       ├── Graphics
+│   │       │       │   ├── BlendMode.hpp
+│   │       │       │   ├── CircleShape.hpp
+│   │       │       │   ├── Color.hpp
+│   │       │       │   ├── ConvexShape.hpp
+│   │       │       │   ├── Drawable.hpp
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── Font.hpp
+│   │       │       │   ├── Glyph.hpp
+│   │       │       │   ├── Image.hpp
+│   │       │       │   ├── PrimitiveType.hpp
+│   │       │       │   ├── Rect.hpp
+│   │       │       │   ├── Rect.inl
+│   │       │       │   ├── RectangleShape.hpp
+│   │       │       │   ├── RenderStates.hpp
+│   │       │       │   ├── RenderTarget.hpp
+│   │       │       │   ├── RenderTexture.hpp
+│   │       │       │   ├── RenderWindow.hpp
+│   │       │       │   ├── Shader.hpp
+│   │       │       │   ├── Shape.hpp
+│   │       │       │   ├── Sprite.hpp
+│   │       │       │   ├── Text.hpp
+│   │       │       │   ├── Texture.hpp
+│   │       │       │   ├── Transform.hpp
+│   │       │       │   ├── Transformable.hpp
+│   │       │       │   ├── Vertex.hpp
+│   │       │       │   ├── VertexArray.hpp
+│   │       │       │   └── View.hpp
+│   │       │       ├── Graphics.hpp
+│   │       │       ├── Network
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── Ftp.hpp
+│   │       │       │   ├── Http.hpp
+│   │       │       │   ├── IpAddress.hpp
+│   │       │       │   ├── Packet.hpp
+│   │       │       │   ├── Socket.hpp
+│   │       │       │   ├── SocketHandle.hpp
+│   │       │       │   ├── SocketSelector.hpp
+│   │       │       │   ├── TcpListener.hpp
+│   │       │       │   ├── TcpSocket.hpp
+│   │       │       │   └── UdpSocket.hpp
+│   │       │       ├── Network.hpp
+│   │       │       ├── OpenGL.hpp
+│   │       │       ├── System
+│   │       │       │   ├── Clock.hpp
+│   │       │       │   ├── Err.hpp
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── InputStream.hpp
+│   │       │       │   ├── Lock.hpp
+│   │       │       │   ├── Mutex.hpp
+│   │       │       │   ├── NonCopyable.hpp
+│   │       │       │   ├── Sleep.hpp
+│   │       │       │   ├── String.hpp
+│   │       │       │   ├── Thread.hpp
+│   │       │       │   ├── Thread.inl
+│   │       │       │   ├── ThreadLocal.hpp
+│   │       │       │   ├── ThreadLocalPtr.hpp
+│   │       │       │   ├── ThreadLocalPtr.inl
+│   │       │       │   ├── Time.hpp
+│   │       │       │   ├── Utf.hpp
+│   │       │       │   ├── Utf.inl
+│   │       │       │   ├── Vector2.hpp
+│   │       │       │   ├── Vector2.inl
+│   │       │       │   ├── Vector3.hpp
+│   │       │       │   └── Vector3.inl
+│   │       │       ├── System.hpp
+│   │       │       ├── Window
+│   │       │       │   ├── Context.hpp
+│   │       │       │   ├── ContextSettings.hpp
+│   │       │       │   ├── Event.hpp
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── GlResource.hpp
+│   │       │       │   ├── Joystick.hpp
+│   │       │       │   ├── Keyboard.hpp
+│   │       │       │   ├── Mouse.hpp
+│   │       │       │   ├── VideoMode.hpp
+│   │       │       │   ├── Window.hpp
+│   │       │       │   ├── WindowHandle.hpp
+│   │       │       │   └── WindowStyle.hpp
+│   │       │       └── Window.hpp
+│   │       ├── Libs
+│   │       │   ├── Debug
+│   │       │   │   ├── sfml-audio-s-d.lib
+│   │       │   │   ├── sfml-graphics-s-d.lib
+│   │       │   │   ├── sfml-main-d.lib
+│   │       │   │   ├── sfml-network-s-d.lib
+│   │       │   │   ├── sfml-system-s-d.lib
+│   │       │   │   └── sfml-window-s-d.lib
+│   │       │   └── Release
+│   │       │       ├── sfml-audio-s.lib
+│   │       │       ├── sfml-graphics-s.lib
+│   │       │       ├── sfml-main.lib
+│   │       │       ├── sfml-network-s.lib
+│   │       │       ├── sfml-system-s.lib
+│   │       │       └── sfml-window-s.lib
+│   │       ├── SFMLVSProject.vcxproj
+│   │       ├── SFMLVSProject.vcxproj.filters
+│   │       └── src
+│   ├── HW08
+│   │   ├── Debug
+│   │   │   ├── HW08.exe
+│   │   │   └── HW08.ilk
+│   │   ├── HW08.sln
+│   │   ├── HW08.suo
+│   │   ├── HW08.v12.suo
+│   │   └── SFMLVSProject
+│   │       ├── data
+│   │       │   ├── columbine.png
+│   │       │   └── Thumbs.db
+│   │       ├── Debug
+│   │       │   ├── HW08.tlog
+│   │       │   │   ├── cl.command.1.tlog
+│   │       │   │   ├── CL.read.1.tlog
+│   │       │   │   ├── CL.write.1.tlog
+│   │       │   │   ├── HW08.lastbuildstate
+│   │       │   │   ├── link.command.1.tlog
+│   │       │   │   ├── link.read.1.tlog
+│   │       │   │   └── link.write.1.tlog
+│   │       │   ├── main.obj
+│   │       │   ├── SFMLVSProject.log
+│   │       │   └── vc120.idb
+│   │       ├── HW08
+│   │       │   ├── Debug
+│   │       │   ├── HW08.sln
+│   │       │   ├── HW08.suo
+│   │       │   ├── HW08.v12.suo
+│   │       │   └── SFMLVSProject
+│   │       │       ├── data
+│   │       │       │   └── columbine.png
+│   │       │       ├── Debug
+│   │       │       ├── include
+│   │       │       │   └── SFML
+│   │       │       │       ├── Audio
+│   │       │       │       │   ├── Export.hpp
+│   │       │       │       │   └── Listener.hpp
+│   │       │       │       ├── Audio.hpp
+│   │       │       │       ├── Config.hpp
+│   │       │       │       ├── Graphics.hpp
+│   │       │       │       ├── Network.hpp
+│   │       │       │       ├── OpenGL.hpp
+│   │       │       │       ├── System.hpp
+│   │       │       │       └── Window.hpp
+│   │       │       ├── SFMLVSProject.vcxproj
+│   │       │       └── SFMLVSProject.vcxproj.filters
+│   │       ├── include
+│   │       │   └── SFML
+│   │       │       ├── Audio
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── Listener.hpp
+│   │       │       │   ├── Music.hpp
+│   │       │       │   ├── Sound.hpp
+│   │       │       │   ├── SoundBuffer.hpp
+│   │       │       │   ├── SoundBufferRecorder.hpp
+│   │       │       │   ├── SoundRecorder.hpp
+│   │       │       │   ├── SoundSource.hpp
+│   │       │       │   └── SoundStream.hpp
+│   │       │       ├── Audio.hpp
+│   │       │       ├── Config.hpp
+│   │       │       ├── Graphics
+│   │       │       │   ├── BlendMode.hpp
+│   │       │       │   ├── CircleShape.hpp
+│   │       │       │   ├── Color.hpp
+│   │       │       │   ├── ConvexShape.hpp
+│   │       │       │   ├── Drawable.hpp
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── Font.hpp
+│   │       │       │   ├── Glyph.hpp
+│   │       │       │   ├── Image.hpp
+│   │       │       │   ├── PrimitiveType.hpp
+│   │       │       │   ├── Rect.hpp
+│   │       │       │   ├── Rect.inl
+│   │       │       │   ├── RectangleShape.hpp
+│   │       │       │   ├── RenderStates.hpp
+│   │       │       │   ├── RenderTarget.hpp
+│   │       │       │   ├── RenderTexture.hpp
+│   │       │       │   ├── RenderWindow.hpp
+│   │       │       │   ├── Shader.hpp
+│   │       │       │   ├── Shape.hpp
+│   │       │       │   ├── Sprite.hpp
+│   │       │       │   ├── Text.hpp
+│   │       │       │   ├── Texture.hpp
+│   │       │       │   ├── Transform.hpp
+│   │       │       │   ├── Transformable.hpp
+│   │       │       │   ├── Vertex.hpp
+│   │       │       │   ├── VertexArray.hpp
+│   │       │       │   └── View.hpp
+│   │       │       ├── Graphics.hpp
+│   │       │       ├── Network
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── Ftp.hpp
+│   │       │       │   ├── Http.hpp
+│   │       │       │   ├── IpAddress.hpp
+│   │       │       │   ├── Packet.hpp
+│   │       │       │   ├── Socket.hpp
+│   │       │       │   ├── SocketHandle.hpp
+│   │       │       │   ├── SocketSelector.hpp
+│   │       │       │   ├── TcpListener.hpp
+│   │       │       │   ├── TcpSocket.hpp
+│   │       │       │   └── UdpSocket.hpp
+│   │       │       ├── Network.hpp
+│   │       │       ├── OpenGL.hpp
+│   │       │       ├── System
+│   │       │       │   ├── Clock.hpp
+│   │       │       │   ├── Err.hpp
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── InputStream.hpp
+│   │       │       │   ├── Lock.hpp
+│   │       │       │   ├── Mutex.hpp
+│   │       │       │   ├── NonCopyable.hpp
+│   │       │       │   ├── Sleep.hpp
+│   │       │       │   ├── String.hpp
+│   │       │       │   ├── Thread.hpp
+│   │       │       │   ├── Thread.inl
+│   │       │       │   ├── ThreadLocal.hpp
+│   │       │       │   ├── ThreadLocalPtr.hpp
+│   │       │       │   ├── ThreadLocalPtr.inl
+│   │       │       │   ├── Time.hpp
+│   │       │       │   ├── Utf.hpp
+│   │       │       │   ├── Utf.inl
+│   │       │       │   ├── Vector2.hpp
+│   │       │       │   ├── Vector2.inl
+│   │       │       │   ├── Vector3.hpp
+│   │       │       │   └── Vector3.inl
+│   │       │       ├── System.hpp
+│   │       │       ├── Window
+│   │       │       │   ├── Context.hpp
+│   │       │       │   ├── ContextSettings.hpp
+│   │       │       │   ├── Event.hpp
+│   │       │       │   ├── Export.hpp
+│   │       │       │   ├── GlResource.hpp
+│   │       │       │   ├── Joystick.hpp
+│   │       │       │   ├── Keyboard.hpp
+│   │       │       │   ├── Mouse.hpp
+│   │       │       │   ├── VideoMode.hpp
+│   │       │       │   ├── Window.hpp
+│   │       │       │   ├── WindowHandle.hpp
+│   │       │       │   └── WindowStyle.hpp
+│   │       │       └── Window.hpp
+│   │       ├── Libs
+│   │       │   ├── Debug
+│   │       │   │   ├── sfml-audio-s-d.lib
+│   │       │   │   ├── sfml-graphics-s-d.lib
+│   │       │   │   ├── sfml-main-d.lib
+│   │       │   │   ├── sfml-network-s-d.lib
+│   │       │   │   ├── sfml-system-s-d.lib
+│   │       │   │   └── sfml-window-s-d.lib
+│   │       │   └── Release
+│   │       │       ├── sfml-audio-s.lib
+│   │       │       ├── sfml-graphics-s.lib
+│   │       │       ├── sfml-main.lib
+│   │       │       ├── sfml-network-s.lib
+│   │       │       ├── sfml-system-s.lib
+│   │       │       └── sfml-window-s.lib
+│   │       ├── SFMLVSProject.vcxproj
+│   │       ├── SFMLVSProject.vcxproj.filters
+│   │       └── src
+│   ├── HW10-Student Gradebook
+│   │   ├── Debug
+│   │   │   ├── HW10-Student Gradebook.exe
+│   │   │   └── HW10-Student Gradebook.ilk
+│   │   ├── HW10-Student Gradebook
+│   │   │   ├── data
+│   │   │   │   └── grades.csv
+│   │   │   ├── Debug
+│   │   │   │   ├── GradeBook.obj
+│   │   │   │   ├── HW10-Stu.9ED801A0.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── HW10-Student Gradebook.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── HW10-Student Gradebook.log
+│   │   │   │   ├── main.obj
+│   │   │   │   ├── Student.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── grades.csv
+│   │   │   ├── HW10-Student Gradebook.vcxproj
+│   │   │   ├── HW10-Student Gradebook.vcxproj.filters
+│   │   │   └── src
+│   │   │       ├── data
+│   │   │       │   └── grades.csv
+│   │   │       ├── GradeBook.h
+│   │   │       └── Student.h
+│   │   ├── HW10-Student Gradebook.sln
+│   │   └── HW10-Student Gradebook.v12.suo
+│   ├── HW3
+│   │   ├── Debug
+│   │   │   ├── HW3.exe
+│   │   │   └── HW3.ilk
+│   │   ├── HW3
+│   │   │   ├── Debug
+│   │   │   │   ├── HW3.log
+│   │   │   │   ├── HW3.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── HW3.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── HW3.vcxproj
+│   │   │   ├── HW3.vcxproj.filters
+│   │   │   └── src
+│   │   ├── HW3.sln
+│   │   └── HW3.v12.suo
+│   ├── HW9
+│   │   ├── Debug
+│   │   │   ├── HW9.exe
+│   │   │   └── HW9.ilk
+│   │   ├── HW9
+│   │   │   ├── Debug
+│   │   │   │   ├── HW9.log
+│   │   │   │   ├── HW9.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── HW9.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── game.txt
+│   │   │   ├── HW9.vcxproj
+│   │   │   ├── HW9.vcxproj.filters
+│   │   │   └── src
+│   │   ├── HW9.sln
+│   │   └── HW9.v12.suo
+│   ├── Lab 3A
+│   │   ├── Debug
+│   │   │   ├── Lab 3A.exe
+│   │   │   └── Lab 3A.ilk
+│   │   ├── Lab 3A
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab 3A.log
+│   │   │   │   ├── Lab 3A.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab 3A.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab 3A.vcxproj
+│   │   │   ├── Lab 3A.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab 3A.sln
+│   │   └── Lab 3A.v12.suo
+│   ├── Lab 4a
+│   │   ├── Debug
+│   │   │   ├── Lab 4a.exe
+│   │   │   └── Lab 4a.ilk
+│   │   ├── Lab 4a
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab 4a.log
+│   │   │   │   ├── Lab 4a.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab 4a.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main2.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab 4a.vcxproj
+│   │   │   ├── Lab 4a.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab 4a.sln
+│   │   └── Lab 4a.v12.suo
+│   ├── Lab04A
+│   │   ├── Debug
+│   │   │   ├── Lab04A.exe
+│   │   │   └── Lab04A.ilk
+│   │   ├── Lab04A
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab04A.log
+│   │   │   │   ├── Lab04A.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab04A.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab04A.vcxproj
+│   │   │   ├── Lab04A.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab04A.sln
+│   │   └── Lab04A.v12.suo
+│   ├── Lab05A
+│   │   ├── Debug
+│   │   │   ├── Lab05A.exe
+│   │   │   └── Lab05A.ilk
+│   │   ├── Lab05A
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab05A.log
+│   │   │   │   ├── Lab05A.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab05A.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab05A.vcxproj
+│   │   │   ├── Lab05A.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab05A.sln
+│   │   └── Lab05A.v12.suo
+│   ├── Lab06A
+│   │   ├── Debug
+│   │   │   ├── Lab06A.exe
+│   │   │   └── Lab06A.ilk
+│   │   ├── Lab06A
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab06A.log
+│   │   │   │   ├── Lab06A.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab06A.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab06A.vcxproj
+│   │   │   ├── Lab06A.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab06A.sln
+│   │   └── Lab06A.v12.suo
+│   ├── Lab06B
+│   │   ├── Debug
+│   │   │   ├── Lab06B.exe
+│   │   │   └── Lab06B.ilk
+│   │   ├── Lab06B
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab06B.log
+│   │   │   │   ├── Lab06B.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab06B.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab06B.vcxproj
+│   │   │   ├── Lab06B.vcxproj.filters
+│   │   │   ├── populations.txt
+│   │   │   └── src
+│   │   ├── Lab06B.sln
+│   │   └── Lab06B.v12.suo
+│   ├── Lab06C
+│   │   ├── Debug
+│   │   │   ├── Lab06C.exe
+│   │   │   └── Lab06C.ilk
+│   │   ├── Lab06C
+│   │   │   ├── alien.txt
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab06C.log
+│   │   │   │   ├── Lab06C.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab06C.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── decipheredMessage.txt
+│   │   │   ├── Lab06C.vcxproj
+│   │   │   ├── Lab06C.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab06C.sln
+│   │   └── Lab06C.v12.suo
+│   ├── Lab07A
+│   │   ├── Debug
+│   │   │   ├── Lab07A.exe
+│   │   │   └── Lab07A.ilk
+│   │   ├── Lab07A
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab07A.log
+│   │   │   │   ├── Lab07A.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab07A.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab07A.vcxproj
+│   │   │   ├── Lab07A.vcxproj.filters
+│   │   │   ├── ModifiedStars.txt
+│   │   │   ├── ModifiedStarsB.txt
+│   │   │   ├── src
+│   │   │   └── stars.txt
+│   │   ├── Lab07A.sln
+│   │   └── Lab07A.v12.suo
+│   ├── Lab07B
+│   │   ├── Debug
+│   │   │   ├── ModifiedStars.txt
+│   │   │   ├── sfml-template.exe
+│   │   │   └── sfml-template.ilk
+│   │   ├── sfml-template
+│   │   │   ├── data
+│   │   │   │   ├── LiberationMono-Regular.ttf
+│   │   │   │   ├── ms-pacman-spritesheet.png
+│   │   │   │   ├── player0.png
+│   │   │   │   ├── player1.png
+│   │   │   │   ├── player2.png
+│   │   │   │   ├── player3.png
+│   │   │   │   ├── stalker0.png
+│   │   │   │   ├── stalker1.png
+│   │   │   │   ├── stalker2.png
+│   │   │   │   ├── stalker3.png
+│   │   │   │   ├── Thumbs.db
+│   │   │   │   └── tilemap.txt
+│   │   │   ├── Debug
+│   │   │   │   ├── main.obj
+│   │   │   │   ├── sfml-template.log
+│   │   │   │   ├── sfml-template.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   ├── link.write.1.tlog
+│   │   │   │   │   └── sfml-template.lastbuildstate
+│   │   │   │   └── vc120.idb
+│   │   │   ├── include
+│   │   │   │   └── SFML
+│   │   │   │       ├── Audio
+│   │   │   │       │   ├── Export.hpp
+│   │   │   │       │   ├── Listener.hpp
+│   │   │   │       │   ├── Music.hpp
+│   │   │   │       │   ├── Sound.hpp
+│   │   │   │       │   ├── SoundBuffer.hpp
+│   │   │   │       │   ├── SoundBufferRecorder.hpp
+│   │   │   │       │   ├── SoundRecorder.hpp
+│   │   │   │       │   ├── SoundSource.hpp
+│   │   │   │       │   └── SoundStream.hpp
+│   │   │   │       ├── Audio.hpp
+│   │   │   │       ├── Config.hpp
+│   │   │   │       ├── Graphics
+│   │   │   │       │   ├── BlendMode.hpp
+│   │   │   │       │   ├── CircleShape.hpp
+│   │   │   │       │   ├── Color.hpp
+│   │   │   │       │   ├── ConvexShape.hpp
+│   │   │   │       │   ├── Drawable.hpp
+│   │   │   │       │   ├── Export.hpp
+│   │   │   │       │   ├── Font.hpp
+│   │   │   │       │   ├── Glyph.hpp
+│   │   │   │       │   ├── Image.hpp
+│   │   │   │       │   ├── PrimitiveType.hpp
+│   │   │   │       │   ├── Rect.hpp
+│   │   │   │       │   ├── Rect.inl
+│   │   │   │       │   ├── RectangleShape.hpp
+│   │   │   │       │   ├── RenderStates.hpp
+│   │   │   │       │   ├── RenderTarget.hpp
+│   │   │   │       │   ├── RenderTexture.hpp
+│   │   │   │       │   ├── RenderWindow.hpp
+│   │   │   │       │   ├── Shader.hpp
+│   │   │   │       │   ├── Shape.hpp
+│   │   │   │       │   ├── Sprite.hpp
+│   │   │   │       │   ├── Text.hpp
+│   │   │   │       │   ├── Texture.hpp
+│   │   │   │       │   ├── Transform.hpp
+│   │   │   │       │   ├── Transformable.hpp
+│   │   │   │       │   ├── Vertex.hpp
+│   │   │   │       │   ├── VertexArray.hpp
+│   │   │   │       │   └── View.hpp
+│   │   │   │       ├── Graphics.hpp
+│   │   │   │       ├── Network
+│   │   │   │       │   ├── Export.hpp
+│   │   │   │       │   ├── Ftp.hpp
+│   │   │   │       │   ├── Http.hpp
+│   │   │   │       │   ├── IpAddress.hpp
+│   │   │   │       │   ├── Packet.hpp
+│   │   │   │       │   ├── Socket.hpp
+│   │   │   │       │   ├── SocketHandle.hpp
+│   │   │   │       │   ├── SocketSelector.hpp
+│   │   │   │       │   ├── TcpListener.hpp
+│   │   │   │       │   ├── TcpSocket.hpp
+│   │   │   │       │   └── UdpSocket.hpp
+│   │   │   │       ├── Network.hpp
+│   │   │   │       ├── OpenGL.hpp
+│   │   │   │       ├── System
+│   │   │   │       │   ├── Clock.hpp
+│   │   │   │       │   ├── Err.hpp
+│   │   │   │       │   ├── Export.hpp
+│   │   │   │       │   ├── InputStream.hpp
+│   │   │   │       │   ├── Lock.hpp
+│   │   │   │       │   ├── Mutex.hpp
+│   │   │   │       │   ├── NonCopyable.hpp
+│   │   │   │       │   ├── Sleep.hpp
+│   │   │   │       │   ├── String.hpp
+│   │   │   │       │   ├── Thread.hpp
+│   │   │   │       │   ├── Thread.inl
+│   │   │   │       │   ├── ThreadLocal.hpp
+│   │   │   │       │   ├── ThreadLocalPtr.hpp
+│   │   │   │       │   ├── ThreadLocalPtr.inl
+│   │   │   │       │   ├── Time.hpp
+│   │   │   │       │   ├── Utf.hpp
+│   │   │   │       │   ├── Utf.inl
+│   │   │   │       │   ├── Vector2.hpp
+│   │   │   │       │   ├── Vector2.inl
+│   │   │   │       │   ├── Vector3.hpp
+│   │   │   │       │   └── Vector3.inl
+│   │   │   │       ├── System.hpp
+│   │   │   │       ├── Window
+│   │   │   │       │   ├── Context.hpp
+│   │   │   │       │   ├── ContextSettings.hpp
+│   │   │   │       │   ├── Event.hpp
+│   │   │   │       │   ├── Export.hpp
+│   │   │   │       │   ├── GlResource.hpp
+│   │   │   │       │   ├── Joystick.hpp
+│   │   │   │       │   ├── Keyboard.hpp
+│   │   │   │       │   ├── Mouse.hpp
+│   │   │   │       │   ├── VideoMode.hpp
+│   │   │   │       │   ├── Window.hpp
+│   │   │   │       │   ├── WindowHandle.hpp
+│   │   │   │       │   └── WindowStyle.hpp
+│   │   │   │       └── Window.hpp
+│   │   │   ├── Libs
+│   │   │   │   ├── Debug
+│   │   │   │   │   ├── sfml-audio-s-d.lib
+│   │   │   │   │   ├── sfml-graphics-s-d.lib
+│   │   │   │   │   ├── sfml-main-d.lib
+│   │   │   │   │   ├── sfml-network-s-d.lib
+│   │   │   │   │   ├── sfml-system-s-d.lib
+│   │   │   │   │   └── sfml-window-s-d.lib
+│   │   │   │   └── Release
+│   │   │   │       ├── sfml-audio-s.lib
+│   │   │   │       ├── sfml-graphics-s.lib
+│   │   │   │       ├── sfml-main.lib
+│   │   │   │       ├── sfml-network-s.lib
+│   │   │   │       ├── sfml-system-s.lib
+│   │   │   │       └── sfml-window-s.lib
+│   │   │   ├── ModifiedStars.txt
+│   │   │   ├── sfml-template.vcxproj
+│   │   │   ├── sfml-template.vcxproj.filters
+│   │   │   └── src
+│   │   ├── sfml-template.sln
+│   │   ├── sfml-template.suo
+│   │   └── sfml-template.v12.suo
+│   ├── Lab07C
+│   │   ├── Debug
+│   │   │   ├── Lab07C.exe
+│   │   │   └── Lab07C.ilk
+│   │   ├── Lab07C
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab07C.log
+│   │   │   │   ├── Lab07C.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab07C.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab07C.vcxproj
+│   │   │   ├── Lab07C.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab07C.sln
+│   │   └── Lab07C.v12.suo
+│   ├── Lab08A
+│   │   ├── Debug
+│   │   │   ├── Lab08A.exe
+│   │   │   └── Lab08A.ilk
+│   │   ├── Lab08A
+│   │   │   ├── dataIn.txt
+│   │   │   ├── dataOut.txt
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab08A.log
+│   │   │   │   ├── Lab08A.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab08A.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab08A.vcxproj
+│   │   │   ├── Lab08A.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab08A.sln
+│   │   └── Lab08A.v12.suo
+│   ├── Lab09A
+│   │   ├── data
+│   │   │   └── data2sort.txt
+│   │   ├── Debug
+│   │   │   ├── Lab09A.exe
+│   │   │   └── Lab09A.ilk
+│   │   ├── Lab09A
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab09A.log
+│   │   │   │   ├── Lab09A.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab09A.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab09A.vcxproj
+│   │   │   ├── Lab09A.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab09A.sln
+│   │   └── Lab09A.v12.suo
+│   ├── Lab09A2
+│   │   ├── data
+│   │   │   └── data2sort.txt
+│   │   ├── Debug
+│   │   │   ├── Lab09A.exe
+│   │   │   └── Lab09A.ilk
+│   │   ├── Lab09A
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab09A.log
+│   │   │   │   ├── Lab09A.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab09A.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab09A.vcxproj
+│   │   │   ├── Lab09A.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab09A.sln
+│   │   └── Lab09A.v12.suo
+│   ├── Lab09B
+│   │   ├── Lab09B
+│   │   │   ├── Lab09B.vcxproj
+│   │   │   ├── Lab09B.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab09B.sln
+│   │   └── Lab09B.v12.suo
+│   ├── Lab3B
+│   │   ├── Debug
+│   │   │   ├── Lab3B.exe
+│   │   │   └── Lab3B.ilk
+│   │   ├── Lab3B
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab3B.log
+│   │   │   │   ├── Lab3B.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab3B.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab3B.vcxproj
+│   │   │   └── Lab3B.vcxproj.filters
+│   │   ├── Lab3B.sln
+│   │   └── Lab3B.v12.suo
+│   ├── lab4C
+│   │   ├── Debug
+│   │   │   ├── lab4C.exe
+│   │   │   └── lab4C.ilk
+│   │   ├── lab4C
+│   │   │   ├── Debug
+│   │   │   │   ├── lab4C.log
+│   │   │   │   ├── lab4C.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── lab4C.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── lab4C.vcxproj
+│   │   │   ├── lab4C.vcxproj.filters
+│   │   │   └── src
+│   │   ├── lab4C.sln
+│   │   └── lab4C.v12.suo
+│   ├── Lab5B
+│   │   ├── Debug
+│   │   │   ├── Lab5B.exe
+│   │   │   └── Lab5B.ilk
+│   │   ├── Lab5B
+│   │   │   ├── Debug
+│   │   │   │   ├── Lab5B.log
+│   │   │   │   ├── Lab5B.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── Lab5B.lastbuildstate
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   └── link.write.1.tlog
+│   │   │   │   ├── main.obj
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Lab5B.vcxproj
+│   │   │   ├── Lab5B.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Lab5B.sln
+│   │   └── Lab5B.v12.suo
+│   ├── Project1
+│   │   ├── Debug
+│   │   │   ├── Project1.exe
+│   │   │   └── Project1.ilk
+│   │   ├── Project1
+│   │   │   ├── Debug
+│   │   │   │   ├── main.obj
+│   │   │   │   ├── Project1.log
+│   │   │   │   ├── Project1.tlog
+│   │   │   │   │   ├── cl.command.1.tlog
+│   │   │   │   │   ├── CL.read.1.tlog
+│   │   │   │   │   ├── CL.write.1.tlog
+│   │   │   │   │   ├── link.command.1.tlog
+│   │   │   │   │   ├── link.read.1.tlog
+│   │   │   │   │   ├── link.write.1.tlog
+│   │   │   │   │   └── Project1.lastbuildstate
+│   │   │   │   └── vc120.idb
+│   │   │   ├── Project1.vcxproj
+│   │   │   ├── Project1.vcxproj.filters
+│   │   │   └── src
+│   │   ├── Project1.sln
+│   │   └── Project1.v12.suo
+│   ├── src
+│   │   └── 11A-Triagnles
+│   │       ├── 11A-Triagnles
+│   │       │   ├── 11A-Triagnles.vcxproj
+│   │       │   └── 11A-Triagnles.vcxproj.filters
+│   │       ├── 11A-Triagnles.sln
+│   │       └── 11A-Triagnles.v12.suo
+│   └── src3
+│       ├── HW03
+│       ├── Lab03A
+│       └── Lab03B
+├── Exceptions
+│   ├── bin
+│   │   └── BankAccount.class
+│   └── src
+│       └── BankAccount.java
+├── FileIO
+│   ├── bin
+│   │   ├── ScoreTrakker.class
+│   │   └── Student.class
+│   └── src
+│       ├── ScoreTrakker.java
+│       └── Student.java
+├── LASER CUT
+│   ├── beto_tut_deer_finalimage.png
+│   ├── family 2.png
+│   ├── Family.png
+│   ├── flat,1000x1000,075,f.u2.jpg
+│   ├── Kodos--.dxf
+│   ├── Kodos.SLDPRT
+│   ├── Lion.png
+│   ├── Mystic-Owl-Tattoo.jpg
+│   ├── owl.png
+│   └── Thumbs.db
+├── maze-master
+│   ├── bin
+│   │   ├── input
+│   │   └── maze3
+│   │       ├── CreateGraph.class
+│   │       └── PublicNode.class
+│   ├── run.sh
+│   └── src
+│       ├── input
+│       └── maze3
+│           ├── CreateGraph.java
+│           └── PublicNode.java
+├── Preserve
+│   ├── box.cpp
+│   ├── colormain.cpp
+│   ├── GradeBook.cpp
+│   ├── main.cpp
+│   ├── maincpp.cpp
+│   ├── money.cpp
+│   ├── src.cpp
+│   ├── Student.cpp
+│   └── test.cpp
+├── prince-of-prog-lang
+│   ├── Algorithms
+│   │   ├── Grandpa Transit.html
+│   │   ├── grandpaTransitInput.txt
+│   │   ├── long.txt
+│   │   ├── Maze.docx
+│   │   ├── Old
+│   │   │   ├── algoBOWL.rb
+│   │   │   ├── dynamic.cpp
+│   │   │   └── Travelling Salesman.html
+│   │   ├── OLD Grandpa Transit.html
+│   │   ├── straight.txt
+│   │   ├── test.txt
+│   │   ├── vis.js.download
+│   │   └── vis-network.min.css
+│   ├── C++
+│   │   ├── 8-12.cpp
+│   │   ├── 8-12.exe
+│   │   ├── collatz.cpp
+│   │   ├── Graph
+│   │   │   ├── ADT.cpp
+│   │   │   ├── ADT.exe
+│   │   │   ├── ADT.h
+│   │   │   ├── Dijkstra.cpp
+│   │   │   ├── node.h
+│   │   │   ├── test.cpp
+│   │   │   └── test.exe
+│   │   ├── Perlin.cpp
+│   │   └── Poker
+│   │       ├── AlphaPlayer.h
+│   │       ├── Bet.h
+│   │       ├── BetaPlayer.h
+│   │       ├── BetHistory.h
+│   │       ├── Card.h
+│   │       ├── CSCI498C-Project-2-Phase-2
+│   │       │   └── CSCI498C Project 2 Phase 2
+│   │       │       ├── CSCI498C Project 2
+│   │       │       │   ├── BetHistory.cpp
+│   │       │       │   ├── BetHistory.h
+│   │       │       │   ├── CSCI498C Project 2.vcxproj
+│   │       │       │   ├── CSCI498C Project 2.vcxproj.filters
+│   │       │       │   ├── Debug
+│   │       │       │   │   ├── BetHistory.obj
+│   │       │       │   │   ├── cl.command.1.tlog
+│   │       │       │   │   ├── CL.read.1.tlog
+│   │       │       │   │   ├── CL.write.1.tlog
+│   │       │       │   │   ├── CSCI498C Project 2.lastbuildstate
+│   │       │       │   │   ├── CSCI498C Project 2.log
+│   │       │       │   │   ├── Game.obj
+│   │       │       │   │   ├── Hand.obj
+│   │       │       │   │   ├── link.9480.read.1.tlog
+│   │       │       │   │   ├── link.9480.write.1.tlog
+│   │       │       │   │   ├── link.9480-cvtres.read.1.tlog
+│   │       │       │   │   ├── link.9480-cvtres.write.1.tlog
+│   │       │       │   │   ├── link.9480-rc.read.1.tlog
+│   │       │       │   │   ├── link.9480-rc.write.1.tlog
+│   │       │       │   │   ├── link.command.1.tlog
+│   │       │       │   │   ├── link.read.1.tlog
+│   │       │       │   │   ├── link.write.1.tlog
+│   │       │       │   │   ├── link-cvtres.read.1.tlog
+│   │       │       │   │   ├── link-cvtres.write.1.tlog
+│   │       │       │   │   ├── link-rc.read.1.tlog
+│   │       │       │   │   ├── link-rc.write.1.tlog
+│   │       │       │   │   ├── main.obj
+│   │       │       │   │   ├── Player.obj
+│   │       │       │   │   └── vc110.idb
+│   │       │       │   ├── Game.cpp
+│   │       │       │   ├── Game.h
+│   │       │       │   ├── Hand.cpp
+│   │       │       │   ├── Hand.h
+│   │       │       │   ├── main.cpp
+│   │       │       │   ├── Player.cpp
+│   │       │       │   ├── Player.h
+│   │       │       │   └── structures.h
+│   │       │       ├── CSCI498C Project 2.sln
+│   │       │       ├── CSCI498C Project 2.v11.suo
+│   │       │       ├── Debug
+│   │       │       │   └── CSCI498C Project 2.ilk
+│   │       │       └── README.rtf
+│   │       ├── Debug
+│   │       │   ├── main.obj
+│   │       │   ├── Poker.exe
+│   │       │   ├── Poker.ilk
+│   │       │   ├── Poker.log
+│   │       │   ├── Poker.tlog
+│   │       │   │   ├── CL.command.1.tlog
+│   │       │   │   ├── CL.read.1.tlog
+│   │       │   │   ├── CL.write.1.tlog
+│   │       │   │   ├── link.command.1.tlog
+│   │       │   │   ├── link.read.1.tlog
+│   │       │   │   ├── link.write.1.tlog
+│   │       │   │   └── Poker.lastbuildstate
+│   │       │   └── vc140.idb
+│   │       ├── Game.h
+│   │       ├── Hand.h
+│   │       ├── HumanPlayer.h
+│   │       ├── Player.h
+│   │       ├── PlayerType.h
+│   │       ├── Poker.sln
+│   │       ├── Poker.vcxproj
+│   │       ├── Poker.vcxproj.filters
+│   │       ├── test.cpp
+│   │       └── x64
+│   │           └── Debug
+│   │               ├── main.obj
+│   │               ├── Poker.exe
+│   │               ├── Poker.ilk
+│   │               ├── Poker.log
+│   │               ├── Poker.tlog
+│   │               │   ├── CL.command.1.tlog
+│   │               │   ├── CL.read.1.tlog
+│   │               │   ├── CL.write.1.tlog
+│   │               │   ├── link.command.1.tlog
+│   │               │   ├── link.read.1.tlog
+│   │               │   ├── link.write.1.tlog
+│   │               │   └── Poker.lastbuildstate
+│   │               ├── test.obj
+│   │               └── vc140.idb
+│   ├── Haskell
+│   │   ├── Chapter 1
+│   │   │   ├── ChapterOne.hs
+│   │   │   └── Haskell1.hs
+│   │   ├── Chapter 3
+│   │   │   ├── ChapterThree.hs
+│   │   │   └── Haskell3.hs
+│   │   ├── Chapter 4
+│   │   │   ├── ChapterFour.hs
+│   │   │   └── Haskell4.hs
+│   │   ├── Chapter 5
+│   │   │   ├── ChapterFive_Pt1.hs
+│   │   │   ├── ChapterFive_Pt2.hs
+│   │   │   ├── ChapterFive_Pt3.hs
+│   │   │   ├── Haskell5pt1.hs
+│   │   │   ├── Haskell5pt2.hs
+│   │   │   └── Haskell5pt3.hs
+│   │   ├── Chapter8.hs
+│   │   ├── Chapter9.hs
+│   │   ├── Demo
+│   │   │   ├── demo-chap6.hs
+│   │   │   ├── demoDay1.txt
+│   │   │   ├── demoDay1-chap1.exe
+│   │   │   ├── demoDay1-chap1.hi
+│   │   │   ├── demoDay1-chap1.hs
+│   │   │   ├── demoDay1-chap1.o
+│   │   │   ├── demoDay2.txt
+│   │   │   ├── demoDay2-chap1.hs
+│   │   │   ├── demoDay3.txt
+│   │   │   ├── demoDay3-chap3.hs
+│   │   │   ├── demoDay4-chap3.hs
+│   │   │   ├── demoDay5-chap4.hs
+│   │   │   ├── demoDay6-chap5.hs
+│   │   │   ├── demoDay7-chap5.hs
+│   │   │   ├── demoDay8-chap8.hs
+│   │   │   ├── demoDay9-chap7Pt1.hs
+│   │   │   ├── demoDay9-chap7Pt2.hs
+│   │   │   ├── demoDay9-chap7Pt3.hs
+│   │   │   ├── demoDay9-chap7Pt4.hs
+│   │   │   ├── demoDay-chap7_maybe9.hs
+│   │   │   ├── demoDay-chap9.hs
+│   │   │   ├── Geometry.hi
+│   │   │   ├── Geometry.hs
+│   │   │   ├── Geometry.o
+│   │   │   ├── GeometryDemo.hs
+│   │   │   ├── haiku.txt
+│   │   │   ├── helloworld.exe
+│   │   │   ├── helloworld.hi
+│   │   │   ├── helloworld.hs
+│   │   │   └── helloworld.o
+│   │   ├── encryptMe.txt
+│   │   ├── nqueens
+│   │   │   ├── nqueens.docx
+│   │   │   ├── NQueens.hs
+│   │   │   └── nqueens-report.pdf
+│   │   ├── p&s4.hs
+│   │   ├── play&share.hs
+│   │   ├── play&share2.hs
+│   │   ├── play&share3.hs
+│   │   └── play&share4.hs
+│   ├── Old
+│   │   ├── Algorithms-CSCI406
+│   │   │   ├── assignments
+│   │   │   │   ├── algobowl.py
+│   │   │   │   ├── Assn1.pdf
+│   │   │   │   ├── Assn3.pdf
+│   │   │   │   ├── Assn6.pdf
+│   │   │   │   ├── dynamicprogramming.py
+│   │   │   │   ├── genInputs.py
+│   │   │   │   ├── graph.py
+│   │   │   │   ├── maze-project.pdf
+│   │   │   │   ├── spiderMaze.txt
+│   │   │   │   ├── testinput
+│   │   │   │   └── Traveling.Salesperson.project.zip
+│   │   │   └── text(s)
+│   │   │       └── AlgorithmsTextbook.pdf
+│   │   ├── ProgrammingLanguages-CSCI400
+│   │   │   ├── assignments
+│   │   │   │   ├── BasicWordGame.rb
+│   │   │   │   ├── Chapter8.hs
+│   │   │   │   ├── Chapter9.hs
+│   │   │   │   ├── ChapterFour.hs
+│   │   │   │   ├── ChapterThree.hs
+│   │   │   │   ├── dsl.zip
+│   │   │   │   ├── DSL_9_27_time1455.zip
+│   │   │   │   ├── dynamic-programming.pdf
+│   │   │   │   ├── EmailLog.tgz
+│   │   │   │   ├── hangman.zip
+│   │   │   │   ├── Haskell Chapter 1
+│   │   │   │   │   ├── ChapterOne.hs
+│   │   │   │   │   └── Haskell1_unit_tests.hs
+│   │   │   │   ├── Haskell Chapter 1.zip
+│   │   │   │   ├── Haskell Chapter 5.tar.gz
+│   │   │   │   ├── Haskell3UnitTests.hs
+│   │   │   │   ├── Haskell4UnitTests.hs
+│   │   │   │   ├── Haskell7.pdf
+│   │   │   │   ├── javascript-report.pdf
+│   │   │   │   ├── Language Exploration Demo
+│   │   │   │   │   ├── character.php
+│   │   │   │   │   ├── classes.json
+│   │   │   │   │   ├── index.php
+│   │   │   │   │   └── races.json
+│   │   │   │   ├── Language Exploration Demo.zip
+│   │   │   │   ├── nim.zip
+│   │   │   │   ├── NQueens.hs
+│   │   │   │   ├── nqueens-report.pdf
+│   │   │   │   ├── RegExpFun.zip
+│   │   │   │   ├── scramble.zip
+│   │   │   │   └── tictactoe2.hs
+│   │   │   └── text
+│   │   │       └── learnyouahaskell.pdf
+│   │   └── RudeBee
+│   │       ├── __MACOSX
+│   │       │   ├── HangMan
+│   │       │   ├── HangMan_Zustak
+│   │       │   ├── HaskellDemos
+│   │       │   ├── HaskellInClass
+│   │       │   ├── Nim
+│   │       │   ├── ReGexLog
+│   │       │   ├── RubyDemos
+│   │       │   ├── RubyReGex
+│   │       │   └── Scramble
+│   │       ├── HangMan
+│   │       │   ├── hangman.rb
+│   │       │   ├── otherWords.txt
+│   │       │   ├── testWords.txt
+│   │       │   ├── words.rb
+│   │       │   └── words_test.rb
+│   │       ├── HangMan_Zustak
+│   │       │   ├── hangman.rb
+│   │       │   ├── otherWords.txt
+│   │       │   ├── testWords.txt
+│   │       │   ├── words.rb
+│   │       │   └── words_test.rb
+│   │       ├── HaskellDemos
+│   │       │   ├── demo-chap6.hs
+│   │       │   ├── demoDay1.txt
+│   │       │   ├── demoDay1-chap1.hs
+│   │       │   ├── demoDay2.txt
+│   │       │   ├── demoDay2-chap1.hs
+│   │       │   ├── demoDay3.txt
+│   │       │   ├── demoDay3-chap3.hs
+│   │       │   ├── demoDay4-chap3.hs
+│   │       │   ├── demoDay5-chap4.hs
+│   │       │   ├── demoDay6-chap5.hs
+│   │       │   ├── demoDay7-chap5.hs
+│   │       │   ├── demoDay8-chap8.hs
+│   │       │   ├── demoDay9-chap7Pt1.hs
+│   │       │   ├── demoDay9-chap7Pt2.hs
+│   │       │   ├── demoDay9-chap7Pt3.hs
+│   │       │   ├── demoDay9-chap7Pt4.hs
+│   │       │   ├── demoDay-chap7_maybe9.hs
+│   │       │   ├── demoDay-chap9.hs
+│   │       │   ├── Geometry.hs
+│   │       │   ├── GeometryDemo.hs
+│   │       │   ├── haiku.txt
+│   │       │   ├── helloworld.exe
+│   │       │   ├── helloworld.hi
+│   │       │   ├── helloworld.hs
+│   │       │   └── helloworld.o
+│   │       ├── HaskellInClass
+│   │       │   ├── brandun.hs
+│   │       │   ├── Chapter8.hs
+│   │       │   ├── Chapter9.hs
+│   │       │   ├── ChapterFive_Pt1.hs
+│   │       │   ├── ChapterFive_Pt2.hs
+│   │       │   ├── ChapterFive_Pt3.hs
+│   │       │   ├── ChapterFour 2.hs
+│   │       │   ├── ChapterFour.hs
+│   │       │   ├── ChapterOne.hs
+│   │       │   ├── ChapterThree.hi
+│   │       │   ├── ChapterThree.hs
+│   │       │   ├── ChapterThree.o
+│   │       │   ├── demoDay2-chap1.hs
+│   │       │   ├── encryptMe.txt
+│   │       │   ├── Haskell1.hs
+│   │       │   ├── Haskell3.hi
+│   │       │   ├── Haskell3.hs
+│   │       │   ├── Haskell3.o
+│   │       │   ├── Haskell4 2.hs
+│   │       │   ├── Haskell4.hs
+│   │       │   ├── Haskell5pt1.hs
+│   │       │   ├── Haskell5pt2.hs
+│   │       │   ├── Haskell5pt3.hs
+│   │       │   ├── PlaynShare.hs
+│   │       │   ├── test
+│   │       │   ├── TicTacToe.hs
+│   │       │   └── WHERE ar.NAME = 'James Tayl.textClipping
+│   │       ├── Nim
+│   │       │   ├── nim.rb
+│   │       │   ├── nimPlayTester.rb
+│   │       │   ├── nimTest
+│   │       │   ├── nimTest.rb
+│   │       │   └── NimTester.rb
+│   │       ├── otherassignments.txt
+│   │       ├── ReGexLog
+│   │       │   ├── EmailLogMain.rb
+│   │       │   ├── EmailLogTester.rb
+│   │       │   ├── mail.log
+│   │       │   └── RegexLog.zip
+│   │       ├── RubyDemos
+│   │       │   ├── questions.qm
+│   │       │   ├── questions.rb
+│   │       │   ├── questions_test.rb
+│   │       │   ├── questionsv1.rb
+│   │       │   ├── quiz.rb
+│   │       │   ├── quiz_runner.rb
+│   │       │   ├── RegExInClass.rb
+│   │       │   ├── RubyBasics.rb
+│   │       │   ├── RubyClasses-1.rb
+│   │       │   ├── RubyClasses-2.rb
+│   │       │   ├── RubyClasses-3.rb
+│   │       │   ├── RubyClasses-4.rb
+│   │       │   ├── RubyClasses-5.rb
+│   │       │   ├── RubyClasses-6.rb
+│   │       │   ├── RubyClasses-7.rb
+│   │       │   ├── RubyClasses-8.rb
+│   │       │   ├── RubyClosures-1.rb
+│   │       │   ├── RubyClosures-2.rb
+│   │       │   ├── RubyControlFlow.rb
+│   │       │   ├── RubyDataTypes.rb
+│   │       │   ├── RubyExceptions.rb
+│   │       │   ├── RubyExceptions-2.rb
+│   │       │   ├── RubyExpressions.rb
+│   │       │   ├── RubyInheritance-1.rb
+│   │       │   ├── RubyInheritance-1a.rb
+│   │       │   ├── RubyInheritance-2.rb
+│   │       │   ├── RubyInheritance-2a.rb
+│   │       │   ├── RubyInheritance-3.rb
+│   │       │   ├── RubyInheritance-4.rb
+│   │       │   ├── RubyInheritance-5.rb
+│   │       │   ├── RubyLSP.rb
+│   │       │   ├── RubyMetaprogramming.rb
+│   │       │   ├── RubyMethodArgs.rb
+│   │       │   ├── RubyModules.rb
+│   │       │   ├── RubyModules-2.rb
+│   │       │   ├── RubyModules-3.rb
+│   │       │   ├── RubyNested.rb
+│   │       │   ├── RubyNested-2.rb
+│   │       │   ├── RubyNested-3.rb
+│   │       │   ├── RubyOpenClasses-1.rb
+│   │       │   ├── RubyOpenClasses-2.rb
+│   │       │   ├── RubyProc-1.rb
+│   │       │   ├── RubyProc-2.rb
+│   │       │   ├── RubyProc-3.rb
+│   │       │   ├── RubyReflection-1.rb
+│   │       │   ├── RubyReflection-2.rb
+│   │       │   ├── RubyRegex.rb
+│   │       │   ├── RubyRegex-2.rb
+│   │       │   ├── RubySingleton.rb
+│   │       │   ├── RubyUnitTest.rb
+│   │       │   └── RubyYield.rb
+│   │       ├── RubyReGex
+│   │       │   ├── RegExp.zip
+│   │       │   ├── RegExpFun.rb
+│   │       │   └── RegExpFunTester.rb
+│   │       ├── Scramble
+│   │       │   ├── scramble.rb
+│   │       │   ├── Words.txt
+│   │       │   └── Words_short.txt
+│   │       └── WordGame.rb
+│   ├── README.md
+│   └── Ruby
+│       ├── DSL
+│       │   ├── badRules.txt
+│       │   ├── JustDoIt.txt
+│       │   ├── processor.rb
+│       │   ├── processor_runner.rb
+│       │   ├── READ ME.txt
+│       │   ├── rule_reader_test.rb
+│       │   ├── rule_set.rb
+│       │   ├── rulesTest.txt
+│       │   └── SecondSet.txt
+│       ├── EmailLog
+│       │   ├── email.rb
+│       │   ├── EmailLogMain.rb
+│       │   ├── EmailLogTester.rb
+│       │   └── mail.log
+│       ├── Hangman
+│       │   ├── hangman.rb
+│       │   ├── testWords.txt
+│       │   ├── words.rb
+│       │   ├── words.txt
+│       │   └── words_test.rb
+│       ├── MASTER.rb
+│       ├── NIM
+│       │   ├── game.rb
+│       │   ├── nim.rb
+│       │   ├── nimPlayTester.rb
+│       │   └── nimTest.rb
+│       ├── rbeautify.rb
+│       ├── regex basic
+│       │   ├── RegExpPractice.rb
+│       │   └── RegExpPracticeTester.rb
+│       ├── Scramble
+│       │   ├── scramble.rb
+│       │   ├── testWords.txt
+│       │   └── words.rb
+│       ├── Text Parser
+│       │   ├── JS.txt
+│       │   ├── out.txt
+│       │   └── parser.rb
+│       └── WordGame.rb
+├── Software Engineering
+│   ├── CityEvac
+│   │   ├── bin
+│   │   │   ├── CityEvac
+│   │   │   │   ├── Engine$1.class
+│   │   │   │   ├── Engine$2.class
+│   │   │   │   ├── Engine$3.class
+│   │   │   │   ├── Engine$4.class
+│   │   │   │   ├── Engine$5.class
+│   │   │   │   ├── Engine$6.class
+│   │   │   │   ├── Engine.class
+│   │   │   │   ├── Frame$1MenuItemListener.class
+│   │   │   │   ├── Frame$2MenuItemListener.class
+│   │   │   │   ├── Frame.class
+│   │   │   │   ├── Route$1.class
+│   │   │   │   ├── Route$spawn.class
+│   │   │   │   └── Route.class
+│   │   │   ├── Data
+│   │   │   │   ├── bdown.png
+│   │   │   │   ├── bg.png
+│   │   │   │   ├── boat.png
+│   │   │   │   ├── bup.png
+│   │   │   │   ├── car.png
+│   │   │   │   └── menuIcon.png
+│   │   │   ├── Tests
+│   │   │   │   └── JUnitTest.class
+│   │   │   └── Thumbs.db
+│   │   ├── City Evac.zip
+│   │   ├── CityEvac
+│   │   ├── log.txt
+│   │   ├── src
+│   │   │   ├── CityEvac
+│   │   │   │   ├── Engine.java
+│   │   │   │   ├── Frame.java
+│   │   │   │   └── Route.java
+│   │   │   ├── Data
+│   │   │   └── Tests
+│   │   │       └── JUnitTest.java
+│   │   └── Thumbs.db
+│   ├── Clue
+│   │   ├── BadConfigLog.txt
+│   │   ├── bin
+│   │   │   ├── clueGame
+│   │   │   │   ├── BadConfigFormatException.class
+│   │   │   │   ├── Board.class
+│   │   │   │   ├── BoardCell.class
+│   │   │   │   ├── Card.class
+│   │   │   │   ├── CardGUI.class
+│   │   │   │   ├── CardType.class
+│   │   │   │   ├── ClueGame$1MenuItemListener.class
+│   │   │   │   ├── ClueGame$2MenuItemListener.class
+│   │   │   │   ├── ClueGame.class
+│   │   │   │   ├── ComputerPlayer.class
+│   │   │   │   ├── ControlGUI$NextPlayerListener.class
+│   │   │   │   ├── ControlGUI.class
+│   │   │   │   ├── Deck.class
+│   │   │   │   ├── DetectiveNotes.class
+│   │   │   │   ├── DoorDirection.class
+│   │   │   │   ├── HumanPlayer.class
+│   │   │   │   ├── Player.class
+│   │   │   │   └── Solution.class
+│   │   │   ├── clueTests
+│   │   │   │   ├── AccusationTests.class
+│   │   │   │   ├── BoardAdjTargetTests.class
+│   │   │   │   ├── cardTests.class
+│   │   │   │   ├── configTests.class
+│   │   │   │   ├── CR_BoardAdjTargetTests.class
+│   │   │   │   ├── CR_FileInitTests.class
+│   │   │   │   ├── DisprovingSuggestionTest.class
+│   │   │   │   ├── LoadingPlayerTests.class
+│   │   │   │   ├── SelectTargetLocationTests.class
+│   │   │   │   └── SuggestionTests.class
+│   │   │   └── experiment
+│   │   │       ├── IntBoard.class
+│   │   │       └── IntBoardTest.class
+│   │   ├── ClueLayout.csv
+│   │   ├── ClueLayout.ods
+│   │   ├── ClueLayoutBadColumns.csv
+│   │   ├── ClueLayoutBadRoom.csv
+│   │   ├── ClueLegend.txt
+│   │   ├── ClueLegendBadFormat.txt
+│   │   ├── Layout.csv
+│   │   ├── LayoutBadColumns.csv
+│   │   ├── LayoutBadRoom.csv
+│   │   ├── Legend.txt
+│   │   ├── LegendBadFormat.txt
+│   │   ├── log.txt
+│   │   ├── People.txt
+│   │   ├── Players.txt
+│   │   ├── README.md
+│   │   ├── src
+│   │   │   ├── clueGame
+│   │   │   │   ├── BadConfigFormatException.java
+│   │   │   │   ├── Board.java
+│   │   │   │   ├── BoardCell.java
+│   │   │   │   ├── Card.java
+│   │   │   │   ├── CardGUI.java
+│   │   │   │   ├── CardType.java
+│   │   │   │   ├── ClueGame.java
+│   │   │   │   ├── ComputerPlayer.java
+│   │   │   │   ├── ControlGUI.java
+│   │   │   │   ├── Deck.java
+│   │   │   │   ├── DetectiveNotes.java
+│   │   │   │   ├── DoorDirection.java
+│   │   │   │   ├── HumanPlayer.java
+│   │   │   │   ├── Player.java
+│   │   │   │   └── Solution.java
+│   │   │   ├── clueTests
+│   │   │   │   ├── AccusationTests.java
+│   │   │   │   ├── BoardAdjTargetTests.java
+│   │   │   │   ├── cardTests.java
+│   │   │   │   ├── configTests.java
+│   │   │   │   ├── CR_BoardAdjTargetTests.java
+│   │   │   │   ├── CR_FileInitTests.java
+│   │   │   │   ├── DisprovingSuggestionTest.java
+│   │   │   │   ├── LoadingPlayerTests.java
+│   │   │   │   ├── SelectTargetLocationTests.java
+│   │   │   │   └── SuggestionTests.java
+│   │   │   └── experiment
+│   │   │       ├── IntBoard.java
+│   │   │       └── IntBoardTest.java
+│   │   └── Weapons.txt
+│   ├── ClueOLD
+│   │   ├── BadConfigLog.txt
+│   │   ├── bin
+│   │   │   ├── clueGame
+│   │   │   │   ├── BadConfigFormatException.class
+│   │   │   │   ├── Board.class
+│   │   │   │   ├── BoardCell.class
+│   │   │   │   ├── Card.class
+│   │   │   │   ├── CardType.class
+│   │   │   │   ├── ClueGame$1MenuItemListener.class
+│   │   │   │   ├── ClueGame$2MenuItemListener.class
+│   │   │   │   ├── ClueGame.class
+│   │   │   │   ├── ComputerPlayer.class
+│   │   │   │   ├── ControlGUI.class
+│   │   │   │   ├── Deck.class
+│   │   │   │   ├── DetectiveNotes.class
+│   │   │   │   ├── DoorDirection.class
+│   │   │   │   ├── HumanPlayer.class
+│   │   │   │   ├── Player.class
+│   │   │   │   └── Solution.class
+│   │   │   ├── clueTests
+│   │   │   │   ├── AccusationTests.class
+│   │   │   │   ├── BoardAdjTargetTests.class
+│   │   │   │   ├── cardTests.class
+│   │   │   │   ├── configTests.class
+│   │   │   │   ├── CR_BoardAdjTargetTests.class
+│   │   │   │   ├── CR_FileInitTests.class
+│   │   │   │   ├── DisprovingSuggestionTest.class
+│   │   │   │   ├── LoadingPlayerTests.class
+│   │   │   │   ├── SelectTargetLocationTests.class
+│   │   │   │   └── SuggestionTests.class
+│   │   │   └── experiment
+│   │   │       ├── IntBoard.class
+│   │   │       └── IntBoardTest.class
+│   │   ├── ClueLayout.csv
+│   │   ├── ClueLayout.ods
+│   │   ├── ClueLayoutBadColumns.csv
+│   │   ├── ClueLayoutBadRoom.csv
+│   │   ├── ClueLegend.txt
+│   │   ├── ClueLegendBadFormat.txt
+│   │   ├── Layout.csv
+│   │   ├── LayoutBadColumns.csv
+│   │   ├── LayoutBadRoom.csv
+│   │   ├── Legend.txt
+│   │   ├── LegendBadFormat.txt
+│   │   ├── log.txt
+│   │   ├── People.txt
+│   │   ├── Players.txt
+│   │   ├── src
+│   │   │   ├── clueGame
+│   │   │   │   ├── BadConfigFormatException.java
+│   │   │   │   ├── Board.java
+│   │   │   │   ├── BoardCell.java
+│   │   │   │   ├── Card.java
+│   │   │   │   ├── CardType.java
+│   │   │   │   ├── ClueGame.java
+│   │   │   │   ├── ComputerPlayer.java
+│   │   │   │   ├── ControlGUI.java
+│   │   │   │   ├── Deck.java
+│   │   │   │   ├── DetectiveNotes.java
+│   │   │   │   ├── DoorDirection.java
+│   │   │   │   ├── HumanPlayer.java
+│   │   │   │   ├── Player.java
+│   │   │   │   └── Solution.java
+│   │   │   ├── clueTests
+│   │   │   │   ├── AccusationTests.java
+│   │   │   │   ├── BoardAdjTargetTests.java
+│   │   │   │   ├── cardTests.java
+│   │   │   │   ├── configTests.java
+│   │   │   │   ├── CR_BoardAdjTargetTests.java
+│   │   │   │   ├── CR_FileInitTests.java
+│   │   │   │   ├── DisprovingSuggestionTest.java
+│   │   │   │   ├── LoadingPlayerTests.java
+│   │   │   │   ├── SelectTargetLocationTests.java
+│   │   │   │   └── SuggestionTests.java
+│   │   │   └── experiment
+│   │   │       ├── IntBoard.java
+│   │   │       └── IntBoardTest.java
+│   │   └── Weapons.txt
+│   └── ClueOld2
+│       ├── bin
+│       │   ├── clueGame
+│       │   │   ├── BadConfigFormatException.class
+│       │   │   ├── Board.class
+│       │   │   ├── BoardCell.class
+│       │   │   ├── Card.class
+│       │   │   ├── CardType.class
+│       │   │   ├── ClueGame$1MenuItemListener.class
+│       │   │   ├── ClueGame$2MenuItemListener.class
+│       │   │   ├── ClueGame.class
+│       │   │   ├── ComputerPlayer.class
+│       │   │   ├── DoorDirection.class
+│       │   │   ├── HumanPlayer.class
+│       │   │   ├── Player.class
+│       │   │   └── Solution.class
+│       │   ├── clueTests
+│       │   │   ├── AdjacencyTargetTests.class
+│       │   │   ├── CardandPlayerTests.class
+│       │   │   ├── CR_BoardAdjTargetTests.class
+│       │   │   ├── CR_FileInitTests.class
+│       │   │   ├── FileTests.class
+│       │   │   └── GameActionTests.class
+│       │   └── gui
+│       │       ├── DetectiveNotes.class
+│       │       ├── GameControl.class
+│       │       ├── PeoplePanel.class
+│       │       ├── PersonGuessPanel.class
+│       │       ├── RoomGuessPanel.class
+│       │       ├── RoomsPanel.class
+│       │       ├── WeaponGuessPanel.class
+│       │       └── WeaponsPanel.class
+│       ├── ClueLayout.csv
+│       ├── ClueLayoutBadColumns.csv
+│       ├── ClueLayoutBadRoom.csv
+│       ├── ClueLegend.txt
+│       ├── ClueLegendBadFormat.txt
+│       ├── ourClueLayout.csv
+│       ├── ourClueLayout.xlsx
+│       ├── ourClueLayoutBadColumns.csv
+│       ├── ourClueLayoutBadRoom.csv
+│       ├── ourClueLegend.txt
+│       ├── ourClueLegendBadFormat.txt
+│       ├── PlayerandCardConfig.txt
+│       └── src
+│           ├── clueGame
+│           │   ├── BadConfigFormatException.java
+│           │   ├── Board.java
+│           │   ├── BoardCell.java
+│           │   ├── Card.java
+│           │   ├── CardType.java
+│           │   ├── ClueGame.java
+│           │   ├── ComputerPlayer.java
+│           │   ├── DoorDirection.java
+│           │   ├── HumanPlayer.java
+│           │   ├── Player.java
+│           │   └── Solution.java
+│           ├── clueTests
+│           │   ├── AdjacencyTargetTests.java
+│           │   ├── CardandPlayerTests.java
+│           │   ├── CR_BoardAdjTargetTests.java
+│           │   ├── CR_FileInitTests.java
+│           │   ├── FileTests.java
+│           │   └── GameActionTests.java
+│           └── gui
+│               ├── DetectiveNotes.java
+│               ├── GameControl.java
+│               ├── PeoplePanel.java
+│               ├── PersonGuessPanel.java
+│               ├── RoomGuessPanel.java
+│               ├── RoomsPanel.java
+│               ├── WeaponGuessPanel.java
+│               └── WeaponsPanel.java
+└── SW
+    ├── ~$Engine_&.SLDASM
+    ├── ~$Fire 4.SLDPRT
+    ├── ~$Piston&ConnRod_&.SLDASM
+    ├── Assem1.avi
+    ├── Assem1.SLDASM
+    ├── Completed
+    │   ├── ~$Spring 2013 four.SLDPRT
+    │   ├── ~$tRIPYRAMIDA.SLDPRT
+    │   ├── ~$yoyo of death.SLDPRT
+    │   ├── 22.SLDPRT
+    │   ├── 23.SLDPRT
+    │   ├── 25.SLDPRT
+    │   ├── 30.SLDPRT
+    │   ├── 31.SLDPRT
+    │   ├── 35.SLDPRT
+    │   ├── bat missle.SLDPRT
+    │   ├── CHunk.SLDPRT
+    │   ├── Drawing 1.SLDPRT
+    │   ├── Drawing 2.SLDPRT
+    │   ├── drawing 5.SLDPRT
+    │   ├── EPICS
+    │   │   ├── Both floors.JPG
+    │   │   ├── EPICS Bottom.STL
+    │   │   ├── EPICS complete.SLDPRT
+    │   │   ├── Epics EXTERIOR.SLDPRT
+    │   │   ├── EPICS Final Assembly.SLDASM
+    │   │   ├── EPICS Final Floor 1.SLDPRT
+    │   │   ├── EPICS Final Floor 2.SLDPRT
+    │   │   ├── EPICS Final Roof.SLDPRT
+    │   │   ├── EPICS Final.SLDPRT
+    │   │   ├── EPICS floor 1 ass.SLDPRT
+    │   │   ├── EPICS floor 1 assembly.SLDPRT
+    │   │   ├── EPICS Floor 1 Drawing SLD.SLDDRW
+    │   │   ├── EPICS floor 1 Drawing.PNG
+    │   │   ├── EPICS floor 1 Drawing.SLDDRW
+    │   │   ├── EPICS floor 1.SLDPRT
+    │   │   ├── EPICS Floor 2 ass.SLDPRT
+    │   │   ├── EPICS floor 2 assembly.SLDPRT
+    │   │   ├── Epics floor 2 Door.SLDPRT
+    │   │   ├── Epics Floor 2 Drawing SLD.SLDDRW
+    │   │   ├── Epics Floor 2 Drawing.PNG
+    │   │   ├── Epics Floor 2 Room.SLDPRT
+    │   │   ├── EPICS floor 2.SLDPRT
+    │   │   ├── EPICS Middle.STL
+    │   │   ├── EPICS Print.SLDPRT
+    │   │   ├── EPICS Prototype Photoshoot.SLDPRT
+    │   │   ├── EPICS Roof.STL
+    │   │   ├── Floor 1 drawing.SLDDRW
+    │   │   ├── Floor 1 Room
+    │   │   │   ├── Floor 1 Iso.png
+    │   │   │   ├── FLoor 1 Left Iso.png
+    │   │   │   ├── Floor 1 Room Assembly Part.SLDPRT
+    │   │   │   ├── Floor 1 Room assembly.SLDASM
+    │   │   │   ├── Floor 1 Room Part.SLDPRT
+    │   │   │   ├── FLoor 1 Top.png
+    │   │   │   ├── Thumbs.db
+    │   │   │   ├── User Library-stolik 800x800.SLDPRT
+    │   │   │   └── User Library-User Library-toilet.SLDPRT
+    │   │   ├── Floor 2 Diagram.PNG
+    │   │   ├── Floor 2.PNG
+    │   │   ├── Floor1.png
+    │   │   └── Thumbs.db
+    │   ├── Floor 2 Room
+    │   │   ├── beddd.SLDPRT
+    │   │   ├── closet.SLDPRT
+    │   │   ├── Floor 2 Room Assembly.SLDASM
+    │   │   ├── Floor 2 Room Front.png
+    │   │   ├── Floor 2 Room Human.png
+    │   │   ├── Floor 2 Room Human.SLDPRT
+    │   │   ├── Floor 2 Room Part.SLDPRT
+    │   │   ├── FLoor 2 Room Right.png
+    │   │   ├── Floor 2 Room Top.png
+    │   │   ├── Human.SLDPRT
+    │   │   └── Thumbs.db
+    │   ├── kaykay.SLDPRT
+    │   ├── lego.SLDPRT
+    │   ├── Pressure.SLDASM
+    │   ├── propane anbd propane accessories.SLDPRT
+    │   ├── Pump thing.SLDASM
+    │   ├── QUADRIFRACTAL.SLDPRT
+    │   ├── Spring 2006 drawing.SLDDRW
+    │   ├── Spring 2013 Five.SLDPRT
+    │   ├── Spring 2013 four.SLDPRT
+    │   ├── THing1.SLDPRT
+    │   ├── Thumbs.db
+    │   ├── tRIPYRAMIDA.SLDPRT
+    │   ├── User Library-APARADOR 1a.SLDPRT
+    │   └── yoyo of death.SLDPRT
+    ├── Engine_&.avi
+    ├── Fire 3.SLDPRT
+    ├── Fire 4.SLDPRT
+    ├── Fire.png
+    ├── FIRE.SLDPRT
+    ├── frac.mp4
+    ├── frac.webm
+    ├── ghost.BMP
+    ├── ghost.png
+    ├── HELL YEAH.png
+    ├── Linkage_Assembly
+    │   ├── Linkage_Base.SLDPRT
+    │   ├── Linkage_Bolt.SLDPRT
+    │   ├── Linkage_Coupling.SLDPRT
+    │   ├── Linkage_Cylinder.SLDPRT
+    │   ├── Linkage_Piston.SLDPRT
+    │   └── Thumbs.db
+    ├── machine.avi
+    ├── magnemite.SLDPRT
+    ├── Portal Gun.PNG
+    ├── PRetty engine.avi
+    ├── pump2.png
+    ├── pump3.BMP
+    ├── snowman.SLDPRT
+    ├── Thumbs.db
+    ├── Tutorial ASsembly.avi
+    ├── Wheel_Linkage_Assembly
+    │   ├── Base.SLDPRT
+    │   ├── Cylinder Connector.SLDPRT
+    │   ├── Large Link.SLDPRT
+    │   ├── Piston Cylinder.SLDPRT
+    │   ├── Piston.SLDPRT
+    │   ├── Rail Lid.SLDPRT
+    │   ├── Small Link.SLDPRT
+    │   ├── Thumbs.db
+    │   └── Wheel.SLDPRT
+    ├── yoyo of death.avi
+    ├── Z-Ghost.png
+    └── Z-wall.SLDPRT
+
+377 directories, 1871 files
