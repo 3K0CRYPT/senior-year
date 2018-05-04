@@ -1,0 +1,21 @@
+﻿Build started 4/9/2015 3:56:37 PM.
+     1>Project "Z:\Completed\Lab07B\sfml-template\sfml-template.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /ZI /nologo /W2 /WX- /sdl /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /wd4099 /analyze- /errorReport:prompt src\main.cpp
+         main.cpp
+     1>z:\completed\lab07b\sfml-template\src\main.cpp(36): warning C4244: 'argument' : conversion from 'double' to 'sf::Uint8', possible loss of data
+     1>z:\completed\lab07b\sfml-template\src\main.cpp(37): warning C4244: 'argument' : conversion from 'double' to 'sf::Uint8', possible loss of data
+     1>z:\completed\lab07b\sfml-template\src\main.cpp(38): warning C4244: 'argument' : conversion from 'double' to 'sf::Uint8', possible loss of data
+     1>z:\completed\lab07b\sfml-template\src\main.cpp(39): warning C4244: 'argument' : conversion from 'double' to 'sf::Uint8', possible loss of data
+     1>z:\completed\lab07b\sfml-template\src\main.cpp(40): warning C4244: 'argument' : conversion from 'double' to 'sf::Uint8', possible loss of data
+     1>z:\completed\lab07b\sfml-template\src\main.cpp(41): warning C4244: 'argument' : conversion from 'double' to 'sf::Uint8', possible loss of data
+     1>z:\completed\lab07b\sfml-template\src\main.cpp(42): warning C4244: 'argument' : conversion from 'double' to 'sf::Uint8', possible loss of data
+     1>z:\completed\lab07b\sfml-template\src\main.cpp(43): warning C4244: 'argument' : conversion from 'double' to 'sf::Uint8', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Z:\Completed\Lab07B\Debug\sfml-template.exe" /INCREMENTAL /NOLOGO /LIBPATH:Libs\Debug "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" opengl32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"Z:\Completed\Lab07B\Debug\sfml-template.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Z:\Completed\Lab07B\Debug\sfml-template.lib" /MACHINE:X86 /ignore:4099 Debug\main.obj
+         sfml-template.vcxproj -> Z:\Completed\Lab07B\Debug\sfml-template.exe
+     1>Done Building Project "Z:\Completed\Lab07B\sfml-template\sfml-template.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.14

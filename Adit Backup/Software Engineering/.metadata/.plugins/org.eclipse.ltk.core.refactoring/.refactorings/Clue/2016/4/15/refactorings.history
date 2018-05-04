@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;clueGame.Player.myCards&apos; in &apos;clueGame.Player&apos;&#x0D;&#x0A;- Original project: &apos;Clue&apos;&#x0D;&#x0A;- Original element: &apos;clueGame.Player.myCards&apos;&#x0D;&#x0A;- Getter method name: &apos;getMyCards&apos;&#x0D;&#x0A;- Setter method name: &apos;setMyCards&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;myCards&apos;" flags="589830" getter="getMyCards" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;clueGame{Player.java[Player^myCards" insertion="17" setter="setMyCards" stamp="1460153366841" version="1.0" visibility="1"/>
+</session>

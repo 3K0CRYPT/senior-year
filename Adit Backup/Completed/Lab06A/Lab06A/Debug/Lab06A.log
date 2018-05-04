@@ -1,0 +1,3 @@
+﻿  main.cpp
+z:\csci261\lab06a\lab06a\src\main.cpp(23): warning C4018: '<=' : signed/unsigned mismatch
+  Lab06A.vcxproj -> Z:\CSCI261\Lab06A\Debug\Lab06A.exe

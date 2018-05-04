@@ -1,0 +1,90 @@
+package Tests;
+
+import static org.junit.Assert.*;
+
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.swing.ImageIcon;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import CityEvac.Engine;
+
+public class JUnitTest {
+
+	private static Engine e;
+	
+	@BeforeClass
+	public static void setUp(){
+		e = new Engine();
+	}
+	
+	@Test
+	public void BinaryConversionTest() {
+		ArrayList<Boolean> bools = new ArrayList<Boolean>();
+		bools.add(true); bools.add(false); bools.add(true);   
+		assertEquals(e.toDec(bools), 5);
+	}
+	
+	@Test
+	public void DecimalConversionTest() {
+		assertEquals(e.toBin(10), "1010");
+		assertEquals(e.toBin(2), "10");
+	}
+	
+	@Test
+	public void TestAnswerInput() {
+		ArrayList<Boolean> bools = new ArrayList<Boolean>();
+		bools.add(true); bools.add(false); bools.add(true);
+		assertTrue(e.compare(bools));
+	}
+	
+	@Test
+	public void TestImageLoading() {
+		assertEquals(e.routes.get(0).boatIcon, new ImageIcon("https://www.google.com/images/nav_logo242.png"));
+	}
+	
+	//tests if 101 translates to car, boat, car
+	@Test
+	public void TestSpawnType() {
+		ArrayList<Boolean> bools = new ArrayList<Boolean>();
+		bools.add(true); bools.add(false); bools.add(true);		
+		Engine eng = new Engine(bools);
+		assertTrue(eng.routes.get(0).isCar());
+		assertTrue(eng.routes.get(1).isBoat());
+		assertTrue(eng.routes.get(2).isCar());
+	}
+
+	@Test
+	public void AnimationTimingTest() {
+		int time=0;
+		assertEquals(time, 5);
+	}
+	
+	@Test
+	public void IncorrectAnswerAnimationTest() {
+		ArrayList<Boolean> bools = new ArrayList<Boolean>();
+		bools.add(true); bools.add(false); bools.add(true);   
+		Boolean bool = false;
+		for (int i = 0; i < bools.size(); i++) {
+			if (bools.get(i)!=e.getAnswer().get(i)) {
+				bool = false;
+			}			
+		}
+		assertTrue(bool);
+	}
+	
+	@Test
+	public void TestAutoWindowSizing() {
+		ArrayList<Boolean> bools = new ArrayList<Boolean>();
+		bools.add(true); bools.add(false); bools.add(true);		
+		Engine eng = new Engine(bools);
+		bools.add(false);
+		Engine eng2 = new Engine(bools);
+		assertEquals((int)eng.frame.getSize().getWidth(),bools.size()*100);
+	}	
+}

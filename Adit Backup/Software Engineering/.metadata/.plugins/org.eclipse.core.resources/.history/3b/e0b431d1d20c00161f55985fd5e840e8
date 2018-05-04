@@ -1,0 +1,161 @@
+package CityEvac;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+
+public class Route extends JPanel{
+
+	private enum spawn { CAR, BOAT };
+	private spawn type;
+	public Image boatIcon;
+	public Image carIcon;
+	public Image bg;
+	public Image bridgeUp;
+	public Image bridgeDown;
+	private Boolean state;
+	private JCheckBox up;	
+	public Route() {
+		super();
+		state = false;
+		setLayout(new GridLayout(1,0));
+		up = new JCheckBox("Down");
+		up.setSize(new Dimension(50,50));
+		add(up);
+		up.setVisible(true);
+		//up.setText(t);
+		//up.setSelected(b);
+		this.setVisible(true);		
+		try {                
+			bg = ImageIO.read(new File("bg.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Background image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		
+		try {                
+			bridgeUp = ImageIO.read(new File("bup.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		
+		try {                
+			bridgeDown = ImageIO.read(new File("bdown.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		
+		try {                
+			boatIcon = ImageIO.read(new File("boat.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		
+		try {                
+			carIcon = ImageIO.read(new File("car.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+
+	}
+	public Route(Boolean state) {
+		super();	
+		this.state = state;
+		if (state) switchToCar();
+		else switchToBoat();
+		setLayout(new GridLayout(1,0));
+		up = new JCheckBox("Down", false);
+		up = new JCheckBox("Down");
+		up.setSize(new Dimension(50,50));
+		add(up);
+		up.setVisible(true);
+		//up.setText(t);
+		//up.setSelected(b);
+		this.setVisible(true);		
+		try {                
+			bg = ImageIO.read(new File("bg.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Background image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		
+		try {                
+			bridgeUp = ImageIO.read(new File("bup.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		
+		try {                
+			bridgeDown = ImageIO.read(new File("bdown.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		
+		try {                
+			boatIcon = ImageIO.read(new File("boat.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		
+		try {                
+			carIcon = ImageIO.read(new File("car.png"));
+		} catch (IOException ex) {			
+			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+
+
+	} 
+
+	public spawn getType() { return type; }
+
+	public boolean getState() { return state; } 
+
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(bg, 0, 100, null);
+		
+	}	
+
+	public void switchToCar() {
+		type = spawn.CAR;
+	}
+
+	public void switchToBoat() {
+		type = spawn.BOAT;
+	}
+
+	public boolean isBoat() {
+		if (type == spawn.BOAT) return true;
+		return false;
+	}
+
+	public boolean isCar() {
+		if (type == spawn.CAR) return true;
+		return false;
+	}
+	
+//	public int getWidth() {
+//		System.out.println("got width");
+//		return bg.getWidth(null);		
+//	}
+
+}
+

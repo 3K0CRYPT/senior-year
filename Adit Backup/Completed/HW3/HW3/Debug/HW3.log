@@ -1,0 +1,3 @@
+﻿  main.cpp
+z:\csci261\hw3\hw3\src\main.cpp(35): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+  HW3.vcxproj -> Z:\CSCI261\HW3\Debug\HW3.exe

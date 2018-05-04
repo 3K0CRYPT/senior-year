@@ -1,0 +1,50 @@
+Name: Parker, Peter
+Average Score: 92.28
+Grade: A
+
+Name: Smith, Mary
+Average Score: 71.45
+Grade: C
+
+Name: Brown, Pat
+Average Score: 91.4
+Grade: A
+
+Name: Williams, Linda
+Average Score: 67.64
+Grade: D
+
+Name: Miller, John
+Average Score: 92.37
+Grade: A
+
+Name: Johnson, Patricia
+Average Score: 73.26
+Grade: C
+
+Name: Hall, Brian
+Average Score: 74.98
+Grade: C
+
+Name: Nelson, Sandra
+Average Score: 92.37
+Grade: A
+
+Name: Baker, Jason
+Average Score: 73.26
+Grade: C
+
+Name: Carter, Gary
+Average Score: 74.98
+Grade: C
+
+There are 18 instances of students taking undergraduate level courses.
+There are 12 instances of students taking graduate level courses.
+
+CSCI-261: Programming Concepts (C++) has 4 students.
+CSCI-262: Data Structures has 3 students.
+CSCI-306: Software Engineering has 6 students.
+CSCI-442: Operating Systems has 5 students.
+CSCI-562: Applied Algorithms & Data Structures has 4 students.
+CSCI-565: Distributed Computing Systems has 4 students.
+CSCI-580: Advanced High Performance Computing has 4 students.

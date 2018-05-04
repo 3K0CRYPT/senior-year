@@ -1,0 +1,3 @@
+﻿  main.cpp
+z:\csci261\hw07\sfmlvsproject\src\main.cpp(77): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+  SFMLVSProject.vcxproj -> Z:\CSCI261\HW07\Debug\HW07.exe

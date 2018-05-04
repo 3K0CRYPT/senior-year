@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
+<fullyQualifiedTypeName name="javax.swing.border.TitledBorder"/>
+<fullyQualifiedTypeName name="javax.swing.border.EtchedBorder"/>
+<fullyQualifiedTypeName name="com.sun.prism.paint.Color"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.awt.Image"/>
+<fullyQualifiedTypeName name="Route.spawn"/>
+<fullyQualifiedTypeName name="javax.swing.JRadioButton"/>
+<fullyQualifiedTypeName name="javax.swing.JCheckBox"/>
+<fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.awt.GridLayout"/>
+<fullyQualifiedTypeName name="com.sun.prism.Graphics"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="java.awt.image.ImageObserver"/>
+<fullyQualifiedTypeName name="CityEvac.Route"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="java.awt.Dimension"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
+<fullyQualifiedTypeName name="com.sun.javafx.tk.Toolkit"/>
+<fullyQualifiedTypeName name="javax.swing.JTextArea"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="java.awt.Font"/>
+<fullyQualifiedTypeName name="java.awt.MediaTracker"/>
+<fullyQualifiedTypeName name="javax.print.DocFlavor.URL"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="java.awt.Toolkit"/>
+</qualifiedTypeNameHistroy>

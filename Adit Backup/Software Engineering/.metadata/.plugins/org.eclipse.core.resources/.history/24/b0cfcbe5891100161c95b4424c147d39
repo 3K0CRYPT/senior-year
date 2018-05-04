@@ -1,0 +1,229 @@
+package CityEvac;
+
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+
+public class Route extends JPanel implements ActionListener{
+
+	public enum spawn { CAR, BOAT };
+	private spawn type;
+	public Image boatIcon;
+	public Image carIcon;
+	public Image bg;
+	public Image bridgeUp;
+	public Image bridgeDown;
+	public static final int CAR_STARTX = 20;
+	public static final int CAR_TRAVELX = 20;
+	public int carX = CAR_STARTX;
+	public boolean cdown = false;
+	public boolean bdown = true;
+	public static final int BOAT_STARTY = 140;
+	public static final int BOAT_TRAVELY= 20;
+	public int boatY = BOAT_STARTY;
+	private Boolean state;
+	public JCheckBox up;	
+	public static Timer timer;
+
+	public Route(Boolean state) {
+		super();	
+		this.state = state;
+		if (state) switchToCar();
+		else switchToBoat();
+		setLayout(new FlowLayout());
+		up = new JCheckBox("0");
+		up.setSize(new Dimension(50,50));
+		timerSetup();
+
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				up.setText((up.isSelected())?"1":"0");
+				if (up.getText() =="1"){
+					displayBridge();
+				}
+				if (up.getText() == "0"){
+					noBridge();
+				}	
+			}			
+		};		
+		up.addActionListener(buttonListener);
+
+		this.setVisible(true);
+		add(up);
+		
+		MediaTracker tracker = new MediaTracker(this);
+	    URL url = getClass().getResource("/Data/bg.png"); 
+	    URL url2 = getClass().getResource("/Data/bdown.png");
+	    URL url3 = getClass().getResource("/Data/bup.png");
+	    URL url4 = getClass().getResource("/Data/car.png");
+	    URL url5 = getClass().getResource("/Data/boat.png");
+	    URL url6 = getClass().getResource("/Data/menuIcon.png");
+	    bg = Toolkit.getDefaultToolkit().getImage(url);
+	    bridgeDown = Toolkit.getDefaultToolkit().getImage(url2);
+	    bridgeUp = Toolkit.getDefaultToolkit().getImage(url3);
+	    carIcon = Toolkit.getDefaultToolkit().getImage(url4);
+	    boatIcon = Toolkit.getDefaultToolkit().getImage(url5);	    
+	    
+	    tracker.addImage(bg, 0);
+	    tracker.addImage(bridgeDown, 1);
+	    tracker.addImage(bridgeUp, 2);
+	    tracker.addImage(carIcon, 3);
+	    tracker.addImage(boatIcon, 4);
+	    
+	    try {
+	      tracker.waitForID(4);	      
+	    } catch (InterruptedException e) {  return; }
+	    
+	    
+
+		
+//		try {                
+//			bg = ImageIO.read(new File("bg.png"));
+//		} catch (IOException ex) {			
+//			JOptionPane.showMessageDialog(null, "Background image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+//			System.exit(0);
+//		}
+//
+//		try {                
+//			bridgeUp = ImageIO.read(new File("bup.png"));
+//		} catch (IOException ex) {			
+//			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+//			System.exit(0);
+//		}
+//
+//		try {                
+//			bridgeDown = ImageIO.read(new File("bdown.png"));			
+//		} catch (IOException ex) {			
+//			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+//			System.exit(0);
+//		}
+//
+//		try {                
+//			boatIcon = ImageIO.read(new File("boat.png"));
+//		} catch (IOException ex) {			
+//			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+//			System.exit(0);
+//		}
+//
+//		try {                
+//			carIcon = ImageIO.read(new File("car.png"));
+//		} catch (IOException ex) {			
+//			JOptionPane.showMessageDialog(null, "Image file not found!", "Image Load Error", JOptionPane.INFORMATION_MESSAGE);
+//			System.exit(0);
+//		}				
+	} 
+
+
+	protected void noBridge() {
+		bg=bridgeUp;
+		repaint();
+	}
+
+
+	protected void displayBridge() {
+		bg=bridgeDown;
+		repaint();	
+	}
+
+	public spawn getType() { return type; }
+
+	public boolean getState() { return state; } 
+
+	@Override
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(bg, 0, 50, null);
+		if(Engine.submitClicked) {
+			if(type == spawn.BOAT) {
+				g.drawImage(boatIcon, 50, boatY, null);
+			}
+			else {
+				g.drawImage(carIcon, carX, 158, null);
+			}
+		}
+		repaint();
+	}	
+
+	public void switchToCar() {
+		type = spawn.CAR;
+	}
+
+	public void switchToBoat() {
+		type = spawn.BOAT;
+	}
+
+	public boolean isBoat() {
+		if (type == spawn.BOAT) return true;
+		return false;
+	}
+
+	public boolean isCar() {
+		if (type == spawn.CAR) return true;
+		return false;
+	}
+
+	public boolean isSelected() {
+		return up.isSelected();
+	}
+	
+	public void timerSetup() {
+	    timer = new Timer(16, this);
+	    timer.setInitialDelay(0);
+	    timer.start();
+	  }
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(carX < CAR_STARTX) {
+			cdown = false;
+		}
+		if(carX > CAR_STARTX + CAR_TRAVELX) {
+			cdown = true;
+		}
+		if(cdown) {
+			carX--;
+		}
+		else {
+			carX++;
+		}
+		if(boatY < BOAT_STARTY) {
+			bdown = true;
+		}
+		if(boatY > BOAT_STARTY + BOAT_TRAVELY) {
+			bdown = false;
+		}
+		if(bdown) {
+			boatY++;
+		}
+		else {
+			boatY--;
+		}
+		repaint();
+	}
+
+}
+

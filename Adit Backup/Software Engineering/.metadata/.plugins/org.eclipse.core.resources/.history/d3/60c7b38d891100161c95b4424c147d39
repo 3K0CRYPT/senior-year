@@ -1,0 +1,281 @@
+package CityEvac;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+
+import CityEvac.Route.spawn;
+
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit; 
+
+public class Engine {
+	private ArrayList<Boolean> answer;
+	public static ArrayList<Route> routes;
+	public static Frame frame;
+	public int answerInt = 0;
+	public int totalNum = 0;
+	public int numCorrect = 0;
+	public int numFalse = 0;
+	public static boolean submitClicked = false;
+
+	public Engine(int level) {
+		super();
+		answer = new ArrayList<Boolean>();
+		routes = new ArrayList<Route>();
+		frame = new Frame();
+		frame.setVisible(true);		
+		Random r = new Random();
+
+		//variables for generating a range of different numbers
+		int max = 0;
+		int min = 0;
+		if(level == 1){
+			max = 9; min = 0;
+			answerInt = r.nextInt((max-min)+1) + min;}
+		if (level == 2){
+			max = 20; min = 10;
+			answerInt = r.nextInt((max-min)+1) + min;}
+
+		String s = toBin(answerInt);
+		for (Character c: s.toCharArray()) {
+			answer.add((Character.getNumericValue(c)==1));
+		}	
+
+		frame.setSize(new Dimension( 100*(answer.size()+1)+40,400));
+
+		//JTextField text = new JTextField(Integer.toString(answerInt));
+		JPanel pan = new JPanel() { 
+			public void paintComponent(Graphics g) { 
+				g.setFont(new Font("TimesRoman", Font.PLAIN, 72));			
+				g.setColor(Color.RED);
+				g.drawString(Integer.toString(answerInt), 0, 200);
+			} };
+			frame.add(pan);
+
+
+			//frame.add(text);
+
+			for (Boolean b: answer) {
+				routes.add(new Route(b));
+			}
+
+			for (Route route: routes) {
+				frame.add(route);					
+			}			
+
+			JButton submit = new JButton("SUBMIT");		
+			ActionListener buttonListener = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					ArrayList<Boolean> check = new ArrayList<Boolean>();
+					for (Route route: routes) {
+						check.add(route.up.isSelected());
+					}
+					submitClicked = true;
+					if (check.equals(answer)) {
+						JOptionPane.showMessageDialog(null, "You win!", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+						frame.setVisible(false);
+						Engine menu = new Engine();
+						submitClicked = false;
+						Route.timer.stop();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "You are responsible for several deaths.", "Sorry!", JOptionPane.INFORMATION_MESSAGE);
+						frame.setVisible(false);
+						Engine menu = new Engine();
+						submitClicked = false;
+						Route.timer.stop();
+					}
+				}			
+			};	
+
+			submit.addActionListener(buttonListener);
+			frame.add(submit);		
+
+
+			frame.setResizable(false);
+			frame.setVisible(true);		
+	}
+
+	//For tests
+	public Engine(ArrayList<Boolean> bools) {
+		super();
+		answer = new ArrayList<Boolean>();
+		routes = new ArrayList<Route>();
+		frame = new Frame();
+		frame.setVisible(true);
+
+		answer = new ArrayList<Boolean>(bools);			
+		frame.setSize(new Dimension( 100*(answer.size()+1)+40,400));
+
+		for (Boolean b: answer) {
+			routes.add(new Route(b));
+		}
+
+		for (Route route: routes) {
+			frame.add(route);					
+		}			
+
+		JButton submit = new JButton("SUBMIT");		
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Boolean> check = new ArrayList<Boolean>();
+				for (Route route: routes) {
+					check.add(route.up.isSelected());
+				}
+				if (check.equals(answer)) {
+					JOptionPane.showMessageDialog(null, "You win!", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+					System.exit(0);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You are responsible for several deaths.", "Sorry!", JOptionPane.INFORMATION_MESSAGE);
+					System.exit(0);
+				}
+			}			
+		};		
+		submit.addActionListener(buttonListener);
+		frame.add(submit);		
+
+
+		frame.setResizable(false);
+		frame.setVisible(true);		
+	}
+
+	public int toDec(ArrayList<Boolean> bin) {
+		int dec=0;
+		for (int i = 0; i < bin.size(); i++) {
+			if (bin.get(i)) { dec+= Math.pow(2,bin.size()-1-i); }
+		}
+		return dec;
+	}
+
+	public String toBin(int i) {		
+		return Integer.toBinaryString(i);		
+	}
+
+	public Boolean compare(ArrayList<Boolean> b) {
+		return b.equals(answer);
+	}
+
+	public ArrayList<Boolean> getAnswer() {
+		return answer;
+	}
+
+	//For testing
+	public void setAnswer(ArrayList<Boolean> answer) {	
+		this.answer = answer;
+	}
+	public Engine(){
+		JPanel menu = new JPanel();
+		menu.setLayout(new GridLayout(0,1));
+		
+		JTextPane comment = new  JTextPane();
+		comment.setEditable(false);
+
+		comment.setText("City Evac!\n\nThe Nuclear Power Plant's Computer System Has Been Sabotaged!\n" + "You must help the townspeople evacuate by converting\n"
+				+ "the decimal bridge codes into binary commands! \n"
+				+ "0 opens the bridge to let boats through, \n"
+				+ "1 closes the bridge to let cars cross.");		
+		StyledDocument doc = comment.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+
+		JButton learn, levelOne, levelTwo;
+		learn = new JButton("How to convert decimal to binary");
+		final String message = "To convert to binary, find the highest \n"
+				+"power of 2 less than the number you're \n"
+				+"converting. Then, subtract that power of 2, \n"
+				+"write 1 (or 0 if the next power of two was skipped) \n"
+				+"and repeat until zero is left over. \n"
+				+"For example, convert 18: Highest power of two \n"
+				+"is 16. Write '1'. Subtracting, we have 2 left over. \n"
+				+"Next highest power of two is 8. 8 is more \n"
+				+"than 2, so write '0'. Next highest is 4. \n"
+				+"4 is more than 2, so write 0, Next highest \n"
+				+"is 2. 2 fits, write '1'. We have 0 left over. \n" 
+				+"last power of 2 is 1 (2 to the 0th power). Since \n"
+				+"1 is more than 0, write '0'. Final binary: 10010. \n \n"
+				+"In this game, 1 means a closed bridge, 0 means an open brige.";
+		ActionListener learnListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane splash = new JOptionPane();
+				JOptionPane.showMessageDialog(null, message, "How to do binary:", JOptionPane.INFORMATION_MESSAGE);				
+			}			
+		};		
+		learn.addActionListener(learnListener);
+		levelOne = new JButton("Level 1 : numbers 0 - 9");
+		ActionListener listener1 = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				Engine e1 = new Engine(1);	
+			}			
+		};
+		levelOne.addActionListener(listener1);
+		levelTwo = new JButton("Level 2 : numbers 10 - 20");
+		levelTwo.setSize(100, 200);
+		ActionListener listener2 = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				Engine e2 = new Engine(2);	
+			}			
+		};
+		levelTwo.addActionListener(listener2);
+
+
+
+		menu.add(learn);
+		menu.add(levelOne);
+		menu.add(levelTwo);
+		frame = new Frame();
+
+		frame.setLayout(new GridLayout(0,1));
+		frame.add(comment);		
+		
+		//lol one line did it
+		frame.add(new JLabel(new ImageIcon(getClass().getResource("/Data/menuIcon.png"))));
+		
+		frame.add(menu);
+		frame.setSize(550, 450);
+		frame.setVisible(true);		
+		frame.setResizable(false);
+
+
+	}
+
+	public static void main(String[] args) {
+		Engine e = new Engine();
+	}
+}

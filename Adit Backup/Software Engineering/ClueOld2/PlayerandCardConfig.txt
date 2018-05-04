@@ -1,0 +1,21 @@
+P/Colonel Mustard/4/3/orange
+P/Miss Scarlett/2/15/red
+P/Professor Plum/16/2/magenta
+P/Mr. Green/17/10/green
+P/Mrs. White/10/8/white
+P/Mrs. Peacock/16/17/blue
+R, Billiards Room, Card
+R, Foyer, Card
+R, Study, Card
+R, Dining Room, Card
+R, Kitchen, Card
+R, Library, Card
+R, Observatory, Card
+R, Theater, Card
+R, Aquarium, Card
+W, Knife, Card
+W, Candlestick, Card
+W, Revolver, Card
+W, Rope, Card
+W, Lead Pipe, Card
+W, Wrench, Card

@@ -1,0 +1,163 @@
+package CityEvac;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.ImageObserver;
+import java.util.ArrayList;
+import java.util.Random;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import java.awt.Graphics; 
+
+public class Engine {
+	private ArrayList<Boolean> answer;
+	public ArrayList<Route> routes;
+	public static Frame frame;
+	public int answerInt = 0;
+	
+	public Engine() {
+		super();
+		answer = new ArrayList<Boolean>();
+		routes = new ArrayList<Route>();
+		frame = new Frame();
+		frame.setVisible(true);		
+		Random r = new Random();
+		answerInt = r.nextInt(16);
+		String s = toBin(answerInt);
+		for (Character c: s.toCharArray()) {
+			answer.add((Character.getNumericValue(c)==1));
+		}	
+		
+		frame.setSize(new Dimension( 100*(answer.size()+1)+40,400));
+		
+		//JTextField text = new JTextField(Integer.toString(answerInt));
+		JPanel pan = new JPanel() { 
+			public void paintComponent(Graphics g) { 
+			g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize)); 
+			g.setColor(Color.BLACK);
+			g.drawString(Integer.toString(answerInt), 0, 20);
+			} };
+		frame.add(pan);
+		
+		
+		//frame.add(text);
+
+		for (Boolean b: answer) {
+			routes.add(new Route(b));
+		}
+		
+		for (Route route: routes) {
+			frame.add(route);					
+		}			
+		
+		JButton submit = new JButton("SUBMIT");		
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Boolean> check = new ArrayList<Boolean>();
+				for (Route route: routes) {
+					check.add(route.up.isSelected());
+				}
+				if (check.equals(answer)) {
+					JOptionPane.showMessageDialog(null, "You win!", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+					System.exit(0);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You are responsible for several deaths.", "Sorry!", JOptionPane.INFORMATION_MESSAGE);
+					System.exit(0);
+				}
+			}			
+		};	
+		
+		submit.addActionListener(buttonListener);
+		frame.add(submit);		
+		
+		
+		frame.setResizable(false);
+		frame.setVisible(true);		
+	}
+
+	//For tests
+	public Engine(ArrayList<Boolean> bools) {
+		super();
+		answer = new ArrayList<Boolean>();
+		routes = new ArrayList<Route>();
+		frame = new Frame();
+		frame.setVisible(true);
+		
+		answer = new ArrayList<Boolean>(bools);			
+		frame.setSize(new Dimension( 100*(answer.size()+1)+40,400));
+
+		for (Boolean b: answer) {
+			routes.add(new Route(b));
+		}
+		
+		for (Route route: routes) {
+			frame.add(route);					
+		}			
+		
+		JButton submit = new JButton("SUBMIT");		
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Boolean> check = new ArrayList<Boolean>();
+				for (Route route: routes) {
+					check.add(route.up.isSelected());
+				}
+				if (check.equals(answer)) {
+					JOptionPane.showMessageDialog(null, "You win!", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+					System.exit(0);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You are responsible for several deaths.", "Sorry!", JOptionPane.INFORMATION_MESSAGE);
+					System.exit(0);
+				}
+			}			
+		};		
+		submit.addActionListener(buttonListener);
+		frame.add(submit);		
+		
+		
+		frame.setResizable(false);
+		frame.setVisible(true);		
+	}
+
+	public int toDec(ArrayList<Boolean> bin) {
+		int dec=0;
+		for (int i = 0; i < bin.size(); i++) {
+			if (bin.get(i)) { dec+= Math.pow(2,bin.size()-1-i); }
+		}
+		return dec;
+	}
+	
+	public String toBin(int i) {		
+		return Integer.toBinaryString(i);		
+	}
+
+	public Boolean compare(ArrayList<Boolean> b) {
+		return b.equals(answer);
+	}
+
+	public ArrayList<Boolean> getAnswer() {
+		return answer;
+	}
+	
+	//For testing
+	public void setAnswer(ArrayList<Boolean> answer) {	
+		this.answer = answer;
+	}
+
+	public static void main(String[] args) {
+		Engine e = new Engine();	
+		System.out.println(e.answerInt);
+		for (Boolean bool: e.getAnswer()) {
+			System.out.println(bool);
+		}
+	}
+}

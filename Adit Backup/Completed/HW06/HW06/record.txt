@@ -1,0 +1,49 @@
+Name: Peter Parker
+CSCI-261: 95
+CSCI-262: 90.625
+CSCI-442: 91.20
+
+Name: Mary Smith
+CSCI-442: 65.0
+CSCI-562: 79.1234
+CSCI-580: 70.24
+
+Name: Pat Brown
+CSCI-562: 95
+CSCI-565: 88.0
+CSCI-580: 91.20
+
+Name: Linda Williams
+CSCI-262: 65.0
+CSCI-306: 67.719
+CSCI-562: 70.200
+
+Name: John Miller
+CSCI-261: 95.281
+CSCI-306: 90.625
+CSCI-565: 91.20
+
+Name: Patricia Johnson
+CSCI-306: 65.012
+CSCI-442: 84.76
+CSCI-580: 70
+
+Name: Brian Hall
+CSCI-261: 65.0
+CSCI-306: 84.712
+CSCI-442: 75.24
+
+Name: Sandra Nelson
+CSCI-262: 95.281
+CSCI-306: 90.625
+CSCI-565: 91.20
+
+Name: Jason Baker
+CSCI-261: 65.012
+CSCI-306: 84.76
+CSCI-442: 70
+
+Name: Gary Carter
+CSCI-562: 65.0
+CSCI-565: 84.712
+CSCI-580: 75.24

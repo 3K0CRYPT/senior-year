@@ -1,0 +1,7 @@
+﻿  main.cpp
+z:\csci261\lab5b\lab5b\src\main.cpp(123): warning C4018: '<=' : signed/unsigned mismatch
+z:\csci261\lab5b\lab5b\src\main.cpp(138): warning C4018: '<=' : signed/unsigned mismatch
+z:\csci261\lab5b\lab5b\src\main.cpp(174): warning C4018: '<=' : signed/unsigned mismatch
+z:\csci261\lab5b\lab5b\src\main.cpp(126): warning C4715: 'stringFirstNot' : not all control paths return a value
+z:\csci261\lab5b\lab5b\src\main.cpp(142): warning C4715: 'firstName' : not all control paths return a value
+  Lab5B.vcxproj -> Z:\CSCI261\Lab5B\Debug\Lab5B.exe

@@ -1,0 +1,76 @@
+package CityEvac;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+public class Frame extends JFrame {
+	public Frame(){
+		super();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("City Evac!!!");
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		menuBar.add(createFileMenu());
+		menuBar.setVisible(true);
+		
+		setLayout(new GridLayout(1, 0));
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+	}	
+	
+	private JMenu createFileMenu()
+	{
+		JMenu menu = new JMenu("File"); 
+		menu.add(createHelpItem());
+		menu.add(createFileExitItem());		
+		return menu;
+	}
+	
+	private JMenuItem createFileExitItem()
+	{
+		JMenuItem item = new JMenuItem("Exit");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed(ActionEvent e)
+			{
+				System.exit(0);
+			}
+		}
+		item.addActionListener(new MenuItemListener());
+		item.setVisible(true);
+
+		return item;
+	}
+	
+	private JMenuItem createHelpItem()
+	{
+		JMenuItem item = new JMenuItem("How to do binary");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane splash = new JOptionPane();
+				JOptionPane.showMessageDialog(null, "Google it!", "How to do binary:", JOptionPane.INFORMATION_MESSAGE);				
+			}
+		}
+		item.addActionListener(new MenuItemListener());
+		item.setVisible(true);
+		return item;
+	}
+	
+	@Override
+	public void repaint() {
+		System.out.println(this.getWidth());
+		System.out.println(this.getHeight());
+	}
+
+}
